@@ -8,7 +8,7 @@ import json
 import re
 import subprocess
 
-from catalog_vendors import vendor_routes
+from catalog_vendors import ZONE_NAMES, vendor_routes
 
 PINS = {
     "polestar": ("fitzforge/polestar", "19bd636e7d6f33231770f6029c76d2d4dfc63798"),
@@ -45,6 +45,18 @@ MAP_DUNGEONS = {33: "Shadowfang Keep", 36: "The Deadmines", 43: "Wailing Caverns
                 2999: "Ruins of Lordaeron", 3065: "Hall of Thanes"}
 CLASS_QUESTS = {81: 1, 141: 2, 261: 3, 162: 4, 262: 5, 82: 7, 161: 8, 61: 9, 263: 11}
 # Profession, holiday, war-effort and expired-event quests have additional access requirements.
+# Rare-fish exchanges with item rewards verified in the launch quest and NPC logs.
+FISH_REWARDS = {8221: (19805, "Keefer's Angelfish"), 8225: (19803, "Brownell's Blue Striped Racer")}
+# Recipe reagents from the Forever client. NPCs and skill gates come from launch data.
+GOGGLE_RECIPES = {3934: "6 Light Leather, 2 Tigerseye", 3940: "4 Medium Leather, 2 Shadowgem",
+                  3956: "4 Medium Leather, 2 Moss Agate, 1 Flying Tiger Goggles"}
+# The optional planning display can show the known stats without pretending the wearer
+# passes the client's live requirements.
+# Confirmed tradeable via launch AH listings (see DATA.md); uncommon+ cache omits
+# most low-quality items. Do not infer that a missing tooltip proves tradeability.
+AUCTION_TRADEABLE = {2568, 2844, 2845, 6219, 7026}
+HEAD_GUIDE_IDS = {4368, 4373, 4385, 10499, 19972}
+PRIMARY_STAT = {3: "agi", 4: "str", 5: "int", 6: "spi", 7: "sta"}
 SKIP_QUEST_CATEGORIES = {1, 22, 24, 101, 121, 181, 182, 201, 264, 284, 304, 324, 344,
                          364, 365, 366, 368, 369, 641, 666, 676}
 BAD_NAME = re.compile(r'\b(?:NYI|UNUSED|Deprecated|QA|TEST|PH|DEBUG|DNT|TESTING|TMP)\b', re.I)
@@ -67,7 +79,8 @@ def lua_tables(text):
 
 def stat_metadata(raw):
     inv, ilvl, level, _quality, cls, sub, *tokens = raw.split()
-    if int(cls) not in (2, 4) or int(inv) not in set(SLOTS.values()) | {14, 20, 26}:
+    if (int(cls) not in (2, 4) or int(inv) not in set(SLOTS.values()) | {14, 20, 26}
+            or (int(cls), int(sub)) == (4, 5)):
         return {}
     meta = dict(invType=int(inv), itemLevel=int(ilvl), minLevel=max(int(level), 1),
                 classID=int(cls), subclassID=int(sub))
@@ -75,7 +88,7 @@ def stat_metadata(raw):
         if token.startswith("cls") and token[3:].isdigit():
             meta["classMask"] = int(token[3:])
         elif token == "uniq1":
-            meta["maxCopies"] = 1
+            meta["itemLimit"] = 1
     return meta
 
 
@@ -98,6 +111,8 @@ def from_tooltip(row):
         item["binding"] = "BoP"
     elif "Binds when equipped" in tip:
         item["binding"] = "BoE"
+    elif "<!--bo-->" in tip and "Binds " not in tip and "Quest Item" not in tip:
+        item["binding"] = "Unbound"
     for entity in ("class", "race"):
         ids = {int(x) for x in re.findall(f'/forever/{entity}=(\\d+)/', tip)}
         if ids:
@@ -119,7 +134,20 @@ def from_tooltip(row):
         item["minPvPRank"] = int(rank[1])
     skill = re.search(r'Requires <a href="/forever/skill=(\d+)/[^"]+"[^>]*>[^<]+</a> \((\d+)\)', tip)
     if skill:
-        item.update(professionID=int(skill[1]), professionRank=int(skill[2]))
+        item.update(wearProfessionID=int(skill[1]), wearProfessionRank=int(skill[2]),
+                    professionID=int(skill[1]), professionRank=int(skill[2]))
+    if row["itemId"] in HEAD_GUIDE_IDS:
+        lines, tokens = [], []
+        for key, amount, stat in re.findall(r"<!--stat(\d+)-->\+(\d+) (\w+)", tip):
+            if int(key) in PRIMARY_STAT:
+                lines.append(f"+{amount} {stat}")
+                tokens.append(PRIMARY_STAT[int(key)] + amount)
+        armor = re.search(r"<!--amr-->(\d+)", tip)
+        if armor:
+            lines.append(armor[1] + " armor")
+            tokens.append("armor" + armor[1])
+        item["foreverStats"] = " ".join(tokens)
+        item["statSummary"] = ", ".join(lines)
     return item
 
 
@@ -140,20 +168,30 @@ def acquire_items(polestar, cache):
     for i, name in tables["names"].items():
         if i in items:
             items[i]["name"] = name
+            if i == 279391 and items[i].get("foreverStats") == "armor28":
+                items[i]["statSummary"] = "28 armor"
     rows = json.loads((cache / "Forever Cache.json").read_text(encoding="utf-8"))
     for row in rows:
         meta = from_tooltip(row)
+        if meta and (meta["classID"], meta["subclassID"]) == (4, 5):
+            items.pop(row["itemId"], None)  # An appearance, not combat gear.
+            continue
         if meta:
             item = items.setdefault(row["itemId"], {})
             # The Forever tooltip supersedes the earlier Era/Forever class and unique restrictions.
             for field in ("classMask", "raceMask", "maxCopies", "itemLimit", "unique", "uniqueLimit"):
                 item.pop(field, None)
             item.update(meta)
+    for i in AUCTION_TRADEABLE:
+        if i in items:
+            items[i].setdefault("binding", "Tradeable")
     return items, tables, rows
 
 
 def quest_sources(builds, tables, items):
     quests, repeatable, observed, offered, withheld = {}, set(), defaultdict(set), set(), set()
+    givers = {}
+    fishbot_offers = set()
     for build in builds:
         quests.update({int(k): v for k, v in read_map(build, "quests.enUS", "quests").items()})
         with (build / "quest_scan.json").open() as stream:
@@ -165,11 +203,24 @@ def quest_sources(builds, tables, items):
             observed[int(q)].update(t["faction"] for t in facts if t.get("faction"))
         for entity in ("npcs", "objects"):
             for npc in read_map(build, "npcs", entity).values():
-                offered.update(map(int, npc.get("offers", {})))
+                ids = set(map(int, npc.get("offers", {})))
+                offered.update(ids)
+                if npc.get("name") == "Fishbot 5000":
+                    fishbot_offers.update(ids)
+                position = next((p for p in npc.get("positions", []) if p.get("uiMap") in ZONE_NAMES
+                                 and "mapX" in p and "mapY" in p), None)
+                if position and npc.get("name"):
+                    place = f"{npc['name']}, {ZONE_NAMES[position['uiMap']]} ({100*position['mapX']:.0f}, {100*position['mapY']:.0f})"
+                    for ident in ids:
+                        givers.setdefault(ident, place)
     for qid, q in sorted(quests.items()):
         title = q.get("title", "")
         category = q.get("categoryId", 0)
-        if (not title or BAD_NAME.search(title) or qid in withheld or category in SKIP_QUEST_CATEGORIES
+        fish = FISH_REWARDS.get(qid) if qid in fishbot_offers else None
+        if fish and not any(obj.get("type") == "item" and obj.get("objectId") == fish[0]
+                            and obj.get("amount") == 1 for obj in q.get("objectives", [])):
+            fish = None
+        if (not title or BAD_NAME.search(title) or qid in withheld or (category in SKIP_QUEST_CATEGORIES and not fish)
                 or q.get("questInfoId") in (41, 62)):
             continue
         legacy = tables["quests"].get(qid)
@@ -201,8 +252,16 @@ def quest_sources(builds, tables, items):
         zone_name = tables["zones"].get(zone)
         if q.get("questInfoId") == 81 and zone_name in DUNGEONS:
             min_level = max(min_level, DUNGEONS[zone_name])
-        source = "Quest: " + title + (" (" + zone_name + ")" if zone_name else "")
+        source = "Quest: " + title
+        if qid in givers:
+            source += " - " + givers[qid]
+        elif zone_name:
+            source += " (" + zone_name + ")"
         route = dict(kind="Quest", source=source, questID=qid, minLevel=min_level)
+        if fish:
+            route.update(eventName="Stranglethorn Fishing Extravaganza", requiresItemID=fish[0],
+                         requiresQuestInLog=True,
+                         source=f"Quest: Fish {fish[1]} from tournament pools during the Stranglethorn Fishing Extravaganza. Turn in to Fishbot 5000, Booty Bay (27, 77).")
         if faction:
             route["faction"] = faction
         if cls:
@@ -248,10 +307,11 @@ def observed_boss_drops(builds, items):
 def dungeon_and_craft_sources(builds, tables, items, rows):
     # Corroborate recipe and dungeon metadata with launch trainer observations or another
     # Forever item source. A recipe dropping from a boss is not the crafted gear itself.
-    trainers = set()
+    trainers = defaultdict(dict)
     for build in builds:
-        for trainer in read_map(build, "trainers", "trainers").values():
-            trainers.update(map(int, trainer.get("services", {})))
+        for npc, trainer in read_map(build, "trainers", "trainers").items():
+            for key, service in trainer.get("services", {}).items():
+                trainers[int(key)][int(npc)] = (service, trainer)
     routes = {r["itemId"]: r for r in rows}
     professions = list(SKILLS)
     for i, raw in tables["src"].items():
@@ -266,9 +326,36 @@ def dungeon_and_craft_sources(builds, tables, items, rows):
                 if spell not in trainers and ("Crafted" not in cached.get("sourceTypes", []) or rank > 225):
                     continue
                 name = professions[prof - 1]
-                route = dict(kind="Crafted", source=f"Crafted: {name} ({rank})")
-                if item.get("binding") == "BoP" or (not item.get("binding") and spell not in trainers):
-                    route.update(professionID=SKILLS[name], professionRank=rank)
+                if spell in trainers:
+                    ranks = {a["skillRank"] for a, _ in trainers[spell].values()
+                             if a.get("skill") == name and a.get("skillRank", 0) > 0}
+                    if len(ranks) == 1:
+                        rank = ranks.pop()
+                route = dict(kind="Crafted", craftSpellID=spell, craftProfessionID=SKILLS[name],
+                             craftProfessionRank=rank)
+                if spell in trainers:
+                    route["trainerRecipe"] = True
+                if item.get("binding") not in ("BoE", "Unbound", "Tradeable"):
+                    route.update(acquireProfessionID=SKILLS[name], acquireProfessionRank=rank,
+                                 professionID=SKILLS[name], professionRank=rank, requiresKnownCraft=True)
+                route["source"] = f"Craft: {name} {rank}"
+                if item.get("binding") in ("BoE", "Unbound", "Tradeable"):
+                    route["source"] += ". Buy the unbound item or ask a crafter"
+                if item.get("wearProfessionID"):
+                    required = next((n for n, value in SKILLS.items() if value == item["wearProfessionID"]), name)
+                    route["source"] += f". Wear: {required} {item['wearProfessionRank']}"
+                if spell in GOGGLE_RECIPES:
+                    route["source"] += ". Materials: " + GOGGLE_RECIPES[spell] + "."
+                    teachers = []
+                    for npc in (5518, 3412):
+                        if npc in trainers.get(spell, {}):
+                            trainer = trainers[spell][npc][1]
+                            teachers.append(trainer["name"] + (" (Alliance, Stormwind 62,31)" if npc == 5518
+                                                              else " (Horde, Orgrimmar 76,25)"))
+                    if teachers:
+                        route["source"] += " Trainers: " + " / ".join(teachers) + "."
+                    if spell == 3940:
+                        route["source"] += " Learn Schematic: Shadow Goggles (#4410)."
                 yield i, route
             elif token.startswith("d"):
                 npc, _chance, zone = map(int, re.fullmatch(r"d(\d+)x(\d+)z(\d+)", token).groups())

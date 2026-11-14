@@ -1,7 +1,10 @@
 local _, A = ...
 
 local driver = CreateFrame("Frame")
-local current, refreshAt
+local current, refreshAt, snapshot, work
+local tick
+local frameBudgetEnds
+local detailLimit = 15
 local maxPending, timeout, sliceMS = 48, 12, 3
 local function inCombat()
     return InCombatLockdown and InCombatLockdown()
@@ -46,14 +49,29 @@ local function ownedRoutes()
 end
 
 local function addRoute(s, row)
-    if not A.RouteAvailable(row, s.player) then return end
+    if not A.RouteAvailable(row, s.player) then
+        local option = A.ProfessionTarget and A.ProfessionTarget(row, s.player)
+        if option and option.slot then
+            local bucket = s.paths[option.slot]
+            if not bucket then bucket = {}; s.paths[option.slot] = bucket end
+            local prior = bucket[option.id]
+            if not prior or option.professionRank and option.professionRank < (prior.professionRank or math.huge) then
+                bucket[option.id] = option
+            end
+        end
+        return
+    end
     local key = row.link or row.id
     local group = s.byKey[key]
     if not group then
-        group = {record = row, routes = {}}
+        group = {record = row, routes = {}, sources = {}, sourceSet = {}}
         s.byKey[key], s.queue[#s.queue + 1] = group, group
     end
     if row.foreverStats and not group.record.foreverStats then group.record = row end
+    if row.source and not group.sourceSet[row.source] then
+        group.sourceSet[row.source] = true
+        group.sources[#group.sources + 1] = row.source
+    end
     -- One unlimited route dominates any other unlimited route for the same
     -- item. Retain distinct one-time options and owned copies for the solver.
     if not (row.choice or row.choices or row.maxCopies) then
@@ -68,6 +86,7 @@ end
 
 local function accept(s, group, base)
     s.eligible = s.eligible + 1
+    s.availableIDs[base.id] = true
     local routes = group.unlimited and {group.unlimited} or group.routes
     for _, row in ipairs(routes) do
         local item = {}
@@ -75,6 +94,7 @@ local function accept(s, group, base)
         item.source, item.kind = row.source, row.kind
         item.choice, item.choices, item.maxCopies = row.choice, row.choices, row.maxCopies
         item.routeKey = row.routeKey or ((row.kind or "Gear") .. ":" .. tostring(row.questID or row.source) .. ":" .. row.id)
+        item.sources = group.sources
         if group.unlimited and group.altSource then
             item.source = item.source .. "  •  Also: " .. group.altSource
         end
@@ -103,27 +123,111 @@ local function inspect(s, group, now)
     return true
 end
 
-local function publish(s, done)
-    local scanned = s.cursor - 1 - #s.pending
-    local message
-    if done then
-        message = ("%d eligible item variants checked."):format(s.eligible)
-        if s.unverified > 0 then
-            message = message .. (" %d could not be verified and were skipped."):format(s.unverified)
-        end
-    else
-        message = ("Checking gear: %d / %d. Results are provisional."):format(scanned, #s.queue)
-    end
-    if s.publishedCount ~= #s.items or done then
-        A.UpdateDisplay(A.Solve(s.items, s.player, s.profile), message)
-        s.publishedCount = #s.items
-    else
-        A.UpdateStatus(message)
+-- Both the baseline and a forced-slot ranking can explore many legal outfits.
+-- The solver calls this checkpoint in its inner loops; the same prepared
+-- index is reused for every clicked slot in this character snapshot.
+local function checkpoint()
+    if frameBudgetEnds and debugprofilestop() >= frameBudgetEnds then
+        coroutine.yield()
     end
 end
 
-local function tick()
-    if not A.IsVisible() then current, refreshAt = nil, nil return end
+local function startWork(run, finish, fail)
+    work = {thread = coroutine.create(run), finish = finish, fail = fail}
+    driver:SetScript("OnUpdate", tick)
+end
+
+local function stopIfIdle()
+    if not (current or work or refreshAt) then driver:SetScript("OnUpdate", nil) end
+end
+
+local function stepWork()
+    local job = work
+    frameBudgetEnds = debugprofilestop and (debugprofilestop() + sliceMS)
+    local ok, a, b, c = coroutine.resume(job.thread)
+    frameBudgetEnds = nil
+    if ok and coroutine.status(job.thread) ~= "dead" then return end
+    work = nil
+    if ok then
+        job.finish(a, b, c)
+    else
+        job.fail()
+        if geterrorhandler then geterrorhandler()(a) else error(a) end
+    end
+    stopIfIdle()
+end
+
+function A.CancelSlotRequest()
+    if work and work.isDetail then work = nil; stopIfIdle() end
+end
+
+local function pathsFor(s, slot)
+    local primary = (slot == 12 and 11) or (slot == 14 and 13) or slot
+    local options = {}
+    for id, option in pairs(s.paths[primary] or {}) do
+        if not s.availableIDs[id] then options[#options + 1] = option end
+    end
+    table.sort(options, function(a, b)
+        if (a.professionRank or 0) ~= (b.professionRank or 0) then
+            return (a.professionRank or 0) < (b.professionRank or 0)
+        end
+        return (a.name or tostring(a.id)) < (b.name or tostring(b.id))
+    end)
+    return options
+end
+
+function A.UnlockCount(slot)
+    if not snapshot then return 0 end
+    return #pathsFor(snapshot, slot)
+end
+
+function A.RequestSlot(slot, callback)
+    A.CancelSlotRequest()
+    local s = snapshot
+    if not s or not A.IsVisible() or inCombat() then
+        callback(nil, nil, nil, {}, inCombat() and "Gear checks resume after combat." or "Waiting for the gear scan…")
+        return
+    end
+    local paths = pathsFor(s, slot)
+    if s.ranks[slot] then
+        callback(s.ranks[slot], s.loadout, s.profile, paths)
+        return
+    end
+    callback(nil, s.loadout, s.profile, paths, "Comparing compatible loadouts…")
+    startWork(function()
+        return A.RankPrepared(s.solver, slot, detailLimit, {loadout = s.loadout, total = s.total})
+    end, function(rows)
+        s.ranks[slot] = rows
+        callback(rows, s.loadout, s.profile, paths)
+    end, function()
+        callback({}, s.loadout, s.profile, paths, "Slot comparison failed. Click Refresh to try again.")
+    end)
+    work.isDetail = true
+end
+
+local function calculate(s)
+    current = nil
+    A.UpdateStatus("Comparing complete loadouts and set bonuses…")
+    startWork(function()
+        local solver = A.PrepareSolver(s.items, s.player, s.profile, checkpoint)
+        local loadout, total = A.SolvePrepared(solver)
+        return solver, loadout, total
+    end, function(solver, loadout, total)
+        snapshot = {solver = solver, loadout = loadout, total = total, profile = s.profile,
+            paths = s.paths, availableIDs = s.availableIDs, ranks = {}}
+        local message = ("%d eligible item variants checked. Click a slot to compare gear."):format(s.eligible)
+        if s.unverified > 0 then
+            message = message .. (" %d could not be verified and were skipped."):format(s.unverified)
+        end
+        A.UpdateDisplay(loadout, message)
+        if A.RefreshSlotDetail then A.RefreshSlotDetail() end
+    end, function()
+        A.UpdateDisplay(nil, "The comparison failed. Click Refresh to try again.")
+    end)
+end
+
+tick = function()
+    if not A.IsVisible() then A.StopScan() return end
     local now = GetTime()
     if inCombat() then return end
     if refreshAt and refreshAt <= now then
@@ -131,8 +235,9 @@ local function tick()
         local profile = A.ActiveProfile()
         if profile then A.StartScan(profile) end
     end
+    if work then stepWork(); return end
     local s = current
-    if not s then return end
+    if not s then stopIfIdle(); return end
     local start = debugprofilestop and debugprofilestop() or 0
     local function timeLeft()
         return not debugprofilestop or debugprofilestop() - start < sliceMS
@@ -163,18 +268,17 @@ local function tick()
         if not inspect(s, group, now) then s.pending[#s.pending + 1] = group end
     end
     local done = s.cursor > #s.queue and #s.pending == 0
-    if done or now >= s.nextReport then
-        publish(s, done)
-        s.nextReport = now + 1.5
-    end
     if done then
-        current = nil
-        if not refreshAt then driver:SetScript("OnUpdate", nil) end
+        calculate(s)
+    elseif now >= s.nextReport then
+        local scanned = s.cursor - 1 - #s.pending
+        A.UpdateStatus(("Checking gear: %d / %d."):format(scanned, #s.queue))
+        s.nextReport = now + .5
     end
 end
 
 function A.StopScan()
-    current, refreshAt = nil, nil
+    current, refreshAt, snapshot, work = nil, nil, nil, nil
     driver:SetScript("OnUpdate", nil)
 end
 
@@ -191,7 +295,7 @@ function A.StartScan(profile)
     end
     local s = {player = player, profile = profile, items = {}, byKey = {}, queue = {}, cursor = 1,
         buildAt = 1, pending = {}, nextReport = GetTime() + .25,
-        failed = {}, loaded = {}, supplements = {}, unverified = 0, eligible = 0}
+        failed = {}, loaded = {}, supplements = {}, paths = {}, availableIDs = {}, unverified = 0, eligible = 0}
     current = s
     A.UpdateDisplay(nil, "Finding sources available at your level…")
     for _, row in ipairs(ownedRoutes()) do addRoute(s, row) end
@@ -214,7 +318,7 @@ driver:SetScript("OnEvent", function(_, event, id, success)
     elseif A.IsVisible and A.IsVisible() then
         if event == "PLAYER_REGEN_DISABLED" then
             A.StopScan()
-            A.UpdateStatus("Gear checks resume after combat.")
+            A.UpdateDisplay(nil, "Gear checks resume after combat.")
         else
             refreshAt = GetTime() + .45
             driver:SetScript("OnUpdate", tick)

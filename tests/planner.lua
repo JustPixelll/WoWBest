@@ -10,6 +10,9 @@ function A.IsVisible() return true end
 function A.GetPlayer() return {class = "WARRIOR", level = 15, dual = true} end
 function A.ActiveProfile() return {key = "arms", meleeDPS = 1} end
 function A.RouteAvailable(row) return (row.minLevel or 0) <= 15 end
+function A.ProfessionTarget(row)
+    if row.id == 11 then return {id = 11, slot = 1, name = "Goggles", professionRank = 100} end
+end
 function A.UpdateStatus(message) A.message = message end
 function A.UpdateDisplay(items, message) A.result, A.message = items, message end
 local lookups = {}
@@ -38,11 +41,26 @@ local function step(dt)
 end
 A.StartScan(A.ActiveProfile())
 for _ = 1, 20 do step(.1) end
-assert(A.result and A.result[16].id == 5 and A.result[17].id == 1)
-assert(A.result[17].source:match("Also: Y"))
+local early
+A.RequestSlot(16, function(rows, _, _, _, status) early = (not rows and status) end)
+assert(early and early:find("Waiting"))
 assert(lookups[1] == 1 and not lookups[11])
 for _ = 1, 150 do step(.1) end
 assert(A.message:find("1 could not be verified", 1, true) and scripts.OnUpdate == nil)
+assert(A.result and A.result[16].id == 5 and A.result[17].id == 1)
+assert(A.result[17].source:match("Also: Y") and #A.result[17].sources == 2)
+local results, headPaths, calls = nil, nil, 0
+A.RequestSlot(16, function(rows) if rows then calls = calls + 1 end end)
+A.RequestSlot(1, function(rows, _, _, paths) if rows then results, headPaths = rows, paths end end)
+step(.1)
+assert(calls == 0 and #results == 0 and headPaths[1].name == "Goggles")
+A.RequestSlot(16, function(rows) if rows then results = rows end end)
+step(.1)
+assert(results[1].item.id == 5 and results[2].item.id == 1 and results[1].delta == 0)
+assert(results[1].loadout[17].id == 1 and results[2].loadout[17].id == 5)
+local reused
+A.RequestSlot(16, function(rows) reused = rows end)
+assert(reused == results and not scripts.OnUpdate)
 driver = false
 scripts.OnEvent(nil, "PLAYER_REGEN_DISABLED")
 A.StartScan(A.ActiveProfile())

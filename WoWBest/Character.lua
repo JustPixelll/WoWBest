@@ -94,7 +94,7 @@ local function inlineRed(text)
     return false
 end
 
-local function itemTooltip(link, stats)
+local function itemTooltip(link, stats, plannedSkill)
     if not (C_TooltipInfo and C_TooltipInfo.GetHyperlink) then return nil, "unverified" end
     local tooltip = C_TooltipInfo.GetHyperlink(link)
     if not tooltip or not tooltip.lines or #tooltip.lines < 2 then return nil, "pending" end
@@ -105,8 +105,14 @@ local function itemTooltip(link, stats)
         if left and RETRIEVING_ITEM_INFO and left == RETRIEVING_ITEM_INFO then return nil, "pending" end
         local restriction = line.type == nil or line.type == kinds.None or line.type == kinds.EquipSlot
             or line.type == kinds.ErrorLine or line.type == kinds.UsageRequirement or line.type == kinds.DisabledLine
-        if restriction and (red(line.leftColor) or red(line.rightColor)
-            or inlineRed(left) or inlineRed(line.rightText)) then return nil, "ineligible" end
+        if restriction then
+            local leftRed = red(line.leftColor) or inlineRed(left)
+            local rightRed = red(line.rightColor) or inlineRed(line.rightText)
+            -- A planning preview may disregard only its named skill on a red line.
+            -- Check each side separately: an armor type in red still disqualifies it.
+            if leftRed and not (plannedSkill and left and left:find(plannedSkill, 1, true)) then return nil, "ineligible" end
+            if rightRed and not (plannedSkill and line.rightText and line.rightText:find(plannedSkill, 1, true)) then return nil, "ineligible" end
+        end
         if left then
             left = left:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
             if left == ITEM_UNIQUE or left == ITEM_UNIQUE_EQUIPPABLE then uniqueLimit = 1 end
@@ -117,6 +123,32 @@ local function itemTooltip(link, stats)
         end
     end
     return true, nil, uniqueLimit
+end
+
+local planningSlots = {
+    [1] = {"INVTYPE_HEAD", 1}, [2] = {"INVTYPE_NECK", 2}, [3] = {"INVTYPE_SHOULDER", 3},
+    [5] = {"INVTYPE_CHEST", 5}, [6] = {"INVTYPE_WAIST", 6}, [7] = {"INVTYPE_LEGS", 7},
+    [8] = {"INVTYPE_FEET", 8}, [9] = {"INVTYPE_WRIST", 9}, [10] = {"INVTYPE_HAND", 10},
+    [11] = {"INVTYPE_FINGER", 11}, [12] = {"INVTYPE_TRINKET", 13}, [13] = {"INVTYPE_WEAPON", 16},
+    [14] = {"INVTYPE_SHIELD", 17}, [15] = {"INVTYPE_RANGED", 18}, [16] = {"INVTYPE_CLOAK", 15},
+    [17] = {"INVTYPE_2HWEAPON", 16}, [20] = {"INVTYPE_ROBE", 5}, [21] = {"INVTYPE_WEAPONMAINHAND", 16},
+    [22] = {"INVTYPE_WEAPONOFFHAND", 17}, [23] = {"INVTYPE_HOLDABLE", 17}, [25] = {"INVTYPE_THROWN", 18},
+    [26] = {"INVTYPE_RANGEDRIGHT", 18}, [28] = {"INVTYPE_RELIC", 18},
+}
+
+-- A non-ranked preview. In particular, do not call ReadCandidate with simulated
+-- professions or insert this item into the equippable set.
+function A.PlanningSlot(record, player, skillName)
+    local slot = planningSlots[record.invType]
+    if not slot or not record.classID or record.subclassID == nil then return end
+    if not proficiency(record.classID, record.subclassID, slot[1], player) then return end
+    if C_Item and C_Item.IsItemDataCachedByID and C_Item.IsItemDataCachedByID(record.id) then
+        local _, link, _, _, level, _, _, _, loc, _, _, cls, sub = C_Item.GetItemInfo(record.id)
+        if not link or not level or level > player.level or cls ~= record.classID or sub ~= record.subclassID then return end
+        if loc ~= slot[1] and not (loc == "INVTYPE_ROBE" and slot[2] == 5) then return end
+        if not itemTooltip(link, {}, skillName) then return end
+    end
+    return slot[2]
 end
 
 local function readUnique(item, tipLimit)

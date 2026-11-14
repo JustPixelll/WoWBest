@@ -1,0 +1,38 @@
+WoWBest set metadata snapshot — November 14, 2026
+
+Only set names, IDs, member IDs, thresholds, effect IDs and numeric mechanics
+are imported. WoWBest uses its own short labels/weighted stat mappings. Detailed
+conditional spell descriptions are requested from the user's installed client.
+All game content and trademarks belong to Blizzard Entertainment.
+
+Primary factual input: Napalmsteak/WoW-Classic-Item-Caches, Forever Cache.json
+https://github.com/Napalmsteak/WoW-Classic-Item-Caches/tree/eff4560809de2e852e9164183e3edf5a795edd20
+SHA-256 (LF): 86a387d5274635ebff1589b8702792fc8c0bfdb55df2ae29ec31a4c894f18e3a
+The cache records item facts on Forever's Wowhead branch. Neither its HTML,
+icons nor its full tooltip prose are included. Most records selected here were
+observed after launch. Two earlier observations were checked against launch
+client data for sets 1 and 124:
+https://foreverdb.net/set/1
+https://foreverdb.net/set/124
+
+Three launch sets list pieces but no spells in that cache snapshot. Short
+structured supplement entries for their thresholds in tools/build_sets.py
+are based on the 1.60.1.70938 client data published at:
+https://foreverdb.net/set/2135
+https://foreverdb.net/set/2136
+https://endgametools.com/en/wow-forever/sets/priest
+Independent confirmations of the early dungeon set mechanics:
+https://foreverdb.net/set/161
+https://foreverdb.net/set/162
+
+Rebuild from the repository root:
+python tools/build_sets.py --cache "/path/to/Forever Cache.json"
+The script checks the SHA-256 and regenerates WoWBest/SetData.lua. SetBonuses.lua
+checks the player's actual profession rank for profession-locked thresholds.
+
+A stored set is membership metadata only. Some sets exist as records in the
+Forever client without an obtainable source in the current phase. The planner
+works with eligible catalog routes and actual owned/Auction House items.
+Effects with unknown uptime, condition-specific utility or no profile weights
+can influence practical decisions. The details view retains their spell names
+and available live text alongside the scored thresholds.

@@ -2,7 +2,9 @@
 
 WoWBest finds a gear set to work toward **at your character’s current level** in World of Warcraft: Forever. Type **`/wowbest`** to see the recommended items, their sources and which two pieces can actually be worn together.
 
-**[Download the installable WoWBest ZIP](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Gear data and coverage](DATA.md)
+**[Download WoWBest 1.1 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Gear data and coverage](DATA.md)
+
+**Already have WoWBest?** Exit the game, extract the download, and replace the `WoWBest` folder in `_forever_\Interface\AddOns`. Start Forever, open `/wowbest`, and click a slot. Existing character preferences carry over.
 
 ## Install on Windows
 
@@ -33,12 +35,24 @@ Get-Item -LiteralPath (Join-Path $addonsDir 'WoWBest\WoWBest.toc')
 
 ## Your first gear plan
 
-- Open the window **outside combat**. The included November 14, 2026 catalog contains **3,299 gear items and 4,852 acquisition routes**. The first scan asks the game client for item details in small batches. The list updates while the scan runs. Wait for the final eligible-item count before deciding what to farm.
+- Open the window **outside combat**. The first scan asks the game client for item details in batches. Once the eligible-item count appears, click any slot, including an empty one.
 - Check **Spec**. **Auto** reads points spent in your active talent trees. With no clear winner it shows the class leveling **Default**. Pick a profile manually for a hybrid build, for **Feral (Bear)** versus **Feral (Cat)**, or for a planned respec. A manual choice is saved for this character. Select **Auto (active talents)** to follow talents again.
 - Read **main hand and off hand together**. A two-hander occupies both. A one-hander can be paired with a usable shield or held item. A second weapon requires learned dual wield. Protection profiles plan around a shield. Rings, trinkets and quest choices are also solved together.
+- **Ranked gear** shows up to 15 distinct choices, five per page. The addon finds the best complete outfit that contains each choice in the selected slot. A difference of **−3 points** means the best outfit using that choice gives up three weighted points against the overall recommendation. Tied scores can occur. Each entry shows which other slots change, how its stats score, and which set thresholds you gain or lose. The points use the selected profile’s stat weights.
+- **Paths to unlock** lists relevant profession and event options, with the missing skill, recipe or turn-in when known. These are kept out of the equipped-today ranking until their requirements are met.
 - Hover an item for its game tooltip. Its row tells you where to go next, for example a dungeon and boss, quest, profession and skill, vendor or named world drop. An item you already have can appear as **Currently equipped** or **In your bags**. The planner recognizes exact owned variants, including random suffixes.
 - At an auctioneer, manually search for a piece of gear and open its detailed auction results to include observed buyout listings in the plan. Auction candidates are temporary and limited to the searches you perform during that visit. Check the actual listing before buying.
 - The window refreshes as your level, equipment, talents, skills and quest state change. **Refresh** repeats the lookup, including skipped item requests. Close the window or press Escape when finished. You equip the items yourself.
+
+### Example: a level-19 warrior’s head slot
+
+Click **Head → Paths to unlock** if you have yet to train Engineering. **Flying Tiger Goggles** require Engineering **100** to wear and grant **27 armor, +4 Stamina and +4 Spirit**. **Green Tinted Goggles** require **150** and grant **35 armor, +8 Stamina and +7 Spirit**. Both can be worn at level 19. Their item levels (20 and 30) describe the equipment. The wearer needs Engineering even when someone else crafts the goggles. [Flying Tiger Goggles](https://azeroth.wiki/forever/professions/engineering/flying-tiger-goggles) · [Green Tinted Goggles](https://azeroth.wiki/forever/professions/engineering/green-tinted-goggles)
+
+Engineering trainers **Lilliam Sparkspindle** in Stormwind and **Nogg** in Orgrimmar teach the recipes. One pair of Green Tinted Goggles uses **one Flying Tiger Goggles, four Medium Leather and two Moss Agate**. Once you meet the wearer requirement, open **Head → Ranked gear** to compare them against the other options available to your particular warrior. [Catalog sources](DATA.md)
+
+### Armor sets
+
+The bundled set data covers 274 sets and 780 threshold effects. Of these, 389 have numerical models. Gear from your bags and auction searches uses the same set data as catalog gear. The total includes modeled bonuses from distinct pieces of a set. A weaker-looking item can win when it activates a threshold. The detail view shows which bonuses disappear or appear if you take the runner-up. Unscored effects are labeled so you can judge their value for the encounter. **General PvE** is the default target. Choose **Humanoids** to include the verified +15 attack power against Humanoids from three pieces of Defias Leather. The four-piece positional bleed is displayed as an unscored effect because its uptime depends on how often you attack from behind. [Defias Leather in Forever](https://foreverdb.net/set/161)
 
 ## What “best” means here
 
@@ -46,7 +60,7 @@ The solver maximizes the total score for the selected profile across compatible 
 
 The game client supplies item stats and checks wearability, including your trained proficiencies. Acquisition checks include recorded level, faction, class, race, one-time quest choices, and known profession, reputation and PvP requirements. You may still need a party, a quest chain, an attunement, materials or currency. It shows routes to pursue, without assuming you have cleared a dungeon or can afford an item. Your equipped gear and carried bags enter the comparison even when an item has no catalog route.
 
-Rankings are an estimate for a general PvE build. Encounter-specific caps, rotations, group buffs, most use/proc effects, and set bonuses can change an individual recommendation. An empty slot means there was no legal, positively scored candidate for that slot or its group. The bundled catalog is a dated snapshot with documented gaps in world drops, endgame sources, rare variants and special-event gear. See [DATA.md](DATA.md) for coverage, source builds and reproduction steps.
+Rankings are an estimate for a general PvE build. Encounter-specific caps, rotations, group buffs, many use/proc effects, and unmodeled conditional set effects can change an individual recommendation. An empty slot means there was no legal, positively scored candidate for that slot or its group. The bundled catalog is a dated snapshot with documented gaps in world drops, endgame sources, rare variants and special-event gear. See [DATA.md](DATA.md) for coverage, source builds and reproduction steps.
 
 ## Updating or troubleshooting
 
@@ -64,7 +78,7 @@ To **update**, close WoW and replace the installed `WoWBest` folder with the fol
 
 ## Development and verification
 
-The addon targets the Lua 5.1-compatible Forever client. From the repository root, run the Lua files in `tests/` with Lua 5.1. They cover incompatible hand pairs, uniqueness across slots, competing quest choices, character requirements, async item lookups, talent detection and modeled item effects. A randomized test compares the optimizer against an exhaustive search. The suite uses game API fixtures. A live character remains the final check for a particular client build.
+The addon targets the Lua 5.1-compatible Forever client. From the repository root, run the Lua files in `tests/` with Lua 5.1. They cover incompatible hand pairs, uniqueness across slots, competing quest choices, character requirements, async item lookups, talent detection, click-through slot rankings, Engineering headgear, set thresholds, and modeled item effects. A randomized test compares the optimizer against an exhaustive search. The suite uses game API fixtures. A live character remains the final check for a particular client build.
 
 ```powershell
 Get-ChildItem tests -Filter *.lua | ForEach-Object { lua $_.FullName; if ($LASTEXITCODE) { throw "Failed: $($_.Name)" } }
