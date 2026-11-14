@@ -1,0 +1,16 @@
+WoWBest source catalog, November 14, 2026
+
+Data from Efficient Games (https://efficient.games), licensed under CC BY 4.0.
+Source: https://github.com/JIVESCORP/eg-link-output-wowf
+License: https://creativecommons.org/licenses/by/4.0/
+Changes: filtered observations from five launch builds, selected equipment,
+joined item attributes, and generated compact Lua routes and source labels.
+A full license is in Efficient-Games-CC-BY-4.0.txt.
+
+ForeverLevelingBiS v0.12.0-beta facts (c) 2026 Thunder, MIT, via the Polestar
+ItemDB. The MIT notice is in ForeverLevelingBiS-MIT.txt.
+https://github.com/fitzforge/polestar
+Forever item attributes and dungeon identifiers also checked against the
+Forever Cache from Napalmsteak: https://github.com/Napalmsteak/WoW-Classic-Item-Caches
+
+World of Warcraft and its game content belong to Blizzard Entertainment.

@@ -1,0 +1,71 @@
+# WoWBest
+
+WoWBest finds a gear set to work toward **at your character’s current level** in World of Warcraft: Forever. Type **`/wowbest`** to see the recommended items, their sources and which two pieces can actually be worn together.
+
+**[Download the installable WoWBest ZIP](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Gear data and coverage](DATA.md)
+
+## Install on Windows
+
+1. Exit WoW completely. In **Battle.net**, select **World of Warcraft**, choose **World of Warcraft: Forever**, then use the gear beside **Play** and choose **Show in Explorer**.
+2. Open the **`_forever_`** directory, then **`Interface\AddOns`**. If Explorer already shows the contents of `_forever_`, go straight to `Interface\AddOns`. Create `Interface` or `AddOns` if missing. A typical full path is `C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns`.
+3. Download **WoWBest.zip** from the link above. Right-click it, select **Extract All**, and extract into the **`AddOns`** directory. The archive already contains a folder called **WoWBest**.
+4. Check that **`_forever_\Interface\AddOns\WoWBest\WoWBest.toc`** exists. The Lua files should sit beside the TOC. If you used GitHub’s green **Code → Download ZIP** instead, extract that archive separately and copy the **inner `WoWBest` folder containing the TOC** into AddOns.
+5. Launch Forever. At character selection, click **AddOns**, enable **WoWBest** for your character, enter the world, and type **`/wowbest`** or **`/wbest`**. The addon is standalone. The installation does not require an addon manager, Python, an API key or a companion app.
+
+On **macOS**, follow the same steps in Finder. A standard destination is `/Applications/World of Warcraft/_forever_/Interface/AddOns/`. Unzip the download and copy the resulting `WoWBest` folder there.
+
+### Optional Windows PowerShell installation
+
+Set the first line to the **actual Forever folder you found in Battle.net**. This downloads the packaged addon and writes its files directly into AddOns.
+
+```powershell
+$foreverDir = 'C:\Program Files (x86)\World of Warcraft\_forever_'
+if (!(Test-Path -LiteralPath $foreverDir -PathType Container)) {
+    throw "Set the first line to your actual _forever_ folder."
+}
+$addonsDir = Join-Path $foreverDir 'Interface\AddOns'
+$zipPath = Join-Path $env:TEMP 'WoWBest-addon.zip'
+New-Item -ItemType Directory -Force -Path $addonsDir | Out-Null
+Invoke-WebRequest -ErrorAction Stop -Uri 'https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip' -OutFile $zipPath
+Expand-Archive -LiteralPath $zipPath -DestinationPath $addonsDir -Force -ErrorAction Stop
+Get-Item -LiteralPath (Join-Path $addonsDir 'WoWBest\WoWBest.toc')
+```
+
+## Your first gear plan
+
+- Open the window **outside combat**. The included November 14, 2026 catalog contains **3,299 gear items and 4,852 acquisition routes**. The first scan asks the game client for item details in small batches. The list updates while the scan runs. Wait for the final eligible-item count before deciding what to farm.
+- Check **Spec**. **Auto** reads points spent in your active talent trees. With no clear winner it shows the class leveling **Default**. Pick a profile manually for a hybrid build, for **Feral (Bear)** versus **Feral (Cat)**, or for a planned respec. A manual choice is saved for this character. Select **Auto (active talents)** to follow talents again.
+- Read **main hand and off hand together**. A two-hander occupies both. A one-hander can be paired with a usable shield or held item. A second weapon requires learned dual wield. Protection profiles plan around a shield. Rings, trinkets and quest choices are also solved together.
+- Hover an item for its game tooltip. Its row tells you where to go next, for example a dungeon and boss, quest, profession and skill, vendor or named world drop. An item you already have can appear as **Currently equipped** or **In your bags**. The planner recognizes exact owned variants, including random suffixes.
+- At an auctioneer, manually search for a piece of gear and open its detailed auction results to include observed buyout listings in the plan. Auction candidates are temporary and limited to the searches you perform during that visit. Check the actual listing before buying.
+- The window refreshes as your level, equipment, talents, skills and quest state change. **Refresh** repeats the lookup, including skipped item requests. Close the window or press Escape when finished. You equip the items yourself.
+
+## What “best” means here
+
+The solver maximizes the total score for the selected profile across compatible items. It weights primary stats, relevant secondary stats, defenses, weapon DPS and selected Forever trinket effects. A spec that gains more from a one-hander **plus** a shield or off-hand can choose that pair even if the two-hander is individually stronger.
+
+The game client supplies item stats and checks wearability, including your trained proficiencies. Acquisition checks include recorded level, faction, class, race, one-time quest choices, and known profession, reputation and PvP requirements. You may still need a party, a quest chain, an attunement, materials or currency. It shows routes to pursue, without assuming you have cleared a dungeon or can afford an item. Your equipped gear and carried bags enter the comparison even when an item has no catalog route.
+
+Rankings are an estimate for a general PvE build. Encounter-specific caps, rotations, group buffs, most use/proc effects, and set bonuses can change an individual recommendation. An empty slot means there was no legal, positively scored candidate for that slot or its group. The bundled catalog is a dated snapshot with documented gaps in world drops, endgame sources, rare variants and special-event gear. See [DATA.md](DATA.md) for coverage, source builds and reproduction steps.
+
+## Updating or troubleshooting
+
+| Symptom | What to check |
+| --- | --- |
+| WoWBest is missing from AddOns | Exit the game. Confirm the exact `_forever_\Interface\AddOns\WoWBest\WoWBest.toc` path. An extra `WoWBest-main` or `WoWBest` directory prevents discovery. Restart the Forever client. |
+| The addon is listed but the slash command is unknown | Enable WoWBest for this character at the character screen and re-enter. Verify that all files named in the TOC were extracted. |
+| It is marked out of date | This build targets Forever interface **16001**. In chat, `/dump select(4, GetBuildInfo())` prints your client's interface number. Download the latest compatible WoWBest build after a game update. |
+| A weapon or quest reward you expected is missing | Verify trained weapon skill, character level, build, faction and quest completion. For a completed one-time quest, the reward you kept can still enter through bags or equipped gear. Bank items enter after you move them into your bags. |
+| Some items could not be verified | Leave combat, wait for item data to load, then click **Refresh**. The addon skips unresolved candidates. Missing or incompletely modeled sources can also leave a slot empty. |
+| A stronger-looking item loses | Compare the full hand pair or both rings/trinkets. Check the selected spec and the item's proc/set text. The tooltip gives the model assumptions for supported trinkets. |
+| A Lua error appears | Run `/console scriptErrors 1`, then `/reload` and reopen the window. Report the **first** error, your class, spec, level and `/dump GetBuildInfo()` in [GitHub Issues](https://github.com/JustPixelll/WoWBest/issues). Use `/console scriptErrors 0` afterward if preferred. |
+
+To **update**, close WoW and replace the installed `WoWBest` folder with the folder from the new ZIP. Character settings are kept separately in WoW’s `WTF` directory. To **uninstall**, close WoW and remove the installed `WoWBest` folder from AddOns.
+
+## Development and verification
+
+The addon targets the Lua 5.1-compatible Forever client. From the repository root, run the Lua files in `tests/` with Lua 5.1. They cover incompatible hand pairs, uniqueness across slots, competing quest choices, character requirements, async item lookups, talent detection and modeled item effects. A randomized test compares the optimizer against an exhaustive search. The suite uses game API fixtures. A live character remains the final check for a particular client build.
+
+```powershell
+Get-ChildItem tests -Filter *.lua | ForEach-Object { lua $_.FullName; if ($LASTEXITCODE) { throw "Failed: $($_.Name)" } }
+```
