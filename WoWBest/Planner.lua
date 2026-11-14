@@ -49,6 +49,7 @@ local function ownedRoutes()
 end
 
 local function addRoute(s, row)
+    if not A.RouteSourceEnabled(row) then return end
     if not A.RouteAvailable(row, s.player) then
         local option = A.ProfessionTarget and A.ProfessionTarget(row, s.player)
         if option and option.slot then
@@ -299,11 +300,14 @@ function A.StartScan(profile)
     current = s
     A.UpdateDisplay(nil, "Finding sources available at your level…")
     for _, row in ipairs(ownedRoutes()) do addRoute(s, row) end
-    for _, row in ipairs(A.MarketRoutes and A.MarketRoutes() or {}) do addRoute(s, row) end
+    if A.SourceEnabled("Auction") and A.MarketRoutes then
+        for _, row in ipairs(A.MarketRoutes()) do addRoute(s, row) end
+    end
     driver:SetScript("OnUpdate", tick)
 end
 
 function A.MarketChanged()
+    if not A.SourceEnabled("Auction") then return end
     if A.IsVisible and A.IsVisible() and not inCombat() then
         refreshAt = GetTime() + .45
         driver:SetScript("OnUpdate", tick)

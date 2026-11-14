@@ -26,14 +26,15 @@ function A.ReadCandidate(row)
     return {id = row.id, name = tostring(row.id), loc = "INVTYPE_WEAPON", classID = 2, subID = 7, stats = {DPS = row.id}}, "ok"
 end
 A.Catalog = {
-    {id = 11, source = "Future", minLevel = 16},
-    {id = 7, source = "Never resolves"},
+    {id = 11, source = "Future", kind = "Crafted", minLevel = 16},
+    {id = 7, source = "Never resolves", kind = "Drop"},
     {id = 1, source = "X", kind = "Drop"},
     {id = 1, source = "Y", kind = "Vendor"},
-    {id = 5, source = "Already obtained", minLevel = 20},
-    {id = 5, source = "Quest", questID = 12, choice = 12, maxCopies = 1},
+    {id = 5, source = "Already obtained", kind = "Quest", minLevel = 20},
+    {id = 5, source = "Quest", kind = "Quest", questID = 12, choice = 12, maxCopies = 1},
 }
 assert(loadfile("WoWBest/Engine.lua"))("WoWBest", A)
+assert(loadfile("WoWBest/Sources.lua"))("WoWBest", A)
 assert(loadfile("WoWBest/Planner.lua"))("WoWBest", A)
 local function step(dt)
     now = now + dt

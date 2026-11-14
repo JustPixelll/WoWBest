@@ -43,6 +43,23 @@ MAP_DUNGEONS = {33: "Shadowfang Keep", 36: "The Deadmines", 43: "Wailing Caverns
                 129: "Razorfen Downs", 189: "Scarlet Monastery", 389: "Ragefire Chasm",
                 2959: "City of Dalaran", 2970: "The Drowned City", 2998: "Excavation Site",
                 2999: "Ruins of Lordaeron", 3065: "Hall of Thanes"}
+# Dungeon-tagged quests that can be finished outside the instance portal.
+# For the Deadmines and Wailing Caverns IDs, the launch objective records include
+# mainland progress on every required objective. See DATA.md for the other sources.
+OUTDOOR_DUNGEON_QUESTS = {167, 168, 214, 704, 709, 962, 1275, 1486, 2418}
+# Verified reward chains whose tag is on an earlier mandatory step. Tuples run
+# forward from that step to the reward. Every edge is checked against the launch
+# server's nextQuestId below; zone names alone never imply a prerequisite.
+DUNGEON_REWARD_CHAINS = (
+    (1160, 6628, 1394),        # Scarlet Monastery library book
+    (2949, 2950),              # Grime-Encrusted Ring / Sparklematic, Gnomeregan
+    (5728, 5729, 5730),        # Bazzalan and Jergosh, Ragefire Chasm
+    (79360, 79364, 79361, 79366, 79442),  # Charlga, Razorfen Kraul
+    (96264, 79358, 96135, 96016),          # Other faction's Razorfen Kraul chain
+    (95036, 95111, 95125, 95126),         # Paladin Moonsilver Blade reagents
+    (92415, 95161),            # Blood-Stained Letter, Ruins of Lordaeron
+    (97288, 97289, 97290),     # Abominable Head, Ruins of Lordaeron
+)
 CLASS_QUESTS = {81: 1, 141: 2, 261: 3, 162: 4, 262: 5, 82: 7, 161: 8, 61: 9, 263: 11}
 # Profession, holiday, war-effort and expired-event quests have additional access requirements.
 # Rare-fish exchanges with item rewards verified in the launch quest and NPC logs.
@@ -213,6 +230,14 @@ def quest_sources(builds, tables, items):
                     place = f"{npc['name']}, {ZONE_NAMES[position['uiMap']]} ({100*position['mapX']:.0f}, {100*position['mapY']:.0f})"
                     for ident in ids:
                         givers.setdefault(ident, place)
+    dungeon_steps = {qid: qid for qid, q in quests.items()
+                     if q.get("questInfoId") == 81 and qid not in OUTDOOR_DUNGEON_QUESTS}
+    for chain in DUNGEON_REWARD_CHAINS:
+        if (chain[0] in dungeon_steps
+                and all(quests.get(step, {}).get("nextQuestId") == following
+                        for step, following in zip(chain, chain[1:]))):
+            dungeon_steps[chain[-1]] = chain[0]
+
     for qid, q in sorted(quests.items()):
         title = q.get("title", "")
         category = q.get("categoryId", 0)
@@ -250,14 +275,21 @@ def quest_sources(builds, tables, items):
         if not race:
             continue
         zone_name = tables["zones"].get(zone)
-        if q.get("questInfoId") == 81 and zone_name in DUNGEONS:
-            min_level = max(min_level, DUNGEONS[zone_name])
+        dungeon_step = dungeon_steps.get(qid)
+        dungeon = tables["zones"].get(quests[dungeon_step].get("zoneAreaId")) if dungeon_step else None
+        if dungeon in DUNGEONS:
+            min_level = max(min_level, DUNGEONS[dungeon])
         source = "Quest: " + title
         if qid in givers:
             source += " - " + givers[qid]
         elif zone_name:
             source += " (" + zone_name + ")"
         route = dict(kind="Quest", source=source, questID=qid, minLevel=min_level)
+        if dungeon_step:
+            route["requiresDungeon"] = True
+            label = dungeon if dungeon in DUNGEONS else "dungeon"
+            activity = "Previous quest step" if dungeon_step != qid else "Dungeon objective"
+            route["source"] += f" [{activity}: {label}]" if label != "dungeon" else f" [{activity}]"
         if fish:
             route.update(eventName="Stranglethorn Fishing Extravaganza", requiresItemID=fish[0],
                          requiresQuestInLog=True,

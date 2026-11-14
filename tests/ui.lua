@@ -11,7 +11,7 @@ end
 for _, name in ipairs({
     "SetPoint", "SetAllPoints", "SetColorTexture", "SetJustifyH", "SetTextColor", "SetFrameStrata",
     "SetClampedToScreen", "SetMovable", "EnableMouse", "RegisterForDrag", "SetHighlightTexture",
-    "EnableMouseWheel", "SetVerticalScroll", "SetScrollChild", "StopMovingOrSizing", "SetFrameLevel",
+    "EnableMouseWheel", "SetHitRectInsets", "SetVerticalScroll", "SetScrollChild", "StopMovingOrSizing", "SetFrameLevel",
 }) do methods[name] = function() end end
 function methods:CreateTexture() return widget("Texture", nil, self) end
 function methods:CreateFontString() return widget("Text", nil, self) end
@@ -22,6 +22,8 @@ function methods:SetWidth(w) self.width = w end
 function methods:SetHeight(h) self.height = h end
 function methods:SetSize(w, h) self.width, self.height = w, h end
 function methods:SetText(t) self.text = t end
+function methods:SetChecked(v) self.checked = v end
+function methods:GetChecked() return self.checked end
 function methods:GetStringHeight() return math.ceil(math.max(1, #self.text) / 90) * 15 end
 function methods:SetEnabled(enabled) self.enabled = enabled end
 function methods:IsShown() return self.shown end
@@ -38,14 +40,15 @@ function methods:Hide()
     self.shown = false
     if was and self.scripts.OnHide then self.scripts.OnHide(self) end
 end
-local function byText(query)
+local function byText(query, exact)
     for _, object in ipairs(objects) do
-        if object:IsVisible() and object.text:find(query, 1, true) then return object end
+        if object:IsVisible() and (object.text == query or (not exact and object.text:find(query, 1, true))) then return object end
     end
 end
 local function click(object)
     assert(object and object.enabled and object:IsVisible(), "button unavailable")
-    object.scripts.OnClick(object)
+    if object.kind == "CheckButton" then object:SetChecked(not object:GetChecked()) end
+    if object.scripts.OnClick then object.scripts.OnClick(object) end
 end
 
 UIParent, CreateFrame, SlashCmdList, UISpecialFrames = widget("Frame"), widget, {}, {}
@@ -60,8 +63,9 @@ for i = 1, 18 do A.SlotNames[i] = "Slot " .. i end
 A.SlotNames[1], A.SlotNames[16], A.SlotNames[17] = "Head", "Main hand", "Off hand"
 function A.GetPlayer() return {class = "MAGE", level = 19} end
 function A.DetectProfile() return "frost" end
-local scanProfile
-function A.StartScan(active) scanProfile = active end
+local scanProfile, scans = nil, 0
+function A.StartScan(active) scanProfile, scans = active, scans + 1 end
+assert(loadfile("WoWBest/Sources.lua"))("WoWBest", A)
 function A.CancelSlotRequest() cancelled = cancelled + 1 end
 function A.UnlockCount(slot) return (slot == 1 or slot == 17) and 1 or 0 end
 function A.RequestSlot(slot, callback) requests[#requests + 1] = {slot = slot, callback = callback} end
@@ -125,5 +129,45 @@ SlashCmdList.WOWBEST()
 assert(scanProfile.targetType == "Humanoid" and byText("Target: Humanoids"))
 click(byText("Target: Humanoids"))
 assert(scanProfile == profile and WoWBestCharacterDB.targetType == nil and WoWBestCharacterDB.profile == "frost")
+-- Staging several methods needs one rescan. Unapplied edits must disappear.
+local previousScans = scans
+click(byText("Sources: All"))
+local quests = byText("Quests", true).parent
+local dungeons = byText("Dungeons", true).parent
+assert(quests:GetChecked() and dungeons:GetChecked())
+click(quests)
+click(dungeons)
+assert(A.SourceEnabled("Quest") and scans == previousScans)
+click(byText("Sources: All")) -- discard
+click(byText("Sources: All"))
+assert(quests:GetChecked() and dungeons:GetChecked() and byText("bag items always count"))
+click(quests)
+click(dungeons)
+click(byText("Apply"))
+assert(scans == previousScans + 1 and not A.SourceEnabled("Dungeon") and A.SourceEnabled("Auction"))
+local twoOff = ("Sources: %d/%d"):format(#A.SourceMethods - 2, #A.SourceMethods)
+assert(byText(twoOff))
+click(byText(twoOff))
+click(byText("Apply"))
+assert(scans == previousScans + 1) -- unchanged settings do not start a scan
+
+-- Apply with the detailed view open; late results from the old filter must be ignored.
+A.UpdateDisplay(baseline, "Ready")
+click(byText("Head").parent)
+local stale = requests[#requests].callback
+click(byText(twoOff))
+click(byText("Owned only"))
+click(byText("Apply"))
+assert(not A.SourceEnabled("Auction") and byText("Sources: Owned only") and scans == previousScans + 2)
+stale(choices, baseline, profile, {}, "obsolete")
+assert(not byText("Wand holder 1"))
 SlashCmdList.WOWBEST()
-print("UI click, paging, scoring, locked targets and async cancellation tests passed.")
+SlashCmdList.WOWBEST()
+assert(byText("Sources: Owned only") and byText("Target: General PvE"))
+click(byText("Sources: Owned only"))
+click(byText("Select all"))
+click(byText("Apply"))
+assert(byText("Sources: All") and A.SourceEnabled("Quest") and WoWBestCharacterDB.disabledSources == nil)
+assert(WoWBestCharacterDB.profile == "frost" and scanProfile == profile)
+SlashCmdList.WOWBEST()
+print("UI click, paging, scoring, filters, locked targets and async cancellation tests passed.")

@@ -2,6 +2,7 @@ local addonName, A = ...
 
 local frame, scroll, content, profileButton, targetButton, menu, context, statusText
 local rows, menuButtons = {}, {}
+local sources = {checks = {}}
 local detail = {slot = nil, generation = 0, cards = {}, pageSize = 5}
 local result, lastStatus = nil, ""
 local slots = {1, 2, 3, 15, 5, 9, 10, 6, 7, 8, 11, 12, 13, 14, 16, 17, 18}
@@ -335,6 +336,7 @@ local function openDetail(slot)
     detail.title:SetText(A.SlotNames[slot] or ("Slot " .. slot))
     if GameTooltip:IsShown() then GameTooltip:Hide() end
     menu:Hide()
+    sources.menu:Hide()
     scroll:Hide()
     detail.frame:Show()
     detail.scroll:SetVerticalScroll(0)
@@ -396,6 +398,16 @@ local function drawRows()
     content:SetHeight(math.max(1, offset))
 end
 
+local function sourceSummary()
+    local count = 0
+    for _, method in ipairs(A.SourceMethods) do
+        if A.SourceEnabled(method.key) then count = count + 1 end
+    end
+    if count == #A.SourceMethods then return "Sources: All" end
+    if count == 0 then return "Sources: Owned only" end
+    return ("Sources: %d/%d"):format(count, #A.SourceMethods)
+end
+
 local function updateHeader()
     if not frame then return end
     local player = A.GetPlayer()
@@ -403,6 +415,7 @@ local function updateHeader()
     local className = UnitClass("player") or player.class or "Unknown class"
     context:SetText(("Level %s %s"):format(player.level or "?", className))
     targetButton:SetText("Target: " .. targetName(settings().targetType))
+    sources.button:SetText(sourceSummary())
     if profile then
         local label = profile.name
         if mode == "detected" then label = "Auto: " .. label end
@@ -434,6 +447,7 @@ end
 
 local function scan()
     menu:Hide()
+    sources.menu:Hide()
     updateHeader()
     local profile = A.ActiveProfile()
     A.UpdateDisplay(nil, profile and "Looking up gear…" or "No gear profile is available for this class.")
@@ -459,6 +473,7 @@ local function addMenuButton(index)
 end
 
 local function toggleMenu()
+    sources.menu:Hide()
     if menu:IsShown() then menu:Hide() return end
     local profiles = A.Profiles[A.GetPlayer().class] or {}
     local saved = settings().profile
@@ -503,6 +518,76 @@ local function button(parent, label, width)
     b:SetSize(width, 25)
     b:SetText(label)
     return b
+end
+
+-- Checkboxes are a draft until Apply. Reopening reads the committed state so
+-- closing the menu (or refreshing or switching specs) discards pending edits.
+local function toggleSources()
+    if sources.menu:IsShown() then sources.menu:Hide(); return end
+    menu:Hide()
+    for _, check in ipairs(sources.checks) do check:SetChecked(A.SourceEnabled(check.key)) end
+    sources.menu:Show()
+end
+
+local function applySources()
+    local all, changed = true, false
+    for _, check in ipairs(sources.checks) do
+        local enabled = not not check:GetChecked()
+        if not enabled then all = false end
+        if A.SourceEnabled(check.key) ~= enabled then changed = true end
+    end
+    sources.menu:Hide()
+    if not changed then return end
+    if all then
+        A.ResetSourceFilters()
+    else
+        for _, check in ipairs(sources.checks) do
+            local enabled = not not check:GetChecked()
+            if A.SourceEnabled(check.key) ~= enabled then A.SetSourceEnabled(check.key, enabled) end
+        end
+    end
+    scan()
+end
+
+local function buildSources()
+    sources.button = button(frame, "Sources", 145)
+    sources.button:SetPoint("TOPRIGHT", -38, -8)
+    sources.button:SetScript("OnClick", toggleSources)
+    local panel = CreateFrame("Frame", nil, frame)
+    sources.menu = panel
+    panel:SetFrameLevel(frame:GetFrameLevel() + 30)
+    panel:SetPoint("TOPRIGHT", sources.button, "BOTTOMRIGHT", 0, -2)
+    panel:SetSize(282, 89 + #A.SourceMethods * 24)
+    panel:EnableMouse(true)
+    colorBackground(panel, .09, .115, .14, 1)
+    local caption = text(panel, "GameFontHighlightSmall")
+    caption:SetPoint("TOPLEFT", 10, -10)
+    caption:SetText("Equipped gear and bag items always count.\nDungeon quests need both Dungeons and Quests.")
+    for i, method in ipairs(A.SourceMethods) do
+        local check = CreateFrame("CheckButton", nil, panel, "UICheckButtonTemplate")
+        check.key = method.key
+        check:SetSize(24, 24)
+        check:SetPoint("TOPLEFT", 7, -45 - 24 * (i - 1))
+        check:SetHitRectInsets(0, -224, 0, 0)
+        local label = text(check, "GameFontHighlight")
+        label:SetPoint("LEFT", check, "RIGHT", 4, 0)
+        label:SetText(method.label)
+        sources.checks[i] = check
+    end
+    local all = button(panel, "Select all", 75)
+    all:SetPoint("BOTTOMLEFT", 8, 7)
+    all:SetScript("OnClick", function()
+        for _, check in ipairs(sources.checks) do check:SetChecked(true) end
+    end)
+    local ownedOnly = button(panel, "Owned only", 84)
+    ownedOnly:SetPoint("LEFT", all, "RIGHT", 3, 0)
+    ownedOnly:SetScript("OnClick", function()
+        for _, check in ipairs(sources.checks) do check:SetChecked(false) end
+    end)
+    local apply = button(panel, "Apply", 74)
+    apply:SetPoint("BOTTOMRIGHT", -8, 7)
+    apply:SetScript("OnClick", applySources)
+    panel:Hide()
 end
 
 local function buildDetail()
@@ -575,6 +660,7 @@ local function build()
     local close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", -3, -3)
     close:SetScript("OnClick", function() frame:Hide() end)
+    buildSources()
 
     local label = text(frame, "GameFontNormal")
     label:SetPoint("TOPLEFT", 17, -49)
@@ -610,6 +696,7 @@ local function build()
     scroll:EnableMouseWheel(true)
     scroll:SetScript("OnMouseWheel", function(self, delta)
         menu:Hide()
+        sources.menu:Hide()
         self:SetVerticalScroll(math.max(0, math.min(self:GetVerticalScrollRange(), self:GetVerticalScroll() - delta * 50)))
     end)
 
@@ -624,6 +711,7 @@ local function build()
     menu:Hide()
     frame:SetScript("OnShow", scan)
     frame:SetScript("OnHide", function()
+        sources.menu:Hide()
         closeDetail()
         menu:Hide()
         if A.StopScan then A.StopScan() end

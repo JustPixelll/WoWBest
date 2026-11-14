@@ -2,7 +2,7 @@
 
 WoWBest finds a gear set to work toward **at your character’s current level** in World of Warcraft: Forever. Type **`/wowbest`** to see the recommended items, their sources and which two pieces can actually be worn together.
 
-**[Download WoWBest 1.1 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Gear data and coverage](DATA.md)
+**[Download WoWBest 1.2 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Gear data and coverage](DATA.md)
 
 **Already have WoWBest?** Exit the game, extract the download, and replace the `WoWBest` folder in `_forever_\Interface\AddOns`. Start Forever, open `/wowbest`, and click a slot. Existing character preferences carry over.
 
@@ -43,6 +43,15 @@ Get-Item -LiteralPath (Join-Path $addonsDir 'WoWBest\WoWBest.toc')
 - Hover an item for its game tooltip. Its row tells you where to go next, for example a dungeon and boss, quest, profession and skill, vendor or named world drop. An item you already have can appear as **Currently equipped** or **In your bags**. The planner recognizes exact owned variants, including random suffixes.
 - At an auctioneer, manually search for a piece of gear and open its detailed auction results to include observed buyout listings in the plan. Auction candidates are temporary and limited to the searches you perform during that visit. Check the actual listing before buying.
 - The window refreshes as your level, equipment, talents, skills and quest state change. **Refresh** repeats the lookup, including skipped item requests. Close the window or press Escape when finished. You equip the items yourself.
+
+### Choose acquisition methods
+
+Open **`/wowbest` → Sources**. Uncheck the activities you want to skip, then click **Apply**. Your selection is saved for the current character and applies to the recommended outfit, slot alternatives and unlock paths. All eight methods start enabled: Dungeons, Quests, Crafting, World drops, Vendors, PvP, Auction House and Events.
+
+- **Skipping dungeons?** Turn off **Dungeons** and leave **Quests** on. Open-world quest rewards stay in the plan. Quest routes marked as requiring a dungeon are excluded.
+- **An item has several sources?** Any enabled, eligible route can still qualify it. For example, if you disable **Crafting**, an actual buyout you inspect at the Auction House can still qualify, subject to the gear’s wearer requirements.
+- **Only use what you have?** Click **Owned only → Apply** to plan with wearable gear you have equipped or in your bags. **Select all → Apply** restores every method.
+- Event quest rewards need **Events** and **Quests**. Dedicated battleground quartermasters are grouped under **PvP**. **Vendors** covers ordinary merchants.
 
 ### Example: a level-19 warrior’s head slot
 
