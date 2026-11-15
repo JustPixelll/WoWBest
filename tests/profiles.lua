@@ -70,6 +70,48 @@ assert(stat("SPELL_HEALING_DONE", 8, holy) > 0 and stat("SPELL_DAMAGE_DONE", 8, 
 assert(stat("SPELL_HEALING_DONE", 8, shadow) == 0 and stat("SPELL_DAMAGE_DONE", 8, shadow) > 0)
 close(holy.intellect, 15 * holy.mana + holy.crit * 14 / 15.9)
 assert(holy.spellHitShare == 0 and holy.spellCritShare == 1)
+
+-- A level-31 Restoration Druid gets 15 mana and 1/29.1 percentage points
+-- of spell crit per Intellect. MP5 works inside the five-second rule as well.
+local resto = get("DRUID", "restoration", 31)
+local function druid(pace, talents)
+    return A.ProfileForLevel(resto, {level = 31, healingPace = pace, restoTalents = talents})
+end
+assert(resto == druid(nil, nil) and resto.healingPace == "dungeon" and resto.restoTalents == nil)
+local plain = druid("dungeon", {})
+assert(plain ~= resto and plain.restoTalents.reflection == 0 and plain.restoTalents.bloom == 0)
+assert(plain == druid("invalid", {bloom = 0}))
+close(plain.mp5, 90 / 5 * plain.mana)
+close(plain.spirit, .625 * .25 * plain.mp5)
+close(plain.intellect, 15 * plain.mana + stat("CRIT_RATING", 14, plain) / 29.1)
+close(stat("SPELL_HEALING_DONE", 10, plain), 10)
+close(stat("SPELL_POWER", 10, plain), 10)
+close(stat("SPELL_DAMAGE_DONE", 10, plain), 0)
+close(stat("NATURE_SPELL_DAMAGE", 10, plain), 0)
+local talents = {reflection = 3, bloom = 1, livingSpirit = 2, heartOfTheWild = 5}
+local talented = druid("dungeon", talents)
+close(talented.spirit, 1.10 * ((.25 + .75 * .50) * .625 * plain.mp5 + .41))
+close(talented.intellect, 1.10 * plain.intellect)
+close(talented.mp5, plain.mp5)
+close(talented.mana, plain.mana)
+for rank, fraction in ipairs({.17, .33, .50}) do
+    close(druid("dungeon", {reflection = rank}).spirit, (.25 + .75 * fraction) * .625 * plain.mp5)
+end
+local short, sustained = druid("short", talents), druid("sustained", talents)
+close(short.mp5, 6 * plain.mana)
+close(sustained.mp5, 36 * plain.mana)
+assert(short.mp5 < short.intellect and sustained.mp5 > sustained.intellect)
+assert(short.spirit < talented.spirit and talented.spirit < sustained.spirit)
+-- At fixed talent ranks, 5 MP5 over three minutes overtakes 8 Intellect.
+-- A short window favors the larger initial reserve.
+assert(stat("MANA_REGENERATION", 5, short) < stat("INTELLECT", 8, short))
+assert(stat("MANA_REGENERATION", 5, sustained) > stat("INTELLECT", 8, sustained))
+assert(stat("SPIRIT", 10, plain) < stat("SPELL_HEALING_DONE", 7, plain))
+assert(stat("SPIRIT", 10, talented) > stat("SPELL_HEALING_DONE", 7, talented))
+assert(druid("short", nil).restoTalents == nil)
+talents.reflection = 0
+assert(talented.restoTalents.reflection == 3 and druid("dungeon", talents) ~= talented)
+close(get("SHAMAN", "restoration", 31).mp5, 2.12)
 local enhancement = get("SHAMAN", "enhancement", 19)
 assert(enhancement.spellCritShare > 0 and enhancement.physicalCritShare > 0)
 local marks, survival = get("HUNTER", "marksmanship", 19), get("HUNTER", "survival", 19)

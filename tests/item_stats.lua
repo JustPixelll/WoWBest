@@ -85,4 +85,45 @@ assert(read(999998,{ITEM_MOD_AGILITY_SHORT=9},tip,4,enhanced).stats.ITEM_MOD_AGI
 assert(read(999998,{}, {line("Verzaubert: Crusader",nil,15)},4,enhanced).unmodeledEffect)
 baseStats=nil
 assert(read(999998,{ITEM_MOD_AGILITY_SHORT=7},tip,4,enhanced).unmodeledEffect)
+-- Actual Forever healing gear. A permanent enchant cannot erase the staff's
+-- +52 healing / +17 damage, including when the passive is absent in a localized
+-- tooltip. A random suffix remains an independent, unverified variant.
+baseLink="item:3415:0"
+baseStats={}
+local staffInt="item:3415:723"
+local spell="ITEM_MOD_SPELL_POWER_SHORT"
+local damage,heal="ITEM_MOD_SPELL_DAMAGE_DONE_SHORT","ITEM_MOD_SPELL_HEALING_DONE_SHORT"
+local intellect="ITEM_MOD_INTELLECT_SHORT"
+local intTip={line("Verzaubert: +3 Intellect",nil,15)}
+for _,native in ipairs({{}, {[intellect]=3}, {[intellect]=6}}) do
+    r=read(3415,native,intTip,2,staffInt)
+    assert(r.stats[intellect]==6 and r.stats[heal]==52 and r.stats[damage]==17)
+end
+local powerTip={line("Enchanted: +5 Spell Power",nil,15)}
+for _,native in ipairs({{}, {[spell]=5}, {[spell]=5,[damage]=22,[heal]=57}}) do
+    r=read(3415,native,powerTip,2,"item:3415:5")
+    assert(r.stats[spell]==5 and r.stats[heal]==52 and r.stats[damage]==17)
+end
+r=read(3415,{},nil,2,"item:3415::::::-12:1234")
+assert(not r.stats[heal] and not r.stats[damage])
+assert(loadfile("WoWBest/Engine.lua"))("WoWBest", A)
+assert(loadfile("WoWBest/Profiles.lua"))("WoWBest", A)
+local resto
+for _,p in ipairs(A.Profiles.DRUID) do if p.key=="restoration" then resto=A.ProfileForLevel(p,31) end end
+assert(resto, "Missing Restoration Druid profile")
+-- Measure only the magic contribution; each item also carries primary stats.
+local function healingContribution(item)
+    local st=item.stats
+    return A.Score({stats={[spell]=st[spell],[damage]=st[damage],[heal]=st[heal]}},resto)
+end
+assert(healingContribution(read(3415,{},nil,2))==52*resto.healing)
+r=read(2271,{},nil,2) -- Staff of the Blessed Seer, +28 damage AND healing
+assert(r.stats[spell]==28 and not r.stats[damage] and not r.stats[heal])
+assert(healingContribution(r)==28*resto.healing)
+r=read(6911,{[spell]=12,[heal]=12}) -- Moss Cinch, +12 spell DAMAGE only
+assert(r.stats[damage]==12 and not r.stats[spell] and not r.stats[heal])
+assert(healingContribution(r)==0)
+r=read(3415,{[spell]=52,[heal]=52,[damage]=17},nil,2)
+assert((r.stats[spell] or 0)+(r.stats[heal] or 0)==52)
+assert((r.stats[spell] or 0)+(r.stats[damage] or 0)==17)
 print("Exact-link stat normalization, real cache passives, stock and modified weapon ranges, enchant reconciliation, and proc uncertainty passed.")

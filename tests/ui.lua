@@ -197,4 +197,28 @@ assert(A.BagAlertsEnabled() and WoWBestCharacterDB.bagAlerts == nil and byText("
 click(byText("Target: General PvE"))
 assert(bagRefresh == 3)
 SlashCmdList.WOWBEST("")
+-- A level-31 Druid can change the shared weights from the menu and inspect
+-- the readout in chat with the planner closed.
+assert(loadfile("WoWBest/Profiles.lua"))("WoWBest", A)
+function A.GetPlayer() return {class = "DRUID", level = 31} end
+function A.DetectProfile() return "restoration" end
+local liveRanks = {reflection = 3, bloom = 1, livingSpirit = 0, heartOfTheWild = 0}
+function A.GetRestoDruidTalents() return liveRanks end
+local output, previousPrint = {}, print
+print = function(s) output[#output + 1] = s end
+SlashCmdList.WOWBEST("healing")
+assert(not A.IsVisible() and table.concat(output,"\n"):find("Spirit 0.83",1,true))
+assert(table.concat(output,"\n"):find("Bloom 1/1",1,true))
+SlashCmdList.WOWBEST("healing short")
+assert(not A.IsVisible() and A.ActiveProfile().healingPace == "short")
+assert(table.concat(output,"\n"):find("Spirit 0.53",1,true))
+SlashCmdList.WOWBEST("")
+click(byText("Auto: Restoration · Short pull", true))
+click(byText("Healing: Sustained").parent)
+assert(scanProfile.healingPace == "sustained" and scanProfile.spirit > 1)
+assert(WoWBestCharacterDB.healingPace == "sustained")
+liveRanks = nil
+SlashCmdList.WOWBEST("healing")
+assert(table.concat(output,"\n"):find("Talent ranks unavailable",1,true))
+print = previousPrint
 print("UI click, paging, scoring, filters, locked targets and async cancellation tests passed.")

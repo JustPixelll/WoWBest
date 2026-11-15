@@ -83,7 +83,7 @@ local function signed(n)
     return n == 0 and "0" or ("%+.1f"):format(n)
 end
 
-local function describe(result, reason, selected)
+local function describe(result, reason, selected, candidate)
     local context = "WoWBest · " .. selected.name .. (selected.targetType == "Humanoid" and " (Humanoids)" or "")
     if not result then
         local messages = {
@@ -95,8 +95,11 @@ local function describe(result, reason, selected)
         return
     end
     local slot = A.SlotNames[result.slot] or "Gear"
+    local notes = A.UnscoredEffectNotes or {}
+    local itemNote = candidate and notes[candidate.id]
     if result.alreadyEquipped then
-        return {("%s · Equipped (%s)\n%.1f item pts · No change"):format(context, slot, result.swapBefore), .76, .82, .88}
+        local message = ("%s · Equipped (%s)\n%.1f item pts · No change"):format(context, slot, result.swapBefore)
+        return {itemNote and (message .. "\n" .. itemNote) or message, .76, .82, .88}
     end
     local function difference(percent, points)
         local amount = signed(points) .. " pts"
@@ -112,7 +115,15 @@ local function describe(result, reason, selected)
     local label = labels[result.kind]
     if result.unmodeledEffect then
         label = result.kind == "upgrade" and "Possible upgrade" or result.kind == "downgrade" and "Possible downgrade" or "Even on scored stats"
-        direct = direct .. "\nAn item or set effect in this swap has no score."
+        local caveats = {}
+        if itemNote then caveats[#caveats + 1] = itemNote end
+        for _, changedSlot in ipairs(result.changedSlots) do
+            local old = worn and worn[changedSlot]
+            if old and notes[old.id] and notes[old.id] ~= itemNote then
+                caveats[#caveats + 1] = notes[old.id]
+            end
+        end
+        direct = direct .. "\n" .. (#caveats > 0 and table.concat(caveats, "\n") or "An item or set effect in this swap has no score.")
     end
     local color = colors[result.kind]
     return {context .. " · " .. label .. " (" .. slot .. ")\n" ..
@@ -139,7 +150,7 @@ local function compare(link, origin, id)
         if not worn then return nil, status end
     end
     local outcome, why = A.CompareEquippedUpgrade(candidate, worn, player, profile, origin)
-    return describe(outcome, why, profile)
+    return describe(outcome, why, profile, candidate)
 end
 
 local function primaryMatches(tip, link, origin)

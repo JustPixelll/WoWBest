@@ -17,6 +17,55 @@ Strength grants 2 attack power per point. A level-19 Warrior gains approximately
 
 For example, **Smite’s Mighty Hammer** has 19.71 DPS, 55–83 damage, 11 Strength and 4 Agility. Its base Arms item score is about 177.91 points at level 19. **Cruel Barb**, with 15.54 DPS, 30–57 damage and 12 attack power, scores about 129.32 in the main hand. A shield or another legal off-hand changes the total. The hammer uses both hands. Protection evaluates one-handed setups with a shield. Fury can use a two-hander while leveling, and the client must say the character can dual wield before a second weapon can enter the set. [Smite’s Mighty Hammer](https://www.wowhead.com/forever/item=7230) · [Cruel Barb](https://www.wowhead.com/forever/item=5191) · [Forever Fury leveling and dual-wield training](https://www.icy-veins.com/wow-forever/fury-warrior-leveling/) · [Protection while leveling](https://mobalytics.gg/wow-forever/classes/protection-warrior-guide-kalltorak)
 
+## A level-31 Restoration Druid
+
+Use `/wowbest healing` on your Druid to see the weights and the invested ranks WoWBest could read. Hovering over the spec button shows the same figures. In the Spec menu, choose a healing pace to apply it to gear planning, hovered items and bag alerts.
+
+For the example below, the Druid has **3/3 Reflection and 1/1 Bloom**, with zero points in Living Spirit or Heart of the Wild. The numbers are WoWBest points per **one unit on the item**, relative to one point of bonus healing. Each example starts with the same mana reserve.
+
+| Item stat | Short pull · 30 s | Dungeon · 90 s | Sustained · 180 s |
+| --- | ---: | ---: | ---: |
+| +1 healing, or +1 to both damage and healing | 1.00 | 1.00 | 1.00 |
+| +1 damage only, including Nature damage | 0 | 0 | 0 |
+| +1 Intellect | 0.97 | 0.97 | 0.97 |
+| +1 Spirit | 0.53 | 0.83 | 1.23 |
+| +1 mana every five seconds (MP5) | 0.36 | 1.09 | 2.17 |
+
+**Intellect** buys a mana reserve and spell crit. Before talents, +10 Intellect gives 150 mana and about 0.34 percentage points of spell crit at 31. **MP5** builds up over time. One MP5 supplies 6 mana in 30 seconds, 18 in 90 seconds and 36 in three minutes if you have mana to recover. A short pull that starts and ends near full mana will use little of either reserve. [Druid conversion table by level](https://foreverdb.net/stats/druid) · [Forever healing stats and spell interactions](https://www.wowhead.com/forever/guide/classes/druid/restoration/stat-priority-pve-healer)
+
+**Spirit** adds 0.625 MP5 per point while fully regenerating. The three windows assume 90%, 75% and 80% respectively inside the five-second rule after spending mana. Reflection returns 17%, 33% or 50% of Spirit regeneration during that time. Bloom gives a Spirit-based heal when Rejuvenation or Regrowth expires naturally. Refreshing it early removes that opportunity, and an expiry on a full-health target gives no effective healing. In the 90-second window, one Spirit is worth **0.17 points** without either talent, **0.42** with 3/3 Reflection alone, and **0.83** with Reflection and Bloom. Living Spirit raises the value of gear Spirit, and Heart of the Wild raises the value of gear Intellect, according to invested rank. If live ranks are unavailable, the addon shows that and gives no talent bonus. [Reflection and Spirit regeneration](https://www.wowhead.com/forever/guide/classes/druid/restoration/stat-priority-pve-healer) · [Bloom spell data](https://www.wowhead.com/forever/spell=1328621/bloom)
+
+**Healing power** applies through each spell's coefficient. Before talents or crit, +10 healing adds about 10 to rank-5 Healing Touch and about 8 over all four ticks of rank-5 Rejuvenation. A tooltip saying “+52 healing and +17 damage” contributes 52 healing points. Forever's periodic heals can crit. At level 31 the profile gives 1.79 points to one percentage point of spell crit and about 1.74 points to one percentage point of haste. Haste represents throughput and depends on how often you have to cast back to back. The model values mana at about 0.060 points per usable mana at 31 and gives 0.41 points per Spirit for Bloom when learned, based on one useful natural expiration per three example casts. These are gearing assumptions. Downranking, overhealing, clipped HoTs, clearcasting, drinking and consumables can change a particular fight. [Healing Touch rank 5](https://foreverdb.net/spell/5189) · [Rejuvenation rank 5](https://questing.wiki/wow-forever/spells/2091/) · [Forever Restoration healing](https://www.wowhead.com/forever/guide/classes/druid/restoration/overview-pve-healer)
+
+### Gear the planner picked
+
+These are results for two fresh level-31 Druids with the example talents above, the 90-second Dungeon setting, all Druid weapon skills trained and the default source filters. Neither character has personal professions, reputation rewards, PvP ranks, completed one-time quests, auction listings or gear already in bags. A tailor can supply tradeable crafts. The planner checked 1,092 eligible base-item variants for the Night Elf and 1,060 for the Tauren using the bundled source snapshot. Rare bosses may take multiple runs, dungeon clears require a group, and a quest chain may be challenging at its minimum level. A real character's quest choices and exact item rolls can change the winners.
+
+| Slot | Night Elf | Tauren |
+| --- | --- | --- |
+| Head | Embalmed Shroud | Embalmed Shroud |
+| Neck | Explorers' League Commendation | Thermaplugg Medal of Honor |
+| Shoulders | Green Silken Shoulders | Green Silken Shoulders |
+| Chest | Civinad Robes | Civinad Robes |
+| Back | Glowing Thresher Cape | Glowing Thresher Cape |
+| Wrists | Spidertank Oilrag | Spidertank Oilrag |
+| Hands | Restorer's Fine Gloves | Truefaith Gloves |
+| Waist | Blightleaf Rope | Blightleaf Rope |
+| Legs | Earthen Leggings | Earthen Leggings |
+| Feet | Earthen Silk Slippers | Earthen Silk Slippers |
+| Rings | Runemender's Seal + Electrocutioner Lagnut | Runemender's Seal + Electrocutioner Lagnut |
+| Trinkets | Roogug's Severed Head + Worgenbane Talisman | Roogug's Severed Head + Worgenbane Talisman |
+| Weapon and off-hand | Royal Diplomatic Scepter + Ponderous Orb | Royal Diplomatic Scepter + Ponderous Orb |
+| Relic | No scored candidate | No scored candidate |
+
+**Weapon check.** The Royal Diplomatic Scepter (Gnomeregan's rare Dark Iron Ambassador) plus Ponderous Orb (Shade of the Archmage in City of Dalaran) gives **86 bonus healing, 15 Spirit, 2 Intellect and 3 Stamina**. The pair scores 101.32 in this example. A Staff of the Friar from Blackfathom Deeps gives 52 bonus healing, 12 Spirit, 3 Intellect and 4 Stamina. It scores 66.07 and covers both hands with a single earlier drop. These comparisons assume trained maces or staves respectively. [Scepter](https://www.wowhead.com/forever/item=9457) · [Orb](https://www.wowhead.com/forever/item=273052) · [Staff](https://www.wowhead.com/forever/item=3415)
+
+**A close decision.** The Alliance quest reward Renewing Footpads gives 11 healing, 11 Intellect and 5 Stamina. It scores **23.39** across the three windows. Earthen Silk Slippers gives 18 healing and 7 Spirit. Its score shifts from **21.87** in a short pull to **23.97** in the default window and **26.71** over three minutes. The default margin is only 0.58 points. Keeping the Footpads for the extra mana reserve can make sense, especially if you often refresh HoTs before they expire. [Footpads](https://www.wowhead.com/forever/item=279840) · [Slippers and recipe](https://warcraft.wiki.gg/wiki/Earthen_Silk_Slippers)
+
+**Relics and trinkets.** The empty relic row reflects the limits of the sample. Mystic Mushroom advertises +5% Spirit, but reports questioned whether the effect applied and its current behavior is unverified. Idol of Shifting Tides reduces the cost of changing form, which depends on how often you shift. WoWBest shows the reason on the tooltip. Roogug's Severed Head contributes 6 Spirit and Worgenbane Talisman contributes 2 MP5. Their creature-specific crowd-control effects earn no healing points. [Mystic Mushroom](https://www.wowhead.com/forever/item=249396) · [Player testing](https://us.forums.blizzard.com/en/wow/t/mystic-mushroom-relic-not-working/2375957) · [Idol of Shifting Tides](https://db.icy-veins.com/wow-forever/items/263411)
+
+To reproduce every slot, run `lua tests/restoration_loadout.lua --list` from the repository root. It includes both factions, all three healing paces, and a second dungeon-healing comparison with dungeon sources disabled. [Full-catalog scenario and checks](tests/restoration_loadout.lua)
+
 ## What changes with the character
 
 - **Defense on tanks.** The Forever client conversion table gives one Defense skill per point of Defense rating throughout levels 1–60. One extra skill above the character’s normal maximum grants 0.04 percentage points each of miss, dodge, parry and block where applicable, and reduces incoming critical strikes. WoWBest applies the same weight to the rating or skill form of an item stat, counts miss like dodge, and assigns Bear zero credit for parry or block. The score omits a separate value for critical-strike suppression because the enemy and the tank’s distance from a critical-immunity threshold can vary. [WoWSims client-derived conversion](https://github.com/wowsims/forever/blob/1b149a63f75ef150a4f657392279c81810dbf555/sim/core/base_stats_auto_gen.go#L13) · [Build 70790 rating table](https://wowforever.kickegg.net/articles/forever-combat-ratings-conversion?lang=en) · [Defense effects in the Forever client](https://foreverdb.net/stats/warrior)

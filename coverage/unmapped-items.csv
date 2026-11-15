@@ -1117,6 +1117,7 @@ id,name,minimum_equip_level,slot,cache_source_labels
 7609,Elder's Amber Stave,30,Held item,Drop
 18442,Master Sergeant's Insignia,30,Neck,"PvP, Vendor"
 4614,Pendant of Myzrael,30,Neck,Drop
+23169,Scorn's Icy Choker,30,Neck,Dungeon
 15200,Senior Sergeant's Insignia,30,Neck,"PvP, Vendor"
 7467,Vermilion Necklace,30,Neck,Other
 11305,Dense Shortbow,30,Ranged,Vendor

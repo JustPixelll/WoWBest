@@ -2,7 +2,7 @@
 
 WoWBest finds a gear set to work toward **at your character’s current level** in World of Warcraft: Forever. Type **`/wowbest`** to see the recommended items, their sources and which two pieces can actually be worn together.
 
-**[Download WoWBest 1.4 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Coverage by level](COVERAGE.md) · [Gear data and sources](DATA.md)
+**[Download WoWBest 1.4.1 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Coverage by level](COVERAGE.md) · [Gear data and sources](DATA.md)
 
 **Already have WoWBest?** Exit the game, extract the download, and replace the `WoWBest` folder in `_forever_\Interface\AddOns`. Start Forever and hover over a piece of gear, or open `/wowbest` and click a slot. Existing character preferences carry over.
 
@@ -40,6 +40,8 @@ Bag alerts start **on**. WoWBest checks carried gear when you enter the world an
 Click **Bag alerts: On** in `/wowbest` to turn alerts off for that character. You can also type **`/wowbest alerts off`** or **`/wowbest alerts on`**. Source filters do not exclude gear you already own.
 
 ## Read an upgrade on the item tooltip
+
+**Restoration Druids** can hover over the spec button or type **`/wowbest healing`** to see their current weights and talent ranks. In the **Spec** menu, choose **Healing: Short pull**, **Dungeon**, or **Sustained** to score mana over 30, 90, or 180 seconds. Dungeon is the default. The planner, item tooltips and bag alerts use that choice. The same setting is available through `/wowbest healing short`, `/wowbest healing dungeon`, or `/wowbest healing sustained`. [Level-31 Restoration gear and worked examples](SCORING.md#a-level-31-restoration-druid)
 
 Hover over a piece of gear in your bags, a quest reward, a merchant window, or a chat item link. WoWBest compares that exact item against what you are wearing, even with the planner closed and even if the catalog has no route for the item. Open **`/wowbest` → Spec** to change which build it scores. Source filters affect the planner. You can still evaluate an item you encounter anywhere.
 

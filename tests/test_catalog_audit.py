@@ -6,9 +6,29 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from audit_catalog import Route, by_level, compare_cache, write_report
+from build_catalog import from_tooltip, reference_dungeon
 
 
 class CoverageTests(unittest.TestCase):
+    def test_unique_limits_survive_both_forever_tooltip_layouts(self):
+        def limits(header):
+            tip = (header + '<table width="100%"><tr><td>Finger</td><th>'
+                   '<!--scstart4:0-->Ring</th></tr></table>')
+            item = from_tooltip({"itemId": 273031, "name": "Ring", "tooltipHtml": tip})
+            return {name: item[name] for name in ("itemLimit", "unique", "uniqueLimit") if name in item}
+
+        self.assertEqual(limits("<br>Unique-Equipped<!--ue--><!--ue-->"), {"itemLimit": 1})
+        self.assertEqual(limits("<br>Unique<!--ue--><br>Unique-Equipped: Watcher's Ring (1)<!--ue-->"),
+                         {"itemLimit": 1, "unique": "group:Watcher's Ring", "uniqueLimit": 1})
+
+    def test_graveyard_reference_sources(self):
+        for zone in ("Scarlet Monastery", "Scarlet Monastery: Library"):
+            self.assertIsNone(reference_dungeon(zone, "Scorn"))
+            self.assertEqual(reference_dungeon(zone, "Fallen Champion")["source"],
+                             "Dungeon: Scarlet Monastery: Graveyard - Fallen Champion")
+        self.assertEqual(reference_dungeon("Scarlet Monastery: Library", "Arcanist Doan")["source"],
+                         "Dungeon: Scarlet Monastery: Library - Arcanist Doan")
+
     def test_count_ids_across_alternate_routes_and_level_ranges(self):
         rows = [
             Route(1, "Drop", "Head", 20, 60, "", 0, 0),

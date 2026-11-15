@@ -168,4 +168,21 @@ assert(#scanned.lines == 0)
 GameTooltip:inspect(8, "GetLootItem", "item:8"); drain()
 assert(GameTooltip.lines[1]:find("Possible upgrade", 1, true))
 assert(GameTooltip.lines[1]:find("effect in this swap has no score", 1, true))
+assert(loadfile("WoWBest/Effects.lua"))("WoWBest", A)
+local mushroomID, tidesID = 249396, 263411
+function A.ReadEquippedForUpgrade()
+    return {[18]={id=tidesID,link="item:"..tidesID}}
+end
+function A.CompareEquippedUpgrade(_, _, _, _, origin)
+    if origin then return {alreadyEquipped=true, slot=18, swapBefore=0} end
+    return {kind="neutral", slot=18, unmodeledEffect=true, changedSlots={18}, delta=0, swapBefore=0, swapAfter=0}
+end
+A.SlotNames[18] = "Relic"
+signal(nil, "PLAYER_EQUIPMENT_CHANGED"); drain()
+GameTooltip:inspect(mushroomID, "GetBagItem", "item:" .. mushroomID); drain()
+assert(GameTooltip.lines[1]:find("Even on scored stats",1,true))
+assert(GameTooltip.lines[1]:find(A.UnscoredEffectNotes[mushroomID],1,true))
+assert(GameTooltip.lines[1]:find(A.UnscoredEffectNotes[tidesID],1,true))
+GameTooltip:inspect(tidesID, "GetInventoryItem", "item:" .. tidesID, "player", 18); drain()
+assert(GameTooltip.lines[1]:find("Equipped",1,true) and GameTooltip.lines[1]:find(A.UnscoredEffectNotes[tidesID],1,true))
 print("Native tooltip cache, exact variants, equipped origins, percentages, invalidation and stale hover tests passed.")

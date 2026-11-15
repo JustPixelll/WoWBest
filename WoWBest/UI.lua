@@ -7,6 +7,8 @@ local sources = {checks = {}}
 local detail = {slot = nil, generation = 0, cards = {}, pageSize = 5}
 local result, lastStatus = nil, ""
 local slots = {1, 2, 3, 15, 5, 9, 10, 6, 7, 8, 11, 12, 13, 14, 16, 17, 18}
+local healingPaces = {"short", "dungeon", "sustained"}
+local paceNames = {short = "Short pull", dungeon = "Dungeon", sustained = "Sustained"}
 
 local function settings()
     if type(WoWBestCharacterDB) ~= "table" then WoWBestCharacterDB = {} end
@@ -53,6 +55,12 @@ end
 function A.ActiveProfile(player)
     player = player or A.GetPlayer()
     local profile = selectedProfile(player)
+    if profile and player.class == "DRUID" and profile.key == "restoration" then
+        if player.restoTalents == nil and A.GetRestoDruidTalents then
+            player.restoTalents = A.GetRestoDruidTalents()
+        end
+        player.healingPace = settings().healingPace or "dungeon"
+    end
     if profile and A.ProfileForLevel then profile = A.ProfileForLevel(profile, player) end
     if not profile or settings().targetType ~= "Humanoid" then return profile end
     -- The underlying spec weights are shared across characters and scans.
@@ -120,6 +128,20 @@ local function signed(n)
     return (n > 0 and "+" or "") .. number(n)
 end
 
+local function healingReport(p)
+    local ranks = p.restoTalents
+    local talents = ranks and ("Reflection %d/3 · Bloom %d/1 · Living Spirit %d/3 · Heart of the Wild %d/5"):format(
+        ranks.reflection or 0, ranks.bloom or 0, ranks.livingSpirit or 0, ranks.heartOfTheWild or 0)
+        or "Talent ranks unavailable. Showing weights without talent bonuses."
+    return {
+        ("Level %d Restoration · %s"):format(p.level, paceNames[p.healingPace] or paceNames.dungeon),
+        ("Points per +1: healing %s · damage and healing %s · damage only 0"):format(number(p.healing), number(p.spell)),
+        ("Intellect %s · Spirit %s · mana per 5 sec %s"):format(number(p.intellect), number(p.spirit), number(p.mp5)),
+        ("Crit rating %s · haste rating %s"):format(number(p.crit), number(p.haste)),
+        talents,
+    }
+end
+
 local function setChanges(before, after, profile)
     local changes, base, nextSet = {}, {}, {}
     for _, bonus in ipairs(before) do base[bonus.key] = bonus end
@@ -139,7 +161,10 @@ local function explainChoice(choice, bestSets)
     local item = choice.item
     local source = item.source or "Unknown"
     local lines = {"|cffffd275Source|r  " .. source}
-    if item.unmodeledEffect then lines[#lines + 1] = "This item has an additional effect without a numerical score." end
+    if item.unmodeledEffect then
+        lines[#lines + 1] = A.UnscoredEffectNotes and A.UnscoredEffectNotes[item.id]
+            or "This item has an additional effect without a numerical score."
+    end
     local alternatives = {}
     for _, path in ipairs(item.sources or {}) do
         if not source:find(path, 1, true) then alternatives[#alternatives + 1] = path end
@@ -440,6 +465,9 @@ local function updateHeader()
         local label = profile.name
         if mode == "detected" then label = "Auto: " .. label end
         if mode == "default" then label = "Default: " .. label end
+        if player.class == "DRUID" and profile.key == "restoration" then
+            label = label .. " · " .. (paceNames[settings().healingPace] or paceNames.dungeon)
+        end
         profileButton:SetText(label)
     else
         profileButton:SetText("No profile available")
@@ -477,11 +505,18 @@ end
 local function scoringChanged()
     if A.InvalidateUpgradeTooltips then A.InvalidateUpgradeTooltips() end
     if A.RefreshBagUpgrades then A.RefreshBagUpgrades() end
-    scan()
+    if A.IsVisible() then scan() end
 end
 
 local function selectProfile(key)
     settings().profile = key
+    scoringChanged()
+end
+
+local function selectHealingPace(pace)
+    if menu then menu:Hide() end
+    if pace == (settings().healingPace or "dungeon") then return end
+    settings().healingPace = pace
     scoringChanged()
 end
 
@@ -493,7 +528,9 @@ local function addMenuButton(index)
     entry.label = text(entry, "GameFontHighlight")
     entry.label:SetPoint("LEFT", 6, 0)
     entry.label:SetPoint("RIGHT", -6, 0)
-    entry:SetScript("OnClick", function(self) selectProfile(self.key) end)
+    entry:SetScript("OnClick", function(self)
+        if self.pace then selectHealingPace(self.pace) else selectProfile(self.key) end
+    end)
     menuButtons[index] = entry
     return entry
 end
@@ -501,20 +538,34 @@ end
 local function toggleMenu()
     sources.menu:Hide()
     if menu:IsShown() then menu:Hide() return end
-    local profiles = A.Profiles[A.GetPlayer().class] or {}
+    local player = A.GetPlayer()
+    local profiles = A.Profiles[player.class] or {}
     local saved = settings().profile
     local manual = findProfile(profiles, saved)
     for i = 1, #profiles + 1 do
         local profile = profiles[i - 1]
         local entry = menuButtons[i] or addMenuButton(i)
         local selected = (profile and profile == manual) or (not profile and not manual)
+        entry.pace = nil
         entry.key = profile and profile.key or nil
         entry.label:SetText((selected and "|cffffd100" or "|cffffffff") ..
             (profile and profile.name or "Auto (active talents)") .. "|r")
         entry:Show()
     end
-    for i = #profiles + 2, #menuButtons do menuButtons[i]:Hide() end
-    menu:SetHeight(10 + (#profiles + 1) * 23)
+    local count = #profiles + 1
+    local selected = selectedProfile(player)
+    if player.class == "DRUID" and selected and selected.key == "restoration" then
+        local pace = settings().healingPace or "dungeon"
+        for _, key in ipairs(healingPaces) do
+            count = count + 1
+            local entry = menuButtons[count] or addMenuButton(count)
+            entry.key, entry.pace = nil, key
+            entry.label:SetText((key == pace and "|cffffd100" or "|cffffffff") .. "Healing: " .. paceNames[key] .. "|r")
+            entry:Show()
+        end
+    end
+    for i = count + 1, #menuButtons do menuButtons[i]:Hide() end
+    menu:SetHeight(10 + count * 23)
     menu:Show()
 end
 
@@ -716,6 +767,14 @@ local function build()
     profileButton = button(frame, "", math.min(238, frame:GetWidth() - 305))
     profileButton:SetPoint("LEFT", label, "RIGHT", 8, 0)
     profileButton:SetScript("OnClick", toggleMenu)
+    profileButton:SetScript("OnEnter", function(self)
+        local p = A.ActiveProfile()
+        if not (p and p.class == "DRUID" and p.key == "restoration") then return end
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        for _, line in ipairs(healingReport(p)) do GameTooltip:AddLine(line, 1, 1, 1, true) end
+        GameTooltip:Show()
+    end)
+    profileButton:SetScript("OnLeave", hideItemTip)
     targetButton = button(frame, "", 147)
     targetButton:SetPoint("LEFT", profileButton, "RIGHT", 4, 0)
     targetButton:SetScript("OnClick", function()
@@ -771,6 +830,20 @@ SLASH_WOWBEST1 = "/wowbest"
 SLASH_WOWBEST2 = "/wbest"
 SlashCmdList.WOWBEST = function(message)
     local command, option = (message or ""):lower():match("^%s*(%S*)%s*(.-)%s*$")
+    if command == "healing" then
+        local p = A.ActiveProfile()
+        if not (p and p.class == "DRUID" and p.key == "restoration") then
+            print("WoWBest: Select Restoration on your Druid in /wowbest to inspect healing weights.")
+            return
+        end
+        if option ~= "" then
+            if not paceNames[option] then print("WoWBest: /wowbest healing short, dungeon or sustained"); return end
+            selectHealingPace(option)
+            p = A.ActiveProfile()
+        end
+        for _, line in ipairs(healingReport(p)) do print("WoWBest: " .. line) end
+        return
+    end
     if command == "alerts" then
         if option == "on" then A.SetBagAlertsEnabled(true)
         elseif option == "off" then A.SetBagAlertsEnabled(false)

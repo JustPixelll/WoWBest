@@ -8,6 +8,13 @@ local _, A = ...
 local models = {}
 A.EffectNotes = {}
 
+-- Distinguish item-specific caveats from effects that actually have a score.
+-- The Mushroom's advertised aura has conflicting character-sheet observations.
+A.UnscoredEffectNotes = {
+    [249396] = "Mystic Mushroom advertises 5% more Spirit. Its live bonus is unverified and has no score.",
+    [263411] = "Idol of Shifting Tides saves up to 40 mana per shapeshift. How often you shift determines its value, so this saving has no score.",
+}
+
 -- Item-specific passive spell auras can already be represented by GetItemStats.
 -- Count only the shortfall; do not apply the same flat stat a second time.
 local function missing(stat, amount) return math.max(0, amount - (stat or 0)) end

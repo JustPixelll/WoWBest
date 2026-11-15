@@ -96,7 +96,7 @@ A.Profiles = {
         profile("bear", "Feral (Bear)", 2, tank, {shield = false, block = 0, blockValue = 0, parry = 0,
             armor = .105, dodge = 1.30, agility = .66, attack = .25, feralAttack = .25, meleeDPS = 3.5}),
         profile("balance", "Balance", 1, caster, {arcane = .45, nature = .55, mp5 = .95}),
-        profile("restoration", "Restoration", 3, healer, {spirit = 1.0, crit = .30}),
+        profile("restoration", "Restoration", 3, healer, {crit = .36}),
     },
 }
 
@@ -187,7 +187,34 @@ local intellectForSpellCrit = {
 local ratings = {"hit", "crit", "haste", "expertise"}
 local avoidance = {"dodge", "parry", "block"}
 
-local function forLevel(base, level)
+-- Each window starts with the same mana reserve. MP5 continues throughout;
+-- only the portion outside the five-second rule gets full Spirit regeneration.
+local healingWindows = {
+    short = {seconds = 30, suppressed = .90},
+    dungeon = {seconds = 90, suppressed = .75},
+    sustained = {seconds = 180, suppressed = .80},
+}
+local reflectionRegen = {[0] = 0, .17, .33, .50}
+
+local function tuneRestoration(p, pace, talents)
+    local window = healingWindows[pace]
+    local reflection = talents and talents.reflection or 0
+    local spiritMultiplier = 1 + .05 * (talents and talents.livingSpirit or 0)
+    local intellectMultiplier = 1 + .02 * (talents and talents.heartOfTheWild or 0)
+    local regenFraction = 1 - window.suppressed + window.suppressed * reflectionRegen[reflection]
+    p.mp5 = p.mana * window.seconds / 5
+    -- Community Forever regen measurements: 1 Spirit = 1/8 mana per second
+    -- at full regen. MP5 gear and raw mana receive no Spirit multiplier.
+    local regeneration = p.mp5 * (5 / 8) * regenFraction
+    -- One useful natural Bloom per three example heals, whose combined usable
+    -- healing-power coefficients total 2.441 at 31. Expiries may overheal.
+    local bloom = talents and talents.bloom == 1 and .41 or 0
+    p.spirit = spiritMultiplier * (regeneration + bloom)
+    p.intellect = p.intellect * intellectMultiplier
+    p.healingPace, p.restoTalents = pace, talents
+end
+
+local function forLevel(base, level, healingPace, restoTalents)
     local p = {}
     for k, v in pairs(base) do p[k] = v end
     p.level = level
@@ -252,11 +279,14 @@ local function forLevel(base, level)
         p.intellect = (p.intellect or 0) + perCrit * p.spellCritShare / int[level]
     end
     if p.shield then p.strength = p.strength + p.blockValue / 20 end
+    if p.class == "DRUID" and p.key == "restoration" then
+        tuneRestoration(p, healingPace or "dungeon", restoTalents)
+    end
     return p
 end
 
--- The UI selects the same resolved profile for the planner and hover tooltips.
--- Cache by preset and level; humanoid scenarios copy the result before editing.
+-- The planner, bag alerts and hover tooltips can share resolved profiles.
+-- Restoration's optional mana window and known ranks also distinguish builds.
 local presets = {}
 for class, list in pairs(A.Profiles) do
     for i, base in ipairs(list) do
@@ -274,6 +304,30 @@ function A.ProfileForLevel(profile, playerOrLevel)
     local level = type(playerOrLevel) == "table" and playerOrLevel.level or playerOrLevel
     if type(level) ~= "number" then return profile end
     level = math.max(1, math.min(60, math.floor(level)))
+    if preset.base.class == "DRUID" and preset.base.key == "restoration" and type(playerOrLevel) == "table" then
+        local pace = healingWindows[playerOrLevel.healingPace] and playerOrLevel.healingPace or "dungeon"
+        local talents = playerOrLevel.restoTalents
+        if talents or pace ~= "dungeon" then
+            local ranks
+            local key = level .. "/" .. pace
+            if talents then
+                -- Copy verified ranks into the cached profile, so a later
+                -- respec cannot mutate a running scan's scoring assumptions.
+                local function rank(field, maximum)
+                    return math.max(0, math.min(maximum, math.floor(tonumber(talents[field]) or 0)))
+                end
+                ranks = {reflection = rank("reflection", 3), livingSpirit = rank("livingSpirit", 3),
+                    heartOfTheWild = rank("heartOfTheWild", 5), bloom = rank("bloom", 1)}
+                key = key .. "/" .. ranks.reflection .. ranks.livingSpirit .. ranks.heartOfTheWild .. ranks.bloom
+            end
+            preset.healing = preset.healing or {}
+            if not preset.healing[key] then
+                local resolved = forLevel(preset.base, level, pace, ranks)
+                presets[resolved], preset.healing[key] = preset, resolved
+            end
+            return preset.healing[key]
+        end
+    end
     if not preset.levels[level] then
         local resolved = forLevel(preset.base, level)
         presets[resolved], preset.levels[level] = preset, resolved

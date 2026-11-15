@@ -48,3 +48,43 @@ function A.DetectProfile(player)
     local ok, key = pcall(readTalents, player)
     if ok then return key end
 end
+
+-- Single-entry nodes in the live Forever Druid tree. Verify the spell behind
+-- each node even at rank zero, since a hotfix can reuse a node for a new talent.
+-- https://forever.undrwrldcub.com/db/talent-nodes/
+local restoNodes = {
+    {key = "heartOfTheWild", node = 104958, spell = 17003, max = 5},
+    {key = "reflection", node = 104920, spell = 17106, max = 3},
+    {key = "bloom", node = 104918, spell = 1328621, max = 1},
+    {key = "livingSpirit", node = 104911, spell = 1309631, max = 3},
+}
+
+local function readRestoRanks()
+    local config = C_ClassTalents.GetActiveConfigID()
+    -- An open editor can make activeRank describe a preview. Only score a
+    -- complete, committed snapshot of the active character configuration.
+    if not config or C_Traits.ConfigHasStagedChanges(config) ~= false then return end
+    local ranks = {}
+    for _, talent in ipairs(restoNodes) do
+        local node = C_Traits.GetNodeInfo(config, talent.node)
+        if not node or node.ID ~= talent.node or not node.entryIDs or #node.entryIDs ~= 1 then return end
+        local entryID = node.entryIDs[1]
+        local entry = C_Traits.GetEntryInfo(config, entryID)
+        local def = entry and entry.definitionID and C_Traits.GetDefinitionInfo(entry.definitionID)
+        if not def or def.spellID ~= talent.spell then return end
+        local rank = node.activeRank
+        if type(rank) ~= "number" or rank < 0 or rank > talent.max or rank ~= math.floor(rank) then return end
+        if rank > 0 and (not node.activeEntry or node.activeEntry.entryID ~= entryID
+            or node.activeEntry.rank ~= rank) then return end
+        ranks[talent.key] = rank
+    end
+    return ranks
+end
+
+-- The live UI calls this once per resolved profile, outside the item loop.
+-- Nil distinguishes unavailable talent data from four confirmed zero ranks.
+function A.GetRestoDruidTalents()
+    if not C_ClassTalents or not C_Traits or (InCombatLockdown and InCombatLockdown()) then return end
+    local ok, ranks = pcall(readRestoRanks)
+    if ok then return ranks end
+end

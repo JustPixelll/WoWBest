@@ -146,8 +146,10 @@ def from_tooltip(row):
             if entity == "race":
                 ids = {33 if x == 95 else 34 if x == 96 else x for x in ids}
             item[entity + "Mask"] = sum(1 << (i - 1) for i in ids)
-    unique = re.search(r"<!--ue--><br>Unique(?:-Equipped)?(?:: ([^<(]+) \((\d+)\))?(?: \((\d+)\))?<!--ue-->", tip)
-    if unique:
+    # Plain limits appear after the binding. Named categories appear between
+    # the ue comments. An item may be capped independently in both ways.
+    header = tip.partition('<table width="100%">')[0]
+    for unique in re.finditer(r"<br>Unique(?:-Equipped)?(?:: ([^<(]+) \((\d+)\))?(?: \((\d+)\))?(?=<!--ue-->|<br>)", header):
         if unique[1]:
             item["unique"] = "group:" + html.unescape(unique[1])
             item["uniqueLimit"] = int(unique[2])
@@ -350,6 +352,20 @@ def observed_boss_drops(builds, items):
                     yield ident, dict(kind="Dungeon", source=f"Dungeon: {zone} - {boss}", minLevel=DUNGEONS[zone])
 
 
+def reference_dungeon(zone, boss):
+    # The source cache uses the parent instance; the leveling index sometimes
+    # calls its Graveyard rares Library bosses. All three spawn in Graveyard.
+    graveyard_rares = {"Fallen Champion", "Azshir the Sleepless", "Ironspine"}
+    if zone.startswith("Scarlet Monastery") and boss == "Scorn":
+        # An event encounter in Era without a verified Forever spawn. Actual
+        # launch loot observations can still supply their own independent route.
+        return None
+    label = ("Scarlet Monastery: Graveyard" if zone.startswith("Scarlet Monastery")
+             and boss in graveyard_rares else zone)
+    return dict(kind="Dungeon", source="Dungeon: " + label + (" - " + boss if boss else ""),
+                minLevel=DUNGEONS[zone])
+
+
 def dungeon_and_craft_sources(builds, tables, items, rows):
     # Corroborate recipe and dungeon metadata with launch trainer observations or another
     # Forever item source. A recipe dropping from a boss is not the crafted gear itself.
@@ -413,8 +429,8 @@ def dungeon_and_craft_sources(builds, tables, items, rows):
                         or "Crafted" in cached.get("sourceTypes", [])):
                     continue
                 boss = tables["npcs"].get(npc)
-                yield i, dict(kind="Dungeon", source="Dungeon: " + zone_name + (" - " + boss if boss else ""),
-                              minLevel=DUNGEONS[zone_name])
+                if route := reference_dungeon(zone_name, boss):
+                    yield i, route
     for row in rows:
         i = row["itemId"]
         if i not in items or "Crafted" in row["sourceTypes"]:
@@ -425,8 +441,12 @@ def dungeon_and_craft_sources(builds, tables, items, rows):
         zones = [z for z in DUNGEONS if f"forever::dungeon::{z.lower()}" in keys]
         for zone in zones:
             bosses = row.get("bossNames", []) if len(zones) == 1 else []
-            yield i, dict(kind="Dungeon", source="Dungeon: " + zone + (" - " + " / ".join(bosses) if bosses else ""),
-                          minLevel=DUNGEONS[zone])
+            # A dungeon tag on a quest reward can identify the quest's area.
+            # Only an independent source can establish an additional drop.
+            if "Quest" in row["sourceTypes"] and not bosses:
+                continue
+            if route := reference_dungeon(zone, " / ".join(bosses)):
+                yield i, route
 
 
 def observed_creature_drops(builds, items):

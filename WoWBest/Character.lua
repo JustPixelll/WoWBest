@@ -169,22 +169,27 @@ local function readEnchant(left, facts)
     else facts.enchant[key] = amount end
 end
 
-local function reconcileEnchant(stats, live, facts, linkKey)
-    if not facts.enchant then return end
-    -- Compare the same suffix, seed, gems and bonus fields with only the enchant
-    -- removed. The exact map may already account for some or all of its stats.
+local function separateEnchant(stats, live, facts, linkKey)
+    -- Normalize the base item first. A +spell power enchant must not consume
+    -- part of the underlying weapon's separate healing/damage bonus.
     local cleared, changed = linkKey:gsub("^(item:%d+:)[1-9]%d*", "%10", 1)
     if changed == 0 then return false end
     local base = C_Item.GetItemStats(cleared)
     if not base or hiddenTable(base) then return false end
-    for key, bonus in pairs(facts.enchant) do
+    local keys = facts.enchant
+    if keys.ITEM_MOD_SPELL_POWER_SHORT then
+        -- The same enchant can appear in all three raw spell-power channels.
+        -- Restore them together or it can remain inside a healing/damage total.
+        keys = {ITEM_MOD_SPELL_POWER_SHORT=true, ITEM_MOD_SPELL_DAMAGE_DONE_SHORT=true,
+            ITEM_MOD_SPELL_HEALING_DONE_SHORT=true}
+        for key in pairs(facts.enchant) do keys[key]=true end
+    end
+    for key in pairs(keys) do
         local before = base[key]
         if secret(before) or (before ~= nil and type(before) ~= "number") then return false end
-        local delta = (live[key] or 0) - (before or 0)
-        local missing
-        if bonus >= 0 then missing = math.max(0, bonus - math.max(0, delta))
-        else missing = math.min(0, bonus - math.min(0, delta)) end
-        stats[key] = (stats[key] or 0) + missing
+    end
+    for key in pairs(keys) do
+        if live[key] ~= nil or base[key] ~= nil then stats[key] = base[key] end
     end
     return true
 end
@@ -367,20 +372,20 @@ local function tokensInto(values, tokens)
     for token, amount in tokens:gmatch("(%a+)(%-?%d+%.?%d*)") do values[token] = tonumber(amount) end
 end
 
--- A bare catalog ID may use known base values. Preserve a rolled/enhanced
--- item's own tooltip whenever the link carries a modifier, gem, or suffix.
+-- A permanent enchant is added to the underlying item's stats. A random
+-- suffix, gem, or bonus field can change those base stats in its own right.
 local function standardVariant(key)
     if not key then return true end
     local position = 0
     for field in (key .. ":"):gmatch("([^:]*):") do
         position = position + 1
         -- item:ID:enchant:gem1..gem4:suffix:uniqueID:linkLevel:spec:...
-        if ((position >= 3 and position <= 8) or position >= 12) and field ~= "" and field ~= "0" then return false end
+        if ((position >= 4 and position <= 8) or position >= 12) and field ~= "" and field ~= "0" then return false end
     end
     return true
 end
 
-local function fillPassive(item, value)
+local function fillPassive(item, value, typedSpellLine)
     local stats = item.stats
     for token, key in pairs(fallbackKeys) do
         if stats[key] == nil then stats[key] = value[token] end
@@ -410,7 +415,22 @@ local function fillPassive(item, value)
     -- exposes a shared component, only its residual belongs in the specific
     -- damage/heal key. Separate independent native stats otherwise survive.
     local shared = stats.ITEM_MOD_SPELL_POWER_SHORT or value.shared or 0
-    if shared ~= 0 then stats.ITEM_MOD_SPELL_POWER_SHORT = shared end
+    if typedSpellLine and not value.shared and (shared == value.sp or shared == value.heal) then
+        -- A client may report an explicit damage-only or healing-only line as
+        -- generic spell power. Only the portion present in BOTH channels can
+        -- be shared. A distinct value (e.g. an additional effect) survives.
+        local common = math.min(value.sp or 0, value.heal or 0)
+        if shared > common then
+            if not value.sp and stats.ITEM_MOD_SPELL_DAMAGE_DONE_SHORT == shared then
+                stats.ITEM_MOD_SPELL_DAMAGE_DONE_SHORT = nil
+            end
+            if not value.heal and stats.ITEM_MOD_SPELL_HEALING_DONE_SHORT == shared then
+                stats.ITEM_MOD_SPELL_HEALING_DONE_SHORT = nil
+            end
+            shared = common
+        end
+    end
+    stats.ITEM_MOD_SPELL_POWER_SHORT = shared ~= 0 and shared or nil
     local function component(key, direct)
         if direct == nil and value.shared == nil then return end
         local total = (direct or 0) + (value.shared or 0)
@@ -425,6 +445,7 @@ end
 
 local function finalizeStats(item, tooltipFacts, record, key, supplement)
     local value = {}
+    local typedSpellLine = tooltipFacts.heal or tooltipFacts.sp
     if standardVariant(key) then
         tokensInto(value, record.foreverStats or supplement)
         -- Older overlays may list the same universal hit/crit for both
@@ -434,6 +455,7 @@ local function finalizeStats(item, tooltipFacts, record, key, supplement)
         local cache = A.TooltipStatFallbacks and A.TooltipStatFallbacks[item.id]
         if cache and (cache:match("shared%d") or cache:match("heal%d") or cache:match("sp%d")) then
             value.shared, value.heal, value.sp = nil, nil, nil
+            typedSpellLine = true
         end
         tokensInto(value, cache)
     end
@@ -443,7 +465,7 @@ local function finalizeStats(item, tooltipFacts, record, key, supplement)
     for token, amount in pairs(tooltipFacts) do
         if type(amount) == "number" then value[token] = amount end
     end
-    fillPassive(item, value)
+    fillPassive(item, value, typedSpellLine)
     if value.proc == 1 then item.unmodeledEffect = true end
     if item.classID ~= 2 then return end
     local dps = item.stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT or item.stats.DPS
@@ -531,10 +553,24 @@ local function readItem(record, player, supplement, equipped)
     item.classID, item.subID, item.stats = classID, subID, stats
     item.minLevel, item.texture, item.bindType, item.setID = minLevel, texture, bindType, setID
     if not readUnique(item, tipLimit) then return nil, "unverified" end
-    finalizeStats(item, facts, record, inputKey, supplement)
     local normalizedKey = inputKey or A.ItemVariantKey(statLink)
-    local enchantKnown = not facts.enchant or normalizedKey and reconcileEnchant(stats, live, facts, normalizedKey)
-    item.unmodeledEffect = ((effect or item.unmodeledEffect) and not (A.EffectNotes and A.EffectNotes[id])) or facts.unknownEnchant or not enchantKnown or nil
+    local enchantKnown = not facts.enchant or normalizedKey and separateEnchant(stats, live, facts, normalizedKey)
+    finalizeStats(item, facts, record, normalizedKey, supplement)
+    if facts.enchant and enchantKnown then
+        for stat, bonus in pairs(facts.enchant) do
+            local total = (stats[stat] or 0) + bonus
+            -- The client may expose an exact total while omitting the base
+            -- field. Preserve that stronger evidence when both are available.
+            if live[stat] ~= nil then
+                if bonus >= 0 then total = math.max(total, live[stat])
+                else total = math.min(total, live[stat]) end
+            end
+            stats[stat] = total
+        end
+    end
+    item.unmodeledEffect = (A.UnscoredEffectNotes and A.UnscoredEffectNotes[id] ~= nil)
+        or ((effect or item.unmodeledEffect) and not (A.EffectNotes and A.EffectNotes[id]))
+        or facts.unknownEnchant or not enchantKnown or nil
     if C_Item.GetDetailedItemLevelInfo then
         local effectiveLevel = C_Item.GetDetailedItemLevelInfo(statLink)
         if not secret(effectiveLevel) and type(effectiveLevel) == "number" and effectiveLevel > 0 then item.itemLevel = effectiveLevel end

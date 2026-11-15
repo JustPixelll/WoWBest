@@ -1,11 +1,11 @@
 # WoWBest catalog
 
-The November 15, 2026 catalog targets World of Warcraft: Forever 1.60.1. Its default pool contains **4,733 distinct equipment IDs across 6,501 routes**. Each route uses a Forever source or requires positive evidence from the current character. Turning on **Include unconfirmed sources** adds 2,218 possible world-drop routes, including 2,209 additional IDs, for 6,942 distinct items and 8,719 routes overall. Several routes can lead to the same item. The full generated catalog ships with the addon. A player never needs to fetch data, install Python or install another addon. [Coverage by level and remaining gaps](COVERAGE.md)
+The November 15, 2026 catalog targets World of Warcraft: Forever 1.60.1. Its default pool contains **4,732 distinct equipment IDs across 6,489 routes**. Each route uses a Forever source or requires positive evidence from the current character. Turning on **Include unconfirmed sources** adds 2,218 possible world-drop routes, including 2,209 additional IDs, for 6,941 distinct items and 8,707 routes overall. Several routes can lead to the same item. The full generated catalog ships with the addon. A player never needs to fetch data, install Python or install another addon. [Coverage by level and remaining gaps](COVERAGE.md)
 
 | Acquisition | Routes | Evidence and typical detail |
 | --- | ---: | --- |
 | Quest reward | 1,927 | Launch server reward ID, pick-one or fixed reward, minimum level, quest title, and available class, race and side requirements |
-| Dungeon | 759 | Launch boss rolls, other observed instance corpses, and named Forever dungeon listings |
+| Dungeon | 747 | Launch boss rolls, other observed instance corpses, and named Forever dungeon listings |
 | Crafted | 1,282 | Recipe, creating profession and skill rank. 594 high-rank routes also require the character to know the recipe and have sufficient materials |
 | World drop or treasure | 997 | Launch corpse loot, opened outdoor treasure or gear found inside a trunk that players caught while fishing |
 | Vendor | 1,319 | Observed merchants, corroborated quartermasters, location and recorded price where available |
@@ -81,4 +81,4 @@ python tools/build_catalog.py --polestar ../wowbest-polestar --observations ../w
 python tools/build_tooltip_stats.py --cache ../wowbest-cache
 ```
 
-The catalog generator validates the three pinned commit IDs and writes `WoWBest/Catalog.lua`. Its expected SHA-256 is `cab24c068dec9d8878c2653e2ba7346c47729f4efbbfbde8a50a8acafcba8f99`. The second command uses the same pinned Forever cache to rebuild `WoWBest/TooltipStats.lua`, which supplies missing base-item stats and weapon damage. The addon checks the actual item link when scoring a particular copy. See [How WoWBest scores gear](SCORING.md) for the weighting assumptions. To update the snapshot, review upstream changes, adjust the pins and launch-build cutoff, recheck current dungeon and raid access, regenerate, and run the regression tests before shipping.
+The catalog generator validates the three pinned commit IDs and writes `WoWBest/Catalog.lua`. Its expected SHA-256 is `1c1c45fdf88d1e6a82ddaa337edbd3268d6ef4fc30386fbb423ec8e91c16350a`. The second command uses the same pinned Forever cache to rebuild `WoWBest/TooltipStats.lua`, which supplies missing base-item stats and weapon damage. The addon checks the actual item link when scoring a particular copy. See [How WoWBest scores gear](SCORING.md) for the weighting assumptions. To update the snapshot, review upstream changes, adjust the pins and launch-build cutoff, recheck current dungeon and raid access, regenerate, and run the regression tests before shipping.
