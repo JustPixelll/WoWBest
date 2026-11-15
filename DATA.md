@@ -78,6 +78,7 @@ git -C ../wowbest-cache sparse-checkout init --no-cone
 git -C ../wowbest-cache sparse-checkout set "/Forever Cache.json" "/Classic Era Cache.json"
 git -C ../wowbest-cache checkout eff4560809de2e852e9164183e3edf5a795edd20
 python tools/build_catalog.py --polestar ../wowbest-polestar --observations ../wowbest-eg --cache ../wowbest-cache
+python tools/build_tooltip_stats.py --cache ../wowbest-cache
 ```
 
-The generator validates the three pinned commit IDs and writes `WoWBest/Catalog.lua`. The expected SHA-256 is `cab24c068dec9d8878c2653e2ba7346c47729f4efbbfbde8a50a8acafcba8f99`. To update the snapshot, review upstream changes, adjust the pins and launch-build cutoff, recheck current dungeon and raid access, regenerate, and run the regression tests before shipping.
+The catalog generator validates the three pinned commit IDs and writes `WoWBest/Catalog.lua`. Its expected SHA-256 is `cab24c068dec9d8878c2653e2ba7346c47729f4efbbfbde8a50a8acafcba8f99`. The second command uses the same pinned Forever cache to rebuild `WoWBest/TooltipStats.lua`, which supplies missing base-item stats and weapon damage. The addon checks the actual item link when scoring a particular copy. See [How WoWBest scores gear](SCORING.md) for the weighting assumptions. To update the snapshot, review upstream changes, adjust the pins and launch-build cutoff, recheck current dungeon and raid access, regenerate, and run the regression tests before shipping.

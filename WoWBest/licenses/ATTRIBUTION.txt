@@ -14,4 +14,7 @@ https://github.com/fitzforge/polestar
 Forever item attributes and dungeon identifiers also checked against the
 Forever and Classic caches from Napalmsteak: https://github.com/Napalmsteak/WoW-Classic-Item-Caches
 
+TooltipStats.lua contains numeric base-item facts extracted from the Forever
+cache at revision eff4560809de2e852e9164183e3edf5a795edd20.
+
 World of Warcraft and its game content belong to Blizzard Entertainment.

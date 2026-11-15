@@ -108,6 +108,7 @@ assert(x.source == "Dungeon" and x.choice == "q5")
 assert(x.stats.ITEM_MOD_SPELL_DAMAGE_DONE_SHORT == nil and x.stats.ITEM_MOD_SPELL_HEALING_DONE_SHORT == nil)
 assert(x.stats.ITEM_MOD_FROST_SPELL_DAMAGE_SHORT == 9 and x.stats.HIT_PERCENT == nil and x.stats.CRIT_PERCENT == 2)
 liveStats = {}
+item = {class = 2, sub = 0, loc = "INVTYPE_WEAPON"}
 x = assert(read({id = 1, foreverStats = "sp10 heal29 dmin16 dmax24 speed2000"}))
 assert(x.stats.ITEM_MOD_SPELL_DAMAGE_DONE_SHORT == 10 and x.stats.ITEM_MOD_SPELL_HEALING_DONE_SHORT == 29)
 assert(x.stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT == 10)

@@ -44,6 +44,8 @@ result=cmp(two,{[16]=sword,[17]=shield})
 eq(result.loadout[17],nil);eq(result.delta,-2);eq(#result.changedSlots,2)
 eq(result.swapBefore,22);eq(result.swapAfter,20);eq(result.slotPercent,-200/22)
 eq(select(2,cmp(shield,{[16]=two})),"needs-main-hand")
+eq(select(2,cmp(it(101,"SHIELD",9,{unique="pair"}),
+    {[16]=it(100,"WEAPONMAINHAND",8,{unique="pair"})})),"conflict")
 eq(select(2,cmp(it(11,"WEAPONOFFHAND",10),{[16]=sword},{dual=false})),"ineligible")
 result=cmp(it(12,"WEAPONMAINHAND",17),{[16]=sword,[17]=shield})
 eq(result.loadout[17],sword);eq(result.total,30)
@@ -130,3 +132,24 @@ eq(worn[1].id,51);eq(worn[16].id,52)
 GetInventoryItemID=nil
 eq(select(2,A.ReadEquippedForUpgrade({})),"unverified")
 print("Equipped upgrades: real baseline %, paired sockets, hand displacement, set bonuses, uniqueness, cache misses.")
+
+-- Unknown procs matter only on the swapped pieces or an actually crossed
+-- unmodeled set threshold. A purely target-specific, known stat is modeled.
+assert(loadfile("WoWBest/SetBonuses.lua"))("WoWBest",A)
+A.SetSkills={}
+A.SetThresholds={[3]={{pieces=2,stats={ITEM_MOD_ATTACK_POWER_SHORT=15},targetType="Humanoid"},
+    {pieces=3,description="unmodeled proc"}}}
+local wrists=it(61,"WRIST",1,{setID=3})
+local original={ [1]=setHead,[11]=setRing }
+eq(cmp(wrists,original).unmodeledEffect,true)
+eq(cmp(helm,{[1]=setHead,[11]=setRing,[9]=wrists}).unmodeledEffect,true)
+eq(cmp(helm,original).unmodeledEffect,false) -- only known conditional 2pc lost
+eq(cmp(it(62,"HEAD",6,{setID=3}),{[1]=setHead,[11]=setRing,[9]=wrists}).unmodeledEffect,false)
+local proc=it(63,"HAND",3,{unmodeledEffect=true})
+eq(cmp(proc,original).unmodeledEffect,true)
+eq(cmp(it(65,"HAND",4),{[10]=proc}).unmodeledEffect,true)
+eq(cmp(it(66,"WAIST",4),{[10]=proc}).unmodeledEffect,false)
+eq(cmp(proc,{[10]=proc},nil,nil,10).unmodeledEffect,false)
+local unpriced=it(67,"NECK",2)
+unpriced.stats.FLAT_WEAPON_DAMAGE=2
+eq(cmp(unpriced,{}).unmodeledEffect,true)

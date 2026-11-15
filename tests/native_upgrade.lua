@@ -39,7 +39,9 @@ local gear, equipped, requests = {}, {[5] = 10399, [7] = 10400, [10] = 999001}, 
 local hiddenID, use, protected = nil, true, {}
 function issecretvalue(v) return rawequal(v, protected) end
 local function item(id, loc, strength, armor)
-    local str = "item:" .. id
+    -- These exact rolled copies have synthetic stats. A base-ID fallback
+    -- would mix the published Defias stats into the controlled four-point gap.
+    local str = "item:" .. id .. ":0:0:0:0:0:99"
     gear[id] = {id = id, link = str, loc = "INVTYPE_" .. loc, name = "Test " .. id,
         stats = {ITEM_MOD_STRENGTH_SHORT = strength, RESISTANCE0_NAME = armor}}
 end
@@ -118,4 +120,35 @@ emit("SKILL_LINES_CHANGED")
 advance(0)
 local forbidden = hover(10401, "GetMerchantItem", 4)
 assert(forbidden:find("Unavailable", 1, true) and not forbidden:find("Upgrade", 1, true), forbidden)
-print("Native upgrade integration passed: cold equipped link, set-sensitive percentage, worn item, ineligible item.")
+-- A real bag event uses the same target, equipped baseline, and active profile
+-- as the native tooltip. Only replace the toast renderer in this headless fixture.
+local bag, notices = {10401}, {}
+C_Container = {
+    GetContainerNumSlots = function(id) return id == 0 and #bag or 0 end,
+    GetContainerItemInfo = function(_, slot)
+        local id = bag[slot]
+        return {itemID=id, hyperlink=gear[id].link}
+    end,
+}
+function A.ShowBagUpgrade(alert) notices[#notices+1]=alert end
+local function framesFor(seconds)
+    for i=1,math.ceil(seconds*20) do
+        advance(.05)
+        for _, frame in ipairs(frames) do if frame.OnUpdate then frame:OnUpdate(.05) end end
+    end
+end
+use = true
+emit("PLAYER_ENTERING_WORLD")
+framesFor(2)
+assert(#notices==1 and notices[1].item.id==10401, "A login bag scan must alert with the planner closed")
+local notice = notices[1]
+assert(notice.profile.targetType=="Humanoid" and conditional:find(("%+.1f pts"):format(notice.result.delta),1,true))
+emit("BAG_UPDATE_DELAYED")
+framesFor(1)
+assert(#notices==1)
+WoWBestCharacterDB.targetType = nil
+A.InvalidateUpgradeTooltips()
+A.RefreshBagUpgrades()
+framesFor(1)
+assert(#notices==1, "A General PvE downgrade should never produce a bag upgrade alert")
+print("Native tooltip and bag integration passed: actual equipped baseline, set-sensitive score, and shared profile.")

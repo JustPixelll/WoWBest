@@ -29,4 +29,12 @@ close(score(20503, shaman, {ITEM_MOD_MANA_REGENERATION_SHORT = 4}), score(20503,
 local flask = {id = 20130, loc = "INVTYPE_TRINKET", stats = {}, unique = true}
 local plan = A.Solve({flask}, {}, arms)
 assert(plan[13] == flask and not plan[14], "effect-only trinket enters the legal loadout")
+local hybrid = {crit=.5, hit=.6, critPercent=8, hitPercent=9, physicalCritShare=.6, spellCritShare=.4, spellHitShare=.3}
+local spell = .4 * 8 + 7 * 20 / 300 * 9 * .3
+local physical = .6 * 8 + 5 * 20 / 300 * 8
+for _, stats in ipairs({{}, {CRIT_PERCENT=1}, {ITEM_MOD_CRIT_RATING_SHORT=14},
+        {ITEM_MOD_CRIT_RATING_SHORT=14, CRIT_PERCENT=1}}) do
+    close(score(13968, hybrid, stats), spell)
+    close(score(13965, hybrid, stats), physical)
+end
 print("Effects OK: five Forever models, role sensitivity, on-use averaging, flat stat deduplication.")

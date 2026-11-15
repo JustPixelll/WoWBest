@@ -156,3 +156,29 @@ local preview = A.RankPrepared(context, 1, 15)
 local all = A.RankPrepared(context, 1, math.huge)
 assert(#preview==15 and #all==24)
 for i,row in ipairs(preview) do assert(row.item.link==all[i].item.link) end
+
+-- Explicit per-cent effects and native rating aliases describe one stat.
+local weighted={crit=.5,haste=.5,block=.5,dodge=.5,parry=.5,expertise=.5,hit=.5}
+check("crit aura", A.CombatStatPoints({CRIT_PERCENT=1},weighted,"crit"),7)
+check("rating over duplicate percent", A.Score({stats={ITEM_MOD_CRIT_RATING_SHORT=14,CRIT_PERCENT=1}},weighted),7)
+check("dodge aura", A.Score({stats={DODGE_PERCENT=1}},weighted),6)
+check("haste rating over aura", A.Score({stats={HASTE_PERCENT=1,ITEM_MOD_HASTE_RATING_SHORT=10}},weighted),5)
+check("block aura", A.Score({stats={BLOCK_PERCENT=1}},weighted),2.5)
+check("parry aura", A.Score({stats={PARRY_PERCENT=1}},weighted),7.5)
+check("expertise aura", A.Score({stats={EXPERTISE_PERCENT=1}},weighted),5)
+check("mana pool does not inherit intellect crit", A.Score({stats={ITEM_MOD_MANA_SHORT=150}},
+    {intellect=5,mana=.05}),7.5)
+check("raw defense skill", A.Score({stats={DEFENSE_SKILL=3}},{defenseSkill=2}),6)
+check("humanoid conditional AP", A.Score({stats={HUMANOID_ATTACK_POWER=15}},{attack=.5}),0)
+check("humanoid combat scenario", A.Score({stats={HUMANOID_ATTACK_POWER=15}},{attack=.5,targetType="Humanoid"}),7.5)
+local swing={minDamage=30,maxDamage=50,weaponSpeed=2,classID=2,loc="INVTYPE_WEAPON",stats={}}
+local wp={meleeDPS=2,offhandScale=.5,mainHandDamage=.25}
+check("DPS derived from real swing range", A.Score(swing,wp,16),50)
+check("no main-hand swing credit offhand", A.Score(swing,wp,17),20)
+check("no speed modifier for form profiles", A.Score(swing,{meleeDPS=2},16),40)
+local oneRing={id=1,loc="INVTYPE_FINGER",unique=true,stats={ITEM_MOD_STRENGTH_SHORT=3}}
+local twoRing={id=2,loc="INVTYPE_FINGER",unique=true,stats={ITEM_MOD_STRENGTH_SHORT=4}}
+local ringCtx=A.PrepareSolver({oneRing,twoRing},{},{strength=1})
+local recommended=A.SolvePrepared(ringCtx)
+check("left socket prefers its own tied winner", A.RankPrepared(ringCtx,11,1)[1].item,recommended[11])
+check("right socket prefers its own tied winner", A.RankPrepared(ringCtx,12,1)[1].item,recommended[12])

@@ -48,6 +48,38 @@ local statLabels = {
     holy="Holy damage", shadow="Shadow damage",
 }
 
+-- Forever uses rating on its generic stats and some effects report a true
+-- percentage change. Value a percentage point in the active profile's units.
+local ratingPerPercent = {hit=10, crit=14, haste=10, dodge=12, parry=15, block=5, expertise=10}
+local ratingTokens, percentTokens, percentStats = {}, {}, {}
+for stat in pairs(ratingPerPercent) do
+    ratingTokens[stat] = "ITEM_MOD_" .. stat:upper() .. "_RATING_SHORT"
+    local key = stat:upper() .. "_PERCENT"
+    percentTokens[stat], percentStats[key] = key, stat
+end
+local percentLabels = {
+    hit="Hit chance (%)", crit="Crit chance (%)", haste="Haste (%)",
+    dodge="Dodge chance (%)", parry="Parry chance (%)",
+    block="Block chance (%)", expertise="Reduced dodge and parry chance (%)",
+}
+
+function A.PercentStatWeight(profile, stat)
+    return profile[stat .. "Percent"] or (ratingPerPercent[stat] or 0) * (profile[stat] or 0)
+end
+
+local function combatStatAmount(stats, profile, stat)
+    local rating = stats[ratingTokens[stat]]
+    if rating ~= nil then return rating, profile[stat] or 0, statLabels[stat] end
+    return stats[percentTokens[stat]] or 0, A.PercentStatWeight(profile,stat), percentLabels[stat]
+end
+
+-- Effects use this helper to subtract a passive the native item data already
+-- credited. The native rating takes precedence over an equivalent % aura.
+function A.CombatStatPoints(stats, profile, stat)
+    local amount, weight = combatStatAmount(stats,profile,stat)
+    return amount * weight
+end
+
 local function scoreItem(item, profile, slot, rows)
     local stats = item.stats or {}
     slot = slot or slotForLoc[item.loc]
@@ -62,16 +94,30 @@ local function scoreItem(item, profile, slot, rows)
         local stat = weightsByKey[key]
         local weight = stat and profile[stat]
         if stat == "health" then weight = (profile.stamina or 0) / 10
-        elseif stat == "mana" then weight = (profile.intellect or 0) / 15
+        elseif stat == "mana" then weight = profile.mana or (profile.intellect or 0) / 15
         elseif stat == "hp5" then weight = (profile.stamina or 0) * .20
         elseif stat == "spellDamage" and not profile.healing then weight = profile.spell
         end
-        if stat and type(value) == "number" then credit(statLabels[stat], value, weight) end
+        if stat and type(value)=="number" then
+            credit(statLabels[stat], value, weight)
+        elseif percentStats[key] and stats[ratingTokens[percentStats[key]]] == nil then
+            local amount, perUnit, label = combatStatAmount(stats, profile, percentStats[key])
+            credit(label, amount, perUnit)
+        elseif key=="DEFENSE_SKILL" and not stats.ITEM_MOD_DEFENSE_SKILL_RATING_SHORT
+                and not stats.ITEM_MOD_DEFENSE_RATING_SHORT then
+            credit("Defense skill",value,profile.defenseSkill or profile.defense)
+        elseif key=="HUMANOID_ATTACK_POWER" and profile.targetType=="Humanoid" then
+            credit("Attack power vs Humanoids",value,profile.attack)
+        elseif key=="FLAT_WEAPON_DAMAGE" then
+            credit("Bonus weapon damage",value,profile.flatWeaponDamage)
+        end
     end
-    credit("Hit chance (%)", stats.HIT_PERCENT or 0, 10 * (profile.hit or 0))
-    credit("Crit chance (%)", stats.CRIT_PERCENT or 0, 14 * (profile.crit or 0))
-    local dps = stats.DPS or stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT or 0
-    if slot == 16 then credit("Main-hand weapon DPS", dps, profile.meleeDPS)
+    local average = item.minDamage and item.maxDamage and (item.minDamage + item.maxDamage) / 2
+    local speed = item.weaponSpeed and item.weaponSpeed>0 and item.weaponSpeed
+    local dps = stats.DPS or stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT or (average and speed and average / speed) or 0
+    if slot == 16 then
+        credit("Main-hand weapon DPS", dps, profile.meleeDPS)
+        credit("Main-hand average hit", average or (speed and dps * speed) or 0, profile.mainHandDamage)
     elseif slot == 17 and item.classID == 2 then
         credit("Off-hand weapon DPS", dps, (profile.meleeDPS or 0) * (profile.offhandScale or .5))
     elseif slot == 18 then credit("Ranged weapon DPS", dps, profile.rangedDPS) end
@@ -111,14 +157,25 @@ local function itemLimits(item)
     return limits
 end
 
-local function allowedHand(item, profile, player)
-    local loc = item.loc
-    if profile.shield and (loc == "INVTYPE_2HWEAPON" or loc == "INVTYPE_HOLDABLE"
-        or loc == "INVTYPE_WEAPONOFFHAND") then return false end
-    if profile.daggers and (slotForLoc[loc] == 16 or slotForLoc[loc] == 17)
-        and not (item.classID == 2 and item.subID == 15) then return false end
-    if loc == "INVTYPE_WEAPONOFFHAND" and not player.dual then return false end
-    return true
+function A.PrimaryGearSlot(item)
+    return slotForLoc[item.loc]
+end
+
+-- The planner and equipment tooltip use the same slot rules. Per-character
+-- training and eligibility have already been checked by the item reader.
+function A.FitsGearSlot(item, slot, player, profile)
+    if not item then return false end
+    local loc, main = item.loc, slotForLoc[item.loc]
+    if not main then return false end
+    if slot == 16 or slot == 17 then
+        if profile.daggers and not (item.classID==2 and item.subID==15) then return false end
+        if slot == 16 then return main==16 and not (profile.shield and loc=="INVTYPE_2HWEAPON") end
+        if loc=="INVTYPE_SHIELD" then return true end
+        if profile.shield then return false end
+        if loc=="INVTYPE_HOLDABLE" then return true end
+        return player.dual and (loc=="INVTYPE_WEAPON" or loc=="INVTYPE_WEAPONOFFHAND")
+    end
+    return slot==main or main==11 and slot==12 or main==13 and slot==14
 end
 
 local function rankBefore(a, b)
@@ -184,7 +241,7 @@ function A.PrepareSolver(items, player, profile, checkpoint)
     for i, item in ipairs(items) do
         ctx.tick()
         local slot = slotForLoc[item.loc]
-        if slot and allowedHand(item, profile, player) then
+        if slot and A.FitsGearSlot(item,slot,player,profile) then
             local id, limits = itemSet(item), itemLimits(item)
             local group = primary[slot] or slot
             for key in pairs(limits) do
@@ -196,7 +253,7 @@ function A.PrepareSolver(items, player, profile, checkpoint)
                 ctx.distinct[id][item.id] = true
             else id = nil end
             insert(slot, item, i, limits, id)
-            if slot == 16 and player.dual and not profile.shield and item.loc == "INVTYPE_WEAPON" then
+            if slot == 16 and A.FitsGearSlot(item,17,player,profile) then
                 insert(17, item, i, limits, id)
             end
         end
@@ -409,10 +466,13 @@ end
 -- every underlying item in its bucket; no per-slot top-N cutoff is applied.
 local function defaultPatterns(ctx)
     if not ctx.defaults then
-        ctx.defaults = {}
+        -- A scan may yield or be cancelled while these groups are building.
+        -- Publish an index only after all of its slot groups are available.
+        local complete = {}
         for i, group in ipairs(ctx.groups) do
-            ctx.defaults[i]=makePatterns(ctx,group)
+            complete[i]=makePatterns(ctx,group)
         end
+        ctx.defaults = complete
     end
     return ctx.defaults
 end
@@ -612,11 +672,13 @@ function A.Solve(items,player,profile,checkpoint)
 end
 
 local function variant(item)
-    return item.link or tostring(item.id)
+    local key = item.link and A.ItemVariantKey and A.ItemVariantKey(item.link)
+    return key or item.link or ("item:" .. item.id)
 end
 
 local function rankedBefore(a,b)
     if a.total~=b.total then return a.total>b.total end
+    if a.recommended~=b.recommended then return a.recommended end
     if a.item.id~=b.item.id then return a.item.id<b.item.id end
     return variant(a.item)<variant(b.item)
 end
@@ -626,13 +688,14 @@ function A.RankPrepared(ctx, slot, limit, baseline)
     if not pool then return {} end
     limit=math.max(0,math.floor(limit or 10))
     if limit==0 then return {} end
-    local bestTotal
+    local bestTotal, baselineLoad
     if baseline then
-        bestTotal=baseline.total or A.LoadoutScore(baseline.loadout or baseline,ctx.profile)
+        baselineLoad=baseline.loadout or baseline
+        bestTotal=baseline.total or A.LoadoutScore(baselineLoad,ctx.profile)
     else
-        local _
-        _,bestTotal=A.SolvePrepared(ctx)
+        baselineLoad,bestTotal=A.SolvePrepared(ctx)
     end
+    local recommended=baselineLoad[slot] and variant(baselineLoad[slot])
     local indexed,rows,complements={},{},{}
     local all = limit >= #pool
     local single = not both[slot] and not primary[slot]
@@ -687,7 +750,11 @@ function A.RankPrepared(ctx, slot, limit, baseline)
             if loadout and signature then complements[signature]={total=score,raw=e.score,loadout=loadout} end
         end
         if loadout and (not existing or score>existing.total+1e-8) then
-            local row={item=loadout[slot],loadout=loadout,total=score,delta=score-bestTotal}
+            -- Accumulation order and cached-complement subtraction can differ
+            -- by floating-point dust for two ways to wear the same outfit.
+            if math.abs(score-bestTotal)<1e-8 then score=bestTotal end
+            local row={item=loadout[slot],loadout=loadout,total=score,delta=score-bestTotal,
+                recommended=key==recommended}
             indexed[key]=row
             if not all then
                 if existing then

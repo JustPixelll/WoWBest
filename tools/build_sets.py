@@ -71,8 +71,8 @@ def model(text):
         if kind == "plus":
             return {stat(ATTR[args[1].lower()]): int(args[0])}, f"{args[1]} +{args[0]}"
         if kind == "increased":
-            key = "DEFENSE_SKILL_RATING" if args[0] == "Defense" else "SPIRIT"
-            return {stat(key): int(args[1])}, f"{args[0]} +{args[1]}"
+            key = "DEFENSE_SKILL" if args[0] == "Defense" else stat("SPIRIT")
+            return {key: int(args[1])}, f"{args[0]} +{args[1]}"
         if kind == "regen":
             key = "MANA_REGENERATION" if args[1] == "mana" else "HEALTH_REGEN"
             return {stat(key): int(args[0])}, f"{args[0]} {args[1]} per 5 seconds"

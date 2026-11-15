@@ -7,7 +7,7 @@ local function meetsSetSkill(id)
     if not gate then return true end
     if not (C_SkillInfo and C_SkillInfo.GetSkillLineInfoByID) then return false end
     local info = C_SkillInfo.GetSkillLineInfoByID(gate.id)
-    if not info or (issecretvalue and issecretvalue(info)) then return false end
+    if (issecretvalue and issecretvalue(info)) or not info then return false end
     local rank = info.rank
     return not (issecretvalue and issecretvalue(rank)) and type(rank) == "number" and rank >= gate.rank
 end
@@ -32,6 +32,30 @@ function A.SetBonusScore(id, count, profile)
         total = total + points(row, profile)
     end
     return total
+end
+
+-- Compare only sets present in either outfit. Inactive target-specific
+-- numerical bonuses and thresholds retained on both sides introduce no new
+-- uncertainty in this swap.
+function A.HasUnmodeledSetChange(before, after, profile)
+    local old, new = A.GetSetCounts(before), A.GetSetCounts(after)
+    local function crosses(id, a, b)
+        if a == b or not meetsSetSkill(id) then return false end
+        local lower, upper = math.min(a,b), math.max(a,b)
+        for _, row in ipairs(A.SetThresholds[id] or {}) do
+            if row.pieces > upper then break end
+            if row.pieces > lower and row.stats == nil
+                and (not row.targetType or row.targetType == profile.targetType) then return true end
+        end
+        return false
+    end
+    for id, n in pairs(old) do
+        if crosses(id,n,new[id] or 0) then return true end
+    end
+    for id, n in pairs(new) do
+        if not old[id] and crosses(id,0,n) then return true end
+    end
+    return false
 end
 
 local function description(row)

@@ -1,14 +1,5 @@
 local _, A = ...
 
-local slots = {
-    INVTYPE_HEAD=1, INVTYPE_NECK=2, INVTYPE_SHOULDER=3, INVTYPE_CHEST=5, INVTYPE_ROBE=5,
-    INVTYPE_WAIST=6, INVTYPE_LEGS=7, INVTYPE_FEET=8, INVTYPE_WRIST=9, INVTYPE_HAND=10,
-    INVTYPE_FINGER=11, INVTYPE_TRINKET=13, INVTYPE_CLOAK=15, INVTYPE_WEAPON=16,
-    INVTYPE_2HWEAPON=16, INVTYPE_WEAPONMAINHAND=16, INVTYPE_WEAPONOFFHAND=17,
-    INVTYPE_SHIELD=17, INVTYPE_HOLDABLE=17, INVTYPE_RANGED=18, INVTYPE_RANGEDRIGHT=18,
-    INVTYPE_THROWN=18, INVTYPE_RELIC=18,
-}
-
 -- Exact links retain rolled suffixes and differentiate the physical items in
 -- the two hand/ring/trinket sockets. A slot whose ID is present but whose link
 -- is not cached is occupied, never an empty slot worth zero points.
@@ -72,23 +63,6 @@ local function conflictWithCandidate(load,slot)
     if groupCap and #grouped>groupCap then return grouped end
 end
 
-local function handMain(it,profile)
-    if not it then return false end
-    local loc=it.loc
-    if loc~="INVTYPE_WEAPON" and loc~="INVTYPE_WEAPONMAINHAND" and loc~="INVTYPE_2HWEAPON" then return false end
-    if profile.shield and loc=="INVTYPE_2HWEAPON" then return false end
-    return not profile.daggers or it.classID==2 and it.subID==15
-end
-
-local function handOff(it,player,profile)
-    if not it then return false end
-    if profile.daggers and (it.classID~=2 or it.subID~=15) then return false end
-    if it.loc=="INVTYPE_SHIELD" then return true end
-    if profile.shield then return false end
-    if it.loc=="INVTYPE_HOLDABLE" then return true end
-    return player.dual and (it.loc=="INVTYPE_WEAPON" or it.loc=="INVTYPE_WEAPONOFFHAND")
-end
-
 local function copy(load)
     local out={}
     for slot,it in pairs(load) do out[slot]=it end
@@ -100,7 +74,7 @@ end
 -- All totals come from the same nonlinear item/set scorer used by the planner.
 function A.CompareEquippedUpgrade(candidate,equipped,player,profile,originSlot)
     if not candidate or not equipped or not profile or not player then return nil,"incomplete" end
-    local primary=slots[candidate.loc]
+    local primary=A.PrimaryGearSlot(candidate)
     if not primary then return nil,"ineligible" end
     local baseline=A.LoadoutScore(equipped,profile)
     if originSlot then
@@ -111,6 +85,7 @@ function A.CompareEquippedUpgrade(candidate,equipped,player,profile,originSlot)
         local wornPoints=A.Score(original,profile,originSlot)
         return {kind="equipped",alreadyEquipped=true,slot=originSlot,baseline=baseline,total=baseline,
             delta=0,percent=baseline>0 and 0 or nil,changedSlots={},loadout=equipped,
+            unmodeledEffect=false,
             swapBefore=wornPoints,swapAfter=wornPoints,slotPercent=wornPoints>0 and 0 or nil}
     end
     local best,bestChanges,bestTotal,bestSlot
@@ -126,7 +101,7 @@ function A.CompareEquippedUpgrade(candidate,equipped,player,profile,originSlot)
                     if other==16 then
                         local survivor=fork[17]
                         fork[17]=nil
-                        if slot~=17 and handMain(survivor,profile) then
+                        if slot~=17 and A.FitsGearSlot(survivor,16,player,profile) then
                             local moved=copy(fork)
                             moved[16]=survivor
                             consider(moved,slot)
@@ -153,7 +128,7 @@ function A.CompareEquippedUpgrade(candidate,equipped,player,profile,originSlot)
         consider(load,slot)
     end
     if primary==16 or primary==17 then
-        local mainOK,offOK=handMain(candidate,profile),handOff(candidate,player,profile)
+        local mainOK,offOK=A.FitsGearSlot(candidate,16,player,profile),A.FitsGearSlot(candidate,17,player,profile)
         if not mainOK and not offOK then return nil,"ineligible" end
         local function hands(main,off,slot)
             local load=copy(equipped)
@@ -165,17 +140,21 @@ function A.CompareEquippedUpgrade(candidate,equipped,player,profile,originSlot)
             if candidate.loc~="INVTYPE_2HWEAPON" then
                 for s=16,17 do
                     local partner=equipped[s]
-                    if handOff(partner,player,profile) then hands(candidate,partner,16) end
+                    if A.FitsGearSlot(partner,17,player,profile) then hands(candidate,partner,16) end
                 end
             end
         end
+        local hasMainPartner=false
         if offOK then
             for s=16,17 do
                 local partner=equipped[s]
-                if handMain(partner,profile) and partner.loc~="INVTYPE_2HWEAPON" then hands(partner,candidate,17) end
+                if A.FitsGearSlot(partner,16,player,profile) and partner.loc~="INVTYPE_2HWEAPON" then
+                    hasMainPartner=true
+                    hands(partner,candidate,17)
+                end
             end
         end
-        if not best and not mainOK then return nil,"needs-main-hand" end
+        if not best and not mainOK and not hasMainPartner then return nil,"needs-main-hand" end
     else
         replace(primary)
         if primary==11 or primary==13 then replace(primary+1) end
@@ -187,12 +166,21 @@ function A.CompareEquippedUpgrade(candidate,equipped,player,profile,originSlot)
     -- only changed sockets count here, with weapon DPS in its actual socket.
     -- Thresholds belong to the complete outfit, never to an individual piece.
     local before,after=0,0
+    local uncertain=false
     for _,s in ipairs(bestChanges) do
-        if equipped[s] then before=before+A.Score(equipped[s],profile,s) end
-        if best[s] then after=after+A.Score(best[s],profile,s) end
+        local old,new=equipped[s],best[s]
+        if old then before=before+A.Score(old,profile,s) end
+        if new then after=after+A.Score(new,profile,s) end
+        if old and (old.unmodeledEffect or old.stats and old.stats.FLAT_WEAPON_DAMAGE and not profile.flatWeaponDamage)
+            or new and (new.unmodeledEffect or new.stats and new.stats.FLAT_WEAPON_DAMAGE and not profile.flatWeaponDamage) then
+            uncertain=true
+        end
+    end
+    if not uncertain and A.HasUnmodeledSetChange then
+        uncertain=A.HasUnmodeledSetChange(equipped,best,profile)
     end
     return {kind=delta>0 and "upgrade" or delta<0 and "downgrade" or "neutral",
-        slot=bestSlot,baseline=baseline,total=bestTotal,delta=delta,
+        slot=bestSlot,baseline=baseline,total=bestTotal,delta=delta,unmodeledEffect=uncertain,
         percent=baseline>0 and 100*delta/baseline or nil,loadout=best,changedSlots=bestChanges,
         swapBefore=before,swapAfter=after,slotPercent=before>0 and 100*(after-before)/before or nil}
 end

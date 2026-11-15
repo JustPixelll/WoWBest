@@ -109,8 +109,13 @@ local function describe(result, reason, selected)
     local direct = changed .. " item points: " .. difference(result.slotPercent, result.swapAfter - result.swapBefore)
     local labels = {upgrade = "Upgrade", downgrade = "Downgrade", neutral = "Even swap"}
     local colors = {upgrade = {.40, 1, .49}, downgrade = {1, .59, .47}, neutral = {.78, .82, .86}}
+    local label = labels[result.kind]
+    if result.unmodeledEffect then
+        label = result.kind == "upgrade" and "Possible upgrade" or result.kind == "downgrade" and "Possible downgrade" or "Even on scored stats"
+        direct = direct .. "\nAn item or set effect in this swap has no score."
+    end
     local color = colors[result.kind]
-    return {context .. " · " .. labels[result.kind] .. " (" .. slot .. ")\n" ..
+    return {context .. " · " .. label .. " (" .. slot .. ")\n" ..
         outfit .. "\n" .. direct, color[1], color[2], color[3]}
 end
 

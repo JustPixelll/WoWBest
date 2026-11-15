@@ -33,7 +33,11 @@ local player = {level = 19}
 local function read() return A.ReadCandidate({id = 20, link = full}, player, A.GetItemSupplement(20)) end
 local item = assert(read())
 assert(gotStats == full and gotTip == full and gotUnique == full and item.link == full)
-assert(item.stats.ITEM_MOD_STAMINA_SHORT == 4 and item.stats.RESISTANCE0_NAME == 50)
+assert(item.stats.ITEM_MOD_STAMINA_SHORT == 4 and not item.stats.RESISTANCE0_NAME) -- base record cannot prove a modified item
+ARMOR_TEMPLATE = "%d Armor"
+tip.lines[3] = {leftText = "55 Armor"}
+assert(read().stats.RESISTANCE0_NAME == 55)
+tip.lines[3] = nil
 local _, reason = A.ReadCandidate({id = 21, link = full}, player)
 assert(reason == "unverified") -- recipe/gear ID mismatch
 cached = false

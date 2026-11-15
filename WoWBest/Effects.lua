@@ -12,30 +12,30 @@ A.EffectNotes = {}
 -- Count only the shortfall; do not apply the same flat stat a second time.
 local function missing(stat, amount) return math.max(0, amount - (stat or 0)) end
 
-local function passiveCrit(stats, profile, personalCrit)
-    local rating = stats.ITEM_MOD_CRIT_RATING_SHORT or 0
-    local fromPercent = (stats.CRIT_PERCENT or 0) * 14
-    local reported = math.max(rating, fromPercent)
-    -- A generic API crit key can conceal this item's narrower school.
-    if personalCrit then return missing(reported, 14) * (profile.crit or 0) end
-    return -math.min(reported, 14) * (profile.crit or 0)
+-- The client may expose a school-specific passive as generic crit on the
+-- item. Replace the contribution of this one percent, preserving any extra.
+local function passiveCrit(stats, profile, share)
+    local full = A.PercentStatWeight(profile, "crit")
+    local credited = A.CombatStatPoints(stats, profile, "crit")
+    return full * share - math.min(credited, full)
 end
 
 models[13965] = function(stats, profile) -- Blackhand's Breadth
-    local physical = (profile.meleeDPS or 0) > 0 or (profile.rangedAttack or 0) > 0
-    -- The passive only affects melee/ranged attacks. Value the enemy mark for
-    -- offensive profiles, ignoring its doubled bonus against Orcs and Ogres.
-    local mark = not profile.healing and 5 * 14 * 20 / 300 * (profile.crit or 0) or 0
-    return passiveCrit(stats, profile, physical) + mark
+    local share = profile.physicalCritShare
+    if share == nil then share = (profile.meleeDPS or profile.rangedAttack) and 1 or 0 end
+    local mark = not profile.healing and 5 * 20 / 300 * A.PercentStatWeight(profile, "crit") or 0
+    return passiveCrit(stats, profile, share) + mark
 end
-A.EffectNotes[13965] = "Includes the physical crit passive for weapon profiles and the mark averaged over 20 of 300 seconds on a normal target."
+A.EffectNotes[13965] = "Values physical crit for this build and the target mark averaged over 20 of 300 seconds. Orcs and Ogres receive a larger mark."
 
 models[13968] = function(stats, profile) -- Eye of the Beast
-    local caster = (profile.spell or 0) > 0 and not profile.meleeDPS
-    local spellHit = caster and not profile.healing and 7 * 10 * 20 / 300 * (profile.hit or 0) or 0
-    return passiveCrit(stats, profile, caster) + spellHit
+    local critShare, hitShare = profile.spellCritShare, profile.spellHitShare
+    if critShare == nil then critShare = profile.spell and not profile.meleeDPS and 1 or 0 end
+    if hitShare == nil then hitShare = profile.healing and 0 or critShare end
+    local hit = 7 * 20 / 300 * A.PercentStatWeight(profile, "hit") * hitShare
+    return passiveCrit(stats, profile, critShare) + hit
 end
-A.EffectNotes[13968] = "Caster profiles count spell crit. Damaging caster profiles also average 7% spell hit over 20 of 300 seconds, assuming room below the hit cap."
+A.EffectNotes[13968] = "Values the spell crit passive and the spell hit on-use for this build. Assumes the hit bonus is useful for 20 of 300 seconds."
 
 models[20130] = function(_, profile) -- Diamond Flask
     return 20 * 60 / 360 * (profile.strength or 0)

@@ -1,7 +1,7 @@
 ## Interface: 16001
 ## Title: WoWBest
 ## Notes: Find a compatible gear set for your level and talent build in WoW Forever.
-## Version: 1.3.0
+## Version: 1.4.0
 ## SavedVariablesPerCharacter: WoWBestCharacterDB
 
 Catalog.lua
@@ -10,6 +10,7 @@ Effects.lua
 SetData.lua
 SetBonuses.lua
 Engine.lua
+TooltipStats.lua
 Character.lua
 Upgrade.lua
 Talents.lua
@@ -19,3 +20,6 @@ Market.lua
 Planner.lua
 UI.lua
 Tooltip.lua
+BagAlert.lua
+BagCombinations.lua
+BagUpgrades.lua

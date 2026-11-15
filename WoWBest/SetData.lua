@@ -13,7 +13,7 @@ register(1, "The Gladiator", {11726, 11728, 11729, 11730, 11731, 277117}, {
     {pieces=5, spellID=1314795, description="Crit chance +1%", stats={CRIT_PERCENT=1}},
 })
 register(124, "Deathbone Guardian", {14620, 14621, 14622, 14623, 14624}, {
-    {pieces=2, spellID=7516, description="Defense +3", stats={ITEM_MOD_DEFENSE_SKILL_RATING_SHORT=3}},
+    {pieces=2, spellID=7516, description="Defense +3", stats={DEFENSE_SKILL=3}},
     {pieces=3, spellID=1299743, description="Deathbone surge"},
     {pieces=4, spellID=18676, description="Increased all resist 05"},
     {pieces=5, spellID=1213289, description="Targets dodge or parry attacks 2% less often."},
@@ -134,7 +134,7 @@ register(301, "Champion's Earthshaker", {272485, 272488, 272489, 272609, 272625,
     {pieces=6, spellID=14467, description="Stamina +20", stats={ITEM_MOD_STAMINA_SHORT=20}},
 })
 register(321, "Imperial Plate", {12422, 12424, 12425, 12426, 12427, 12428, 12429, 250589}, {
-    {pieces=2, spellID=13385, description="Defense +7", stats={ITEM_MOD_DEFENSE_SKILL_RATING_SHORT=7}},
+    {pieces=2, spellID=13385, description="Defense +7", stats={DEFENSE_SKILL=7}},
     {pieces=3, spellID=1251990, description="Hit chance +1%", stats={HIT_PERCENT=1}},
     {pieces=4, spellID=1302372, description="Imperial march"},
     {pieces=5, spellID=1251984, description="Strength +20", stats={ITEM_MOD_STRENGTH_SHORT=20}},
@@ -299,7 +299,7 @@ register(443, "Bloodsoul Embrace", {19690, 19691, 19692}, {
     {pieces=3, spellID=21636, description="12 mana per 5 seconds", stats={ITEM_MOD_MANA_REGENERATION_SHORT=12}},
 })
 register(444, "The Darksoul", {19693, 19694, 19695}, {
-    {pieces=3, spellID=21416, description="Defense +20", stats={ITEM_MOD_DEFENSE_SKILL_RATING_SHORT=20}},
+    {pieces=3, spellID=21416, description="Defense +20", stats={DEFENSE_SKILL=20}},
 }, {id=164, rank=300, name="Blacksmithing"})
 register(467, "The Highlander's Resolution", {20041, 20048, 20057}, {
     {pieces=2, spellID=7503, description="Stamina +5", stats={ITEM_MOD_STAMINA_SHORT=5}},
@@ -415,7 +415,7 @@ register(492, "Twilight Trappings", {20406, 20407, 20408}, {
 })
 register(493, "Genesis Raiment", {21353, 21354, 21355, 21356, 21357}, {
     {pieces=3, spellID=15693, description="Armor +150", stats={RESISTANCE0_NAME=150}},
-    {pieces=3, spellID=18196, description="Defense +15", stats={ITEM_MOD_DEFENSE_SKILL_RATING_SHORT=15}},
+    {pieces=3, spellID=18196, description="Defense +15", stats={DEFENSE_SKILL=15}},
     {pieces=5, spellID=26106, description="Genesis rebirth bonus"},
 })
 register(494, "Symbols of Unending Life", {21407, 21408, 21409}, {
@@ -1324,7 +1324,7 @@ register(2134, "Violet Sorcerer's Vestments", {273044, 273051, 286987, 286988, 2
 })
 register(2135, "Krol'dok Battlegear", {275005, 275006, 287012, 287013, 287014}, {
     {pieces=2, description="Armor +100", stats={RESISTANCE0_NAME=100}},
-    {pieces=3, description="Defense +5", stats={ITEM_MOD_DEFENSE_SKILL_RATING_SHORT=5}},
+    {pieces=3, description="Defense +5", stats={DEFENSE_SKILL=5}},
     {pieces=4, description="Blocking can heal for 14–23. Strongholds and cities double the heal."},
     {pieces=5, description="Incoming damage can stack +1 stamina for 30 seconds, up to 20 stacks."},
 })

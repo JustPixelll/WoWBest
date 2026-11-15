@@ -183,4 +183,18 @@ assert(requests[#requests].all)
 requests[#requests].callback(choices, baseline, profile, {}, nil, false)
 assert(not byText("Show all"))
 SlashCmdList.WOWBEST()
+local bagRefresh, hiddenAlerts = 0, 0
+function A.RefreshBagUpgrades() bagRefresh = bagRefresh + 1 end
+function A.HideBagUpgrade() hiddenAlerts = hiddenAlerts + 1 end
+assert(A.BagAlertsEnabled() and not A.IsVisible())
+SlashCmdList.WOWBEST("  ALERTS off  ")
+assert(not A.BagAlertsEnabled() and not A.IsVisible() and WoWBestCharacterDB.bagAlerts == false)
+SlashCmdList.WOWBEST("alerts off")
+assert(hiddenAlerts == 1 and bagRefresh == 1)
+SlashCmdList.WOWBEST("")
+click(byText("Bag alerts: Off"))
+assert(A.BagAlertsEnabled() and WoWBestCharacterDB.bagAlerts == nil and byText("Bag alerts: On"))
+click(byText("Target: General PvE"))
+assert(bagRefresh == 3)
+SlashCmdList.WOWBEST("")
 print("UI click, paging, scoring, filters, locked targets and async cancellation tests passed.")

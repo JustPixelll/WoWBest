@@ -2,6 +2,7 @@ local addonName, A = ...
 
 local frame, scroll, content, profileButton, targetButton, menu, context, statusText
 local rows, menuButtons = {}, {}
+local bagAlertButton
 local sources = {checks = {}}
 local detail = {slot = nil, generation = 0, cards = {}, pageSize = 5}
 local result, lastStatus = nil, ""
@@ -10,6 +11,22 @@ local slots = {1, 2, 3, 15, 5, 9, 10, 6, 7, 8, 11, 12, 13, 14, 16, 17, 18}
 local function settings()
     if type(WoWBestCharacterDB) ~= "table" then WoWBestCharacterDB = {} end
     return WoWBestCharacterDB
+end
+
+function A.BagAlertsEnabled()
+    return settings().bagAlerts ~= false
+end
+
+local function bagAlertLabel()
+    return A.BagAlertsEnabled() and "Bag alerts: On" or "Bag alerts: Off"
+end
+
+function A.SetBagAlertsEnabled(enabled)
+    if type(enabled) ~= "boolean" or A.BagAlertsEnabled() == enabled then return end
+    if enabled then settings().bagAlerts = nil else settings().bagAlerts = false end
+    if bagAlertButton then bagAlertButton:SetText(bagAlertLabel()) end
+    if not enabled and A.HideBagUpgrade then A.HideBagUpgrade() end
+    if A.RefreshBagUpgrades then A.RefreshBagUpgrades() end
 end
 
 local function findProfile(profiles, key)
@@ -33,8 +50,10 @@ local function targetName(targetType)
     return targetType == "Humanoid" and "Humanoids" or "General PvE"
 end
 
-function A.ActiveProfile()
-    local profile = selectedProfile(A.GetPlayer())
+function A.ActiveProfile(player)
+    player = player or A.GetPlayer()
+    local profile = selectedProfile(player)
+    if profile and A.ProfileForLevel then profile = A.ProfileForLevel(profile, player) end
     if not profile or settings().targetType ~= "Humanoid" then return profile end
     -- The underlying spec weights are shared across characters and scans.
     local scenario = {}
@@ -120,6 +139,7 @@ local function explainChoice(choice, bestSets)
     local item = choice.item
     local source = item.source or "Unknown"
     local lines = {"|cffffd275Source|r  " .. source}
+    if item.unmodeledEffect then lines[#lines + 1] = "This item has an additional effect without a numerical score." end
     local alternatives = {}
     for _, path in ipairs(item.sources or {}) do
         if not source:find(path, 1, true) then alternatives[#alternatives + 1] = path end
@@ -454,10 +474,15 @@ local function scan()
     if profile then A.StartScan(profile) end
 end
 
+local function scoringChanged()
+    if A.InvalidateUpgradeTooltips then A.InvalidateUpgradeTooltips() end
+    if A.RefreshBagUpgrades then A.RefreshBagUpgrades() end
+    scan()
+end
+
 local function selectProfile(key)
     settings().profile = key
-    if A.InvalidateUpgradeTooltips then A.InvalidateUpgradeTooltips() end
-    scan()
+    scoringChanged()
 end
 
 local function addMenuButton(index)
@@ -681,6 +706,9 @@ local function build()
     close:SetPoint("TOPRIGHT", -3, -3)
     close:SetScript("OnClick", function() frame:Hide() end)
     buildSources()
+    bagAlertButton = button(frame, bagAlertLabel(), 108)
+    bagAlertButton:SetPoint("RIGHT", sources.button, "LEFT", -4, 0)
+    bagAlertButton:SetScript("OnClick", function() A.SetBagAlertsEnabled(not A.BagAlertsEnabled()) end)
 
     local label = text(frame, "GameFontNormal")
     label:SetPoint("TOPLEFT", 17, -49)
@@ -693,8 +721,7 @@ local function build()
     targetButton:SetScript("OnClick", function()
         local db = settings()
         if db.targetType == "Humanoid" then db.targetType = nil else db.targetType = "Humanoid" end
-        if A.InvalidateUpgradeTooltips then A.InvalidateUpgradeTooltips() end
-        scan()
+        scoringChanged()
     end)
     local refresh = button(frame, "Refresh", 72)
     refresh:SetPoint("RIGHT", frame, "TOPRIGHT", -16, -55)
@@ -742,7 +769,16 @@ end
 
 SLASH_WOWBEST1 = "/wowbest"
 SLASH_WOWBEST2 = "/wbest"
-SlashCmdList.WOWBEST = function()
+SlashCmdList.WOWBEST = function(message)
+    local command, option = (message or ""):lower():match("^%s*(%S*)%s*(.-)%s*$")
+    if command == "alerts" then
+        if option == "on" then A.SetBagAlertsEnabled(true)
+        elseif option == "off" then A.SetBagAlertsEnabled(false)
+        elseif option == "" then A.SetBagAlertsEnabled(not A.BagAlertsEnabled())
+        else print("WoWBest: /wowbest alerts on or /wowbest alerts off"); return end
+        print("WoWBest: " .. bagAlertLabel())
+        return
+    end
     if not frame then build() end
     if frame:IsShown() then frame:Hide() else frame:Show() end
 end

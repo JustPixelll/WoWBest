@@ -128,13 +128,87 @@ local function inlineRed(text)
     return false
 end
 
-local function inspectTooltip(tooltip, stats, plannedSkill)
+local function startsWith(text, label)
+    return type(label) == "string" and label ~= "" and text:sub(1, #label) == label
+end
+
+
+-- Short stat labels come from the client locale. Numeric stat and permanent
+-- enchant lines may be absent from the native stat map on a particular build.
+local statNames = {STRENGTH="Strength", AGILITY="Agility", STAMINA="Stamina",
+    INTELLECT="Intellect", SPIRIT="Spirit", ATTACK_POWER="Attack Power", RANGED_ATTACK_POWER="Ranged Attack Power",
+    SPELL_POWER="Spell Power", HEALTH="Health", MANA="Mana", HIT_RATING="Hit Rating", CRIT_RATING="Critical Strike Rating"}
+local function numericStat(text)
+    local num, label = text:match("^([+-]%d+) (.+)$")
+    if not num then label, num = text:match("^(.+) ([+-]%d+)$") end
+    if not num then return end
+    for token, english in pairs(statNames) do
+        local key = "ITEM_MOD_" .. token .. "_SHORT"
+        if label == _G[key] or label == english then return key, tonumber(num) end
+    end
+    if label == ALL_STATS or label == "All Stats" then return "all", tonumber(num) end
+end
+
+local function readEnchant(left, facts)
+    local template = ENCHANTED_TOOLTIP_LINE
+    local start = template and template:find("%s", 1, true)
+    if start then
+        local before, after = template:sub(1, start-1), template:sub(start+2)
+        if startsWith(left, before) and (#after == 0 or left:sub(-#after) == after) then
+            left = left:sub(#before + 1, #left - #after)
+        end
+    end
+    left = left:gsub("^Enchanted: ", "")
+    local key, amount = numericStat(left)
+    if not key then facts.unknownEnchant = true; return end
+    facts.enchant = facts.enchant or {}
+    if key == "all" then
+        for _, stat in ipairs({"STRENGTH","AGILITY","STAMINA","INTELLECT","SPIRIT"}) do
+            facts.enchant["ITEM_MOD_" .. stat .. "_SHORT"] = amount
+        end
+    else facts.enchant[key] = amount end
+end
+
+local function reconcileEnchant(stats, live, facts, linkKey)
+    if not facts.enchant then return end
+    -- Compare the same suffix, seed, gems and bonus fields with only the enchant
+    -- removed. The exact map may already account for some or all of its stats.
+    local cleared, changed = linkKey:gsub("^(item:%d+:)[1-9]%d*", "%10", 1)
+    if changed == 0 then return false end
+    local base = C_Item.GetItemStats(cleared)
+    if not base or hiddenTable(base) then return false end
+    for key, bonus in pairs(facts.enchant) do
+        local before = base[key]
+        if secret(before) or (before ~= nil and type(before) ~= "number") then return false end
+        local delta = (live[key] or 0) - (before or 0)
+        local missing
+        if bonus >= 0 then missing = math.max(0, bonus - math.max(0, delta))
+        else missing = math.min(0, bonus - math.min(0, delta)) end
+        stats[key] = (stats[key] or 0) + missing
+    end
+    return true
+end
+
+-- The damage and speed columns share one tooltip row in Forever. Match only a
+-- two-number range paired with a labeled, single swing interval. This accepts
+-- translated labels and decimal commas without reading unrelated numbers.
+local function readWeaponLine(left, right, facts)
+    local low, high = left:match("^%s*(%d+)%s*[-–]%s*(%d+)%s*[^%d]*$")
+    local number = right:match("^%D*(%d+[%.,]%d+)%D*$")
+    if not low or not number then return end
+    local speed = tonumber((number:gsub(",", ".")))
+    if speed and speed > 0 and tonumber(high) >= tonumber(low) then
+        facts.dmin, facts.dmax, facts.speed = tonumber(low), tonumber(high), speed * 1000
+    end
+end
+
+local function inspectTooltip(tooltip, stats, plannedSkill, facts, weapon)
     if hiddenTable(tooltip) then return nil, "unverified" end
     if not tooltip then return nil, "pending" end
     local lines = tooltip.lines
     if hiddenTable(lines) then return nil, "unverified" end
     if not lines or #lines < 2 then return nil, "pending" end
-    local uniqueLimit
+    local uniqueLimit, effect
     local kinds = Enum and Enum.TooltipDataLineType or {}
     for _, line in ipairs(lines) do
         if hiddenTable(line) or secret(line.type) or secret(line.leftText) or secret(line.rightText) then
@@ -155,6 +229,32 @@ local function inspectTooltip(tooltip, stats, plannedSkill)
         end
         if left then
             left = left:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+            if facts then
+                local kind = line.type
+                if kind and kind == kinds.ItemEnchantmentPermanent then
+                    readEnchant(left, facts)
+                elseif not kind or kind == kinds.None then
+                    local key, amount = numericStat(left)
+                    if key and key ~= "all" and stats[key] == nil then stats[key] = amount end
+                end
+                if (kind ~= nil and (kind == kinds.ItemSpellTriggerOnProc or kind == kinds.ItemSpellTriggerOnUse))
+                    or startsWith(left, ITEM_SPELL_TRIGGER_ONUSE) or startsWith(left, ITEM_SPELL_TRIGGER_ONPROC)
+                    or left:match("^Use:") or left:match("^Chance on hit:") or left:match("^Equip: Chance on ") then effect = true end
+                -- The complete sentence must describe an unconditional stat.
+                -- Do not match a substring on an enchant, set, proc or use line.
+                if (not kind or kind == kinds.None or kind == kinds.ItemSpellTriggerOnEquip)
+                    and (left:sub(1, 6) == "Equip:" or left:sub(1, 8) == "Restores") then
+                    for _, rule in ipairs(A.PassiveTooltipRules or {}) do
+                        local first, second = left:match(rule[1])
+                        if first then
+                            facts[rule[2]] = (facts[rule[2]] or 0) + tonumber((first:gsub(",", "")))
+                            if second then facts[rule[3]] = (facts[rule[3]] or 0) + tonumber((second:gsub(",", ""))) end
+                            break
+                        end
+                    end
+                end
+                if weapon and line.rightText then readWeaponLine(left, line.rightText, facts) end
+            end
             if left == ITEM_UNIQUE or left == ITEM_UNIQUE_EQUIPPABLE then uniqueLimit = 1 end
             uniqueLimit = numberIn(left, ITEM_UNIQUE_MULTIPLE) or uniqueLimit
             stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT = stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT or numberIn(left, DPS_TEMPLATE)
@@ -162,12 +262,12 @@ local function inspectTooltip(tooltip, stats, plannedSkill)
             stats.ITEM_MOD_BLOCK_VALUE_SHORT = stats.ITEM_MOD_BLOCK_VALUE_SHORT or numberIn(left, SHIELD_BLOCK_TEMPLATE)
         end
     end
-    return true, nil, uniqueLimit
+    return true, nil, uniqueLimit, effect
 end
 
-local function itemTooltip(link, stats, plannedSkill)
+local function itemTooltip(link, stats, plannedSkill, facts, weapon)
     if not (C_TooltipInfo and C_TooltipInfo.GetHyperlink) then return nil, "unverified" end
-    return inspectTooltip(C_TooltipInfo.GetHyperlink(link), stats, plannedSkill)
+    return inspectTooltip(C_TooltipInfo.GetHyperlink(link), stats, plannedSkill, facts, weapon)
 end
 
 function A.MerchantListingUsable(index)
@@ -229,45 +329,137 @@ local function readUnique(item, tipLimit)
 end
 
 local fallbackKeys = {
-    sp = "ITEM_MOD_SPELL_DAMAGE_DONE_SHORT", heal = "ITEM_MOD_SPELL_HEALING_DONE_SHORT",
-    spFire = "ITEM_MOD_FIRE_SPELL_DAMAGE_SHORT", spFrost = "ITEM_MOD_FROST_SPELL_DAMAGE_SHORT",
-    spArcane = "ITEM_MOD_ARCANE_SPELL_DAMAGE_SHORT", spNature = "ITEM_MOD_NATURE_SPELL_DAMAGE_SHORT",
-    spHoly = "ITEM_MOD_HOLY_SPELL_DAMAGE_SHORT", spShadow = "ITEM_MOD_SHADOW_SPELL_DAMAGE_SHORT",
-    mpr = "ITEM_MOD_MANA_REGENERATION_SHORT", hpr = "ITEM_MOD_HEALTH_REGEN_SHORT",
-    blockValue = "ITEM_MOD_BLOCK_VALUE_SHORT", armor = "RESISTANCE0_NAME",
+    str="STRENGTH", agi="AGILITY", int="INTELLECT", spi="SPIRIT", sta="STAMINA",
+    ap="ATTACK_POWER", rap="RANGED_ATTACK_POWER", spFire="FIRE_SPELL_DAMAGE", spFrost="FROST_SPELL_DAMAGE",
+    spArcane="ARCANE_SPELL_DAMAGE", spNature="NATURE_SPELL_DAMAGE", spHoly="HOLY_SPELL_DAMAGE",
+    spShadow="SHADOW_SPELL_DAMAGE", mpr="MANA_REGENERATION", hpr="HEALTH_REGEN",
+    blockValue="BLOCK_VALUE", extraArmor="EXTRA_ARMOR", health="HEALTH", mana="MANA",
 }
-local function fillSupplement(item, tokens)
+for token, key in pairs(fallbackKeys) do fallbackKeys[token] = "ITEM_MOD_" .. key .. "_SHORT" end
+fallbackKeys.armor = "RESISTANCE0_NAME"
+fallbackKeys.humanoidAP, fallbackKeys.flatWeapon = "HUMANOID_ATTACK_POWER", "FLAT_WEAPON_DAMAGE"
+
+local ratings = {hit="HIT", crit="CRIT", haste="HASTE", dodge="DODGE", parry="PARRY", block="BLOCK", expertise="EXPERTISE"}
+local function aliases(stats, canonical, ...)
+    local value = stats[canonical]
+    local variant
+    for i = 1, select("#", ...) do
+        local key = select(i, ...)
+        if stats[key] then variant = math.max(variant or stats[key], stats[key]) end
+        stats[key] = nil
+    end
+    stats[canonical] = value or variant
+end
+
+local function unifyStats(stats)
+    for _, stat in ipairs({"HIT", "CRIT", "HASTE"}) do
+        local key = "ITEM_MOD_" .. stat
+        aliases(stats, key .. "_RATING_SHORT", key .. "_MELEE_RATING_SHORT",
+            key .. "_SPELL_RATING_SHORT", key .. "_RANGED_RATING_SHORT")
+    end
+    aliases(stats, "RESISTANCE0_NAME", "ITEM_MOD_ARMOR_SHORT")
+    aliases(stats, "ITEM_MOD_EXTRA_ARMOR_SHORT", "ITEM_MOD_BONUS_ARMOR_SHORT")
+    aliases(stats, "ITEM_MOD_DEFENSE_SKILL_RATING_SHORT", "ITEM_MOD_DEFENSE_RATING_SHORT")
+end
+
+local function tokensInto(values, tokens)
     if not tokens then return end
-    local stats, minDamage, maxDamage, speed = item.stats
-    local hit, crit = 0, 0
-    for key, number in tokens:gmatch("(%a+)(%-?%d+)") do
-        local amount = tonumber(number)
-        local token = fallbackKeys[key]
-        -- 'sp' and 'heal' here are TOTAL healing and damage, including any
-        -- shared spell power. Never layer these totals over live shared SP.
-        if token and stats[token] == nil and
-            (key ~= "sp" and key ~= "heal" or not stats.ITEM_MOD_SPELL_POWER_SHORT) then
-            stats[token] = amount
-        elseif key == "hit" or key == "spellHit" then hit = math.max(hit, amount)
-        elseif key == "crit" or key == "spellCrit" then crit = math.max(crit, amount)
-        elseif key == "uniq" and amount == 1 and not item.unique then
-            item.unique, item.uniqueLimit = true, 1
-        elseif key == "dmin" then minDamage = amount
-        elseif key == "dmax" then maxDamage = amount
-        elseif key == "speed" then speed = amount end
+    for token, amount in tokens:gmatch("(%a+)(%-?%d+%.?%d*)") do values[token] = tonumber(amount) end
+end
+
+-- A bare catalog ID may use known base values. Preserve a rolled/enhanced
+-- item's own tooltip whenever the link carries a modifier, gem, or suffix.
+local function standardVariant(key)
+    if not key then return true end
+    local position = 0
+    for field in (key .. ":"):gmatch("([^:]*):") do
+        position = position + 1
+        -- item:ID:enchant:gem1..gem4:suffix:uniqueID:linkLevel:spec:...
+        if ((position >= 3 and position <= 8) or position >= 12) and field ~= "" and field ~= "0" then return false end
     end
-    -- The older Forever source uses percentages. Current clients ordinarily
-    -- supply unified ratings; never award both representations.
-    if hit > 0 and not stats.ITEM_MOD_HIT_RATING_SHORT and not stats.ITEM_MOD_HIT_SPELL_RATING_SHORT
-        and not stats.ITEM_MOD_HIT_MELEE_RATING_SHORT and not stats.ITEM_MOD_HIT_RANGED_RATING_SHORT then
-        stats.HIT_PERCENT = hit
+    return true
+end
+
+local function fillPassive(item, value)
+    local stats = item.stats
+    for token, key in pairs(fallbackKeys) do
+        if stats[key] == nil then stats[key] = value[token] end
     end
-    if crit > 0 and not stats.ITEM_MOD_CRIT_RATING_SHORT and not stats.ITEM_MOD_CRIT_SPELL_RATING_SHORT
-        and not stats.ITEM_MOD_CRIT_MELEE_RATING_SHORT and not stats.ITEM_MOD_CRIT_RANGED_RATING_SHORT then
-        stats.CRIT_PERCENT = crit
+    -- Some clients expose one generic AP aura in both attack fields. Keep a
+    -- genuine ranged-only addition, and avoid scoring the generic amount a
+    -- second time for hunters. Only disambiguate with item-specific evidence.
+    local attack = stats.ITEM_MOD_ATTACK_POWER_SHORT
+    if value.ap and attack == value.ap then
+        for _, pair in ipairs({{"ITEM_MOD_RANGED_ATTACK_POWER_SHORT", value.rap},
+                               {"ITEM_MOD_FERAL_ATTACK_POWER_SHORT", value.feralAP}}) do
+            local stat, extra = pair[1], pair[2]
+            if stats[stat] == attack + (extra or 0) then stats[stat] = extra end
+        end
+    elseif not value.ap and value.humanoidAP and attack == value.humanoidAP then
+        stats.ITEM_MOD_ATTACK_POWER_SHORT = nil
     end
-    if not stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT and minDamage and maxDamage and speed and speed > 0 then
-        stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT = (minDamage + maxDamage) * 500 / speed
+    for token, kind in pairs(ratings) do
+        if stats["ITEM_MOD_" .. kind .. "_RATING_SHORT"] then
+            stats[kind .. "_PERCENT"] = nil
+        elseif not stats[kind .. "_PERCENT"] then stats[kind .. "_PERCENT"] = value[token] end
+    end
+    if not stats.ITEM_MOD_DEFENSE_SKILL_RATING_SHORT then stats.DEFENSE_SKILL = value.defense end
+    if value.uniq == 1 and not item.unique then item.unique, item.uniqueLimit = true, 1 end
+
+    -- These tooltip/snapshot amounts are TOTALS in each school. If the client
+    -- exposes a shared component, only its residual belongs in the specific
+    -- damage/heal key. Separate independent native stats otherwise survive.
+    local shared = stats.ITEM_MOD_SPELL_POWER_SHORT or value.shared or 0
+    if shared ~= 0 then stats.ITEM_MOD_SPELL_POWER_SHORT = shared end
+    local function component(key, direct)
+        if direct == nil and value.shared == nil then return end
+        local total = (direct or 0) + (value.shared or 0)
+        if not stats[key] or stats[key] == total then
+            local extra = math.max(0, total - shared)
+            stats[key] = extra ~= 0 and extra or nil
+        end
+    end
+    component("ITEM_MOD_SPELL_DAMAGE_DONE_SHORT", value.sp)
+    component("ITEM_MOD_SPELL_HEALING_DONE_SHORT", value.heal)
+end
+
+local function finalizeStats(item, tooltipFacts, record, key, supplement)
+    local value = {}
+    if standardVariant(key) then
+        tokensInto(value, record.foreverStats or supplement)
+        -- Older overlays may list the same universal hit/crit for both
+        -- spell and melee, or under the spell name alone.
+        value.hit = value.hit or value.spellHit
+        value.crit = value.crit or value.spellCrit
+        local cache = A.TooltipStatFallbacks and A.TooltipStatFallbacks[item.id]
+        if cache and (cache:match("shared%d") or cache:match("heal%d") or cache:match("sp%d")) then
+            value.shared, value.heal, value.sp = nil, nil, nil
+        end
+        tokensInto(value, cache)
+    end
+    if tooltipFacts.shared or tooltipFacts.heal or tooltipFacts.sp then
+        value.shared, value.heal, value.sp = nil, nil, nil
+    end
+    for token, amount in pairs(tooltipFacts) do
+        if type(amount) == "number" then value[token] = amount end
+    end
+    fillPassive(item, value)
+    if value.proc == 1 then item.unmodeledEffect = true end
+    if item.classID ~= 2 then return end
+    local dps = item.stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT or item.stats.DPS
+    local speed = value.speed and value.speed / 1000
+    if speed and speed > 0 then item.weaponSpeed = speed end
+    local low, high = value.dmin, value.dmax
+    if low and high and low >= 0 and high >= low then
+        -- A single physical range may omit a second elemental damage school.
+        -- Prefer the total independently displayed DPS times swing interval
+        -- for the mean if the two observations disagree.
+        if dps and speed and math.abs((low + high) / (2 * speed) - dps) > .12 then
+            item.minDamage, item.maxDamage = nil, nil
+        else
+            item.minDamage, item.maxDamage = low, high
+            if not dps and speed and speed > 0 then item.stats.ITEM_MOD_DAMAGE_PER_SECOND_SHORT = (low + high) / (2 * speed) end
+        end
     end
 end
 
@@ -326,7 +518,9 @@ local function readItem(record, player, supplement, equipped)
         if secret(stat) or secret(value) then return nil, "unverified" end
         if type(value) == "number" then stats[stat] = value end
     end
-    local ok, status, tipLimit = itemTooltip(statLink, stats)
+    unifyStats(stats)
+    local facts = {}
+    local ok, status, tipLimit, effect = itemTooltip(statLink, stats, nil, facts, classID == 2)
     if not ok then return nil, status end
     local item = {}
     for field, value in pairs(record) do item[field] = value end
@@ -337,7 +531,14 @@ local function readItem(record, player, supplement, equipped)
     item.classID, item.subID, item.stats = classID, subID, stats
     item.minLevel, item.texture, item.bindType, item.setID = minLevel, texture, bindType, setID
     if not readUnique(item, tipLimit) then return nil, "unverified" end
-    fillSupplement(item, record.foreverStats or supplement)
+    finalizeStats(item, facts, record, inputKey, supplement)
+    local normalizedKey = inputKey or A.ItemVariantKey(statLink)
+    local enchantKnown = not facts.enchant or normalizedKey and reconcileEnchant(stats, live, facts, normalizedKey)
+    item.unmodeledEffect = ((effect or item.unmodeledEffect) and not (A.EffectNotes and A.EffectNotes[id])) or facts.unknownEnchant or not enchantKnown or nil
+    if C_Item.GetDetailedItemLevelInfo then
+        local effectiveLevel = C_Item.GetDetailedItemLevelInfo(statLink)
+        if not secret(effectiveLevel) and type(effectiveLevel) == "number" and effectiveLevel > 0 then item.itemLevel = effectiveLevel end
+    end
     return item, "ok"
 end
 

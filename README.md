@@ -2,7 +2,7 @@
 
 WoWBest finds a gear set to work toward **at your character’s current level** in World of Warcraft: Forever. Type **`/wowbest`** to see the recommended items, their sources and which two pieces can actually be worn together.
 
-**[Download WoWBest 1.3 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Coverage by level](COVERAGE.md) · [Gear data and sources](DATA.md)
+**[Download WoWBest 1.4 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Coverage by level](COVERAGE.md) · [Gear data and sources](DATA.md)
 
 **Already have WoWBest?** Exit the game, extract the download, and replace the `WoWBest` folder in `_forever_\Interface\AddOns`. Start Forever and hover over a piece of gear, or open `/wowbest` and click a slot. Existing character preferences carry over.
 
@@ -33,13 +33,19 @@ Expand-Archive -LiteralPath $zipPath -DestinationPath $addonsDir -Force -ErrorAc
 Get-Item -LiteralPath (Join-Path $addonsDir 'WoWBest\WoWBest.toc')
 ```
 
+## Bag upgrade alerts
+
+Bag alerts start **on**. WoWBest checks carried gear when you enter the world and after loot, equipment or build changes, even with the planner closed. Outside combat, a small popup shows the strongest new upgrade, the slot it improves and the estimated gain for your **equipped outfit**. If a one-hander and shield only beat your two-hander together, or several pieces unlock a stronger modeled set bonus, the popup shows the pieces and where to equip them. Hover over a piece to inspect it or click it to open its item link. Use the × to dismiss the popup, or let it close on its own. Sorting your bags leaves previously announced upgrades quiet.
+
+Click **Bag alerts: On** in `/wowbest` to turn alerts off for that character. You can also type **`/wowbest alerts off`** or **`/wowbest alerts on`**. Source filters do not exclude gear you already own.
+
 ## Read an upgrade on the item tooltip
 
 Hover over a piece of gear in your bags, a quest reward, a merchant window, or a chat item link. WoWBest compares that exact item against what you are wearing, even with the planner closed and even if the catalog has no route for the item. Open **`/wowbest` → Spec** to change which build it scores. Source filters affect the planner. You can still evaluate an item you encounter anywhere.
 
 - **Direct swap** measures the change in weighted item points in the slots that move. A sword and shield worth 40 points together versus a two-hander worth 50 is a **+25%** hand swap. For rings or trinkets, WoWBest tries both sockets and shows the best legal swap.
 - **Whole outfit** measures the change relative to all of your equipped gear, including modeled set bonuses. If that weapon swap takes your outfit from 200 to 210 points, the outfit gains **5%**. If the swap breaks a valuable set bonus, the item and outfit percentages can point in opposite directions.
-- An empty or zero-scoring baseline has no meaningful percentage. The tooltip can show the points gained instead. Item variants use the exact link the client supplies. Out of combat, the comparison appears once the client supplies both the hovered item and your equipped items. During combat, a previously scored item can display its cached result until your gear or character state changes. The model uses the stats exposed on the exact link. Some enchantments, procs and set effects have no numerical model. Percentages estimate gear value for the selected spec and target. Actual DPS, healing or survivability depends on the encounter.
+- An empty or zero-scoring baseline has no meaningful percentage. The tooltip can show the points gained instead. Item variants use the exact link the client supplies. Out of combat, the comparison appears once the client supplies both the hovered item and your equipped items. During combat, a previously scored item can display its cached result until your gear or character state changes. The model uses the stats exposed on the exact link. Some enchantments, procs and set effects have no numerical model. If the swap changes an unscored proc, on-use effect or set bonus, WoWBest labels a positive result **Possible upgrade**. Percentages estimate gear value for the selected spec and target. Actual DPS, healing or survivability depends on the encounter.
 
 ## Your first gear plan
 
@@ -79,7 +85,7 @@ The solver maximizes the total score for the selected profile across compatible 
 
 The game client supplies item stats and checks wearability, including your trained proficiencies. Acquisition checks include recorded level, faction, class, race, one-time quest choices, and known profession, reputation and PvP requirements. You may still need a party, a quest chain, an attunement, materials or currency. For recipes that need personal verification, open your own profession window with the materials available. WoWBest checks the number you can craft per recipe. Separate recipes or purchases can compete for the same materials or currency. Your equipped gear and carried bags enter the comparison even when an item has no catalog route.
 
-Rankings are an estimate for a general PvE build. Encounter-specific caps, rotations, group buffs, many use/proc effects, and unmodeled conditional set effects can change an individual recommendation. An empty slot means there was no legal, positively scored candidate for that slot or its group. The bundled catalog covers levels 1–60. Some world drops, endgame sources, random-suffix variants and seasonal items still lack a confirmed acquisition route. See [DATA.md](DATA.md) for coverage, source builds and reproduction steps.
+The [scoring guide](SCORING.md) explains where the stat values come from, how they change while leveling, and which parts are estimates. Rankings use the selected PvE build. Encounter-specific caps, rotations, group buffs, many use/proc effects, and unmodeled conditional set effects can change an individual recommendation. An empty slot means there was no legal, positively scored candidate for that slot or its group. The bundled catalog covers levels 1–60. Some world drops, endgame sources, random-suffix variants and seasonal items still lack a confirmed acquisition route. See [DATA.md](DATA.md) for coverage, source builds and reproduction steps.
 
 ## Updating or troubleshooting
 
@@ -97,7 +103,7 @@ To **update**, close WoW and replace the installed `WoWBest` folder with the fol
 
 ## Development and verification
 
-The addon targets the Lua 5.1-compatible Forever client. From the repository root, run the Lua files in `tests/` with Lua 5.1. They cover native tooltip percentages, exact item variants, equipped baselines, incompatible hand pairs, uniqueness across slots, competing quest choices, character requirements, async item lookups, talent detection, click-through slot rankings, Engineering headgear, set thresholds, and modeled item effects. A randomized test compares the optimizer against an exhaustive search. The suite uses game API fixtures. A live character remains the final check for a particular client build.
+The addon targets the Lua 5.1-compatible Forever client. From the repository root, run the Lua files in `tests/` with Lua 5.1. They cover bag alerts, native tooltip percentages, exact item variants, equipped baselines, incompatible hand pairs, uniqueness across slots, competing quest choices, character requirements, async item lookups, talent detection, click-through slot rankings, Engineering headgear, set thresholds, and modeled item effects. A randomized test compares the optimizer against an exhaustive search. The suite uses game API fixtures. A live character remains the final check for a particular client build.
 
 ```powershell
 Get-ChildItem tests -Filter *.lua | ForEach-Object { lua $_.FullName; if ($LASTEXITCODE) { throw "Failed: $($_.Name)" } }

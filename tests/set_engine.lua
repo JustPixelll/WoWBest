@@ -134,6 +134,18 @@ while coroutine.status(chunk)~="dead" do
     yielded=yielded+1
 end
 assert(yielded>2,"large searches must yield between frames")
+-- A new request may reuse a prepared context after the first request was
+-- interrupted by the player closing a detail pane.
+local suspend=false
+local ctx=A.PrepareSolver(lots,{dual=true},profile,function()
+    if suspend then coroutine.yield() end
+end)
+suspend=true
+local abandoned=coroutine.create(function() A.SolvePrepared(ctx) end)
+assert(coroutine.resume(abandoned) and coroutine.status(abandoned)=="suspended")
+suspend=false
+local resumed,score=A.SolvePrepared(ctx)
+equal(A.LoadoutScore(resumed,profile),score)
 local rows=A.ScoreBreakdown({stats={ITEM_MOD_STRENGTH_SHORT=9,DPS=6},classID=2},{strength=1,meleeDPS=2},16)
 equal(rows[1].points,12)
 equal(rows[2].points,9)

@@ -78,7 +78,7 @@ local lastOrigin, lastLink
 function A.CompareEquippedUpgrade(candidate, _, _, _, origin)
     comparisons, lastOrigin, lastLink = comparisons + 1, origin, candidate.link
     if origin then return {kind = "equipped", alreadyEquipped = true, slot = origin, swapBefore = 11} end
-    if candidate.id == 4 then return {kind = "upgrade", slot = 12, delta = 4, changedSlots = {12}, swapBefore = 0, swapAfter = 4} end
+    if candidate.id == 4 or candidate.id == 8 then return {unmodeledEffect = candidate.id == 8, kind = "upgrade", slot = 12, delta = 4, changedSlots = {12}, swapBefore = 0, swapAfter = 4} end
     return {kind = "downgrade", slot = 11, delta = -8, percent = -4, changedSlots = {11}, swapBefore = 5, swapAfter = 6, slotPercent = 20}
 end
 assert(loadfile("WoWBest/Tooltip.lua"))("WoWBest", A)
@@ -165,4 +165,7 @@ assert(#GameTooltip.lines == 0)
 local scanned = tooltip()
 scanned:inspect(3, "GetItemByID", "item:3"); drain()
 assert(#scanned.lines == 0)
+GameTooltip:inspect(8, "GetLootItem", "item:8"); drain()
+assert(GameTooltip.lines[1]:find("Possible upgrade", 1, true))
+assert(GameTooltip.lines[1]:find("effect in this swap has no score", 1, true))
 print("Native tooltip cache, exact variants, equipped origins, percentages, invalidation and stale hover tests passed.")
