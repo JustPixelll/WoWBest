@@ -1,5 +1,35 @@
 local _, A = ...
 
+-- Ignore display color and localized names, preserve the entire item payload.
+-- In particular the per-instance field can influence a random suffix. Neither
+-- an item ID nor such a variant key identifies a physical equipped copy.
+local function secret(value)
+    return issecretvalue and issecretvalue(value)
+end
+
+local function hiddenTable(value)
+    return secret(value) or value and canaccesstable and not canaccesstable(value)
+end
+
+function A.ItemVariantKey(link)
+    if secret(link) or type(link) ~= "string" then return nil end
+    local key = link:match("|H(item:[^|]+)|h") or link:match("^(item:[^|]+)$")
+    if not key then return nil end
+    local id = key:match("^item:(%d+):") or key:match("^item:(%d+)$")
+    if id and tonumber(id) > 0 then return key, tonumber(id) end
+end
+
+local itemSupplements
+function A.GetItemSupplement(id)
+    if not itemSupplements then
+        itemSupplements = {}
+        for _, row in ipairs(A.Catalog or {}) do
+            if row.foreverStats then itemSupplements[row.id] = row.foreverStats end
+        end
+    end
+    return itemSupplements[id]
+end
+
 -- Weapon subclass -> the learned proficiency spell. This lets a newly trained
 -- weapon work immediately, including Forever's new class/weapon combinations.
 local weaponSkills = {
@@ -85,6 +115,10 @@ local function red(color)
         and color.r >= .85 and color.g <= .28 and color.b <= .28
 end
 
+local function secretColor(color)
+    return hiddenTable(color) or color and (secret(color.r) or secret(color.g) or secret(color.b))
+end
+
 local function inlineRed(text)
     if not text then return false end
     for hex in text:gmatch("|c%x%x(%x%x%x%x%x%x)") do
@@ -94,18 +128,24 @@ local function inlineRed(text)
     return false
 end
 
-local function itemTooltip(link, stats, plannedSkill)
-    if not (C_TooltipInfo and C_TooltipInfo.GetHyperlink) then return nil, "unverified" end
-    local tooltip = C_TooltipInfo.GetHyperlink(link)
-    if not tooltip or not tooltip.lines or #tooltip.lines < 2 then return nil, "pending" end
+local function inspectTooltip(tooltip, stats, plannedSkill)
+    if hiddenTable(tooltip) then return nil, "unverified" end
+    if not tooltip then return nil, "pending" end
+    local lines = tooltip.lines
+    if hiddenTable(lines) then return nil, "unverified" end
+    if not lines or #lines < 2 then return nil, "pending" end
     local uniqueLimit
     local kinds = Enum and Enum.TooltipDataLineType or {}
-    for _, line in ipairs(tooltip.lines) do
+    for _, line in ipairs(lines) do
+        if hiddenTable(line) or secret(line.type) or secret(line.leftText) or secret(line.rightText) then
+            return nil, "unverified"
+        end
         local left = line.leftText
         if left and RETRIEVING_ITEM_INFO and left == RETRIEVING_ITEM_INFO then return nil, "pending" end
         local restriction = line.type == nil or line.type == kinds.None or line.type == kinds.EquipSlot
             or line.type == kinds.ErrorLine or line.type == kinds.UsageRequirement or line.type == kinds.DisabledLine
         if restriction then
+            if secretColor(line.leftColor) or secretColor(line.rightColor) then return nil, "unverified" end
             local leftRed = red(line.leftColor) or inlineRed(left)
             local rightRed = red(line.rightColor) or inlineRed(line.rightText)
             -- A planning preview may disregard only its named skill on a red line.
@@ -123,6 +163,16 @@ local function itemTooltip(link, stats, plannedSkill)
         end
     end
     return true, nil, uniqueLimit
+end
+
+local function itemTooltip(link, stats, plannedSkill)
+    if not (C_TooltipInfo and C_TooltipInfo.GetHyperlink) then return nil, "unverified" end
+    return inspectTooltip(C_TooltipInfo.GetHyperlink(link), stats, plannedSkill)
+end
+
+function A.MerchantListingUsable(index)
+    local read = C_TooltipInfo and C_TooltipInfo.GetMerchantItem
+    return read and inspectTooltip(read(index), {}) == true
 end
 
 local planningSlots = {
@@ -154,10 +204,12 @@ end
 local function readUnique(item, tipLimit)
     local family, count
     if C_Item.GetItemUniqueness then family, count = C_Item.GetItemUniqueness(item.link) end
+    if secret(family) or secret(count) then return false end
     if type(family) == "number" and family > 0 then
         item.unique, item.uniqueLimit = "group:" .. family, count or 1
     elseif C_Item.GetItemUniquenessByID then
         local unique, name, max, id = C_Item.GetItemUniquenessByID(item.link)
+        if secret(unique) or secret(name) or secret(max) or secret(id) then return false end
         if id and id > 0 then
             item.unique, item.uniqueLimit = "group:" .. id, max or 1
         elseif name and name ~= "" then
@@ -173,6 +225,7 @@ local function readUnique(item, tipLimit)
         item.itemLimit = tipLimit
         if not item.unique then item.unique, item.uniqueLimit = true, tipLimit end
     end
+    return true
 end
 
 local fallbackKeys = {
@@ -218,21 +271,30 @@ local function fillSupplement(item, tokens)
     end
 end
 
-function A.ReadCandidate(record, player, supplement)
+local function readItem(record, player, supplement, equipped)
     local id = record.id
-    if not id or not player.level or player.level < 1 then return nil, "unverified" end
+    if secret(id) or secret(record.link) or not id or not player.level or player.level < 1 then return nil, "unverified" end
     if record.minLevel and record.minLevel > player.level then return nil, "ineligible" end
     if not (C_Item and C_Item.GetItemInfo and C_Item.GetItemStats and C_PlayerInfo and C_PlayerInfo.CanUseItem) then
         return nil, "unverified"
     end
+    local inputKey
+    if record.link then
+        local key, linkID = A.ItemVariantKey(record.link)
+        if linkID ~= id then return nil, "unverified" end
+        inputKey = key
+    end
     local query = record.link or id
-    if C_Item.GetItemInfoInstant then
+    if not equipped and C_Item.GetItemInfoInstant then
         local _, _, _, slot, _, classID, subID = C_Item.GetItemInfoInstant(query)
+        if secret(slot) or secret(classID) or secret(subID) then return nil, "unverified" end
         if slot and slot ~= "" and classID and subID and proficiency(classID, subID, slot, player) == false then
             return nil, "ineligible"
         end
     end
     local name, link, quality, itemLevel, minLevel, _, _, _, loc, texture, _, classID, subID, bindType, _, setID = C_Item.GetItemInfo(query)
+    if secret(name) or secret(link) or secret(minLevel) or secret(loc) or secret(classID) or secret(subID)
+        or secret(setID) then return nil, "unverified" end
     if not name or not link then
         player.requested = player.requested or {}
         if C_Item.DoesItemExistByID and not C_Item.DoesItemExistByID(id) then return nil, "ineligible" end
@@ -244,27 +306,48 @@ function A.ReadCandidate(record, player, supplement)
     end
     if type(minLevel) ~= "number" then return nil, "unverified" end
     if minLevel > player.level then return nil, "ineligible" end
-    local trained = proficiency(classID, subID, loc, player)
-    if trained == nil then return nil, "unverified" end
-    if not trained then return nil, "ineligible" end
+    if not equipped then
+        local trained = proficiency(classID, subID, loc, player)
+        if trained == nil then return nil, "unverified" end
+        if not trained then return nil, "ineligible" end
+    end
     local usable = C_PlayerInfo.CanUseItem(id)
-    if usable == nil then return nil, "unverified" end
+    if secret(usable) or usable == nil then return nil, "unverified" end
     if not usable then return nil, "ineligible" end
 
-    local live = C_Item.GetItemStats(link)
+    -- GetItemInfo may normalize an item's link; the hover/bag link is the
+    -- authority on its rolled suffix, enchantments, and bonus/context fields.
+    local statLink = record.link or link
+    local live = C_Item.GetItemStats(statLink)
+    if hiddenTable(live) then return nil, "unverified" end
     if live == nil then return nil, "pending" end
     local stats = {}
     for stat, value in pairs(live) do
+        if secret(stat) or secret(value) then return nil, "unverified" end
         if type(value) == "number" then stats[stat] = value end
     end
-    local ok, status, tipLimit = itemTooltip(link, stats)
+    local ok, status, tipLimit = itemTooltip(statLink, stats)
     if not ok then return nil, status end
     local item = {}
     for field, value in pairs(record) do item[field] = value end
+    -- Keep a full display link when the client supplied one for the same
+    -- payload. A raw item string is still suitable for all client lookups.
+    if inputKey and inputKey ~= A.ItemVariantKey(link) then link = statLink end
     item.name, item.link, item.loc, item.quality, item.itemLevel = name, link, loc, quality, itemLevel
     item.classID, item.subID, item.stats = classID, subID, stats
     item.minLevel, item.texture, item.bindType, item.setID = minLevel, texture, bindType, setID
-    readUnique(item, tipLimit)
+    if not readUnique(item, tipLimit) then return nil, "unverified" end
     fillSupplement(item, record.foreverStats or supplement)
     return item, "ok"
+end
+
+function A.ReadCandidate(record, player, supplement)
+    return readItem(record, player, supplement, false)
+end
+
+-- Only the player inventory-slot reader calls this. Actual worn gear (such
+-- as a fishing pole) contributes to the baseline even when the optimizer
+-- excludes its subclass from proposed equipment. Keep live requirements.
+function A.ReadEquippedItem(record, player, supplement)
+    return readItem(record, player, supplement, true)
 end

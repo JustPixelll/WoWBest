@@ -43,11 +43,21 @@ function A.ResetSourceFilters()
     if type(WoWBestCharacterDB) == "table" then WoWBestCharacterDB.disabledSources = nil end
 end
 
+function A.UnconfirmedSourcesEnabled()
+    return type(WoWBestCharacterDB) == "table" and WoWBestCharacterDB.includeUnconfirmed == true
+end
+
+function A.SetUnconfirmedSourcesEnabled(enabled)
+    if type(WoWBestCharacterDB) ~= "table" then WoWBestCharacterDB = {} end
+    WoWBestCharacterDB.includeUnconfirmed = enabled == true or nil
+end
+
 -- A second activity can be required by a particular route. Buying an actual
 -- auction listing or using an owned copy does not require repeating its origin.
 function A.RouteSourceEnabled(row)
     if row.owned or row.kind == "Owned" then return true end
     return A.SourceEnabled(row.kind)
+        and (not row.unconfirmed or A.UnconfirmedSourcesEnabled())
         and (not row.requiresDungeon or A.SourceEnabled("Dungeon"))
         and (not row.requiresPvP or A.SourceEnabled("PvP"))
         and (not row.eventName or A.SourceEnabled("Event"))

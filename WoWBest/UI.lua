@@ -125,10 +125,7 @@ local function explainChoice(choice, bestSets)
         if not source:find(path, 1, true) then alternatives[#alternatives + 1] = path end
     end
     if #alternatives > 0 then
-        local paths = {alternatives[1]}
-        if alternatives[2] then paths[2] = alternatives[2] end
-        local extra = #alternatives > 2 and (" (+" .. (#alternatives - 2) .. " other routes)") or ""
-        lines[#lines + 1] = "|cffffd275Also available|r  " .. table.concat(paths, "  •  ") .. extra
+        lines[#lines + 1] = "|cffffd275Also available|r  " .. table.concat(alternatives, "\n")
     end
     local profile, selected = detail.profile, detail.slot
     if A.ScoreBreakdown then
@@ -228,6 +225,7 @@ local function renderDetail()
     detail.targets:SetEnabled(not showingLocked)
     detail.ranked:SetText("Ranked gear" .. (choices and " (" .. #choices .. ")" or ""))
     detail.targets:SetText("Paths to unlock" .. (detail.profile and " (" .. #locked .. ")" or ""))
+    if choices and detail.more and not showingLocked then detail.showAll:Show() else detail.showAll:Hide() end
 
     if not choices and (not showingLocked or not detail.profile) then
         card(nil, detail.message or "Checking this slot…")
@@ -247,7 +245,7 @@ local function renderDetail()
     else
         local base = detail.baseline
         local bestSets = A.ActiveSetBonuses and A.ActiveSetBonuses(base, detail.profile) or {}
-        local description = "Up to 15 choices, ordered by the best compatible full loadout for each. Points are weighted estimates for " .. detail.profile.name .. " (" .. targetName(detail.profile.targetType) .. ")."
+        local description = "Ranked by the best compatible outfit containing each item. Points use the weights for " .. detail.profile.name .. " (" .. targetName(detail.profile.targetType) .. ")."
         local worn = GetInventoryItemLink and GetInventoryItemLink("player", detail.slot)
         description = "Currently equipped: " .. (worn or "Empty") ..
             "\nRecommended: " .. itemName(base[detail.slot]) .. "\n" .. description
@@ -288,7 +286,7 @@ local function invalidateDetail(message)
     detail.generation = detail.generation + 1
     if A.CancelSlotRequest then A.CancelSlotRequest() end
     detail.choices, detail.locked, detail.baseline, detail.profile = nil, nil, nil, nil
-    detail.message = message
+    detail.message, detail.more = message, false
 end
 
 local function changePage(direction)
@@ -309,10 +307,11 @@ function A.RefreshSlotDetail()
     invalidateDetail("Finding eligible alternatives…")
     local slot, generation = detail.slot, detail.generation
     renderDetail()
-    A.RequestSlot(slot, function(choices, baseline, profile, locked, status)
+    A.RequestSlot(slot, function(choices, baseline, profile, locked, status, more)
         if detail.slot ~= slot or generation ~= detail.generation or not A.IsVisible() then return end
         detail.choices, detail.baseline, detail.profile = choices, baseline or {}, profile
         detail.locked, detail.message = locked, status
+        detail.more = more
         if detail.chooseDefaultTab and baseline and profile and locked and (#locked > 0 or choices) then
             detail.chooseDefaultTab = false
             if not baseline[slot] and not occupiedOffHand(baseline, slot) and #locked > 0 then
@@ -320,7 +319,7 @@ function A.RefreshSlotDetail()
             end
         end
         renderDetail()
-    end)
+    end, detail.all)
 end
 
 local function closeDetail()
@@ -332,6 +331,7 @@ local function closeDetail()
 end
 
 local function openDetail(slot)
+    detail.all = false
     detail.slot, detail.page, detail.tab, detail.chooseDefaultTab = slot, 1, "ranked", true
     detail.title:SetText(A.SlotNames[slot] or ("Slot " .. slot))
     if GameTooltip:IsShown() then GameTooltip:Hide() end
@@ -403,9 +403,9 @@ local function sourceSummary()
     for _, method in ipairs(A.SourceMethods) do
         if A.SourceEnabled(method.key) then count = count + 1 end
     end
-    if count == #A.SourceMethods then return "Sources: All" end
     if count == 0 then return "Sources: Owned only" end
-    return ("Sources: %d/%d"):format(count, #A.SourceMethods)
+    local label = count == #A.SourceMethods and "All" or ("%d/%d"):format(count, #A.SourceMethods)
+    return "Sources: " .. label .. (A.UnconfirmedSourcesEnabled() and " + leads" or "")
 end
 
 local function updateHeader()
@@ -456,6 +456,7 @@ end
 
 local function selectProfile(key)
     settings().profile = key
+    if A.InvalidateUpgradeTooltips then A.InvalidateUpgradeTooltips() end
     scan()
 end
 
@@ -526,11 +527,13 @@ local function toggleSources()
     if sources.menu:IsShown() then sources.menu:Hide(); return end
     menu:Hide()
     for _, check in ipairs(sources.checks) do check:SetChecked(A.SourceEnabled(check.key)) end
+    sources.unconfirmed:SetChecked(A.UnconfirmedSourcesEnabled())
     sources.menu:Show()
 end
 
 local function applySources()
-    local all, changed = true, false
+    local leads = not not sources.unconfirmed:GetChecked()
+    local all, changed = true, leads ~= A.UnconfirmedSourcesEnabled()
     for _, check in ipairs(sources.checks) do
         local enabled = not not check:GetChecked()
         if not enabled then all = false end
@@ -538,6 +541,7 @@ local function applySources()
     end
     sources.menu:Hide()
     if not changed then return end
+    A.SetUnconfirmedSourcesEnabled(leads)
     if all then
         A.ResetSourceFilters()
     else
@@ -557,23 +561,31 @@ local function buildSources()
     sources.menu = panel
     panel:SetFrameLevel(frame:GetFrameLevel() + 30)
     panel:SetPoint("TOPRIGHT", sources.button, "BOTTOMRIGHT", 0, -2)
-    panel:SetSize(282, 89 + #A.SourceMethods * 24)
+    panel:SetSize(282, 135 + #A.SourceMethods * 24)
     panel:EnableMouse(true)
     colorBackground(panel, .09, .115, .14, 1)
     local caption = text(panel, "GameFontHighlightSmall")
     caption:SetPoint("TOPLEFT", 10, -10)
     caption:SetText("Equipped gear and bag items always count.\nDungeon quests need both Dungeons and Quests.")
-    for i, method in ipairs(A.SourceMethods) do
+    local function checkbox(labelText, y)
         local check = CreateFrame("CheckButton", nil, panel, "UICheckButtonTemplate")
-        check.key = method.key
         check:SetSize(24, 24)
-        check:SetPoint("TOPLEFT", 7, -45 - 24 * (i - 1))
+        check:SetPoint("TOPLEFT", 7, y)
         check:SetHitRectInsets(0, -224, 0, 0)
         local label = text(check, "GameFontHighlight")
         label:SetPoint("LEFT", check, "RIGHT", 4, 0)
-        label:SetText(method.label)
+        label:SetText(labelText)
+        return check
+    end
+    for i, method in ipairs(A.SourceMethods) do
+        local check = checkbox(method.label, -45 - 24 * (i - 1))
+        check.key = method.key
         sources.checks[i] = check
     end
+    sources.unconfirmed = checkbox("Include unconfirmed sources", -50 - #A.SourceMethods * 24)
+    local hint = text(panel, "GameFontHighlightSmall")
+    hint:SetPoint("TOPLEFT", sources.unconfirmed, "BOTTOMLEFT", 3, -1)
+    hint:SetText("Adds leads whose Forever source is unverified.")
     local all = button(panel, "Select all", 75)
     all:SetPoint("BOTTOMLEFT", 8, 7)
     all:SetScript("OnClick", function()
@@ -583,6 +595,7 @@ local function buildSources()
     ownedOnly:SetPoint("LEFT", all, "RIGHT", 3, 0)
     ownedOnly:SetScript("OnClick", function()
         for _, check in ipairs(sources.checks) do check:SetChecked(false) end
+        sources.unconfirmed:SetChecked(false)
     end)
     local apply = button(panel, "Apply", 74)
     apply:SetPoint("BOTTOMRIGHT", -8, 7)
@@ -613,6 +626,13 @@ local function buildDetail()
     detail.targets = button(pane, "Paths to unlock", 148)
     detail.targets:SetPoint("LEFT", detail.ranked, "RIGHT", 4, 0)
     detail.targets:SetScript("OnClick", function() changeTab("locked") end)
+    detail.showAll = button(pane, "Show all", 80)
+    detail.showAll:SetPoint("LEFT", detail.targets, "RIGHT", 4, 0)
+    detail.showAll:SetScript("OnClick", function()
+        detail.all = true
+        A.RefreshSlotDetail()
+    end)
+    detail.showAll:Hide()
 
     detail.previous = button(pane, "Previous", 76)
     detail.previous:SetPoint("BOTTOMLEFT", 0, 0)
@@ -673,6 +693,7 @@ local function build()
     targetButton:SetScript("OnClick", function()
         local db = settings()
         if db.targetType == "Humanoid" then db.targetType = nil else db.targetType = "Humanoid" end
+        if A.InvalidateUpgradeTooltips then A.InvalidateUpgradeTooltips() end
         scan()
     end)
     local refresh = button(frame, "Refresh", 72)

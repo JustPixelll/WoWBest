@@ -25,4 +25,32 @@ assert(not source(15136, "Drop").requiresDungeon)
 assert(not source(4385, "Crafted").requiresDungeon)
 assert(not source(20068, "PvP").requiresVendor)
 assert(not source(272399, "Vendor").requiresDungeon)
+
+-- A profession name in a recipe list cannot unlock unreleased reagents.
+local reaper = source(12784, "Crafted")
+assert(reaper.craftSpellID == 16994 and reaper.acquireProfessionID == 164 and reaper.acquireProfessionRank == 300)
+assert(reaper.requiresKnownCraft and reaper.requiresCraftable)
+assert(not source(4385, "Crafted").requiresCraftable)
+
+-- A Riverglades reward with no verified quest offer can rank for an actual
+-- quest holder. Raids and unverified battlegrounds are excluded from the snapshot.
+assert(source(274948, "Quest", 95267).requiresQuestInLog)
+assert(source(15860, "Quest", 4765).requiresDungeon)
+local possible, world, dungeons = {}, {}, {}
+for _, row in ipairs(addon.Catalog) do
+    assert(row.questID ~= 8183 and row.questID ~= 9120 and row.questID ~= 7161)
+    if row.unconfirmed then
+        assert(row.kind == "Drop" and row.binding == "BoE" and row.source:find("unconfirmed", 1, true))
+        possible[row.id] = true
+    elseif row.kind == "Drop" then
+        world[row.id] = true
+    elseif row.kind == "Dungeon" and row.id == 16681 then
+        dungeons[row.source] = true
+    end
+end
+assert(possible[647] and world[4041])
+for id in pairs(possible) do assert(not world[id], "duplicate unconfirmed world origin for " .. id) end
+-- Two named dungeons share a single "Dungeon" in the upstream sourceTypes set.
+assert(dungeons["Dungeon: Blackrock Spire"] and dungeons["Dungeon: Stratholme"])
+assert(source(1935, "Dungeon").minLevel == 19)
 print("Shipped activity classifications passed")

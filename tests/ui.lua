@@ -68,7 +68,7 @@ function A.StartScan(active) scanProfile, scans = active, scans + 1 end
 assert(loadfile("WoWBest/Sources.lua"))("WoWBest", A)
 function A.CancelSlotRequest() cancelled = cancelled + 1 end
 function A.UnlockCount(slot) return (slot == 1 or slot == 17) and 1 or 0 end
-function A.RequestSlot(slot, callback) requests[#requests + 1] = {slot = slot, callback = callback} end
+function A.RequestSlot(slot, callback, all) requests[#requests + 1] = {slot = slot, callback = callback, all = all} end
 function A.ScoreBreakdown() return {{label = "Stamina", amount = 4, weight = .5, points = 2}} end
 function A.Score() return 2 end
 local setBonus = {key = "42/2", name = "Silkweave", threshold = 2, modeled = true, score = 6, description = "+6 health"}
@@ -169,5 +169,18 @@ click(byText("Select all"))
 click(byText("Apply"))
 assert(byText("Sources: All") and A.SourceEnabled("Quest") and WoWBestCharacterDB.disabledSources == nil)
 assert(WoWBestCharacterDB.profile == "frost" and scanProfile == profile)
+click(byText("Sources: All"))
+local leads = byText("Include unconfirmed sources", true).parent
+assert(not leads:GetChecked())
+click(leads)
+click(byText("Apply"))
+assert(byText("Sources: All + leads") and A.UnconfirmedSourcesEnabled())
+A.UpdateDisplay(baseline, "Ready")
+click(byText("Head").parent)
+requests[#requests].callback(choices, baseline, profile, {}, nil, true)
+click(byText("Show all"))
+assert(requests[#requests].all)
+requests[#requests].callback(choices, baseline, profile, {}, nil, false)
+assert(not byText("Show all"))
 SlashCmdList.WOWBEST()
 print("UI click, paging, scoring, filters, locked targets and async cancellation tests passed.")

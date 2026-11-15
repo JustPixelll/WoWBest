@@ -2,9 +2,9 @@
 
 WoWBest finds a gear set to work toward **at your character’s current level** in World of Warcraft: Forever. Type **`/wowbest`** to see the recommended items, their sources and which two pieces can actually be worn together.
 
-**[Download WoWBest 1.2 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Gear data and coverage](DATA.md)
+**[Download WoWBest 1.3 for Forever](https://github.com/JustPixelll/WoWBest/raw/refs/heads/main/downloads/WoWBest.zip)** · [Coverage by level](COVERAGE.md) · [Gear data and sources](DATA.md)
 
-**Already have WoWBest?** Exit the game, extract the download, and replace the `WoWBest` folder in `_forever_\Interface\AddOns`. Start Forever, open `/wowbest`, and click a slot. Existing character preferences carry over.
+**Already have WoWBest?** Exit the game, extract the download, and replace the `WoWBest` folder in `_forever_\Interface\AddOns`. Start Forever and hover over a piece of gear, or open `/wowbest` and click a slot. Existing character preferences carry over.
 
 ## Install on Windows
 
@@ -33,14 +33,23 @@ Expand-Archive -LiteralPath $zipPath -DestinationPath $addonsDir -Force -ErrorAc
 Get-Item -LiteralPath (Join-Path $addonsDir 'WoWBest\WoWBest.toc')
 ```
 
+## Read an upgrade on the item tooltip
+
+Hover over a piece of gear in your bags, a quest reward, a merchant window, or a chat item link. WoWBest compares that exact item against what you are wearing, even with the planner closed and even if the catalog has no route for the item. Open **`/wowbest` → Spec** to change which build it scores. Source filters affect the planner. You can still evaluate an item you encounter anywhere.
+
+- **Direct swap** measures the change in weighted item points in the slots that move. A sword and shield worth 40 points together versus a two-hander worth 50 is a **+25%** hand swap. For rings or trinkets, WoWBest tries both sockets and shows the best legal swap.
+- **Whole outfit** measures the change relative to all of your equipped gear, including modeled set bonuses. If that weapon swap takes your outfit from 200 to 210 points, the outfit gains **5%**. If the swap breaks a valuable set bonus, the item and outfit percentages can point in opposite directions.
+- An empty or zero-scoring baseline has no meaningful percentage. The tooltip can show the points gained instead. Item variants use the exact link the client supplies. Out of combat, the comparison appears once the client supplies both the hovered item and your equipped items. During combat, a previously scored item can display its cached result until your gear or character state changes. The model uses the stats exposed on the exact link. Some enchantments, procs and set effects have no numerical model. Percentages estimate gear value for the selected spec and target. Actual DPS, healing or survivability depends on the encounter.
+
 ## Your first gear plan
 
 - Open the window **outside combat**. The first scan asks the game client for item details in batches. Once the eligible-item count appears, click any slot, including an empty one.
 - Check **Spec**. **Auto** reads points spent in your active talent trees. With no clear winner it shows the class leveling **Default**. Pick a profile manually for a hybrid build, for **Feral (Bear)** versus **Feral (Cat)**, or for a planned respec. A manual choice is saved for this character. Select **Auto (active talents)** to follow talents again.
 - Read **main hand and off hand together**. A two-hander occupies both. A one-hander can be paired with a usable shield or held item. A second weapon requires learned dual wield. Protection profiles plan around a shield. Rings, trinkets and quest choices are also solved together.
-- **Ranked gear** shows up to 15 distinct choices, five per page. The addon finds the best complete outfit that contains each choice in the selected slot. A difference of **−3 points** means the best outfit using that choice gives up three weighted points against the overall recommendation. Tied scores can occur. Each entry shows which other slots change, how its stats score, and which set thresholds you gain or lose. The points use the selected profile’s stat weights.
+- **Ranked gear** opens with the top 15 distinct choices, five per page. If more qualify, click **Show all** to rank every compatible candidate for that slot. You can close the view or switch slots while it works. The addon finds the best complete outfit that contains each choice in the selected slot. A difference of **−3 points** means the best outfit using that choice gives up three weighted points against the overall recommendation. Tied scores can occur. Each entry shows which other slots change, how its stats score, and which set thresholds you gain or lose. The points use the selected profile’s stat weights.
 - **Paths to unlock** lists relevant profession and event options, with the missing skill, recipe or turn-in when known. These are kept out of the equipped-today ranking until their requirements are met.
 - Hover an item for its game tooltip. Its row tells you where to go next, for example a dungeon and boss, quest, profession and skill, vendor or named world drop. An item you already have can appear as **Currently equipped** or **In your bags**. The planner recognizes exact owned variants, including random suffixes.
+- Visiting a Warsong Gulch or Alterac Valley supply officer can reveal additional PvP gear. With **PvP** enabled, WoWBest also checks the current merchant window.
 - At an auctioneer, manually search for a piece of gear and open its detailed auction results to include observed buyout listings in the plan. Auction candidates are temporary and limited to the searches you perform during that visit. Check the actual listing before buying.
 - The window refreshes as your level, equipment, talents, skills and quest state change. **Refresh** repeats the lookup, including skipped item requests. Close the window or press Escape when finished. You equip the items yourself.
 
@@ -51,6 +60,7 @@ Open **`/wowbest` → Sources**. Uncheck the activities you want to skip, then c
 - **Skipping dungeons?** Turn off **Dungeons** and leave **Quests** on. Open-world quest rewards stay in the plan. Quest routes marked as requiring a dungeon are excluded.
 - **An item has several sources?** Any enabled, eligible route can still qualify it. For example, if you disable **Crafting**, an actual buyout you inspect at the Auction House can still qualify, subject to the gear’s wearer requirements.
 - **Only use what you have?** Click **Owned only → Apply** to plan with wearable gear you have equipped or in your bags. **Select all → Apply** restores every method.
+- **Include unconfirmed sources** is a separate, per-character opt-in. It adds clearly labeled leads backed by item records and historical source data. Leave it unchecked to plan with the supported Forever routes. The activity filters still apply.
 - Event quest rewards need **Events** and **Quests**. Dedicated battleground quartermasters are grouped under **PvP**. **Vendors** covers ordinary merchants.
 
 ### Example: a level-19 warrior’s head slot
@@ -67,9 +77,9 @@ The bundled set data covers 274 sets and 780 threshold effects. Of these, 389 ha
 
 The solver maximizes the total score for the selected profile across compatible items. It weights primary stats, relevant secondary stats, defenses, weapon DPS and selected Forever trinket effects. A spec that gains more from a one-hander **plus** a shield or off-hand can choose that pair even if the two-hander is individually stronger.
 
-The game client supplies item stats and checks wearability, including your trained proficiencies. Acquisition checks include recorded level, faction, class, race, one-time quest choices, and known profession, reputation and PvP requirements. You may still need a party, a quest chain, an attunement, materials or currency. It shows routes to pursue, without assuming you have cleared a dungeon or can afford an item. Your equipped gear and carried bags enter the comparison even when an item has no catalog route.
+The game client supplies item stats and checks wearability, including your trained proficiencies. Acquisition checks include recorded level, faction, class, race, one-time quest choices, and known profession, reputation and PvP requirements. You may still need a party, a quest chain, an attunement, materials or currency. For recipes that need personal verification, open your own profession window with the materials available. WoWBest checks the number you can craft per recipe. Separate recipes or purchases can compete for the same materials or currency. Your equipped gear and carried bags enter the comparison even when an item has no catalog route.
 
-Rankings are an estimate for a general PvE build. Encounter-specific caps, rotations, group buffs, many use/proc effects, and unmodeled conditional set effects can change an individual recommendation. An empty slot means there was no legal, positively scored candidate for that slot or its group. The bundled catalog is a dated snapshot with documented gaps in world drops, endgame sources, rare variants and special-event gear. See [DATA.md](DATA.md) for coverage, source builds and reproduction steps.
+Rankings are an estimate for a general PvE build. Encounter-specific caps, rotations, group buffs, many use/proc effects, and unmodeled conditional set effects can change an individual recommendation. An empty slot means there was no legal, positively scored candidate for that slot or its group. The bundled catalog covers levels 1–60. Some world drops, endgame sources, random-suffix variants and seasonal items still lack a confirmed acquisition route. See [DATA.md](DATA.md) for coverage, source builds and reproduction steps.
 
 ## Updating or troubleshooting
 
@@ -87,8 +97,10 @@ To **update**, close WoW and replace the installed `WoWBest` folder with the fol
 
 ## Development and verification
 
-The addon targets the Lua 5.1-compatible Forever client. From the repository root, run the Lua files in `tests/` with Lua 5.1. They cover incompatible hand pairs, uniqueness across slots, competing quest choices, character requirements, async item lookups, talent detection, click-through slot rankings, Engineering headgear, set thresholds, and modeled item effects. A randomized test compares the optimizer against an exhaustive search. The suite uses game API fixtures. A live character remains the final check for a particular client build.
+The addon targets the Lua 5.1-compatible Forever client. From the repository root, run the Lua files in `tests/` with Lua 5.1. They cover native tooltip percentages, exact item variants, equipped baselines, incompatible hand pairs, uniqueness across slots, competing quest choices, character requirements, async item lookups, talent detection, click-through slot rankings, Engineering headgear, set thresholds, and modeled item effects. A randomized test compares the optimizer against an exhaustive search. The suite uses game API fixtures. A live character remains the final check for a particular client build.
 
 ```powershell
 Get-ChildItem tests -Filter *.lua | ForEach-Object { lua $_.FullName; if ($LASTEXITCODE) { throw "Failed: $($_.Name)" } }
 ```
+
+The catalog regression tests use Python's standard library. To run them from the repository root, use `python -m unittest discover -s tests -p "test_*.py"`. The [level-by-level coverage report](COVERAGE.md) includes its own reproduction command.

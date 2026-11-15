@@ -9,6 +9,7 @@ import re
 import subprocess
 
 from catalog_vendors import ZONE_NAMES, vendor_routes
+from catalog_containers import container_routes
 
 PINS = {
     "polestar": ("fitzforge/polestar", "19bd636e7d6f33231770f6029c76d2d4dfc63798"),
@@ -59,7 +60,16 @@ DUNGEON_REWARD_CHAINS = (
     (95036, 95111, 95125, 95126),         # Paladin Moonsilver Blade reagents
     (92415, 95161),            # Blood-Stained Letter, Ruins of Lordaeron
     (97288, 97289, 97290),     # Abominable Head, Ruins of Lordaeron
+    (4764, 4765),              # Doomrigger's Clasp in Upper Blackrock Spire
 )
+# The server quest objective records specify the required gated item even
+# on quests lacking the Dungeon tag. ZoneArea alone is never such proof.
+DUNGEON_QUEST_ITEMS = {11129: "Blackrock Depths", 12871: "Blackrock Spire: Upper"}
+# Exclude the old raid and unverified battleground reward chains even when
+# the server still returns legacy quest records.
+UNAVAILABLE_QUEST_ZONES = {19, 2159, 2597, 2677, 2717, 3428, 3429, 3456}
+POSSIBLE_DROP = "Possible world drop: Classic source, Forever origin unconfirmed"
+POSSIBLE_SUFFIX_DROP = POSSIBLE_DROP + ". Random suffix varies"
 CLASS_QUESTS = {81: 1, 141: 2, 261: 3, 162: 4, 262: 5, 82: 7, 161: 8, 61: 9, 263: 11}
 # Profession, holiday, war-effort and expired-event quests have additional access requirements.
 # Rare-fish exchanges with item rewards verified in the launch quest and NPC logs.
@@ -246,14 +256,13 @@ def quest_sources(builds, tables, items):
                             and obj.get("amount") == 1 for obj in q.get("objectives", [])):
             fish = None
         if (not title or BAD_NAME.search(title) or qid in withheld or (category in SKIP_QUEST_CATEGORIES and not fish)
-                or q.get("questInfoId") in (41, 62)):
+                or q.get("zoneAreaId") in UNAVAILABLE_QUEST_ZONES or q.get("questInfoId") in (41, 62)):
             continue
         legacy = tables["quests"].get(qid)
-        if not (qid in observed or qid in offered or legacy):
-            continue
-        # A client can describe unoffered quests. Require sightings for special/endgame content.
-        if q.get("level", 0) >= 50 and qid not in offered and qid not in observed:
-            continue
+        # The server can return a reward window even for a quest nobody can start.
+        # The character's own active log can establish access where the static
+        # evidence does not. It never turns these rows into future quest offers.
+        active_only = qid not in observed and qid not in offered and (not legacy or q.get("level", 0) >= 50)
         faction, cls, min_level, race = None, 0, max(1, q.get("minLevel", 1)), int(q["raceMask"], 16) & ANY_RACE
         zone = q.get("zoneAreaId")
         if legacy:
@@ -266,8 +275,7 @@ def quest_sources(builds, tables, items):
         elif len(observed[qid]) == 1:
             faction = next(iter(observed[qid]))
         elif race == ANY_RACE and len(observed[qid]) != 2:
-            # An NPC offering the quest alone does not establish its side/class eligibility.
-            continue
+            active_only = True
         if category in CLASS_QUESTS:
             cls = 1 << (CLASS_QUESTS[category] - 1)
         if zone == 16593:  # The origin quest line can require the Skyborne account unlock.
@@ -277,6 +285,10 @@ def quest_sources(builds, tables, items):
         zone_name = tables["zones"].get(zone)
         dungeon_step = dungeon_steps.get(qid)
         dungeon = tables["zones"].get(quests[dungeon_step].get("zoneAreaId")) if dungeon_step else None
+        for obj in q.get("objectives", []):
+            if obj.get("type") == "item" and obj.get("objectId") in DUNGEON_QUEST_ITEMS:
+                dungeon_step, dungeon = qid, DUNGEON_QUEST_ITEMS[obj["objectId"]]
+                break
         if dungeon in DUNGEONS:
             min_level = max(min_level, DUNGEONS[dungeon])
         source = "Quest: " + title
@@ -285,6 +297,8 @@ def quest_sources(builds, tables, items):
         elif zone_name:
             source += " (" + zone_name + ")"
         route = dict(kind="Quest", source=source, questID=qid, minLevel=min_level)
+        if active_only:
+            route.update(requiresQuestInLog=True, source=source + " [must be in your quest log]")
         if dungeon_step:
             route["requiresDungeon"] = True
             label = dungeon if dungeon in DUNGEONS else "dungeon"
@@ -355,7 +369,7 @@ def dungeon_and_craft_sources(builds, tables, items, rows):
                 spell, prof, rank = map(int, re.fullmatch(r"c(\d+)p(\d+)s(\d+)", token).groups())
                 if not prof or prof > len(professions):
                     continue
-                if spell not in trainers and ("Crafted" not in cached.get("sourceTypes", []) or rank > 225):
+                if spell not in trainers and "Crafted" not in cached.get("sourceTypes", []):
                     continue
                 name = professions[prof - 1]
                 if spell in trainers:
@@ -367,11 +381,14 @@ def dungeon_and_craft_sources(builds, tables, items, rows):
                              craftProfessionRank=rank)
                 if spell in trainers:
                     route["trainerRecipe"] = True
-                if item.get("binding") not in ("BoE", "Unbound", "Tradeable"):
+                personal_only = spell not in trainers and rank > 225
+                if personal_only or item.get("binding") not in ("BoE", "Unbound", "Tradeable"):
                     route.update(acquireProfessionID=SKILLS[name], acquireProfessionRank=rank,
                                  professionID=SKILLS[name], professionRank=rank, requiresKnownCraft=True)
                 route["source"] = f"Craft: {name} {rank}"
-                if item.get("binding") in ("BoE", "Unbound", "Tradeable"):
+                if personal_only:
+                    route.update(requiresCraftable=True, source=route["source"] + ". Your learned recipe and materials")
+                elif item.get("binding") in ("BoE", "Unbound", "Tradeable"):
                     route["source"] += ". Buy the unbound item or ask a crafter"
                 if item.get("wearProfessionID"):
                     required = next((n for n, value in SKILLS.items() if value == item["wearProfessionID"]), name)
@@ -392,7 +409,8 @@ def dungeon_and_craft_sources(builds, tables, items, rows):
             elif token.startswith("d"):
                 npc, _chance, zone = map(int, re.fullmatch(r"d(\d+)x(\d+)z(\d+)", token).groups())
                 zone_name = tables["zones"].get(zone)
-                if zone_name not in DUNGEONS or "Dungeon" not in cached.get("sourceTypes", []):
+                if (zone_name not in DUNGEONS or "Dungeon" not in cached.get("sourceTypes", [])
+                        or "Crafted" in cached.get("sourceTypes", [])):
                     continue
                 boss = tables["npcs"].get(npc)
                 yield i, dict(kind="Dungeon", source="Dungeon: " + zone_name + (" - " + boss if boss else ""),
@@ -401,33 +419,61 @@ def dungeon_and_craft_sources(builds, tables, items, rows):
         i = row["itemId"]
         if i not in items or "Crafted" in row["sourceTypes"]:
             continue
-        zones = [n for n, k in zip(row["sourceLabels"], row["sourceTypes"]) if k == "Dungeon" and n in DUNGEONS]
+        # sourceTypes is a deduplicated set: several named sourceKeys can
+        # share one type. Each sourceKey encodes its own expansion and type.
+        keys = set(row["sourceKeys"])
+        zones = [z for z in DUNGEONS if f"forever::dungeon::{z.lower()}" in keys]
         for zone in zones:
             bosses = row.get("bossNames", []) if len(zones) == 1 else []
-            if not bosses:
-                continue
-            yield i, dict(kind="Dungeon", source="Dungeon: " + zone + " - " + " / ".join(bosses),
+            yield i, dict(kind="Dungeon", source="Dungeon: " + zone + (" - " + " / ".join(bosses) if bosses else ""),
                           minLevel=DUNGEONS[zone])
 
 
-def observed_world_drops(builds, items):
+def observed_creature_drops(builds, items):
+    names, habitats = {}, defaultdict(set)
     for build in builds:
-        creatures = read_map(build, "creature_details.enUS", "creatures")
+        for key, creature in read_map(build, "creatures", "creatures").items():
+            if creature.get("name"):
+                names[key] = creature["name"]
+            habitats[key].update(p["instance"] for p in creature.get("positions", []) if "instance" in p)
+        for key, creature in read_map(build, "creature_details.enUS", "creatures").items():
+            if creature.get("name"):
+                names[key] = creature["name"]
+    for build in builds:
         for key, data in read_map(build, "loot", "sources").items():
-            source = re.match(r"npc:(\d+)(?:\||$)", key)
+            # spell: keys are skinning/pickpocket results, not normal corpse loot.
+            source = re.fullmatch(r"npc:(\d+)(?:\|quest)?(?:\|group)?", key)
             if not source:
                 continue
-            mob = creatures.get(source[1], {}).get("name")
+            mob = names.get(source[1])
             if not mob or BAD_NAME.search(mob):
                 continue
-            # Require evidence the corpse was in the outdoor world. No guessing instance gates.
-            positions = {pos.get("instance") for pos in data.get("positions", [])}
-            if not positions.intersection({0, 1, 2991}):
+            positions = {p.get("instance") for p in data.get("positions", [])} or habitats[source[1]]
+            if positions and positions.issubset({0, 1, 2991}):
+                route = dict(kind="Drop", source="World drop: " + mob)
+            elif len(positions) == 1 and (zone := MAP_DUNGEONS.get(next(iter(positions)))):
+                route = dict(kind="Dungeon", source=f"Dungeon: {zone} - {mob}", minLevel=DUNGEONS[zone])
+            else:
                 continue
             for raw, drop in data.get("items", {}).items():
                 i = int(raw)
-                if i in items and drop.get("drops", 0) > 0 and not drop.get("quest"):
-                    yield i, dict(kind="Drop", source="World drop: " + mob)
+                if i in items and drop.get("drops", 0) > drop.get("shared", 0) and not drop.get("quest"):
+                    yield i, route
+
+
+def possible_world_drops(cache, rows, items, hotfixes, world_ids):
+    # A valid live item response proves the item record exists, not where it
+    # drops. The explicit flag is interpreted by Sources.lua (default off).
+    classic = json.loads((cache / "Classic Era Cache.json").read_text(encoding="utf-8"))
+    historical = {r["itemId"] for r in classic if r["sourceLabels"] == ["World drops"]}
+    for row in rows:
+        i = row["itemId"]
+        if (i in world_ids or i not in historical or row["sourceTypes"] != ["Drop"]
+                or hotfixes.get(str(i), {}).get("status") != "valid"
+                or items.get(i, {}).get("binding") != "BoE"):
+            continue
+        text = POSSIBLE_SUFFIX_DROP if "&lt;Random enchantment&gt;" in row["tooltipHtml"] else POSSIBLE_DROP
+        yield i, dict(kind="Drop", source=text, unconfirmed=True)
 
 
 def merged(item, i, route):
@@ -449,6 +495,10 @@ def merged(item, i, route):
 
 
 def lua_scalar(x):
+    if x == POSSIBLE_DROP:
+        return "possibleDrop"
+    if x == POSSIBLE_SUFFIX_DROP:
+        return "possibleSuffixDrop"
     if isinstance(x, str):
         return json.dumps(x, ensure_ascii=False)
     if isinstance(x, bool):
@@ -460,10 +510,14 @@ def generate(polestar, observations, cache, output):
     builds = [p for p in sorted((observations / "data/wowf").iterdir())
               if 70790 <= int(p.name.split(".")[-1]) <= 70938]
     items, tables, rows = acquire_items(polestar, cache)
-    hotfixes = read_map(builds[-1], "item_hotfixes.enUS", "items")
+    hotfixes = {}
+    for build in builds:
+        hotfixes.update(read_map(build, "item_hotfixes.enUS", "items"))
     for raw, response in hotfixes.items():
         if response["status"] in ("removed", "invalid"):
             items.pop(int(raw), None)
+        elif response.get("name") and int(raw) in items:
+            items[int(raw)].setdefault("name", response["name"])
     # Give unnamed common items the names actually seen on launch vendor lists.
     for build in builds:
         for seller in read_map(build, "vendors", "vendors").values():
@@ -471,17 +525,24 @@ def generate(polestar, observations, cache, output):
                 if listing.get("itemId") in items and listing.get("name"):
                     items[listing["itemId"]].setdefault("name", listing["name"])
     routes = defaultdict(set)
-    for source in (quest_sources(builds, tables, items), dungeon_and_craft_sources(builds, tables, items, rows),
-                   observed_boss_drops(builds, items), observed_world_drops(builds, items), vendor_routes(builds, items)):
+    def add_routes(source):
         for i, route in source:
-            if i in items and not BAD_NAME.search(items[i].get("name", "")):
+            if i in items and items[i].get("minLevel", 1) <= 60 and not BAD_NAME.search(items[i].get("name", "")):
                 record = merged(items[i], i, route)
                 if record:
                     routes[i].add(tuple(sorted(record.items())))
+    for source in (quest_sources(builds, tables, items), dungeon_and_craft_sources(builds, tables, items, rows),
+                   observed_boss_drops(builds, items), observed_creature_drops(builds, items),
+                   container_routes(builds, items), vendor_routes(builds, items)):
+        add_routes(source)
+    world_ids = {i for i, variants in routes.items() if any(dict(v)["kind"] == "Drop" for v in variants)}
+    add_routes(possible_world_drops(cache, rows, items, hotfixes, world_ids))
     header = ("-- Generated by tools/build_catalog.py; see DATA.md and licenses/.\n"
               "-- Data from Efficient Games (https://efficient.games), licensed under CC BY 4.0; modified.\n"
               "-- Includes ForeverLevelingBiS data (c) 2026 Thunder, MIT. Game facts (c) Blizzard.\n"
               "local _, A = ...\nA.Catalog = {}\n"
+              f"local possibleDrop = {json.dumps(POSSIBLE_DROP)}\n"
+              f"local possibleSuffixDrop = {json.dumps(POSSIBLE_SUFFIX_DROP)}\n"
               "local function add(item, routes)\n"
               "    for _, route in ipairs(routes) do\n"
               "        for k, v in pairs(item) do if route[k] == nil then route[k] = v end end\n"
@@ -490,20 +551,29 @@ def generate(polestar, observations, cache, output):
     buf = [header]
     def lua_record(record):
         return "{" + ",".join(k + "=" + lua_scalar(v) for k, v in sorted(record.items())) + "}"
-    counts = Counter()
+    counts, possible_counts, confirmed_ids = Counter(), Counter(), set()
     for i, variants in sorted(routes.items()):
         variants = [dict(t) for t in sorted(variants)]
+        detailed_zones = {v["source"].split(" - ", 1)[0] for v in variants
+                          if v["kind"] == "Dungeon" and " - " in v["source"]}
+        variants = [v for v in variants if v["kind"] != "Dungeon" or v["source"] not in detailed_zones]
         fields = set.intersection(*[set(row.items()) for row in variants])
         item = dict(fields)
         # Keep source type/description with its route for easy auditing.
         shared = {k: v for k, v in item.items() if k not in ("kind", "source")}
         per_route = []
         for row in variants:
-            counts[row["kind"]] += 1
+            if row.get("unconfirmed"):
+                possible_counts[row["kind"]] += 1
+            else:
+                confirmed_ids.add(i)
+                counts[row["kind"]] += 1
             per_route.append(lua_record({k: v for k, v in row.items() if k not in shared}))
         buf.append("add(" + lua_record(shared) + ",{" + ", ".join(per_route) + "})\n")
     output.write_text("".join(buf), encoding="utf-8", newline="\n")
-    print(f"{len(routes)} unique items; {sum(counts.values())} routes: {dict(sorted(counts.items()))}")
+    print(f"{len(confirmed_ids)} confirmed-source item IDs; {sum(counts.values())} routes: {dict(sorted(counts.items()))}")
+    print(f"{len(routes) - len(confirmed_ids)} additional IDs from {sum(possible_counts.values())} opt-in routes; "
+          f"{len(routes)} total unique item IDs")
     print("Catalog SHA-256", hashlib.sha256(output.read_bytes()).hexdigest())
 
 

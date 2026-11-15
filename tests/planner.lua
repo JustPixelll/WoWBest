@@ -73,4 +73,23 @@ assert(scripts.OnUpdate)
 scripts.OnEvent(nil, "ITEM_DATA_LOAD_RESULT", 7, false)
 for _ = 1, 50 do step(.1) end
 assert(A.result[16].id == 5 and not scripts.OnUpdate)
+-- The ordinary list stays quick. The user can request every eligible variant
+-- and then re-open this slot without rerunning its full comparison.
+A.Catalog = {}
+for id = 101, 132 do A.Catalog[#A.Catalog + 1] = {id = id, kind = "Drop", source = "World drop"} end
+A.StartScan(A.ActiveProfile())
+for _ = 1, 25 do step(.1) end
+local more
+local function receive(rows, _, _, _, _, rest)
+    if rows then results, more = rows, rest end
+end
+A.RequestSlot(16, receive)
+step(.1)
+assert(#results == 15 and more and results[1].item.id == 132)
+A.RequestSlot(16, receive, true)
+step(.1)
+assert(#results == 32 and not more and results[32].item.id == 101)
+local allRows = results
+A.RequestSlot(16, receive)
+assert(results == allRows and not scripts.OnUpdate)
 print("Planner tests passed.")

@@ -67,11 +67,39 @@ local function learnedSpell(id)
     return check and check(id) == true
 end
 
+local foreignTradeViews = {"IsTradeSkillLinked", "IsTradeSkillGuild", "IsTradeSkillGuildMember", "IsNPCCrafting"}
+
+local function personalTradeData()
+    if not C_TradeSkillUI then return false end
+    for _, name in ipairs(foreignTradeViews) do
+        local query = C_TradeSkillUI[name]
+        if query then
+            local ok, active = pcall(query)
+            if not ok or not readable(active) or active then return false end
+        end
+    end
+    return true
+end
+
 local function knowsRecipe(id)
+    if learnedSpell(id) then return true end
     local query = C_TradeSkillUI and C_TradeSkillUI.GetRecipeInfo
-    local info = query and query(id)
-    if info and info.learned == true then return true end
-    return learnedSpell(id)
+    if not query or not personalTradeData() then return false end
+    local ok, info = pcall(query, id)
+    return ok and readable(info) and readable(info.learned) and info.learned == true
+end
+
+local function craftableCount(id)
+    local query = C_TradeSkillUI and C_TradeSkillUI.GetCraftableCount
+    if not query or not personalTradeData() then return 0 end
+    local ok, count = pcall(query, id)
+    if ok and readable(count) and type(count) == "number" and count >= 1 then return math.floor(count) end
+    return 0
+end
+
+function A.PersonalCraftCount(record, player)
+    if not record.craftSpellID then return 0 end
+    return checked(player, "craftableRecipes", record.craftSpellID, craftableCount)
 end
 
 local function hasRequiredItem(id)
@@ -82,12 +110,145 @@ local function questInLog(id)
     return C_QuestLog and C_QuestLog.IsOnQuest and C_QuestLog.IsOnQuest(id) == true
 end
 
+local function currentMerchant()
+    local guid = UnitGUID and UnitGUID("npc")
+    if not readable(guid) or type(guid) ~= "string" then return end
+    local npcID = tonumber(guid:match("^Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)%-"))
+    if not npcID then return end
+    local interaction = C_PlayerInteractionManager and C_PlayerInteractionManager.IsInteractingWithNpcOfType
+    local merchantType = Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Merchant
+    local open
+    if interaction and merchantType then
+        open = interaction(merchantType)
+    elseif MerchantFrame and MerchantFrame.IsShown then
+        open = MerchantFrame:IsShown()
+    end
+    if readable(open) and open then return npcID end
+end
+
+local function purchasable(info, index)
+    if CanAffordMerchantItem then
+        local affordable = CanAffordMerchantItem(index)
+        if not readable(affordable) or not affordable then return false end
+    end
+    return readable(info) and (not canaccesstable or canaccesstable(info)) and readable(info.numAvailable)
+        and (info.numAvailable == -1 or info.numAvailable > 0)
+        and readable(info.isPurchasable) and info.isPurchasable
+end
+
+local function openMerchantStock(id)
+    if currentMerchant() ~= id then return end
+    if not (GetMerchantNumItems and C_MerchantFrame and C_MerchantFrame.GetItemInfo) then return end
+    local count = GetMerchantNumItems()
+    if not readable(count) then return end
+    local stock = {}
+    for index = 1, count do
+        local info = C_MerchantFrame.GetItemInfo(index)
+        if purchasable(info, index) then
+            local itemID = GetMerchantItemID and GetMerchantItemID(index)
+            if not readable(itemID) then itemID = info.itemID end
+            if not readable(itemID) and GetMerchantItemLink then
+                local link = GetMerchantItemLink(index)
+                if readable(link) then itemID = tonumber(link:match("item:(%d+)")) end
+            end
+            if readable(itemID) then stock[itemID] = true end
+        end
+    end
+    return stock
+end
+
+local function currencyQuantity(id)
+    local info = C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo and C_CurrencyInfo.GetCurrencyInfo(id)
+    if readable(info) and readable(info.quantity) then return info.quantity end
+    return 0
+end
+
+-- These four outdoor suppliers sell PvP gear with incompletely recorded
+-- standing requirements. Consult the player's own open shop for each listing.
+local supplyOfficers = {
+    [14753] = {"Illiyana Moonblaze", "Alliance"}, [14754] = {"Kelm Hargunth", "Horde"},
+    [13217] = {"Thanthaldis Snowgleam", "Alliance"}, [13219] = {"Jekyll Flandring", "Horde"},
+}
+
+local function purchaseTerms(index, info, gold)
+    if not readable(info.price) or info.price < 0 or info.price > gold then return end
+    local copies = info.numAvailable == -1 and 2 or math.min(info.numAvailable, 2)
+    local terms = {}
+    if info.price > 0 then
+        copies = math.min(copies, math.floor(gold / info.price))
+        terms[1] = ("%dg %ds %dc"):format(math.floor(info.price / 10000), math.floor(info.price / 100) % 100, info.price % 100)
+    end
+    local count = GetMerchantItemCostInfo and GetMerchantItemCostInfo(index)
+    if not readable(count) or not readable(info.hasExtendedCost) then return end
+    if info.hasExtendedCost and count == 0 then return end
+    for costIndex = 1, count do
+        if not GetMerchantItemCostItem then return end
+        local _, amount, link, name = GetMerchantItemCostItem(index, costIndex)
+        if not readable(link) or not readable(amount) or amount < 1 then return end
+        local id = tonumber(link:match("currency:(%d+)"))
+        -- Item exchanges could consume another piece in the proposed outfit.
+        -- Unknown payment types or opaque currency balances cannot fund a copy.
+        if not id then return end
+        copies = math.min(copies, math.floor(currencyQuantity(id) / amount))
+        if copies == 0 then return end
+        terms[#terms + 1] = amount .. " " .. (readable(name) and name or ("currency #" .. id))
+    end
+    -- A zero price with no currency can be an incomplete merchant row.
+    if #terms > 0 then return copies, table.concat(terms, " + ") end
+end
+
+local function pvpListing(index, gold, npcID, supplier)
+    local info = C_MerchantFrame.GetItemInfo(index)
+    if not purchasable(info, index) or not readable(info.isUsable) or not info.isUsable
+        or not readable(info.stackCount) or info.stackCount ~= 1 then return end
+    local link = GetMerchantItemLink(index) -- the sales list, never buyback
+    local variant, itemID = A.ItemVariantKey(link)
+    if not variant then return end
+    local _, _, _, loc, _, itemClass = C_Item.GetItemInfoInstant(link)
+    if not readable(loc) or loc == "" or not readable(itemClass) or (itemClass ~= 2 and itemClass ~= 4) then return end
+    local copies, price = purchaseTerms(index, info, gold)
+    if not copies or copies < 1 or not A.MerchantListingUsable(index) then return end
+    return {
+        id = itemID, link = link, kind = "PvP", faction = supplier[2], maxCopies = copies,
+        routeKey = "pvp-vendor:" .. npcID .. ":" .. variant,
+        source = "PvP: " .. supplier[1] .. " (open shop) · " .. price,
+    }
+end
+
+function A.OpenPvPVendorRoutes()
+    local rows = {}
+    local npcID = currentMerchant()
+    local supplier = supplyOfficers[npcID]
+    if not supplier or not UnitFactionGroup or UnitFactionGroup("player") ~= supplier[2] then return rows end
+    if not (GetMerchantNumItems and GetMerchantItemLink and C_MerchantFrame and C_MerchantFrame.GetItemInfo
+        and C_Item and C_Item.GetItemInfoInstant and GetMoney) then return rows end
+    local count, gold = GetMerchantNumItems(), GetMoney()
+    if not readable(count) or not readable(gold) then return rows end
+    local seen = {}
+    for index = 1, count do
+        local row = pvpListing(index, gold, npcID, supplier)
+        if row and not seen[row.routeKey] then
+            seen[row.routeKey] = true
+            rows[#rows + 1] = row
+        end
+    end
+    return rows
+end
+
 local function routeConditions(record, player, planning, owned)
     if record.minLevel and (not player.level or player.level < record.minLevel) then return false end
     if record.maxLevel and (not player.level or player.level > record.maxLevel) then return false end
     if record.faction and record.faction ~= player.faction then return false end
     if not includesBit(record.classMask, player.classID and player.classID - 1) then return false end
     if not includesBit(record.raceMask, raceBits[player.raceID]) then return false end
+    if not owned and record.eventVendorID then
+        local stock = checked(player, "eventMerchantStock", record.eventVendorID, openMerchantStock)
+        if not stock or not stock[record.id] then return false end
+        if not record.requiredCurrencyID or not record.requiredCurrencyAmount then return false end
+        if checked(player, "currencyBalances", record.requiredCurrencyID, currencyQuantity) < record.requiredCurrencyAmount then
+            return false
+        end
+    end
     if not owned and record.questID then
         local status = checked(player, "questRewards", record.questID, questStatus)
         if not status or (status == "completed" and record.once ~= false) then return false end
@@ -100,6 +261,9 @@ local function routeConditions(record, player, planning, owned)
     if not owned and record.craftSpecSpellID and not checked(player, "knownProfessionSpells", record.craftSpecSpellID, learnedSpell) then return false end
     if not owned and record.requiresKnownCraft and not (planning and record.trainerRecipe) then
         if not record.craftSpellID or not checked(player, "knownRecipes", record.craftSpellID, knowsRecipe) then return false end
+    end
+    if not owned and record.requiresCraftable then
+        if planning or A.PersonalCraftCount(record, player) < 1 then return false end
     end
     if record.repFactionID or record.minStanding then
         if not (record.repFactionID and record.minStanding) then return false end
@@ -130,7 +294,11 @@ local primarySkills = {
 local function levelForSkill(id, rank)
     if rank > 300 then return end
     if rank <= 75 then return 1 end
-    if id == 356 then return end -- Only the novice fishing requirement is modeled.
+    if id == 356 then
+        -- Launch trainer Myizz Luckycatch offers Journeyman at character level 10.
+        if rank <= 150 then return 10 end
+        return
+    end
     if id == 182 or id == 186 or id == 393 then
         if rank <= 150 then return 1 elseif rank <= 225 then return 10 else return 25 end
     end

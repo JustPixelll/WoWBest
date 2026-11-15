@@ -148,4 +148,42 @@ A.ResetSourceFilters()
 fire("AUCTION_HOUSE_CLOSED")
 result = scan()
 assert(not result[7] and result[16].id == 1 and not result[17])
+local rumored = {id = 8, kind = "Drop", source = "Unconfirmed source", unconfirmed = true}
+table.insert(A.Catalog, 1, rumored)
+assert(not A.RouteSourceEnabled(rumored))
+A.SetUnconfirmedSourcesEnabled(true)
+assert(A.RouteSourceEnabled(rumored))
+result = scan()
+assert(result[3].source:match("^World creature") and #result[3].sources == 2)
+A.SetSourceEnabled("Drop", false)
+assert(not A.RouteSourceEnabled(rumored))
+A.SetUnconfirmedSourcesEnabled(false)
+assert(not A.UnconfirmedSourcesEnabled())
+-- One craftable ring may appear only once. Craftability changes on a new
+-- character snapshot and the packaged source record must remain reusable.
+facts[10] = {"FINGER", 8, 4}
+local personal = {id=10, kind="Crafted", source="Personal craft", requiresKnownCraft=true,
+    requiresCraftable=true, craftSpellID=110}
+A.Catalog = {personal}
+local count = 1
+C_TradeSkillUI = {GetRecipeInfo=function() return {learned=true} end,
+    GetCraftableCount=function() return count end}
+result = scan()
+assert(result[11].id == 10 and not result[12] and not personal.maxCopies)
+count = 2
+result = scan()
+assert(result[11].id == 10 and result[12].id == 10)
+-- The open PvP shop can supply a genuinely new item. Source settings also
+-- control these live rows.
+facts[11] = {"HEAD", 10, 4}
+local readPvPShop = 0
+function A.OpenPvPVendorRoutes()
+    readPvPShop = readPvPShop + 1
+    return {{id=11, kind="PvP", source="Open quartermaster", maxCopies=1}}
+end
+result = scan()
+assert(result[1].id == 11 and readPvPShop == 1)
+A.SetSourceEnabled("PvP", false)
+result = scan()
+assert(not result[1] and readPvPShop == 1)
 print("Acquisition source filter and loadout tests passed")

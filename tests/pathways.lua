@@ -57,6 +57,11 @@ assert(not option(fish, warrior()))
 active[8221], quests[8221] = nil, true
 assert(not option(fish, warrior()))
 
+-- A level-appropriate fishing-trunk route can be pursued after training Journeyman.
+local trunk = {id = 999, invType = 1, classID = 4, subclassID = 1, professionID = 356, professionRank = 130}
+assert(not option(trunk, warrior(9)))
+assert(option(trunk, warrior(10)).requirement:find("Fishing 130", 1, true))
+assert(not A.RouteAvailable(trunk, warrior(19)))
 -- Confirm real level/faction-gated head alternatives with no profession.
 assert(not A.RouteAvailable(record(279391), warrior(17, "Horde")))
 assert(A.RouteAvailable(record(279391), warrior(18, "Horde")))

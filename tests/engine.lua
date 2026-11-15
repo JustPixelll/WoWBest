@@ -144,3 +144,15 @@ for trial = 1, 300 do
     check("randomized catalog " .. trial, result, brute(items, dual))
 end
 print("Engine OK: profiles, equipment limits, per-slot score and 300 exhaustive comparisons.")
+
+-- Expanding the preview must preserve the order of tied random-suffix variants.
+local variants = {}
+for suffix = 24, 1, -1 do
+    variants[#variants+1] = {id=701, link=("item:701::::::%d"):format(suffix),
+        loc="INVTYPE_HEAD", classID=4, stats={ITEM_MOD_STRENGTH_SHORT=1}}
+end
+local context = A.PrepareSolver(variants, {}, {strength=1})
+local preview = A.RankPrepared(context, 1, 15)
+local all = A.RankPrepared(context, 1, math.huge)
+assert(#preview==15 and #all==24)
+for i,row in ipairs(preview) do assert(row.item.link==all[i].item.link) end

@@ -615,6 +615,12 @@ local function variant(item)
     return item.link or tostring(item.id)
 end
 
+local function rankedBefore(a,b)
+    if a.total~=b.total then return a.total>b.total end
+    if a.item.id~=b.item.id then return a.item.id<b.item.id end
+    return variant(a.item)<variant(b.item)
+end
+
 function A.RankPrepared(ctx, slot, limit, baseline)
     local pool=ctx.entries[slot]
     if not pool then return {} end
@@ -628,6 +634,7 @@ function A.RankPrepared(ctx, slot, limit, baseline)
         _,bestTotal=A.SolvePrepared(ctx)
     end
     local indexed,rows,complements={},{},{}
+    local all = limit >= #pool
     local single = not both[slot] and not primary[slot]
     local function equivalence(entry)
         local keys={tostring(entry.set or 0)}
@@ -680,18 +687,26 @@ function A.RankPrepared(ctx, slot, limit, baseline)
             if loadout and signature then complements[signature]={total=score,raw=e.score,loadout=loadout} end
         end
         if loadout and (not existing or score>existing.total+1e-8) then
-            if existing then
-                for i,row in ipairs(rows) do if row==existing then table.remove(rows,i); break end end
-            end
             local row={item=loadout[slot],loadout=loadout,total=score,delta=score-bestTotal}
-            local at=#rows+1
-            for i,other in ipairs(rows) do
-                if score>other.total+1e-8 or math.abs(score-other.total)<1e-8 and e.item.id<other.item.id then at=i; break end
-            end
-            table.insert(rows,at,row)
             indexed[key]=row
-            if #rows>limit then indexed[variant(table.remove(rows).item)]=nil end
+            if not all then
+                if existing then
+                    for i,old in ipairs(rows) do if old==existing then table.remove(rows,i); break end end
+                end
+                local at=#rows+1
+                for i,other in ipairs(rows) do
+                    if rankedBefore(row,other) then at=i; break end
+                end
+                table.insert(rows,at,row)
+                if #rows>limit then indexed[variant(table.remove(rows).item)]=nil end
+            end
         end
+    end
+    -- A full list needs no cutoff. Keep the best legal route per variant and
+    -- sort once, so browsing hundreds of options does not repeatedly shift them.
+    if all then
+        for _,row in pairs(indexed) do rows[#rows+1]=row end
+        table.sort(rows,rankedBefore)
     end
     for i,r in ipairs(rows) do r.rank=i end
     return rows

@@ -1,0 +1,4119 @@
+id,name,minimum_equip_level,slot,cache_source_labels
+254779,"A'sharahm, the Roiling Tempest",1,1H,Other
+281628,Blade of Bandarion,1,1H,Other
+24071,Bland Dagger,1,1H,Other
+10049,Diabolist's Blade,1,1H,Other
+276188,Eluvi'ana,1,1H,Other
+279393,Frostfall,1,1H,Other
+279392,Glimmer,1,1H,Other
+280304,Invisible Dagger,1,1H,Other
+22378,Ravenholdt Slicer,1,1H,Quest
+281723,Restored Basher,1,1H,Other
+281720,Restored Chopper,1,1H,Other
+281722,Restored Dagger,1,1H,Other
+281728,Restored Shortsword,1,1H,Other
+270001,Rusty Cutlass,1,1H,Drop
+213105,Shawarmageddon,1,1H,Other
+263432,Skulker's Shiv,1,1H,Other
+22377,The Thunderwood Poker,1,1H,Quest
+289294,"Thunderfury, Blessed Blade of the Windseeker",1,1H,Drop
+289297,Anathema,1,2H,Other
+19970,Arcanite Fishing Pole,1,2H,Quest
+289296,Benediction,1,2H,Other
+3738,Brewing Rod,1,2H,Other
+9602,Brushwood Blade,1,2H,Other
+22348,Doomulus Prime,1,2H,Quest
+288900,Earthshaker,1,2H,Drop
+20522,Feral Staff,1,2H,Other
+287648,Gilded Blademaster's Greatsword,1,2H,Other
+19106,Ice Barbed Spear,1,2H,Quest
+281721,Restored Cleaver,1,2H,Other
+281727,Restored Greatstaff,1,2H,Other
+281729,Restored Longsword,1,2H,Other
+281724,Restored Smasher,1,2H,Other
+281725,Restored Spear,1,2H,Other
+289295,"Sulfuras, Hand of Ragnaros",1,2H,Drop
+6953,Verigan's Fist,1,2H,Quest
+275824,Wardcleaver,1,2H,Other
+221518,Whisper,1,2H,Other
+269717,Wildgore Greatsword,1,2H,Quest
+263434,Winged Beast Staff,1,2H,Other
+267369,Wolfsbane,1,2H,Quest
+271758,Al'Aketh Zealot's Cloak,1,Back,Other
+21187,Earthweave Cloak,1,Back,"Quest, Vendor"
+5387,Enchanted Moonstalker Cloak,1,Back,Quest
+285353,Eternal Explorer's Backpack,1,Back,Other
+20218,Faded Hakkari Cloak,1,Back,Quest
+22230,Frightmaw Hide,1,Back,Other
+287626,Gilded Blademaster's Banner,1,Back,Other
+134111,Hidden Cloak,1,Back,Other
+281717,Restored Cloak,1,Back,Other
+287620,Rugged Totemic Backpack,1,Back,Other
+271724,Shen'dorei Magister's Cloak,1,Back,Other
+271735,Shen'dorei Peacekeeper's Cloak,1,Back,Other
+271748,Shen'dorei Skyseer's Cloak,1,Back,Other
+20219,Tattered Hakkari Cape,1,Back,Quest
+279179,Veteran Adventurer's Cloak,1,Back,Other
+280623,Veteran Adventurer's Rucksack,1,Back,Other
+7950,Armor of Thero-shan,1,Chest,Other
+22060,Beastmaster's Tunic,1,Chest,Quest
+226886,Beastmaster's Tunic,1,Chest,"Drop, Vendor"
+12106,Boulderskin Breastplate,1,Chest,Other
+21997,Breastplate of Heroism,1,Chest,Quest
+226862,Breastplate of Heroism,1,Chest,"Drop, Vendor"
+12104,Brindlethorn Tunic,1,Chest,Other
+227024,Chain of The Five Thunders,1,Chest,"Drop, Vendor"
+226872,Chestguard of Heroism,1,Chest,"Drop, Vendor"
+22009,Darkmantle Tunic,1,Chest,Quest
+226825,Darkmantle Tunic,1,Chest,"Drop, Vendor"
+22075,Deathmist Robe,1,Chest,Quest
+226906,Deathmist Robe,1,Chest,"Drop, Vendor"
+21183,Earthpower Vest,1,Chest,"Quest, Vendor"
+19129,Everglowing Robe,1,Chest,Other
+226804,Feralheart Armor,1,Chest,Vendor
+226783,Feralheart Embrace,1,Chest,"Drop, Vendor"
+226795,Feralheart Tunic,1,Chest,"Drop, Vendor"
+22113,Feralheart Vest,1,Chest,Quest
+226776,Feralheart Vest,1,Chest,"Drop, Vendor"
+4989,Mage Dragon Robe,1,Chest,Other
+281687,Restored Cloth Vest,1,Chest,Other
+281695,Restored Leather Tunic,1,Chest,Other
+281703,Restored Mail Chestpiece,1,Chest,Other
+281711,Restored Plate Chestguard,1,Chest,Other
+281324,Sailing Tunic,1,Chest,Other
+22069,Sorcerer's Robes,1,Chest,Quest
+226932,Sorcerer's Robes,1,Chest,Vendor
+22089,Soulforge Breastplate,1,Chest,Quest
+226973,Soulforge Breastplate,1,Chest,"Drop, Vendor"
+226992,Soulforge Chestguards,1,Chest,"Drop, Vendor"
+226984,Soulforge Embrace,1,Chest,"Drop, Vendor"
+5341,Spore-covered Tunic,1,Chest,Quest
+227016,Tunic of The Five Thunders,1,Chest,"Drop, Vendor"
+22102,Vest of The Five Thunders,1,Chest,Quest
+227004,Vest of The Five Thunders,1,Chest,"Drop, Vendor"
+226960,Virtuous Gown,1,Chest,"Drop, Vendor"
+22083,Virtuous Robe,1,Chest,Quest
+226945,Virtuous Robe,1,Chest,"Drop, Vendor"
+19828,Zandalar Augur's Hauberk,1,Chest,Quest
+20033,Zandalar Demoniac's Robe,1,Chest,Quest
+19825,Zandalar Freethinker's Breastplate,1,Chest,Quest
+19838,Zandalar Haruspex's Tunic,1,Chest,Quest
+20034,Zandalar Illusionist's Robe,1,Chest,Quest
+19834,Zandalar Madcap's Tunic,1,Chest,Quest
+19822,Zandalar Vindicator's Breastplate,1,Chest,Quest
+226857,Battleboots of Heroism,1,Feet,"Drop, Vendor"
+22061,Beastmaster's Boots,1,Feet,Quest
+226881,Beastmaster's Treads,1,Feet,"Drop, Vendor"
+21995,Boots of Heroism,1,Feet,Quest
+22096,Boots of The Five Thunders,1,Feet,Quest
+7952,Boots of Thero-shan,1,Feet,Other
+20710,Crystal Encrusted Greaves,1,Feet,Quest
+20711,Crystal Lined Greaves,1,Feet,Quest
+22003,Darkmantle Boots,1,Feet,Quest
+226831,Darkmantle Footpads,1,Feet,"Drop, Vendor"
+5821,Darkstalker Boots,1,Feet,Other
+22076,Deathmist Sandals,1,Feet,Quest
+226908,Deathmist Sandals,1,Feet,"Drop, Vendor"
+20715,Dunestalker's Boots,1,Feet,Quest
+22107,Feralheart Boots,1,Feet,Quest
+226774,Feralheart Galoshes,1,Feet,"Drop, Vendor"
+226781,Feralheart Sandals,1,Feet,"Drop, Vendor"
+226803,Feralheart Treads,1,Feet,Vendor
+226794,Feralheart Walkers,1,Feet,"Drop, Vendor"
+227015,Greaves of The Five Thunders,1,Feet,"Drop, Vendor"
+260185,Hippogryph Hide Boots,1,Feet,Other
+270002,Midshipman's Worn Boots,1,Feet,Drop
+6478,Rat Stompers,1,Feet,Other
+281317,Redstone Boots,1,Feet,Other
+281692,Restored Cloth Shoes,1,Feet,Other
+281700,Restored Leather Boots,1,Feet,Other
+281708,Restored Mail Boots,1,Feet,Other
+281716,Restored Plate Boots,1,Feet,Other
+226871,Sabatons of Heroism,1,Feet,"Drop, Vendor"
+20714,Sandstorm Boots,1,Feet,Quest
+227007,Slippers of The Five Thunders,1,Feet,"Drop, Vendor"
+22064,Sorcerer's Boots,1,Feet,Quest
+226931,Sorcerer's Sandals,1,Feet,Vendor
+22087,Soulforge Boots,1,Feet,Quest
+226991,Soulforge Sabatons,1,Feet,"Drop, Vendor"
+226983,Soulforge Treads,1,Feet,"Drop, Vendor"
+226974,Soulforge Warboots,1,Feet,"Drop, Vendor"
+276274,Surfer Shoes,1,Feet,Vendor
+227023,Treads of The Five Thunders,1,Feet,"Drop, Vendor"
+22084,Virtuous Sandals,1,Feet,Quest
+226952,Virtuous Sandals,1,Feet,"Drop, Vendor"
+226959,Virtuous Slippers,1,Feet,"Drop, Vendor"
+22015,Beastmaster's Gloves,1,Hands,Quest
+22006,Darkmantle Gloves,1,Hands,Quest
+22077,Deathmist Wraps,1,Hands,Quest
+20717,Desert Bloom Gloves,1,Hands,Quest
+20713,Desertstalkers's Gauntlets,1,Hands,Quest
+226793,Feralheart Fists,1,Hands,"Drop, Vendor"
+226784,Feralheart Gauntlets,1,Hands,"Drop, Vendor"
+22110,Feralheart Gloves,1,Hands,Quest
+226802,Feralheart Grips,1,Hands,"Drop, Vendor"
+226777,Feralheart Hands,1,Hands,"Drop, Vendor"
+227022,Fists of The Five Thunders,1,Hands,"Drop, Vendor"
+21998,Gauntlets of Heroism,1,Hands,Quest
+226861,Gauntlets of Heroism,1,Hands,"Drop, Vendor"
+22099,Gauntlets of The Five Thunders,1,Hands,Quest
+227006,Gauntlets of The Five Thunders,1,Hands,"Drop, Vendor"
+23078,Gauntlets of Undead Slaying,1,Hands,Quest
+21178,Gloves of Earthen Power,1,Hands,"Quest, Vendor"
+23084,Gloves of Undead Cleansing,1,Hands,Quest
+227014,Grasp of The Five Thunders,1,Hands,"Drop, Vendor"
+226870,Handguards of Heroism,1,Hands,"Drop, Vendor"
+23082,Handguards of Undead Slaying,1,Hands,Quest
+7951,Hands of Thero-shan,1,Hands,Other
+23081,Handwraps of Undead Slaying,1,Hands,Quest
+5822,Hedgeseed Gauntlets,1,Hands,Other
+19119,Owlbeast Hide Gloves,1,Hands,Quest
+281689,Restored Cloth Handwraps,1,Hands,Other
+281697,Restored Leather Gloves,1,Hands,Other
+281705,Restored Mail Clasps,1,Hands,Other
+281713,Restored Plate Handguards,1,Hands,Other
+20716,Sandworm Skin Gloves,1,Hands,Quest
+226930,Sorcerer's Gauntlets,1,Hands,Vendor
+22066,Sorcerer's Gloves,1,Hands,Quest
+226982,Soulforge Fists,1,Hands,"Drop, Vendor"
+22090,Soulforge Gauntlets,1,Hands,Quest
+226975,Soulforge Gauntlets,1,Hands,"Drop, Vendor"
+226990,Soulforge Handguards,1,Hands,"Drop, Vendor"
+22081,Virtuous Gloves,1,Hands,Quest
+226958,Virtuous Hands,1,Hands,"Drop, Vendor"
+226950,Virtuous Mitts,1,Hands,"Drop, Vendor"
+20712,Wastewalker's Gauntlets,1,Hands,Quest
+22013,Beastmaster's Cap,1,Head,Quest
+226887,Beastmaster's Cap,1,Head,"Drop, Vendor"
+22097,Coif of The Five Thunders,1,Head,Quest
+227002,Coif of The Five Thunders,1,Head,"Drop, Vendor"
+226860,Crown of Heroism,1,Head,"Drop, Vendor"
+227013,Crown of The Five Thunders,1,Head,"Drop, Vendor"
+22005,Darkmantle Cap,1,Head,Quest
+226829,Darkmantle Cap,1,Head,"Drop, Vendor"
+22074,Deathmist Mask,1,Head,Quest
+226909,Deathmist Mask,1,Head,"Drop, Vendor"
+227021,Face of The Five Thunders,1,Head,"Drop, Vendor"
+226869,Faceguard of Heroism,1,Head,"Drop, Vendor"
+226792,Feralheart Cap,1,Head,"Drop, Vendor"
+22109,Feralheart Cowl,1,Head,Quest
+226773,Feralheart Cowl,1,Head,"Drop, Vendor"
+226801,Feralheart Faceguard,1,Head,Vendor
+226786,Feralheart Headdress,1,Head,"Drop, Vendor"
+21525,Green Winter Hat,1,Head,Drop
+21999,Helm of Heroism,1,Head,Quest
+281675,Lakeshire Firefighter's Headband,1,Head,Other
+277227,Magistrate's Chain Hood,1,Head,Other
+7953,Mask of Thero-shan,1,Head,Other
+22273,Moonshadow Hood,1,Head,Other
+19986,Pirate's Eye Patch,1,Head,Other
+21524,Red Winter Hat,1,Head,Drop
+281685,Restored Cloth Helm,1,Head,Other
+281693,Restored Leather Hood,1,Head,Other
+281701,Restored Mail Coif,1,Head,Other
+281709,Restored Plate Helm,1,Head,Other
+22689,Sanctified Leather Helm,1,Head,Quest
+277219,Solomon's Comfortable Hat,1,Head,Other
+22065,Sorcerer's Crown,1,Head,Quest
+226935,Sorcerer's Crown,1,Head,Vendor
+226981,Soulforge Crown,1,Head,"Drop, Vendor"
+226989,Soulforge Faceguard,1,Head,"Drop, Vendor"
+226976,Soulforge Greathelm,1,Head,"Drop, Vendor"
+22091,Soulforge Helm,1,Head,Quest
+9653,Speedy Racer Goggles,1,Head,Other
+208424,Sun Shades,1,Head,Vendor
+226957,Virtuous Cowl,1,Head,"Drop, Vendor"
+22080,Virtuous Crown,1,Head,Quest
+226947,Virtuous Crown,1,Head,"Drop, Vendor"
+259846,Wide-Brimmed Fishing Hat,1,Head,Other
+276897,A Lesson in Destruction,1,Held item,Other
+22206,Bouquet of Red Roses,1,Held item,Drop
+21185,Earthcalm Orb,1,Held item,"Quest, Vendor"
+276273,Empty Fish Bucket,1,Held item,Vendor
+13371,Father Flame,1,Held item,Drop
+16768,Furbolg Medicine Pouch,1,Held item,Vendor
+15857,Magebane Scion,1,Held item,Quest
+281730,Restored Bauble,1,Held item,Other
+19989,Tome of Devouring Shadows,1,Held item,Other
+18602,Tome of Sacrifice,1,Held item,Quest
+22017,Beastmaster's Pants,1,Legs,Quest
+226882,Beastmaster's Pants,1,Legs,"Drop, Vendor"
+276340,Blademaster Hakama,1,Legs,Other
+20703,Cenarion Reservist's Leggings,1,Legs,Quest
+20704,Cenarion Reservist's Leggings,1,Legs,Quest
+20701,Cenarion Reservist's Legguards,1,Legs,Quest
+20702,Cenarion Reservist's Legguards,1,Legs,Quest
+20699,Cenarion Reservist's Legplates,1,Legs,Quest
+20700,Cenarion Reservist's Legplates,1,Legs,Quest
+20705,Cenarion Reservist's Pants,1,Legs,Quest
+20706,Cenarion Reservist's Pants,1,Legs,Other
+20707,Cenarion Reservist's Pants,1,Legs,Quest
+22007,Darkmantle Pants,1,Legs,Quest
+226827,Darkmantle Pants,1,Legs,"Drop, Vendor"
+22072,Deathmist Leggings,1,Legs,Quest
+226910,Deathmist Leggings,1,Legs,"Drop, Vendor"
+22111,Feralheart Kilt,1,Legs,Quest
+226779,Feralheart Kilt,1,Legs,"Drop, Vendor"
+226799,Feralheart Legguards,1,Legs,Vendor
+226787,Feralheart Pants,1,Legs,"Drop, Vendor"
+226791,Feralheart Trousers,1,Legs,"Drop, Vendor"
+22700,Glacial Leggings,1,Legs,Quest
+281316,Glimmerchain Trousers,1,Legs,Other
+22699,Icebane Leggings,1,Legs,Quest
+22702,Icy Scale Leggings,1,Legs,Quest
+22100,Kilt of The Five Thunders,1,Legs,Quest
+227005,Kilt of The Five Thunders,1,Legs,"Drop, Vendor"
+227012,Leggings of The Five Thunders,1,Legs,"Drop, Vendor"
+22690,Leggings of the Plague Hunter,1,Legs,Quest
+7949,Leggings of Thero-shan,1,Legs,Other
+226868,Legguards of Heroism,1,Legs,"Drop, Vendor"
+22000,Legplates of Heroism,1,Legs,Quest
+226859,Legplates of Heroism,1,Legs,"Drop, Vendor"
+227020,Legplates of The Five Thunders,1,Legs,"Drop, Vendor"
+22701,Polar Leggings,1,Legs,Quest
+12105,Pridemail Leggings,1,Legs,Other
+281691,Restored Cloth Pants,1,Legs,Other
+281699,Restored Leather Chaps,1,Legs,Other
+281707,Restored Mail Legguards,1,Legs,Other
+281715,Restored Plate Legs,1,Legs,Other
+20524,Shadowhide Leggings,1,Legs,Other
+22067,Sorcerer's Leggings,1,Legs,Quest
+226933,Sorcerer's Leggings,1,Legs,Vendor
+226980,Soulforge Leggings,1,Legs,"Drop, Vendor"
+226988,Soulforge Legguards,1,Legs,"Drop, Vendor"
+22092,Soulforge Legplates,1,Legs,Quest
+226972,Soulforge Legplates,1,Legs,"Drop, Vendor"
+226956,Virtuous Leggings,1,Legs,"Drop, Vendor"
+22085,Virtuous Skirt,1,Legs,Quest
+226946,Virtuous Skirt,1,Legs,"Drop, Vendor"
+12107,Whispersilk Leggings,1,Legs,Other
+20648,Cold Forged Hammer,1,Main-hand,Quest
+20003,Devilsaur Claws,1,Main-hand,Other
+289292,Hammer of Bestial Fury,1,Main-hand,Other
+269716,Keen Skinning Knife,1,Main-hand,Quest
+4116,Olmann Sewar,1,Main-hand,Other
+22379,Shivsprocket's Shiv,1,Main-hand,Quest
+22380,Simone's Cultivating Hammer,1,Main-hand,Quest
+22688,Verimonde's Last Resort,1,Main-hand,Quest
+20143,90 Epic Warrior Neck,1,Neck,Other
+22657,Amulet of the Dawn,1,Neck,Quest
+15856,Archlight Talisman,1,Neck,Quest
+277202,Artifact Seeker's Pendant,1,Neck,Other
+22150,Beads of Ogre Might,1,Neck,Quest
+22149,Beads of Ogre Mojo,1,Neck,Quest
+288926,Choker of the Fire Lord,1,Neck,Drop
+19610,Enchanted South Seas Kelp,1,Neck,Quest
+19611,Enchanted South Seas Kelp,1,Neck,Quest
+19612,Enchanted South Seas Kelp,1,Neck,Quest
+277204,Erudite's Amulet,1,Neck,Quest
+281258,Essene's Hope,1,Neck,Quest
+19579,Heathen's Brand,1,Neck,Quest
+19585,Heathen's Brand,1,Neck,Quest
+19586,Heathen's Brand,1,Neck,Quest
+19588,Hero's Brand,1,Neck,Quest
+19601,Jewel of Kajaro,1,Neck,Quest
+19602,Kezan's Taint,1,Neck,Quest
+19603,Kezan's Taint,1,Neck,Quest
+19604,Kezan's Taint,1,Neck,Quest
+19605,Kezan's Unstoppable Taint,1,Neck,Quest
+19618,Maelstrom's Tendril,1,Neck,Quest
+19619,Maelstrom's Tendril,1,Neck,Quest
+19620,Maelstrom's Tendril,1,Neck,Quest
+19621,Maelstrom's Wrath,1,Neck,Quest
+22659,Medallion of the Dawn,1,Neck,Quest
+281636,Museum Keeper's Chain,1,Neck,Other
+20645,Nature's Whisper,1,Neck,Other
+13811,Necklace of the Dawn,1,Neck,Other
+18404,Onyxia Tooth Pendant,1,Neck,Quest
+19598,Pebble of Kajaro,1,Neck,Quest
+19599,Pebble of Kajaro,1,Neck,Quest
+19600,Pebble of Kajaro,1,Neck,Quest
+19613,Pristine Enchanted South Seas Kelp,1,Neck,Quest
+19577,Rage of Mugamba,1,Neck,Quest
+281719,Restored Necklace,1,Neck,Other
+277203,Scholarly Pendant,1,Neck,Quest
+272014,Silver Necklace,1,Neck,Other
+19574,Strength of Mugamba,1,Neck,Quest
+19575,Strength of Mugamba,1,Neck,Quest
+19576,Strength of Mugamba,1,Neck,Quest
+271806,Survivor's Amulet,1,Neck,Other
+19594,The All-Seeing Eye of Zuldazar,1,Neck,Quest
+19591,The Eye of Zuldazar,1,Neck,Quest
+19592,The Eye of Zuldazar,1,Neck,Quest
+19593,The Eye of Zuldazar,1,Neck,Quest
+19609,Unmarred Vision of Voodress,1,Neck,Quest
+19606,Vision of Voodress,1,Neck,Quest
+19607,Vision of Voodress,1,Neck,Quest
+19608,Vision of Voodress,1,Neck,Quest
+271807,Weathered Necklace,1,Neck,Other
+19617,Zandalarian Shadow Mastery Talisman,1,Neck,Quest
+19614,Zandalarian Shadow Talisman,1,Neck,Quest
+19615,Zandalarian Shadow Talisman,1,Neck,Quest
+19616,Zandalarian Shadow Talisman,1,Neck,Quest
+20005,Devilsaur Claws,1,Off-hand weapon,Other
+259891,Berdun's Trusty Rifle,1,Ranged,Other
+19107,Bloodseeker,1,Ranged,Quest
+276694,Captain Sander's Lucky Shooter,1,Ranged,Drop
+22347,Fahrad's Reloading Repeater,1,Ranged,Quest
+281264,Ghastly Bow,1,Ranged,Other
+16996,Gorewood Bow,1,Ranged,Quest
+281660,Iron Star,1,Ranged,Other
+4110,Master Hunter's Bow,1,Ranged,Other
+4111,Master Hunter's Rifle,1,Ranged,Other
+202256,Privateer's Ornate Pistol,1,Ranged,Other
+281060,Replica Ironforge Air Rifle,1,Ranged,Other
+281732,Restored Bow,1,Ranged,Other
+281733,Restored Wand,1,Ranged,Other
+289303,"Rhok'delar, Longbow of the Ancient Keepers",1,Ranged,Drop
+16997,Stormrager,1,Ranged,Quest
+22656,The Purifier,1,Ranged,Quest
+269742,Walton's Second-Favorite Gun,1,Ranged,Quest
+19108,Wand of Biting Cold,1,Ranged,Quest
+281263,Wicked Lich's Finger,1,Ranged,Other
+206381,Dyadic Icon,1,Relic,"Drop, Vendor"
+208689,Ferocious Idol,1,Relic,"Drop, Vendor"
+263436,Firestorm Totem,1,Relic,Other
+206386,Galvanic Icon,1,Relic,Vendor
+227444,Idol of the Huntress,1,Relic,"Drop, Vendor"
+220915,Idol of the Raging Shambler,1,Relic,"Drop, Vendor"
+210534,Idol of the Wild,1,Relic,"Drop, Vendor"
+206954,Idol of Ursine Rage,1,Relic,"Drop, Vendor"
+206387,Kajaric Icon,1,Relic,"Drop, Vendor"
+211472,Libram of Banishment,1,Relic,"Drop, Vendor"
+208849,Libram of Blessings,1,Relic,"Drop, Vendor"
+205420,Libram of Judgement,1,Relic,"Drop, Vendor"
+208851,Libram of Justice,1,Relic,"Drop, Vendor"
+208414,Lunar Idol,1,Relic,"Drop, Vendor"
+263435,Mark of Urs'endris,1,Relic,Other
+206388,Sulfurous Icon,1,Relic,"Drop, Vendor"
+206382,Tempest Icon,1,Relic,"Drop, Vendor"
+225838,Voltaic Icon,1,Relic,"Drop, Vendor"
+20144,90 Epic Warrior Ring,1,Ring,Other
+20250,90 Green Warrior Ring,1,Ring,Other
+12947,Alex's Ring of Audacity,1,Ring,Other
+22725,Band of Cenarius,1,Ring,Quest
+21182,Band of Earthen Might,1,Ring,"Quest, Vendor"
+21179,Band of Earthen Wrath,1,Ring,"Quest, Vendor"
+22681,Band of Piety,1,Ring,Quest
+22680,Band of Resolution,1,Ring,Quest
+288929,Band of Sulfuras,1,Ring,Drop
+17000,Band of the Wraith,1,Ring,Other
+9362,Brilliant Gold Ring,1,Ring,Quest
+4988,Burning Obsidian Band,1,Ring,Other
+288930,Cauterizing Band,1,Ring,Drop
+271809,Desolate Band,1,Ring,Other
+18403,Dragonslayer's Signet,1,Ring,Quest
+19065,Emerald Circle,1,Ring,Other
+281634,Field Researcher's Loop,1,Ring,Quest
+272001,Gold Ring,1,Ring,Other
+288928,Heavy Dark Iron Ring,1,Ring,Drop
+285326,Leafre's Ring of Armor Piercing,1,Ring,Other
+274978,Leafre's Ring of Great Resistance,1,Ring,Other
+276765,Leafre's Ring of Precise Spell Power,1,Ring,Other
+282283,Malignant Root,1,Ring,Other
+21189,Might of Cenarius,1,Ring,"Quest, Vendor"
+18399,Ocean's Breeze,1,Ring,"Drop, Quest"
+281635,Philanthropist's Ring,1,Ring,Quest
+24358,QATest +1000 Spell Dmg Ring,1,Ring,Other
+288927,Quick Strike Ring,1,Ring,Drop
+22707,Ramaladni's Icy Grasp,1,Ring,Quest
+281718,Restored Ring,1,Ring,Other
+15855,Ring of Protection,1,Ring,Quest
+288931,Ring of Spell Power,1,Ring,Drop
+13812,Ring of the Dawn,1,Ring,Quest
+271808,Scavenger's Ring,1,Ring,Other
+6724,Stone of Backus,1,Ring,Other
+6728,Stone of Brownell,1,Ring,Other
+6708,Stone of Goodman,1,Ring,Other
+6711,Stone of Kurtz,1,Ring,Other
+6707,Stone of Lapidis,1,Ring,Other
+6698,Stone of Pierce,1,Ring,Other
+18398,Tidal Loop,1,Ring,Quest
+21190,Wrath of Cenarius,1,Ring,"Quest, Vendor"
+281637,Antique Bulwark,1,Shield,Other
+263431,Defender's Aegis,1,Shield,Other
+7748,Forcestone Buckler,1,Shield,Other
+20502,Ironbark Shield,1,Shield,Other
+277257,Raven Hill Crest,1,Shield,Other
+281731,Restored Buckler,1,Shield,Other
+16998,Sacred Protector,1,Shield,Quest
+270270,Scale of the Tidebender,1,Shield,Other
+22016,Beastmaster's Mantle,1,Shoulder,Quest
+226884,Beastmaster's Mantle,1,Shoulder,"Drop, Vendor"
+22008,Darkmantle Spaulders,1,Shoulder,Quest
+226826,Darkmantle Spaulders,1,Shoulder,"Drop, Vendor"
+22073,Deathmist Mantle,1,Shoulder,Quest
+226912,Deathmist Mantle,1,Shoulder,"Drop, Vendor"
+14389,Durability Shoulderpads,1,Shoulder,Other
+226790,Feralheart Epaulets,1,Shoulder,"Drop, Vendor"
+226785,Feralheart Mantle,1,Shoulder,"Drop, Vendor"
+226798,Feralheart Pauldrons,1,Shoulder,Vendor
+22112,Feralheart Spaulders,1,Shoulder,Quest
+226778,Feralheart Spaulders,1,Shoulder,"Drop, Vendor"
+22968,Glacial Mantle,1,Shoulder,Drop
+22967,Icy Scale Spaulders,1,Shoulder,Drop
+227011,Mantle of The Five Thunders,1,Shoulder,"Drop, Vendor"
+226867,Pauldrons of Heroism,1,Shoulder,"Drop, Vendor"
+22101,Pauldrons of The Five Thunders,1,Shoulder,Quest
+227003,Pauldrons of The Five Thunders,1,Shoulder,"Drop, Vendor"
+281686,Restored Cloth Shoulders,1,Shoulder,Other
+281694,Restored Leather Spaulders,1,Shoulder,Other
+281702,Restored Mail Shoulderguards,1,Shoulder,Other
+281710,Restored Plate Shoulders,1,Shoulder,Other
+17769,Sagebrush Spaulders,1,Shoulder,Other
+22068,Sorcerer's Mantle,1,Shoulder,Quest
+226936,Sorcerer's Mantle,1,Shoulder,Vendor
+226979,Soulforge Epaulets,1,Shoulder,"Drop, Vendor"
+226987,Soulforge Pauldrons,1,Shoulder,"Drop, Vendor"
+22093,Soulforge Spaulders,1,Shoulder,Quest
+226969,Soulforge Spaulders,1,Shoulder,"Drop, Vendor"
+22001,Spaulders of Heroism,1,Shoulder,Quest
+226858,Spaulders of Heroism,1,Shoulder,"Drop, Vendor"
+227019,Spaulders of The Five Thunders,1,Shoulder,"Drop, Vendor"
+226955,Virtuous Epaulets,1,Shoulder,"Drop, Vendor"
+22082,Virtuous Mantle,1,Shoulder,Quest
+226951,Virtuous Mantle,1,Shoulder,"Drop, Vendor"
+19841,Zandalar Confessor's Mantle,1,Shoulder,Quest
+19849,Zandalar Demoniac's Mantle,1,Shoulder,Quest
+19845,Zandalar Illusionist's Mantle,1,Shoulder,Quest
+19835,Zandalar Madcap's Mantle,1,Shoulder,Quest
+19831,Zandalar Predator's Mantle,1,Shoulder,Quest
+13347,Crystal of Zin-Malor,1,Trinket,Quest
+21326,Defender of the Timbermaw,1,Trinket,"Quest, Vendor"
+20525,Earthen Sigil,1,Trinket,Other
+21180,Earthstrike,1,Trinket,"Quest, Vendor"
+17690,Frostwolf Insignia Rank 1,1,Trinket,Quest
+17905,Frostwolf Insignia Rank 2,1,Trinket,Quest
+17906,Frostwolf Insignia Rank 3,1,Trinket,Quest
+17907,Frostwolf Insignia Rank 4,1,Trinket,Quest
+17908,Frostwolf Insignia Rank 5,1,Trinket,Quest
+17909,Frostwolf Insignia Rank 6,1,Trinket,Quest
+10418,Glimmering Mithril Insignia,1,Trinket,"Quest, Vendor"
+21181,Grace of Earth,1,Trinket,"Quest, Vendor"
+274445,Greater Insignia of the Alliance,1,Trinket,Other
+274444,Greater Insignia of the Horde,1,Trinket,Other
+19979,Hook of the Master Angler,1,Trinket,"Quest, Vendor"
+20084,Hunting Net,1,Trinket,Other
+18854,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+18856,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+18857,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+18858,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+18859,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+18862,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+18863,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+18864,Insignia of the Alliance,1,Trinket,"PvP, Vendor"
+209611,Insignia of the Alliance,1,Trinket,Vendor
+209612,Insignia of the Alliance,1,Trinket,Vendor
+209613,Insignia of the Alliance,1,Trinket,Vendor
+209614,Insignia of the Alliance,1,Trinket,Vendor
+209615,Insignia of the Alliance,1,Trinket,Vendor
+209616,Insignia of the Alliance,1,Trinket,Vendor
+209617,Insignia of the Alliance,1,Trinket,Vendor
+209618,Insignia of the Alliance,1,Trinket,Vendor
+18834,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+18845,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+18846,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+18849,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+18850,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+18851,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+18852,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+18853,Insignia of the Horde,1,Trinket,"PvP, Vendor"
+209619,Insignia of the Horde,1,Trinket,Vendor
+209620,Insignia of the Horde,1,Trinket,Vendor
+209621,Insignia of the Horde,1,Trinket,Vendor
+209622,Insignia of the Horde,1,Trinket,Vendor
+209623,Insignia of the Horde,1,Trinket,Vendor
+209624,Insignia of the Horde,1,Trinket,Vendor
+209625,Insignia of the Horde,1,Trinket,Vendor
+209626,Insignia of the Horde,1,Trinket,Vendor
+23206,Mark of the Champion,1,Trinket,Quest
+23207,Mark of the Champion,1,Trinket,Quest
+8663,Mithril Insignia,1,Trinket,Quest
+18406,Onyxia Blood Talisman,1,Trinket,Quest
+12805,Orb of Fire,1,Trinket,Other
+8703,Signet of Expertise,1,Trinket,Quest
+17691,Stormpike Insignia Rank 1,1,Trinket,Quest
+17900,Stormpike Insignia Rank 2,1,Trinket,Quest
+17901,Stormpike Insignia Rank 3,1,Trinket,Quest
+17902,Stormpike Insignia Rank 4,1,Trinket,Quest
+17903,Stormpike Insignia Rank 5,1,Trinket,Quest
+17904,Stormpike Insignia Rank 6,1,Trinket,Quest
+22678,Talisman of Ascendance,1,Trinket,Quest
+231877,Tyler's Balanced Bobble,1,Trinket,Other
+19948,Zandalarian Hero Badge,1,Trinket,Quest
+19950,Zandalarian Hero Charm,1,Trinket,Quest
+19949,Zandalarian Hero Medallion,1,Trinket,Quest
+22010,Beastmaster's Belt,1,Waist,Quest
+21994,Belt of Heroism,1,Waist,Quest
+226864,Belt of Heroism,1,Waist,"Drop, Vendor"
+20216,Belt of Preserved Heads,1,Waist,Quest
+20215,Belt of Shriveled Heads,1,Waist,Quest
+20213,Belt of Shrunken Heads,1,Waist,Quest
+20217,Belt of Tiny Heads,1,Waist,Quest
+260184,Cliff Walker's Cinch,1,Waist,Other
+22098,Cord of The Five Thunders,1,Waist,Quest
+227008,Cord of The Five Thunders,1,Waist,"Drop, Vendor"
+22002,Darkmantle Belt,1,Waist,Quest
+22070,Deathmist Belt,1,Waist,Quest
+22106,Feralheart Belt,1,Waist,Quest
+226780,Feralheart Cord,1,Waist,"Drop, Vendor"
+226789,Feralheart Girdle,1,Waist,"Drop, Vendor"
+226772,Feralheart Sash,1,Waist,"Drop, Vendor"
+226797,Feralheart Waistguard,1,Waist,"Drop, Vendor"
+227018,Girdle of The Five Thunders,1,Waist,"Drop, Vendor"
+7948,Girdle of Thero-shan,1,Waist,Other
+281690,Restored Cloth Belt,1,Waist,Other
+281698,Restored Leather Strap,1,Waist,Other
+281706,Restored Mail Belt,1,Waist,Other
+281714,Restored Plate Belt,1,Waist,Other
+227010,Sash of The Five Thunders,1,Waist,"Drop, Vendor"
+10462,Shadowy Belt,1,Waist,Quest
+22062,Sorcerer's Belt,1,Waist,Quest
+226934,Sorcerer's Belt,1,Waist,Vendor
+22086,Soulforge Belt,1,Waist,Quest
+226971,Soulforge Belt,1,Waist,"Drop, Vendor"
+226978,Soulforge Cord,1,Waist,"Drop, Vendor"
+226986,Soulforge Waistguard,1,Waist,"Drop, Vendor"
+281323,Spirit-buckle Belt,1,Waist,Other
+22078,Virtuous Belt,1,Waist,Quest
+226948,Virtuous Belt,1,Waist,"Drop, Vendor"
+226954,Virtuous Cord,1,Waist,"Drop, Vendor"
+226866,Waistguard of Heroism,1,Waist,"Drop, Vendor"
+19829,Zandalar Augur's Belt,1,Waist,Quest
+19842,Zandalar Confessor's Bindings,1,Waist,Quest
+19826,Zandalar Freethinker's Belt,1,Waist,Quest
+19839,Zandalar Haruspex's Belt,1,Waist,Quest
+19832,Zandalar Predator's Belt,1,Waist,Quest
+19823,Zandalar Vindicator's Belt,1,Waist,Quest
+22011,Beastmaster's Bindings,1,Wrist,Quest
+22095,Bindings of The Five Thunders,1,Wrist,Quest
+21996,Bracers of Heroism,1,Wrist,Quest
+22667,Bracers of Hope,1,Wrist,Quest
+22668,Bracers of Subterfuge,1,Wrist,Quest
+22004,Darkmantle Bracers,1,Wrist,Quest
+22071,Deathmist Bracers,1,Wrist,Quest
+21184,Deeprock Bracers,1,Wrist,"Quest, Vendor"
+22108,Feralheart Bracers,1,Wrist,Quest
+281688,Restored Cloth Bracers,1,Wrist,Other
+281696,Restored Leather Wristcuffs,1,Wrist,Other
+281704,Restored Mail Wristguards,1,Wrist,Other
+281712,Restored Plate Wristguards,1,Wrist,Other
+21186,Rockfury Bracers,1,Wrist,"Quest, Vendor"
+260183,Sacred Bangle,1,Wrist,Other
+10461,Shadowy Bracers,1,Wrist,Quest
+22063,Sorcerer's Bindings,1,Wrist,Quest
+22088,Soulforge Bracers,1,Wrist,Quest
+22079,Virtuous Bracers,1,Wrist,Quest
+19830,Zandalar Augur's Bracers,1,Wrist,Quest
+19843,Zandalar Confessor's Wraps,1,Wrist,Quest
+19848,Zandalar Demoniac's Wraps,1,Wrist,Quest
+19827,Zandalar Freethinker's Armguards,1,Wrist,Quest
+19840,Zandalar Haruspex's Bracers,1,Wrist,Quest
+19846,Zandalar Illusionist's Wraps,1,Wrist,Quest
+19836,Zandalar Madcap's Bracers,1,Wrist,Quest
+19833,Zandalar Predator's Bracers,1,Wrist,Quest
+19824,Zandalar Vindicator's Armguards,1,Wrist,Quest
+285236,Worn Ranger's Dagger,3,1H,Drop
+285238,Chipped Spellstaff,3,2H,Drop
+263006,Scout Ranger's Tunic,3,Chest,Drop
+263005,Thendal Watcher's Vest,3,Chest,Drop
+285239,Explorer's Shortsword,3,Main-hand,Drop
+206384,Astral Icon,3,Relic,Other
+206389,Brimstone Icon,3,Relic,Other
+206376,Bulwark Icon,3,Relic,Other
+206385,Clastic Icon,3,Relic,Other
+206390,Ichthyan Icon,3,Relic,Other
+206383,Lithic Icon,3,Relic,Other
+206391,Syzygic Icon,3,Relic,Other
+18611,Gnarlpine Leggings,4,Legs,Other
+4763,Blackwood Recurve Bow,4,Ranged,Other
+277065,Al'Aketh Belt,4,Waist,"Drop, Vendor"
+277059,Al'Aketh Chain,4,Waist,"Drop, Vendor"
+277077,Al'Aketh Cord,4,Waist,"Drop, Vendor"
+277071,Al'Aketh Strap,4,Waist,"Drop, Vendor"
+277069,Al'Aketh Armguards,4,Wrist,"Drop, Vendor"
+277063,Al'Aketh Bracers,4,Wrist,"Drop, Vendor"
+277075,Al'Aketh Cuffs,4,Wrist,"Drop, Vendor"
+277057,Al'Aketh Wristguards,4,Wrist,"Drop, Vendor"
+241089,Scarlet Dagger,5,1H,Other
+3334,Farmer's Shovel,5,2H,Other
+286749,Wrathroot,5,2H,Drop
+251960,Yngwe's Axe,5,2H,Other
+3322,Wispy Cloak,5,Back,Other
+3000,Brood Mother Carapace,5,Chest,Drop
+277067,Al'Aketh Boots,5,Feet,"Drop, Vendor"
+277073,Al'Aketh Footwraps,5,Feet,Vendor
+277061,Al'Aketh Greaves,5,Feet,"Drop, Vendor"
+277079,Al'Aketh Shoes,5,Feet,"Drop, Vendor"
+18612,Bloody Chain Boots,5,Feet,Drop
+285268,Scout Ranger's Boots,5,Feet,Drop
+285264,Skyseer's Slippers,5,Feet,Drop
+285269,Thendal Watcher's Boots,5,Feet,Drop
+277058,Al'Aketh Gauntlets,5,Hands,"Drop, Vendor"
+277064,Al'Aketh Gloves,5,Hands,"Drop, Vendor"
+277076,Al'Aketh Handwraps,5,Hands,"Drop, Vendor"
+277070,Al'Aketh Mitts,5,Hands,"Drop, Vendor"
+15969,Beaded Orb,5,Held item,Drop
+4261,Solliden's Trousers,5,Legs,Drop
+205218,Libram of Discovery,5,Relic,Other
+285273,Scout Ranger's Belt,5,Waist,Drop
+285272,Skyseer's Belt,5,Waist,Drop
+285274,Thendal Watcher's Belt,5,Waist,Drop
+3323,Ghostly Bracers,5,Wrist,Other
+3225,Bloodstained Knife,6,1H,Drop
+284321,Centaur Raider's Axe,6,1H,Drop
+286746,Shal'ma's Shawl,6,Back,Drop
+3008,Wendigo Fur Cloak,6,Back,Other
+277056,Al'Aketh Chainmail,6,Chest,"Drop, Vendor"
+277062,Al'Aketh Harness,6,Chest,"Drop, Vendor"
+277068,Al'Aketh Jerkin,6,Chest,"Drop, Vendor"
+277074,Al'Aketh Vestments,6,Chest,"Drop, Vendor"
+284165,Duskstalker's Hide,6,Chest,Drop
+263007,Skyseer's Vest,6,Chest,Drop
+4861,Sleek Feathered Tunic,6,Chest,Drop
+284323,Geolord's Mitts,6,Hands,Drop
+285254,Scout Ranger's Gloves,6,Hands,Drop
+285253,Skyseer's Gloves,6,Hands,Drop
+285255,Thendal Watcher's Gloves,6,Hands,Drop
+277078,Al'Aketh Leggings,6,Legs,Vendor
+277060,Al'Aketh Legguards,6,Legs,"Drop, Vendor"
+277072,Al'Aketh Pants,6,Legs,Vendor
+277066,Al'Aketh Trousers,6,Legs,"Drop, Vendor"
+284322,Invading Marine's Shield,6,Shield,Drop
+283462,Bayne's Bite,7,1H,Drop
+1917,Jeweled Dagger,7,1H,Drop
+4302,Small Green Dagger,7,1H,Drop
+2254,Icepane Warhammer,7,2H,Drop
+17922,Lionfur Armor,7,Chest,Drop
+286751,Ghostfang's Steps,7,Feet,Drop
+6201,Lithe Boots,7,Feet,Other
+1965,White Wolf Gloves,7,Hands,Drop
+15932,Disciple's Stein,7,Held item,Drop
+1913,Studded Blackjack,7,Main-hand,Drop
+286748,Bristlebark Bow,7,Ranged,Drop
+286753,Snarlsnout Shooter,7,Ranged,Drop
+286750,Wisesight Wand,7,Ranged,Drop
+283460,Decaying Flesh Belt,7,Waist,Drop
+6147,Ratty Old Belt,7,Waist,Other
+763,Ice-covered Bracers,7,Wrist,Other
+3224,Silver-lined Bracers,7,Wrist,Drop
+264501,Ancient Skyborne Blade,8,1H,Drop
+286755,Helm Splitter,8,1H,Drop
+2266,Stonesplinter Dagger,8,1H,Drop
+284286,Battleguard Captain's Sticker,8,2H,Drop
+284287,Felweaver's Staff,8,2H,Drop
+284166,Gnarlpine War Staff,8,2H,Drop
+4772,Warm Cloak,8,Back,Drop
+3330,Dargol's Hauberk,8,Chest,Drop
+10553,Foreman Vest,8,Chest,Drop
+2087,Hard Crawler Carapace,8,Chest,Drop
+821,Riverpaw Leather Vest,8,Chest,Drop
+6202,Fingerless Gloves,8,Hands,Other
+10554,Foreman Pants,8,Legs,Drop
+284361,Venture Company Legguards,8,Legs,Drop
+3223,Frostmane Scepter,8,Main-hand,Drop
+2265,Stonesplinter Axe,8,Main-hand,Drop
+6203,Thuggish Shield,8,Shield,Drop
+2546,Royal Frostmane Girdle,8,Waist,Other
+283473,Batwing Bindings,8,Wrist,Drop
+284320,Flayed Scorpid Bands,8,Wrist,Drop
+286754,Ukta's Conduit,9,2H,Drop
+2069,Black Bear Hide Vest,9,Chest,Drop
+281993,Gnoll Hide Boots,9,Feet,Drop
+286752,Igleggings,9,Legs,Drop
+263016,Scout Ranger's Leggings,9,Legs,Drop
+263015,Skyseer's Pants,9,Legs,Drop
+263017,Thendal Watcher's Leggings,9,Legs,Drop
+5744,Pale Skinner,9,Main-hand,Drop
+286745,Furlfeather Ring,9,Ring,Drop
+283471,Fellicent's Bindings,9,Wrist,Drop
+1287,Giant Tarantula Fang,10,1H,Drop
+2088,Long Crawler Limb,10,1H,Drop
+284174,Serrated Shadowclaw,10,1H,Drop
+263936,Windforged Shortblade,10,1H,Drop
+263935,Elunar Longstaff,10,2H,Drop
+263937,Skyseeker's Greatstaff,10,2H,Drop
+1933,Staff of Conjuring,10,2H,Drop
+285228,Mystmane's Pelt,10,Back,Drop
+284167,Blackmoss Robes,10,Chest,Drop
+283480,Cracked Carapace Hauberk,10,Chest,Drop
+1211,Gnoll War Harness,10,Chest,Drop
+286533,Cheetah Hide Grips,10,Hands,Drop
+4767,Coppercloth Gloves,10,Hands,Drop
+15970,Native Branch,10,Held item,Drop
+826,Brutish Riverpaw Axe,10,Main-hand,Drop
+1927,Deadmines Cleaver,10,Main-hand,Drop
+1394,Driftwood Club,10,Main-hand,Drop
+2267,Stonesplinter Mace,10,Main-hand,Drop
+1926,Weighted Sap,10,Main-hand,Drop
+210195,Unbalanced Idol,10,Relic,Drop
+8350,The 1 Ring,10,Ring,Other
+2283,Rat Cloth Belt,10,Waist,Drop
+2899,Wendigo Collar,10,Waist,Drop
+284173,Impcaster's Staff,11,2H,Drop
+6730,Ironforge Chain,11,Chest,Crafted
+283361,Gorefang's Runners,11,Feet,Drop
+283259,Bearhide Vicegrips,11,Hands,Drop
+1219,Redridge Machete,11,Main-hand,Drop
+5112,Ritual Blade,12,1H,Drop
+820,Slicer Blade,12,1H,Drop
+6205,Burrowing Shovel,12,2H,Drop
+3188,Coral Claymore,12,2H,Drop
+1405,Foamspittle Staff,12,2H,Drop
+1355,Buckskin Cape,12,Back,Drop
+4771,Harvest Cloak,12,Back,Drop
+2284,Rat Cloth Cloak,12,Back,Drop
+5111,Rathorian's Cape,12,Back,Drop
+6180,Slarkskin,12,Chest,Drop
+6195,Wax-polished Armor,12,Chest,Drop
+4768,Adept's Gloves,12,Hands,Drop
+2274,Sapper's Gloves,12,Hands,Drop
+15926,Spellbinder Orb,12,Held item,Drop
+287063,Serrated Knife,12,Ranged,Other
+2020,Hollowfang Blade,13,1H,Drop
+284177,Sinslayer's Smasher,13,1H,Drop
+2822,Mo'grosh Toothpick,13,2H,Drop
+1391,Riverpaw Mystic Staff,13,2H,Drop
+6243,Green Woolen Robe,13,Chest,Crafted
+284185,Greymist Gauntlets,13,Hands,Drop
+15945,Runic Stave,13,Held item,Drop
+284192,Furbolg Loincloth,13,Legs,Drop
+285282,Jagged Knives,13,Ranged,Drop
+285275,Satchel of Copper Bombs,13,Ranged,Crafted
+4290,Dust Bowl,13,Shield,Drop
+899,Venom Web Fang,14,1H,Drop
+2823,Mo'grosh Can Opener,14,2H,Drop
+1473,Riverside Staff,14,2H,Drop
+286536,Heckler's Hide,14,Chest,Drop
+1446,Blackrock Boots,14,Feet,Drop
+7559,Runic Cane,14,Held item,Drop
+7554,Willow Branch,14,Held item,Drop
+1440,Gnoll Skull Basher,14,Main-hand,Drop
+284193,Moongazer's Wand,14,Ranged,Drop
+285339,Centaur War Chain,14,Waist,Drop
+12976,Ironpatch Blade,15,1H,Drop
+935,Night Watch Shortsword,15,1H,Drop
+2203,Brashclaw's Chopper,15,2H,Drop
+2204,Brashclaw's Skewer,15,2H,Drop
+1220,Lupine Axe,15,2H,Drop
+12975,Prospector Axe,15,2H,Drop
+1460,Shadowhide Two-handed Sword,15,2H,Drop
+1190,Overseer's Cloak,15,Back,Drop
+15971,Aboriginal Rod,15,Held item,Drop
+281925,Whelpfire Wand,15,Ranged,Drop
+1189,Overseer's Ring,15,Ring,Drop
+2235,Brackclaw,16,1H,Drop
+282639,"Emogg's ""Crusher""",16,1H,Drop
+4568,Grunt Axe,16,1H,Drop
+1387,Ghoulfang,16,2H,Drop
+1539,Gnarled Hermit's Staff,16,2H,Drop
+1218,Heavy Gnoll War Club,16,2H,Drop
+284187,Crazed Firecaller's Cloak,16,Back,Drop
+6179,Privateer's Cape,16,Back,Drop
+285329,Raptor Hide Cloak,16,Back,Drop
+1560,Bluegill Sandals,16,Feet,Drop
+285345,Feather Padded Treads,16,Feet,Drop
+285351,Foreman's Enforcers,16,Hands,Drop
+1314,Ghoul Fingers,16,Hands,Drop
+282636,Silkspun Gloves,16,Hands,Drop
+7608,Seer's Fine Stein,16,Held item,Drop
+4949,Orcish Cleaver,16,Main-hand,Drop
+286535,Sludge-Stained Band,16,Ring,Drop
+2021,Green Carapace Shield,16,Shield,Drop
+286981,Death Bindings,16,Wrist,Drop
+15211,Militant Shortsword,17,1H,Drop
+4817,Blessed Claymore,17,2H,Vendor
+5182,Shiver Blade,17,2H,Drop
+892,Gnoll Casting Gloves,17,Hands,Drop
+286979,Rotmender's Gloves,17,Hands,Drop
+5183,Pulsating Hydra Heart,17,Held item,Drop
+4434,Scarecrow Trousers,17,Legs,Drop
+1457,Shadowhide Mace,17,Main-hand,Drop
+12985,Ring of Defense,17,Ring,Drop
+286980,Rotmender's Sash,17,Waist,Drop
+20430,Legionnaire's Sword,18,1H,"PvP, Vendor"
+20440,Protector's Sword,18,1H,"PvP, Vendor"
+12990,Razor's Edge,18,1H,Drop
+20441,Scout's Blade,18,1H,"PvP, Vendor"
+20443,Sentinel's Blade,18,1H,"PvP, Vendor"
+20425,Advisor's Gnarled Staff,18,2H,"PvP, Vendor"
+4437,Channeler's Staff,18,2H,Drop
+20434,Lorekeeper's Staff,18,2H,"PvP, Vendor"
+2175,Shadowhide Battle Axe,18,2H,Drop
+1458,Shadowhide Maul,18,2H,Drop
+880,Staff of Horrors,18,2H,Drop
+286977,Sword of the Fallen,18,2H,Drop
+3571,Trogg Beater,18,2H,Drop
+20427,Battle Healer's Cloak,18,Back,"PvP, Vendor"
+20428,Caretaker's Cape,18,Back,"PvP, Vendor"
+2241,Desperado Cape,18,Back,Drop
+286978,Rotmender's Garb,18,Chest,Drop
+3076,Smoldering Boots,18,Feet,Drop
+15912,Buccaneer's Orb,18,Held item,Drop
+15946,Mystic's Sphere,18,Held item,Drop
+3022,Bluegill Breeches,18,Legs,Drop
+20442,Scout's Medallion,18,Neck,"PvP, Vendor"
+20444,Sentinel's Medallion,18,Neck,"PvP, Vendor"
+20437,Outrider's Bow,18,Ranged,"PvP, Vendor"
+20438,Outrunner's Bow,18,Ranged,"PvP, Vendor"
+213513,Libram of Deliverance,18,Relic,Drop
+20426,Advisor's Ring,18,Ring,"PvP, Vendor"
+20429,Legionnaire's Band,18,Ring,"PvP, Vendor"
+20431,Lorekeeper's Ring,18,Ring,"PvP, Vendor"
+20439,Protector's Band,18,Ring,"PvP, Vendor"
+285330,Signet of the Zhevra,18,Ring,Drop
+4822,Owl's Disk,18,Shield,Vendor
+4436,Jewel-encrusted Sash,18,Waist,Drop
+281926,Bound Bracers,18,Wrist,Drop
+2867,Rough Bronze Bracers,18,Wrist,Crafted
+6333,Spikelash Dagger,19,1H,Drop
+284386,Whipfang's Skinsearer,19,1H,Other
+4818,Executioner's Sword,19,2H,Vendor
+284704,Frostbitten Staff,19,2H,Other
+285332,Puncturing Spear,19,2H,Drop
+5969,Regent's Cloak,19,Back,Drop
+6197,Loch Croc Hide Vest,19,Chest,Drop
+6628,Raven's Claws,19,Hands,Drop
+3074,Smoldering Gloves,19,Hands,Drop
+284668,Apothecary's Concoction,19,Held item,Other
+3563,Seafarer's Pantaloons,19,Legs,Drop
+885,Black Metal Axe,19,Main-hand,Drop
+1938,Block Mallet,19,Main-hand,Drop
+2046,Bluegill Kukri,19,Main-hand,Drop
+4439,Bruiser Club,19,Main-hand,Drop
+1459,Shadowhide Scalper,19,Main-hand,Drop
+6332,Black Pearl Ring,19,Ring,Drop
+5975,Ruffian Belt,19,Waist,Drop
+1215,Support Girdle,19,Waist,Drop
+2236,Blackfang,20,1H,Drop
+2194,Diamond Hammer,20,1H,Drop
+284702,Slimy Sword,20,1H,Other
+6360,Steelscale Crushfish,20,1H,Other
+12989,Gargoyle's Bite,20,2H,Drop
+911,Ironwood Treebranch,20,2H,Drop
+3227,Nightbane Staff,20,2H,Drop
+1406,Pearl-encrusted Spear,20,2H,Drop
+5749,Scythe Axe,20,2H,Drop
+1461,Slayer's Battle Axe,20,2H,Drop
+3018,Hide of Lupos,20,Back,Drop
+277213,Dro'zem's Tunic,20,Chest,Drop
+2232,Dark Runner Boots,20,Feet,Drop
+211500,Resilient Cloth Headband,20,Head,Vendor
+211857,Resilient Leather Mask,20,Head,Vendor
+211856,Resilient Mail Coif,20,Head,Vendor
+7558,Shimmering Stave,20,Held item,Drop
+23173,Abomination Skin Leggings,20,Legs,Dungeon
+4445,Flesh Carver,20,Main-hand,Drop
+285331,Mark of the Pack Leader,20,Neck,Drop
+1462,Ring of the Shadow,20,Ring,Drop
+21568,Rune of Duty,20,Trinket,"PvP, Vendor"
+21566,Rune of Perfection,20,Trinket,"PvP, Vendor"
+3229,Tarantula Silk Sash,20,Waist,Drop
+5750,Warchief's Girdle,20,Waist,Drop
+286534,Silithid Piercer,21,1H,Drop
+286537,Thunderstomp's Horn,21,1H,Drop
+285350,Alliance Outrunner Staff,21,2H,Drop
+2013,Cryptbone Staff,21,2H,Drop
+14158,Pagan Vest,21,Chest,Drop
+3072,Smoldering Robe,21,Chest,Drop
+284400,Foreman's Helm,21,Head,Other
+285348,Alliance Outrunner Healing Rod,21,Held item,Drop
+282654,Gnawed Bone,21,Held item,Other
+4838,Orb of Power,21,Held item,Vendor
+15974,Pagan Rod,21,Held item,Drop
+3073,Smoldering Pants,21,Legs,Drop
+4831,Stalking Pants,21,Legs,Vendor
+886,Black Metal Shortsword,21,Main-hand,Drop
+4826,Marauder Axe,21,Main-hand,Vendor
+2035,Sword of the Night Sky,21,Main-hand,Drop
+6199,Black Widow Band,21,Ring,Drop
+5000,Coral Band,21,Ring,Other
+1077,Defias Mage Ring,21,Ring,Drop
+6589,Viridian Band,21,Ring,Other
+4444,Black Husk Shield,21,Shield,Drop
+4785,Brimstone Belt,21,Waist,Drop
+3204,Deepwood Bracers,21,Wrist,Drop
+5752,Wyvern Tailspike,22,1H,Drop
+284700,Den Guardian's Crusher,22,2H,Other
+2227,Heavy Ogre War Axe,22,2H,Drop
+286540,The Skyblade,22,2H,Other
+5751,Webwing Cloak,22,Back,Drop
+2566,Sacrificial Robes,22,Chest,Drop
+1955,Dragonmaw Chain Boots,22,Feet,Drop
+282642,Feather-Stitched Moccasins,22,Feet,Other
+282655,Bog Pickers,22,Hands,Other
+286541,Bael'dun Tankard,22,Held item,Drop
+15927,Bright Sphere,22,Held item,Drop
+2233,Shadow Weaver Leggings,22,Legs,Drop
+4824,Blurred Axe,22,Main-hand,Vendor
+1493,Heavy Marauder Scimitar,22,Main-hand,Drop
+2018,Skeletal Longsword,22,Main-hand,Drop
+285347,Alliance Outrunner Bow,22,Ranged,Drop
+284574,Snapped Branch Wand,22,Ranged,Other
+6315,Steelarrow Crossbow,22,Ranged,Drop
+281927,Boulderheart Band,22,Ring,Drop
+4828,Nightwind Belt,22,Waist,Vendor
+4446,Blackvenom Blade,23,1H,Drop
+753,Dragonmaw Shortsword,23,1H,Drop
+284667,Flame Seared Sword,23,1H,Other
+4454,Talon of Vultros,23,1H,Drop
+2015,Black Metal War Axe,23,2H,Drop
+241090,Scarlet Great Axe,23,2H,Other
+285328,Taurenbane's Family Cleaver,23,2H,Drop
+4447,Cloak of Night,23,Back,Drop
+5971,Feathered Cape,23,Back,Drop
+7027,Boots of Darkness,23,Feet,Crafted
+6733,Ironforge Gauntlets,23,Hands,Crafted
+4836,Fireproof Orb,23,Held item,Vendor
+15947,Sanguine Star,23,Held item,Drop
+4830,Saber Leggings,23,Legs,Vendor
+217314,Moonsight Rifle,23,Ranged,Quest
+217315,Precision Bow,23,Ranged,Quest
+4833,Glorious Shoulders,23,Shoulder,Vendor
+4827,Wizard's Belt,23,Waist,Vendor
+1351,Fingerbone Bracers,23,Wrist,Drop
+2017,Glowing Leather Bracers,23,Wrist,Drop
+4825,Callous Axe,24,1H,Vendor
+285212,Foulmountain Family Hammer,24,1H,Other
+4449,Naraxis' Fang,24,1H,Drop
+2014,Black Metal Greatsword,24,2H,Drop
+2058,Kazon's Maul,24,2H,Drop
+756,Tunnel Pick,24,2H,Drop
+4448,Husk of Naraxis,24,Chest,Drop
+284403,Shapeshifting Sentinel's Strides,24,Feet,Other
+284401,Sorrow's Shroud,24,Head,Drop
+9800,Ivy Orb,24,Held item,Drop
+4723,Humbert's Pants,24,Legs,Drop
+285338,Kodohide Legguards,24,Legs,Drop
+284696,Carved Furbolg Tooth,24,Ranged,Other
+284699,Still Water Band,24,Ring,Other
+285344,Guard Captain's Barrier,24,Shield,Drop
+3231,Cutthroat Pauldrons,24,Shoulder,Drop
+282717,Durable Bearhide Pauldrons,24,Shoulder,Other
+897,Madwolf Bracers,24,Wrist,Drop
+212586,Legionnaire's Sword,25,1H,Vendor
+212582,Protector's Sword,25,1H,Vendor
+212587,Scout's Blade,25,1H,Vendor
+212583,Sentinel's Blade,25,1H,Vendor
+212584,Advisor's Gnarled Staff,25,2H,Vendor
+2084,Darksteel Bastard Sword,25,2H,Drop
+282721,Gnoll Shaman's Staff,25,2H,Drop
+212580,Lorekeeper's Staff,25,2H,Vendor
+271720,Crocolisk Skin Gaiter,25,Back,Other
+16315,Sergeant Major's Cape,25,Back,Other
+914,Large Ogre Chain Armor,25,Chest,Drop
+2234,Nightwalker Armor,25,Chest,Drop
+4724,Humbert's Helm,25,Head,Drop
+285192,Kobold Firestarter,25,Held item,Other
+4837,Strength of Will,25,Held item,Vendor
+15973,Watcher's Star,25,Held item,Drop
+282710,Dun Garok Rifle,25,Ranged,Drop
+212585,Outrider's Bow,25,Ranged,Vendor
+212581,Outrunner's Bow,25,Ranged,Vendor
+7426,Cerulean Ring,25,Ring,Other
+10298,Gnomeregan Band,25,Ring,Drop
+4835,Elite Shoulders,25,Shoulder,Vendor
+4196,Feathered Mantle,25,Shoulder,Other
+215365,Invoker's Mantle,25,Shoulder,Crafted
+284399,Seared Grove Shoulderpads,25,Shoulder,Other
+215366,Invoker's Cord,25,Waist,Crafted
+210781,Phoenix Bindings,25,Wrist,Crafted
+284459,Dendweller's Hammer,26,2H,Other
+12249,Merciless Axe,26,2H,Vendor
+3392,Ringed Helm,26,Head,Drop
+2944,Cursed Eye of Paleth,26,Held item,Quest
+15975,Raincaller Scepter,26,Held item,Drop
+15928,Silver-thread Rod,26,Held item,Drop
+286986,Abandoned Leggings,26,Legs,Other
+7427,Cerulean Talisman,26,Neck,Other
+10299,Gnomeregan Amulet,26,Neck,Drop
+3041,"""Mage-Eye"" Blunderbuss",26,Ranged,"Drop, Quest"
+6200,Garneg's War Belt,26,Waist,Drop
+286985,Thicket Bindings,26,Wrist,Other
+12247,Broad Bladed Knife,27,1H,Vendor
+282658,Dragonmaw Battle Shroud,27,Back,Other
+284383,Faerie Dragon's Skin,27,Back,Other
+286991,Roused Nature Footwraps,27,Feet,Other
+15934,Sage's Stave,27,Held item,Drop
+282653,Dissolved Locket,27,Neck,Other
+11306,Sturdy Recurve,27,Ranged,Vendor
+286982,Unearthed Barrier,27,Shield,Other
+284382,Budding Leaf Belt,27,Waist,Drop
+286993,Suffused Bindings,27,Waist,Other
+282716,Imbued Scaled Cuffs,27,Wrist,Drop
+19553,Legionnaire's Sword,28,1H,"PvP, Vendor"
+19557,Protector's Sword,28,1H,"PvP, Vendor"
+19545,Scout's Blade,28,1H,"PvP, Vendor"
+19549,Sentinel's Blade,28,1H,"PvP, Vendor"
+19569,Advisor's Gnarled Staff,28,2H,"PvP, Vendor"
+286983,Ancient Cleaver,28,2H,Other
+1998,Bloodscalp Channeling Staff,28,2H,Drop
+272082,Darkspear Raider's Reaper,28,2H,Vendor
+19573,Lorekeeper's Staff,28,2H,"PvP, Vendor"
+271927,Rebels' Rugged Reaper,28,2H,Other
+19529,Battle Healer's Cloak,28,Back,"PvP, Vendor"
+19533,Caretaker's Cape,28,Back,"PvP, Vendor"
+4462,Cloak of Rot,28,Back,Drop
+272078,Darkspear Raider's Cloak,28,Back,Vendor
+271923,Expeditionary's Cape,28,Back,Other
+286994,Tattered Kirin Tor Cloak,28,Back,Other
+20182,Defiler's Lamellar Greaves,28,Feet,Vendor
+286987,Violet Sorcerer's Sandals,28,Feet,Other
+286992,Construct's Grips,28,Hands,Other
+284573,Ursol'lok's Paws,28,Hands,Other
+286989,Violet Sorcerer's Wraps,28,Hands,Other
+271935,Insurgent's Manifesto,28,Held item,Other
+15962,Satyr's Rod,28,Held item,Drop
+272090,Tome of the Darkspear Prophecy,28,Held item,Vendor
+286990,Arcane Remnant Leggings,28,Legs,Other
+271931,Clever Expeditionary's Spellblade,28,Main-hand,Other
+272086,Darkspear Insurgent's Spellblade,28,Main-hand,Vendor
+272094,Darkspear Skirmisher's Bludgeon,28,Main-hand,Vendor
+271939,Guerrilla's Jagged Mace,28,Main-hand,Other
+272075,Darkspear Warding Pendant,28,Neck,Vendor
+286995,Guardian's Emblem,28,Neck,Other
+286984,Mark of the Marsh,28,Neck,Other
+19537,Scout's Medallion,28,Neck,"PvP, Vendor"
+271920,Seal of the Expedition,28,Neck,Other
+19541,Sentinel's Medallion,28,Neck,"PvP, Vendor"
+287068,Excavated Dagger,28,Ranged,Other
+19561,Outrider's Bow,28,Ranged,"PvP, Vendor"
+19565,Outrunner's Bow,28,Ranged,"PvP, Vendor"
+285276,Satchel of Bronze Bombs,28,Ranged,Crafted
+213594,Idol of the Heckler,28,Relic,Drop
+19521,Advisor's Ring,28,Ring,"PvP, Vendor"
+272071,Darkspear Signet,28,Ring,Vendor
+272067,Insurgent's Band,28,Ring,Vendor
+19513,Legionnaire's Band,28,Ring,"PvP, Vendor"
+19525,Lorekeeper's Ring,28,Ring,"PvP, Vendor"
+271916,Militant's Band,28,Ring,Other
+19517,Protector's Band,28,Ring,"PvP, Vendor"
+271911,Theramore Signet,28,Ring,Other
+285191,Banished Centaur's Pauldrons,28,Shoulder,Other
+4463,Beaded Raptor Collar,28,Waist,Drop
+20178,Defiler's Lamellar Girdle,28,Waist,Vendor
+6198,Jurassic Wristguards,28,Wrist,Drop
+286996,City Guard's Tarnished Blade,29,1H,Other
+12248,Daring Dirk,29,1H,Vendor
+1991,Goblin Power Shovel,29,2H,Drop
+284697,Arcane Charged Robes,29,Chest,Other
+1997,Pressed Felt Robe,29,Chest,Drop
+4464,Trouncing Boots,29,Feet,Drop
+4465,Bonefist Gauntlets,29,Hands,Drop
+5753,Ruffled Chaplet,29,Head,Drop
+6204,Tribal Worg Helm,29,Head,Drop
+15935,Durable Rod,29,Held item,Drop
+286988,Violet Sorcerer's Leggings,29,Legs,Other
+5754,Wolfpack Medallion,29,Neck,Drop
+4474,Ravenwood Bow,29,Ranged,Drop
+13063,Starfaller,29,Ranged,Drop
+5245,Summoner's Wand,29,Ranged,Drop
+285190,Wyvern Heart Band,29,Ring,Drop
+284717,Royal Satyr Slicer,30,1H,Other
+18440,Sergeant's Cape,30,Back,"PvP, Vendor"
+18427,Sergeant's Cloak,30,Back,"PvP, Vendor"
+282711,Naga Maiden's Gown,30,Chest,Drop
+5755,Onyx Shredder Plate,30,Chest,Drop
+7609,Elder's Amber Stave,30,Held item,Drop
+18442,Master Sergeant's Insignia,30,Neck,"PvP, Vendor"
+4614,Pendant of Myzrael,30,Neck,Drop
+15200,Senior Sergeant's Insignia,30,Neck,"PvP, Vendor"
+7467,Vermilion Necklace,30,Neck,Other
+11305,Dense Shortbow,30,Ranged,Vendor
+217287,Greater Mystic Wand,30,Ranged,Crafted
+1522,Headhunting Spear,31,2H,Drop
+1523,Huge Stone Club,31,2H,Drop
+1679,Korg Bat,31,2H,Drop
+5181,Vibrant Silk Cape,31,Back,Drop
+4476,Beastwalker Robe,31,Chest,Drop
+2621,Cowl of Necromancy,31,Head,Drop
+284712,Hyena Hide Helm,31,Head,Other
+15976,Thistlefur Branch,31,Held item,Drop
+282713,Bloodstained Pants,31,Legs,Other
+5180,Necklace of Harmony,31,Neck,Drop
+274292,Houndmaster Boomerang,31,Ranged,Other
+1993,Ogremind Ring,31,Ring,Drop
+5008,Quicksilver Ring,31,Ring,Other
+4477,Nefarious Buckler,31,Shield,Drop
+281750,Murloc Oracle's Dagger,32,1H,Other
+282703,Needletooth's Needletooth,32,1H,Other
+12251,Big Stick,32,2H,Vendor
+283253,Denmother's Hide,32,Back,Other
+3345,Silk Wizard Hat,32,Head,Drop
+15929,Nightsky Orb,32,Held item,Drop
+15977,Vital Orb,32,Held item,Drop
+284713,Accursed Legguards,32,Legs,Other
+285177,Nature's Sting Legguards,32,Legs,Other
+16792,Giant Club,32,Main-hand,Other
+7466,Vermilion Band,32,Ring,Other
+1996,Voodoo Band,32,Ring,Drop
+282551,Golem Fist,33,1H,Other
+6331,Howling Blade,33,1H,Drop
+5256,Kovork's Rattle,33,1H,Drop
+9718,Reforged Blade of Heroes,33,1H,Other
+281661,Well-Worn Pitchfork,33,2H,Other
+286639,Ambassador's Bloodrobes,33,Chest,Other
+271718,Linken's Boots of Iron,33,Feet,Other
+5624,Circlet of the Order,33,Head,Drop
+1280,Cloaked Hood,33,Head,Drop
+3011,Feathered Headdress,33,Head,Drop
+15918,Conjurer's Sphere,33,Held item,Drop
+8224,Silithid Ripper,33,Main-hand,Drop
+283255,Syndicate Executioner's Slicer,33,Main-hand,Other
+285283,Serrated Axes,33,Ranged,Other
+8223,Blade of the Basilisk,34,1H,Drop
+274598,Bloodslash Axe,34,1H,Other
+1602,Sickle Axe,34,1H,Drop
+12252,Staff of Protection,34,2H,Vendor
+5257,Dark Hooded Cape,34,Back,Drop
+282557,Broken Tooth's Flayed Hide,34,Chest,Other
+287000,Skin-Flayed Footguards,34,Feet,Other
+287003,Corroded Handguards,34,Hands,Other
+2620,Augural Shroud,34,Head,Drop
+2622,Nimar's Tribal Headdress,34,Head,Drop
+283254,Heart of Alterac,34,Held item,Other
+15963,Stonecloth Branch,34,Held item,Drop
+217497,Narpas Sword,34,Main-hand,Other
+285280,Mithril Blacksmith Hammer,34,Ranged,Crafted
+285089,Swamp Roamer's Band,34,Ring,Other
+284707,Basilisk Sinew Belt,34,Waist,Other
+274600,Berserker Shackles,34,Wrist,Other
+286998,Deep Flora Bindings,34,Wrist,Other
+274599,Oathbound Bracers,34,Wrist,Other
+286650,Pyromancer's Baton,35,1H,Other
+287006,Resurged Axe,35,1H,Other
+271794,Centaur Spear,35,2H,Other
+274601,Harpoon of Command,35,2H,Other
+271795,Wanderer's Broadsword,35,2H,Other
+274613,Priestess Cloak,35,Back,Other
+274612,Waterlogged Burial Shroud,35,Back,Other
+286999,Deathcrawler's Chest,35,Chest,Other
+274611,Robe of the Drowned,35,Chest,Other
+274490,Centaur Hoofwarmers,35,Feet,Other
+286662,Deep-Dweller's Grips,35,Hands,Other
+1659,Engineering Gloves,35,Hands,Drop
+7556,Twilight Orb,35,Held item,Drop
+274602,Brinebelly Leggings,35,Legs,Other
+286997,Depth-Risen Leggings,35,Legs,Other
+287002,Risen Sentry's Links,35,Legs,Other
+271799,Desert Crawler's Claw,35,Main-hand,Other
+274603,Dreadfrost Saber,35,Main-hand,Other
+286649,Tidebound Dagger,35,Main-hand,Other
+285095,Twitching Eye,35,Neck,Other
+274604,Frosty Blunderbuss,35,Ranged,Other
+285100,Serrated Raptor Teeth,35,Ranged,Other
+287004,Touch of the Depths,35,Ranged,Other
+286651,Flamestarter's Signet,35,Ring,Other
+7497,Ivory Band,35,Ring,Other
+5743,Prismstone Ring,35,Ring,Other
+18706,Arena Master,35,Trinket,Drop
+5079,Cold Basilisk Eye,35,Trinket,Drop
+286646,Gill's Gills,35,Trinket,Other
+274615,Heart of the Primeval,35,Trinket,Other
+277910,Mysticbloom Seed,35,Trinket,Other
+277950,Wastewanderer Rations,35,Trinket,Other
+274605,Briny Sash,35,Waist,Other
+3985,Monogrammed Sash,35,Waist,Drop
+286658,Umbral Scaled Belt,35,Waist,Other
+274606,Bloodspine Staff,36,2H,Other
+1986,Gutrender,36,2H,Drop
+282003,Lost Chieftain's Greatsword,36,2H,Drop
+282702,Molok's Masher,36,2H,Other
+1664,Spellforce Rod,36,2H,Drop
+6327,The Pacifier,36,2H,Drop
+12253,Brilliant Red Cloak,36,Back,Vendor
+1678,Black Ogre Kickers,36,Feet,Drop
+217273,Golden Scale Gauntlets,36,Hands,Crafted
+217270,Turtle Scale Gloves,36,Hands,Crafted
+7610,Aurora Sphere,36,Held item,Drop
+15978,Geomancer's Rod,36,Held item,Drop
+281657,Corrupted Riverglades Pendant,36,Neck,Other
+274614,Knucklebone Ring,36,Ring,Other
+282705,Ruul's Secondstone,36,Ring,Other
+4810,Boulder Pads,36,Shoulder,Drop
+281676,Rog'mar Trainee Shoulderpads,36,Shoulder,Other
+282704,Shadow Council Apprentice's Mantle,36,Shoulder,Other
+274607,Viscera Spaulders,36,Shoulder,Other
+287001,Waterlogged Shoulderpads,36,Shoulder,Other
+1404,Tidal Charm,36,Trinket,Drop
+285093,Ripscaled Cuffs,36,Wrist,Other
+285102,Darkmist Dirk,37,1H,Other
+274484,Axe of Inevitable Ruin,37,2H,Other
+287005,Sword of Dismemberment,37,2H,Other
+281746,Kurmokk's Pelt,37,Back,Other
+274610,Ritual-Binder's Gloves,37,Hands,Other
+274609,Serpentbane Crown,37,Head,Other
+2624,Thinking Cap,37,Head,Drop
+15979,Embersilk Stave,37,Held item,Drop
+274385,Abomination Chain,37,Neck,Other
+284708,Demonstrike Emblem,37,Neck,Other
+282561,Siegebreaker's Blaster,37,Ranged,Other
+274295,Band of Crimson Light,37,Ring,Other
+274608,Maw of Min'loth,37,Shield,Other
+282555,Shadowforge Shield,37,Shield,Other
+12257,Heavy Notched Belt,37,Waist,Vendor
+274380,Decaying Flesh Bands,37,Wrist,Other
+282550,Combat Tuning Wrench,38,1H,Other
+19552,Legionnaire's Sword,38,1H,"PvP, Vendor"
+19556,Protector's Sword,38,1H,"PvP, Vendor"
+19544,Scout's Blade,38,1H,"PvP, Vendor"
+19548,Sentinel's Blade,38,1H,"PvP, Vendor"
+19568,Advisor's Gnarled Staff,38,2H,"PvP, Vendor"
+274381,Coldbringer Spine,38,2H,Other
+19572,Lorekeeper's Staff,38,2H,"PvP, Vendor"
+19528,Battle Healer's Cloak,38,Back,"PvP, Vendor"
+19532,Caretaker's Cape,38,Back,"PvP, Vendor"
+9882,Sorcerer Sphere,38,Held item,Drop
+19536,Scout's Medallion,38,Neck,"PvP, Vendor"
+19540,Sentinel's Medallion,38,Neck,"PvP, Vendor"
+19560,Outrider's Bow,38,Ranged,"PvP, Vendor"
+19564,Outrunner's Bow,38,Ranged,"PvP, Vendor"
+19520,Advisor's Ring,38,Ring,"PvP, Vendor"
+19512,Legionnaire's Band,38,Ring,"PvP, Vendor"
+19524,Lorekeeper's Ring,38,Ring,"PvP, Vendor"
+19515,Protector's Band,38,Ring,"PvP, Vendor"
+281650,Dragonscale Buckler,38,Shield,Other
+15592,Steadfast Buckler,38,Shield,Drop
+285103,Marsh Serpent's Scales,38,Waist,Other
+274995,Slavecrusher Scepter,39,1H,Other
+274485,Axe of Lingering Dread,39,2H,Other
+274430,Rock Sentinel Slicer,39,2H,Other
+12254,Well Oiled Cloak,39,Back,Vendor
+274428,Dark Golem Breastplate,39,Chest,Other
+284040,Cliff Jumpers,39,Feet,Other
+287010,Outrider's Gloves,39,Hands,Other
+10011,Stormcloth Gloves,39,Hands,Crafted
+281896,Surveyor's Gloves,39,Hands,Other
+282706,Rotting Meat,39,Held item,Other
+15964,Silksand Star,39,Held item,Drop
+10010,Stormcloth Pants,39,Legs,Crafted
+274425,White Obsidian Wand,39,Ranged,Other
+274996,Resistance Breaker Spaulder,39,Shoulder,Other
+274997,Chain of Binding,39,Waist,Other
+12258,Serpent Clasp Belt,39,Waist,Other
+277244,Guardian's Maulers,40,1H,Other
+19808,Rockhide Strongfish,40,1H,Drop
+277243,Silverbane Slicer,40,1H,Other
+277245,Swampspine Crusher,40,1H,Other
+286430,Toofbreaker,40,1H,Other
+275001,Bloodied Gutslicer,40,2H,Other
+277250,The Skullcracker,40,2H,Other
+284063,Witherbark Hatecleaver,40,2H,Other
+16336,Sergeant Major's Cape,40,Back,Other
+277229,Enduring Chain Vest,40,Chest,Other
+277237,Inspiring Chestplate,40,Chest,Other
+10020,Stormcloth Vest,40,Chest,Crafted
+20183,Defiler's Lamellar Greaves,40,Feet,Vendor
+285101,Rot-Fused Greaves,40,Feet,Other
+277242,Silverrune Greaves,40,Feet,Other
+277239,Bejeweled Punchers,40,Hands,Other
+277231,Conductive Gauntlets,40,Hands,Other
+287012,Krol'dok Warplate Gauntlets,40,Hands,Other
+7925,Mithril Plate Gloves,40,Hands,Crafted
+275002,War Handler's Gaze,40,Head,Other
+277259,Fermented Restoration Potion,40,Held item,Other
+7555,Regal Star,40,Held item,Drop
+277260,Researcher's Night Light,40,Held item,Quest
+287016,Shadow-Seer Orb,40,Held item,Other
+277233,Clinking Mail Legguards,40,Legs,Other
+277241,Double-Plated Legplates,40,Legs,Other
+277225,Feathered Leggings,40,Legs,Other
+277217,Patchy Pants,40,Legs,Other
+274999,Shadecaster's Leggings,40,Legs,Other
+284843,Sturdy Bearhide Legguards,40,Legs,Other
+8708,Hammer of Expertise,40,Main-hand,Other
+277248,Notched Ritual Rib,40,Main-hand,Other
+274998,Shadowlight Athame,40,Main-hand,Other
+286568,Blisterpaw Bones,40,Neck,Other
+287070,Skypierce Javelin,40,Ranged,Other
+277254,Truthseeker's Bow,40,Ranged,Quest
+286428,Band of Bossman,40,Ring,Other
+275000,Zarmok's Plated Signet,40,Ring,Other
+277258,Crest of Elucidation,40,Shield,Quest
+282004,Flesheater's Scales,40,Shoulder,Other
+277228,Snakescale Pauldrons,40,Shoulder,Other
+277212,Soulwoven Epaulets,40,Shoulder,Other
+21567,Rune of Duty,40,Trinket,"PvP, Vendor"
+21565,Rune of Perfection,40,Trinket,"PvP, Vendor"
+286429,Big-Belly Belt,40,Waist,Other
+20180,Defiler's Lamellar Girdle,40,Waist,Vendor
+277240,Gilded Plate Belt,40,Waist,Other
+14652,Scorpashi Sash,40,Waist,Drop
+19581,Berserker Bracers,40,Wrist,"PvP, Vendor"
+19597,Dryad's Wrist Bindings,40,Wrist,"PvP, Vendor"
+19590,Forest Stalker's Bracers,40,Wrist,"PvP, Vendor"
+277230,Grayscale Bracers,40,Wrist,Other
+277238,Shimmering Bracers,40,Wrist,Other
+19584,Windtalker's Wristguards,40,Wrist,"PvP, Vendor"
+281665,Twilight Forgehammer,41,1H,Other
+274431,Sandstorm Staff,41,2H,Other
+8195,Nightscape Cloak,41,Back,Crafted
+1677,Drake-scale Vest,41,Chest,Drop
+281891,Fishscale Hauberk,41,Chest,Other
+275005,Krol'dok Warplate Chest,41,Chest,Other
+281666,Robes of the Blind Cultist,41,Chest,Other
+275006,Krol'dok Warplate Helmet,41,Head,Other
+283545,Moonchaser's Headdress,41,Head,Other
+15980,Darkmist Orb,41,Held item,Drop
+287013,Krol'dok Warplate Legplates,41,Legs,Other
+12255,Pale Leggings,41,Legs,Vendor
+275004,Chain of the Corruptor,41,Neck,Other
+7548,Onyx Choker,41,Neck,Other
+285277,Satchel of Iron Bombs,41,Ranged,Crafted
+7547,Onyx Ring,41,Ring,Other
+287014,Krol'dok Warplate Pauldrons,41,Shoulder,Other
+282778,Mark of the Red Flight,41,Trinket,Other
+275008,Mugg's Crosser,42,1H,Other
+275007,Mugg's Jabber,42,1H,Other
+285043,Snarling Fang,42,1H,Drop
+284046,Witherheart's Stabber,42,1H,Other
+1604,Chromatic Sword,42,2H,Drop
+12469,Mutilator,42,2H,Other
+274639,Sacrificial Chain Vest,42,Chest,Other
+282008,Wyrmak's Cuirass,42,Chest,Other
+285063,Black Brood Battleguards,42,Feet,Other
+275010,Strongly Scented Hood,42,Head,Other
+5028,Lord Sakrasis' Scepter,42,Held item,Drop
+15981,Lunar Sphere,42,Held item,Drop
+4478,Iridescent Scale Leggings,42,Legs,Drop
+274658,Dune Hacker,42,Main-hand,Other
+274647,Farraki Kris,42,Main-hand,Other
+9417,Archaedic Shard,42,Neck,Other
+5029,Talisman of the Naga Lord,42,Neck,Drop
+274646,Arch of the Covenant,42,Ranged,Other
+11307,Massive Longbow,42,Ranged,Vendor
+286554,Warleader's Signet,42,Ring,Other
+282560,Earth-Infused Rockguards,42,Shoulder,Other
+274638,Sandfury Pauldrons,42,Shoulder,Other
+275009,Emblem of Slamming,42,Trinket,Other
+274648,The Desert Rose,42,Trinket,Other
+274641,Theka's Last Breath,42,Trinket,Other
+282556,Groundshaker's Bindings,42,Wrist,Other
+284850,Naga Caster's Staff,43,2H,Other
+274645,Desert Ziggurat Drape,43,Back,Other
+274651,Zealot Plate,43,Chest,Other
+282097,Unbreakable Golem Grips,43,Hands,Other
+10032,Stormcloth Headband,43,Head,Crafted
+274644,Undying Headdress,43,Head,Other
+9914,Royal Scepter,43,Held item,Drop
+286569,Firebird Leggings,43,Legs,Other
+274657,Hydra Leather Legs,43,Legs,Other
+274643,Gutcutter Hatchet,43,Ranged,Other
+274655,Peacekeeper Wand,43,Ranged,Other
+274642,Blood Ritual Ring,43,Ring,Other
+274652,Wall of Water,43,Shield,Other
+274653,Deep Ritual Girdle,43,Waist,Other
+282007,Emerald Watcher's Dreamstaff,44,2H,Other
+281648,Gul'gash's Greathammer,44,2H,Other
+274432,Stone Keeper Spire,44,2H,Other
+12256,Cindercloth Leggings,44,Legs,Vendor
+284859,Silithid Sinew Crossbow,44,Ranged,Other
+11308,Sylvan Shortbow,44,Ranged,Vendor
+10038,Stormcloth Shoulders,44,Shoulder,Crafted
+14661,Keeper's Cord,44,Waist,Drop
+14550,Bladebane Armguards,44,Wrist,Other
+9380,Jang'thraze the Protector,45,1H,Other
+18441,Sergeant's Cape,45,Back,"PvP, Vendor"
+16341,Sergeant's Cloak,45,Back,"PvP, Vendor"
+272451,Sergeant's Cloak,45,Back,Other
+13125,Elven Chain Boots,45,Feet,Drop
+10039,Stormcloth Boots,45,Feet,Crafted
+285047,Yeti Hide Stompers,45,Feet,Other
+2564,Elven Spirit Claws,45,Hands,Drop
+284272,Chimaera Hide Legs,45,Legs,Other
+284847,Hippogryph Down Leggings,45,Legs,Other
+18444,Master Sergeant's Insignia,45,Neck,"PvP, Vendor"
+18428,Senior Sergeant's Insignia,45,Neck,"PvP, Vendor"
+284282,Queen Guard's Royal Seal,45,Ring,Other
+275864,Putridus Wall,45,Shield,Other
+13503,Alchemist's Stone,45,Trinket,Crafted
+18436,First Sergeant's Dragonhide Armguards,45,Wrist,"PvP, Vendor"
+18435,First Sergeant's Leather Armguards,45,Wrist,"PvP, Vendor"
+18432,First Sergeant's Mail Wristguards,45,Wrist,"PvP, Vendor"
+272581,First Sergeant's Mail Wristguards,45,Wrist,Other
+18430,First Sergeant's Plate Bracers,45,Wrist,"PvP, Vendor"
+272580,First Sergeant's Plate Bracers,45,Wrist,Other
+18437,First Sergeant's Silk Cuffs,45,Wrist,"PvP, Vendor"
+18449,Sergeant Major's Chain Armguards,45,Wrist,"PvP, Vendor"
+18455,Sergeant Major's Dragonhide Armsplints,45,Wrist,"PvP, Vendor"
+18453,Sergeant Major's Leather Armsplints,45,Wrist,"PvP, Vendor"
+18447,Sergeant Major's Plate Wristguards,45,Wrist,"PvP, Vendor"
+18457,Sergeant Major's Silk Cuffs,45,Wrist,"PvP, Vendor"
+9685,Will of the Mountain Giant,46,2H,Other
+286572,Ogre Casting Cloak,46,Back,Other
+284866,Windserpent Scaled Cloak,46,Back,Other
+13009,Cow King's Hide,46,Chest,Drop
+13030,Basilisk Bone,46,Held item,Drop
+15982,Bloodwoven Rod,46,Held item,Drop
+15937,Hibernal Sphere,46,Held item,Drop
+284043,Dissolved Link Legguards,46,Legs,Other
+13085,Horizon Choker,46,Neck,Drop
+284050,High Elf's Recurve,46,Ranged,Other
+13066,Wyrmslayer Spaulders,46,Shoulder,Drop
+7734,Six Demon Bag,46,Trinket,Drop
+17055,Changuk Smasher,47,1H,Drop
+282010,Tusk of Grunter,47,1H,Other
+12764,Thorium Greatsword,47,2H,Crafted
+276737,Cloak of the Tidemistress,47,Back,Other
+13073,Mugthol's Helm,47,Head,Drop
+15983,Gaea's Scepter,47,Held item,Drop
+282088,Heart of Smoldar,47,Held item,Other
+13008,Dalewind Trousers,47,Legs,Drop
+16769,Furbolg Medicine Totem,47,Main-hand,Vendor
+276734,Wrex's Pinky Ring,47,Ring,Other
+284064,Cliffbreaker's Pauldrons,47,Shoulder,Other
+11302,Uther's Strength,47,Trinket,Drop
+15388,Jadefire Belt,47,Waist,Drop
+19551,Legionnaire's Sword,48,1H,"PvP, Vendor"
+19555,Protector's Sword,48,1H,"PvP, Vendor"
+19543,Scout's Blade,48,1H,"PvP, Vendor"
+19547,Sentinel's Blade,48,1H,"PvP, Vendor"
+19567,Advisor's Gnarled Staff,48,2H,"PvP, Vendor"
+19571,Lorekeeper's Staff,48,2H,"PvP, Vendor"
+19527,Battle Healer's Cloak,48,Back,"PvP, Vendor"
+19531,Caretaker's Cape,48,Back,"PvP, Vendor"
+287021,Defias Enforcer's Prowlers,48,Feet,Other
+20185,Defiler's Lamellar Greaves,48,Feet,Vendor
+13126,Battlecaller Gauntlets,48,Hands,Drop
+287019,Defias Enforcer's Mask,48,Head,Other
+17733,Fist of Stone,48,Main-hand,Other
+284230,Rage Paw,48,Main-hand,Other
+19535,Scout's Medallion,48,Neck,"PvP, Vendor"
+19539,Sentinel's Medallion,48,Neck,"PvP, Vendor"
+19559,Outrider's Bow,48,Ranged,"PvP, Vendor"
+19563,Outrunner's Bow,48,Ranged,"PvP, Vendor"
+19519,Advisor's Ring,48,Ring,"PvP, Vendor"
+5266,Eye of Adaegus,48,Ring,Drop
+284041,Ironback Signet,48,Ring,Other
+19511,Legionnaire's Band,48,Ring,"PvP, Vendor"
+19523,Lorekeeper's Ring,48,Ring,"PvP, Vendor"
+19516,Protector's Band,48,Ring,"PvP, Vendor"
+276741,Defias Enforcer's Shoulderpads,48,Shoulder,Other
+286556,Winds of Tanaris,48,Trinket,Other
+20179,Defiler's Lamellar Girdle,48,Waist,Vendor
+276742,Girdle of Extracted Answers,48,Waist,Other
+15180,Praetorian Girdle,48,Waist,Drop
+13144,Serenity Belt,48,Waist,Drop
+12769,Bleakwood Hew,49,2H,Crafted
+12772,Inlaid Thorium Hammer,49,2H,Crafted
+287020,Defias Enforcer's Chest,49,Chest,Other
+13067,Hydralick Armor,49,Chest,Drop
+13111,Sandals of the Insurgent,49,Feet,Drop
+282012,Corsepickers,49,Hands,Other
+284285,Feardred's Gauntlets,49,Hands,Other
+15966,Venomshroud Orb,49,Held item,Drop
+810,Hammer of the Northern Wind,49,Main-hand,Drop
+284067,Rusted Family Memento,49,Neck,Other
+276740,Sentimental Locket,49,Neck,Other
+285281,Arcanite Blacksmith Hammer,49,Ranged,Crafted
+1203,Aegis of Stormwind,49,Shield,Drop
+16664,Ornate Bracers,49,Wrist,Other
+15229,Blesswind Hammer,50,1H,Drop
+282023,Clack's Claw,50,1H,Other
+9372,Sul'thraze the Lasher,50,2H,Other
+220828,Knight's Chain Armor,50,Chest,Vendor
+220868,Knight's Crackling Leather Tunic,50,Chest,Vendor
+220886,Knight's Dreadweave Vest,50,Chest,Vendor
+220813,Knight's Imbued Armor,50,Chest,Vendor
+220815,Knight's Lamellar Chestplate,50,Chest,Vendor
+220854,Knight's Leather Armor,50,Chest,Vendor
+223078,Knight's Mail Armor,50,Chest,Vendor
+220794,Knight's Plate Hauberk,50,Chest,Vendor
+220878,Knight's Restored Leather Jerkin,50,Chest,Vendor
+220892,Knight's Satin Armor,50,Chest,Vendor
+220827,Stone Guard's Chain Armor,50,Chest,Vendor
+220869,Stone Guard's Crackling Leather Tunic,50,Chest,Vendor
+220904,Stone Guard's Dreadweave Vest,50,Chest,Vendor
+220838,Stone Guard's Inscribed Chestpiece,50,Chest,Vendor
+220855,Stone Guard's Leather Armor,50,Chest,Vendor
+220826,Stone Guard's Mail Armor,50,Chest,Vendor
+220801,Stone Guard's Plate Armor,50,Chest,Vendor
+220844,Stone Guard's Pulsing Breastplate,50,Chest,Vendor
+220879,Stone Guard's Restored Leather Jerkin,50,Chest,Vendor
+220903,Stone Guard's Satin Armor,50,Chest,Vendor
+220836,First Sergeant's Chain Sabatons,50,Feet,Vendor
+220863,First Sergeant's Crackling Leather Boots,50,Feet,Vendor
+220909,First Sergeant's Dreadweave Boots,50,Feet,Vendor
+220840,First Sergeant's Inscribed Sabatons,50,Feet,Vendor
+220861,First Sergeant's Leather Boots,50,Feet,Vendor
+220835,First Sergeant's Mail Sabatons,50,Feet,Vendor
+220800,First Sergeant's Plate Greaves,50,Feet,Vendor
+220846,First Sergeant's Pulsing Greaves,50,Feet,Vendor
+220885,First Sergeant's Restored Leather Boots,50,Feet,Vendor
+220900,First Sergeant's Satin Boots,50,Feet,Vendor
+220837,Sergeant Major's Chain Sabatons,50,Feet,Vendor
+220862,Sergeant Major's Crackling Leather Boots,50,Feet,Vendor
+220891,Sergeant Major's Dreadweave Boots,50,Feet,Vendor
+220811,Sergeant Major's Imbued Greaves,50,Feet,Vendor
+220814,Sergeant Major's Lamellar Boots,50,Feet,Vendor
+220860,Sergeant Major's Leather Boots,50,Feet,Vendor
+223077,Sergeant Major's Mail Sabatons,50,Feet,Vendor
+220799,Sergeant Major's Plate Greaves,50,Feet,Vendor
+220884,Sergeant Major's Restored Leather Boots,50,Feet,Vendor
+220895,Sergeant Major's Satin Boots,50,Feet,Vendor
+220830,First Sergeant's Chain Gauntlets,50,Hands,Vendor
+220867,First Sergeant's Crackling Leather Gauntlets,50,Hands,Vendor
+220908,First Sergeant's Dreadweave Gloves,50,Hands,Vendor
+220843,First Sergeant's Inscribed Gauntlets,50,Hands,Vendor
+220857,First Sergeant's Leather Gauntlets,50,Hands,Vendor
+220831,First Sergeant's Mail Gauntlets,50,Hands,Vendor
+220807,First Sergeant's Plate Gauntlets,50,Hands,Vendor
+220845,First Sergeant's Pulsing Gauntlets,50,Hands,Vendor
+220881,First Sergeant's Restored Leather Gloves,50,Hands,Vendor
+220898,First Sergeant's Satin Gloves,50,Hands,Vendor
+220829,Sergeant Major's Chain Gauntlets,50,Hands,Vendor
+220866,Sergeant Major's Crackling Leather Gauntlets,50,Hands,Vendor
+220890,Sergeant Major's Dreadweave Gloves,50,Hands,Vendor
+220812,Sergeant Major's Imbued Gauntlets,50,Hands,Vendor
+220817,Sergeant Major's Lamellar Gauntlets,50,Hands,Vendor
+220856,Sergeant Major's Leather Gauntlets,50,Hands,Vendor
+223076,Sergeant Major's Mail Gauntlets,50,Hands,Vendor
+220806,Sergeant Major's Plate Gauntlets,50,Hands,Vendor
+220880,Sergeant Major's Restored Leather Gloves,50,Hands,Vendor
+220897,Sergeant Major's Satin Gloves,50,Hands,Vendor
+220821,Blood Guard's Chain Helmet,50,Head,Vendor
+220873,Blood Guard's Crackling Leather Helmet,50,Head,Vendor
+220907,Blood Guard's Dreadweave Hat,50,Head,Vendor
+220842,Blood Guard's Inscribed Skullcap,50,Head,Vendor
+220851,Blood Guard's Leather Headband,50,Head,Vendor
+220820,Blood Guard's Mail Helmet,50,Head,Vendor
+220803,Blood Guard's Plate Helm,50,Head,Vendor
+220848,Blood Guard's Pulsing Helmet,50,Head,Vendor
+220875,Blood Guard's Restored Leather Helm,50,Head,Vendor
+220899,Blood Guard's Satin Cover,50,Head,Vendor
+220822,Knight-Lieutenant's Chain Helmet,50,Head,Vendor
+220872,Knight-Lieutenant's Crackling Leather Helmet,50,Head,Vendor
+220889,Knight-Lieutenant's Dreadweave Hat,50,Head,Vendor
+220810,Knight-Lieutenant's Imbued Helmet,50,Head,Vendor
+220819,Knight-Lieutenant's Lamellar Helm,50,Head,Vendor
+220850,Knight-Lieutenant's Leather Headband,50,Head,Vendor
+223075,Knight-Lieutenant's Mail Helmet,50,Head,Vendor
+220804,Knight-Lieutenant's Plate Helm,50,Head,Vendor
+220874,Knight-Lieutenant's Restored Leather Helm,50,Head,Vendor
+220896,Knight-Lieutenant's Satin Cover,50,Head,Vendor
+15936,Duskwoven Branch,50,Held item,Drop
+276746,Defias Enforcer's Legguards,50,Legs,Other
+220832,Knight's Chain Legplates,50,Legs,Vendor
+220864,Knight's Crackling Leather Leggings,50,Legs,Vendor
+220888,Knight's Dreadweave Leggings,50,Legs,Vendor
+220809,Knight's Imbued Leggings,50,Legs,Vendor
+220816,Knight's Lamellar Legplates,50,Legs,Vendor
+220858,Knight's Leather Pants,50,Legs,Vendor
+223074,Knight's Mail Legplates,50,Legs,Vendor
+220797,Knight's Plate Leggings,50,Legs,Vendor
+220882,Knight's Restored Leather Leggings,50,Legs,Vendor
+220893,Knight's Satin Leggings,50,Legs,Vendor
+220833,Stone Guard's Chain Legplates,50,Legs,Vendor
+220865,Stone Guard's Crackling Leather Leggings,50,Legs,Vendor
+220906,Stone Guard's Dreadweave Leggings,50,Legs,Vendor
+220839,Stone Guard's Inscribed Legplates,50,Legs,Vendor
+220859,Stone Guard's Leather Pants,50,Legs,Vendor
+220834,Stone Guard's Mail Legplates,50,Legs,Vendor
+220798,Stone Guard's Plate Leggings,50,Legs,Vendor
+220847,Stone Guard's Pulsing Legplates,50,Legs,Vendor
+220883,Stone Guard's Restored Leather Leggings,50,Legs,Vendor
+220902,Stone Guard's Satin Leggings,50,Legs,Vendor
+19303,Darkmoon Necklace,50,Neck,Vendor
+13022,Gryphonwing Long Bow,50,Ranged,Drop
+19302,Darkmoon Ring,50,Ring,Vendor
+220824,Blood Guard's Chain Epaulets,50,Shoulder,Vendor
+220871,Blood Guard's Crackling Leather Spaulders,50,Shoulder,Vendor
+220905,Blood Guard's Dreadweave Mantle,50,Shoulder,Vendor
+220841,Blood Guard's Inscribed Shoulder Pads,50,Shoulder,Vendor
+220853,Blood Guard's Leather Shoulders,50,Shoulder,Vendor
+220823,Blood Guard's Mail Epaulets,50,Shoulder,Vendor
+220796,Blood Guard's Plate Pauldrons,50,Shoulder,Vendor
+220849,Blood Guard's Pulsing Shoulders,50,Shoulder,Vendor
+220877,Blood Guard's Restored Leather Spaulders,50,Shoulder,Vendor
+220901,Blood Guard's Satin Pads,50,Shoulder,Vendor
+220825,Knight-Lieutenant's Chain Epaulets,50,Shoulder,Vendor
+220870,Knight-Lieutenant's Crackling Leather Spaulders,50,Shoulder,Vendor
+220887,Knight-Lieutenant's Dreadweave Mantle,50,Shoulder,Vendor
+220808,Knight-Lieutenant's Imbued Pauldrons,50,Shoulder,Vendor
+220818,Knight-Lieutenant's Lamellar Pauldrons,50,Shoulder,Vendor
+220852,Knight-Lieutenant's Leather Shoulders,50,Shoulder,Vendor
+223073,Knight-Lieutenant's Mail Epaulets,50,Shoulder,Vendor
+220795,Knight-Lieutenant's Plate Pauldrons,50,Shoulder,Vendor
+220876,Knight-Lieutenant's Restored Leather Spaulders,50,Shoulder,Vendor
+220894,Knight-Lieutenant's Satin Pads,50,Shoulder,Vendor
+19024,Arena Grand Master,50,Trinket,Quest
+14674,Pridelord Girdle,50,Waist,Drop
+19580,Berserker Bracers,50,Wrist,"PvP, Vendor"
+13120,Deepfury Bracers,50,Wrist,Drop
+19596,Dryad's Wrist Bindings,50,Wrist,"PvP, Vendor"
+19589,Forest Stalker's Bracers,50,Wrist,"PvP, Vendor"
+19583,Windtalker's Wristguards,50,Wrist,"PvP, Vendor"
+13003,Lord Alexander's Battle Axe,51,2H,Drop
+15930,Imperial Red Scepter,51,Held item,Drop
+15984,Opulent Scepter,51,Held item,Drop
+284228,Vial of Vile Liquid,51,Held item,Other
+13130,Windrunner Legguards,51,Legs,Drop
+282019,Braided Seer Stones,51,Neck,Other
+285284,Balanced Knives,51,Ranged,Other
+15324,Burnside Rifle,51,Ranged,Drop
+13040,Heartseeking Crossbow,51,Ranged,Drop
+13013,Elder Wizard's Mantle,51,Shoulder,Drop
+227947,Golem Fitted Pauldrons,51,Shoulder,Other
+282074,Ogre Sorcerer Belt,51,Waist,Other
+276884,Verek's Loyal Wraps,51,Wrist,Other
+13036,Assassination Blade,52,1H,Drop
+284262,Howling Hide,52,Back,Other
+15985,Arachnidian Branch,52,Held item,Drop
+13091,Medallion of Grand Marshal Morris,52,Neck,Drop
+285278,Satchel of Dark Iron Bombs,52,Ranged,Crafted
+282080,Flame Seared Signet,52,Ring,Other
+277117,Savage Gladiator Shoulders,52,Shoulder,Other
+13077,Girdle of Uther,52,Waist,Drop
+13118,Serpentine Sash,52,Waist,Drop
+274419,Bear Poking Stick,53,2H,Other
+13047,Twig of the World Tree,53,2H,Drop
+274420,Wisepaw Totem,53,2H,Other
+14331,Eternal Cloak,53,Back,Drop
+13007,Mageflame Cloak,53,Back,Drop
+15681,Triumphant Cloak,53,Back,Drop
+269502,Dwarven Plate,53,Chest,Other
+13070,Sapphiron's Scale Boots,53,Feet,Drop
+284154,Unmovable Sabatons,53,Feet,Other
+284065,Crown of Maldazzar,53,Head,Other
+282558,Firebird's Cowl,53,Head,Other
+274417,Barkskin Baubles,53,Held item,Other
+15938,Mystical Orb,53,Held item,Drop
+282029,Reaver's Repeater,53,Ranged,Other
+13146,Shell Launcher Shotgun,53,Ranged,Drop
+13004,Torch of Austen,53,Ranged,Drop
+282026,Unyielding Battle Signet,53,Ring,Other
+274418,Burrow Barricade,53,Shield,Other
+284257,Icesworn Decapitator,54,2H,Other
+276395,Grimm's Packing Gloves,54,Hands,Other
+284266,Wintersaber Hide Lined Gloves,54,Hands,Other
+15939,Councillor's Scepter,54,Held item,Drop
+15967,Highborne Star,54,Held item,Drop
+4696,Lapidis Tankard of Tidesippe,54,Held item,Drop
+286640,High Priestess's Kilt,54,Legs,Other
+18023,Blood Ruby Pendant,54,Neck,Other
+13002,Lady Alizabeth's Pendant,54,Neck,Drop
+18674,Hardened Stone Band,54,Ring,Drop
+16999,Royal Seal of Alexis,54,Ring,Other
+14864,Warleader's Belt,54,Waist,Drop
+14983,Exalted Armsplints,54,Wrist,Drop
+13135,Lordly Armguards,54,Wrist,Drop
+282048,Ragged Dark Iron Cuffs,54,Wrist,Other
+276419,Lightcrest Hammer,55,1H,Other
+19324,The Lobotomizer,55,1H,"Drop, PvP, Vendor"
+12802,Darkspear,55,2H,Crafted
+13053,Doombringer,55,2H,Drop
+276397,Hand of the Zealous,55,2H,Other
+15278,Solstice Staff,55,2H,Drop
+13060,The Needler,55,2H,Drop
+19323,The Unstoppable Force,55,2H,"Drop, PvP, Vendor"
+10258,Adventurer's Cape,55,Back,Drop
+19085,Frostwolf Advisor's Cloak,55,Back,"Drop, PvP, Vendor"
+19083,Frostwolf Legionnaire's Cloak,55,Back,"Drop, PvP, Vendor"
+272589,Premier Sergeant's Cape,55,Back,Other
+272699,Premier Sergeant's Cape,55,Back,Other
+272578,Premier Sergeant's Cloak,55,Back,Other
+272698,Premier Sergeant's Cloak,55,Back,Other
+16337,Sergeant Major's Cape,55,Back,Other
+19086,Stormpike Sage's Cloak,55,Back,"PvP, Vendor"
+19084,Stormpike Soldier's Cloak,55,Back,"PvP, Vendor"
+276399,Plate of the Scarlet Bastion,55,Chest,Other
+272730,Premier Beasthide Tunic,55,Chest,Other
+272490,Premier Chain Breastplate,55,Chest,Other
+272734,Premier Chainmail Hauberk,55,Chest,Other
+272742,Premier Chevalier Breastplate,55,Chest,Other
+272472,Premier Dragonhide Breastplate,55,Chest,Other
+272800,Premier Dreadweave Robe,55,Chest,Other
+273380,Premier Dreamhide Tunic,55,Chest,Other
+272548,Premier Felweave Robe,55,Chest,Other
+274194,Premier Flatmail Hauberk,55,Chest,Other
+272626,Premier Kodohide Chestpiece,55,Chest,Other
+274244,Premier Lamellar Breastplate,55,Chest,Other
+272726,Premier Leather Armor,55,Chest,Other
+272625,Premier Linked Hauberk,55,Chest,Other
+274219,Premier Linkmail Chestpiece,55,Chest,Other
+272852,Premier Luminous Breastplate,55,Chest,Other
+273371,Premier Lunarhide Tunic,55,Chest,Other
+272459,Premier Magus Robes,55,Chest,Other
+272487,Premier Mail Chestpiece,55,Chest,Other
+273448,Premier Mooncloth Robes,55,Chest,Other
+272479,Premier Mortarplate Armor,55,Chest,Other
+272739,Premier Plate Chestguard,55,Chest,Other
+273357,Premier Ringmail Chestpiece,55,Chest,Other
+272564,Premier Satin Vestments,55,Chest,Other
+274230,Premier Scaled Breastplate,55,Chest,Other
+274179,Premier Scalemail Chestpiece,55,Chest,Other
+272473,Premier Shadowhide Hauberk,55,Chest,Other
+272722,Premier Silk Raiment,55,Chest,Other
+272634,Premier Silken Tunic,55,Chest,Other
+272816,Premier Voidcloth Robes,55,Chest,Other
+273384,Premier Wyrmhide Chestpiece,55,Chest,Other
+272705,Premier Beasthide Footwraps,55,Feet,Other
+272496,Premier Chain Boots,55,Feet,Other
+272713,Premier Chainmail Boots,55,Feet,Other
+272718,Premier Chevalier Sabatons,55,Feet,Other
+272462,Premier Dragonhide Boots,55,Feet,Other
+272794,Premier Dreadweave Boots,55,Feet,Other
+273379,Premier Dreamhide Footwraps,55,Feet,Other
+272552,Premier Felweave Boots,55,Feet,Other
+274192,Premier Flatmail Greaves,55,Feet,Other
+272606,Premier Kodohide Treads,55,Feet,Other
+274258,Premier Lamellar Sabatons,55,Feet,Other
+272704,Premier Leather Boots,55,Feet,Other
+272609,Premier Linked Greaves,55,Feet,Other
+274217,Premier Linkmail Walkers,55,Feet,Other
+273365,Premier Luminous Sabatons,55,Feet,Other
+273370,Premier Lunarhide Footwraps,55,Feet,Other
+272453,Premier Magus Footwraps,55,Feet,Other
+272484,Premier Mail Walkers,55,Feet,Other
+273443,Premier Mooncloth Boots,55,Feet,Other
+272477,Premier Mortarplate Boots,55,Feet,Other
+272716,Premier Plate Boots,55,Feet,Other
+273355,Premier Ringmail Walkers,55,Feet,Other
+272568,Premier Satin Boots,55,Feet,Other
+274226,Premier Scaled Sabatons,55,Feet,Other
+274176,Premier Scalemail Walkers,55,Feet,Other
+272608,Premier Shadowhide Walkers,55,Feet,Other
+272701,Premier Silk Boots,55,Feet,Other
+272611,Premier Silken Walkers,55,Feet,Other
+272810,Premier Voidcloth Boots,55,Feet,Other
+273383,Premier Wyrmhide Treads,55,Feet,Other
+272709,Premier Beasthide Gloves,55,Hands,Other
+272495,Premier Chain Gauntlets,55,Hands,Other
+272715,Premier Chainmail Gauntlets,55,Hands,Other
+272719,Premier Chevalier Gauntlets,55,Hands,Other
+272614,Premier Dragonhide Grips,55,Hands,Other
+272796,Premier Dreadweave Gloves,55,Hands,Other
+273377,Premier Dreamhide Gloves,55,Hands,Other
+272553,Premier Felweave Gloves,55,Hands,Other
+274177,Premier Flatmail Grips,55,Hands,Other
+272464,Premier Kodohide Gauntlets,55,Hands,Other
+274256,Premier Lamellar Gauntlets,55,Hands,Other
+272708,Premier Leather Gauntlets,55,Hands,Other
+272485,Premier Linked Grips,55,Hands,Other
+274220,Premier Linkmail Vices,55,Hands,Other
+273363,Premier Luminous Gauntlets,55,Hands,Other
+273368,Premier Lunarhide Gloves,55,Hands,Other
+272455,Premier Magus Gloves,55,Hands,Other
+272617,Premier Mail Vices,55,Hands,Other
+273445,Premier Mooncloth Gloves,55,Hands,Other
+272478,Premier Mortarplate Gloves,55,Hands,Other
+272717,Premier Plate Gauntlets,55,Hands,Other
+273358,Premier Ringmail Vices,55,Hands,Other
+272569,Premier Satin Gloves,55,Hands,Other
+274227,Premier Scaled Gauntlets,55,Hands,Other
+274193,Premier Scalemail Vices,55,Hands,Other
+272467,Premier Shadowhide Vices,55,Hands,Other
+272703,Premier Silk Gloves,55,Hands,Other
+272619,Premier Silken Handwraps,55,Hands,Other
+272812,Premier Voidcloth Gloves,55,Hands,Other
+273382,Premier Wyrmhide Gauntlets,55,Hands,Other
+13072,Stonegrip Gauntlets,55,Hands,Drop
+272733,Premier Beasthide Shroud,55,Head,Other
+272491,Premier Chain Headguard,55,Head,Other
+272737,Premier Chainmail Helmet,55,Head,Other
+272743,Premier Chevalier Headguard,55,Head,Other
+272471,Premier Dragonhide Helm,55,Head,Other
+272671,Premier Dreadweave Cowl,55,Head,Other
+273374,Premier Dreamhide Headguard,55,Head,Other
+272643,Premier Felweave Cowl,55,Head,Other
+274196,Premier Flatmail Headguard,55,Head,Other
+272641,Premier Kodohide Headguard,55,Head,Other
+274246,Premier Lamellar Headguard,55,Head,Other
+272727,Premier Leather Veil,55,Head,Other
+272647,Premier Linked Headguard,55,Head,Other
+274218,Premier Linkmail Helm,55,Head,Other
+272854,Premier Luminous Headguard,55,Head,Other
+272669,Premier Lunarhide Headguard,55,Head,Other
+272457,Premier Magus Hood,55,Head,Other
+272486,Premier Mail Helm,55,Head,Other
+272677,Premier Mooncloth Hood,55,Head,Other
+272480,Premier Mortarplate Headguard,55,Head,Other
+272738,Premier Plate Helm,55,Head,Other
+273356,Premier Ringmail Helm,55,Head,Other
+272562,Premier Satin Cowl,55,Head,Other
+274231,Premier Scaled Headguard,55,Head,Other
+274178,Premier Scalemail Helm,55,Head,Other
+272474,Premier Shadowhide Headguard,55,Head,Other
+272725,Premier Silk Crown,55,Head,Other
+272649,Premier Silken Hood,55,Head,Other
+272814,Premier Voidcloth Diadem,55,Head,Other
+273386,Premier Wyrmhide Headguard,55,Head,Other
+15986,Bonecaster's Star,55,Held item,Drop
+19312,Lei of the Lifegiver,55,Held item,"Drop, PvP, Vendor"
+19315,Therazane's Touch,55,Held item,"Drop, PvP, Vendor"
+19308,Tome of Arcane Domination,55,Held item,"Drop, PvP, Vendor"
+19311,Tome of Fiery Arcana,55,Held item,"Drop, PvP, Vendor"
+19309,Tome of Shadow Force,55,Held item,"Drop, PvP, Vendor"
+19310,Tome of the Ice Lord,55,Held item,"Drop, PvP, Vendor"
+9402,Earthborn Kilt,55,Legs,Drop
+272731,Premier Beasthide Leggings,55,Legs,Other
+272492,Premier Chain Leggings,55,Legs,Other
+272735,Premier Chainmail Leggings,55,Legs,Other
+272744,Premier Chevalier Leggings,55,Legs,Other
+272470,Premier Dragonhide Trousers,55,Legs,Other
+272657,Premier Dreadweave Legguards,55,Legs,Other
+273373,Premier Dreamhide Leggings,55,Legs,Other
+272630,Premier Felweave Legguards,55,Legs,Other
+274180,Premier Flatmail Leggings,55,Legs,Other
+272627,Premier Kodohide Leggings,55,Legs,Other
+274245,Premier Lamellar Leggings,55,Legs,Other
+272728,Premier Leather Legguards,55,Legs,Other
+272488,Premier Linked Leggings,55,Legs,Other
+274221,Premier Linkmail Legguards,55,Legs,Other
+272853,Premier Luminous Leggings,55,Legs,Other
+272656,Premier Lunarhide Leggings,55,Legs,Other
+272458,Premier Magus Pants,55,Legs,Other
+272636,Premier Mail Legguards,55,Legs,Other
+273447,Premier Mooncloth Leggings,55,Legs,Other
+272481,Premier Mortarplate Legguards,55,Legs,Other
+272740,Premier Plate Leggings,55,Legs,Other
+273359,Premier Ringmail Legguards,55,Legs,Other
+272563,Premier Satin Trousers,55,Legs,Other
+274232,Premier Scaled Leggings,55,Legs,Other
+274195,Premier Scalemail Legguards,55,Legs,Other
+272476,Premier Shadowhide Leggings,55,Legs,Other
+272723,Premier Silk Leggings,55,Legs,Other
+272663,Premier Silken Legguards,55,Legs,Other
+272815,Premier Voidcloth Leggings,55,Legs,Other
+273385,Premier Wyrmhide Leggings,55,Legs,Other
+18671,Baron Charr's Sceptre,55,Main-hand,Drop
+12795,Blood Talon,55,Main-hand,Crafted
+19096,Frostwolf Advisor's Pendant,55,Neck,"Drop, PvP, Vendor"
+19095,Frostwolf Legionnaire's Pendant,55,Neck,"Drop, PvP, Vendor"
+274969,Premier Master Sergeant's Insignia,55,Neck,Other
+274968,Premier Senior Sergeant's Insignia,55,Neck,Other
+19098,Stormpike Sage's Pendant,55,Neck,"PvP, Vendor"
+19097,Stormpike Soldier's Pendant,55,Neck,"PvP, Vendor"
+284070,Dreadwhisper's Touch,55,Ranged,Other
+15325,Sharpshooter Harquebus,55,Ranged,Drop
+220606,Idol of the Dream,55,Relic,"Crafted, Dungeon"
+228175,Libram of Holy Alacrity,55,Relic,"Crafted, Vendor"
+13096,Band of the Hierophant,55,Ring,Drop
+19325,Don Julio's Band,55,Ring,"Drop, PvP, Vendor"
+13001,Maiden's Circle,55,Ring,Drop
+20692,Multicolored Band,55,Ring,Drop
+272732,Premier Beasthide Epaulets,55,Shoulder,Other
+272640,Premier Chain Shoulders,55,Shoulder,Other
+272736,Premier Chainmail Pauldrons,55,Shoulder,Other
+272745,Premier Chevalier Shoulders,55,Shoulder,Other
+272469,Premier Dragonhide Spaulders,55,Shoulder,Other
+272801,Premier Dreadweave Mantle,55,Shoulder,Other
+273375,Premier Dreamhide Shoulders,55,Shoulder,Other
+272549,Premier Felweave Shoulders,55,Shoulder,Other
+274181,Premier Flatmail Shoulders,55,Shoulder,Other
+272642,Premier Kodohide Shoulders,55,Shoulder,Other
+274247,Premier Lamellar Shoulders,55,Shoulder,Other
+272729,Premier Leather Spaulders,55,Shoulder,Other
+272489,Premier Linked Shoulders,55,Shoulder,Other
+274222,Premier Linkmail Pauldrons,55,Shoulder,Other
+272855,Premier Luminous Shoulders,55,Shoulder,Other
+272670,Premier Lunarhide Shoulders,55,Shoulder,Other
+272680,Premier Magus Mantle,55,Shoulder,Other
+272648,Premier Mail Pauldrons,55,Shoulder,Other
+272678,Premier Mooncloth Mantle,55,Shoulder,Other
+272637,Premier Mortarplate Shoulders,55,Shoulder,Other
+272741,Premier Plate Pauldrons,55,Shoulder,Other
+273360,Premier Ringmail Pauldrons,55,Shoulder,Other
+272565,Premier Satin Shoulderpads,55,Shoulder,Other
+274233,Premier Scaled Shoulders,55,Shoulder,Other
+274197,Premier Scalemail Pauldrons,55,Shoulder,Other
+272475,Premier Shadowhide Mantle,55,Shoulder,Other
+272724,Premier Silk Spaulders,55,Shoulder,Other
+272650,Premier Silken Mantle,55,Shoulder,Other
+272817,Premier Voidcloth Amice,55,Shoulder,Other
+273387,Premier Wyrmhide Shoulders,55,Shoulder,Other
+268873,Defender of the Barkskin,55,Trinket,Other
+18355,Ferra's Collar,55,Trinket,Other
+14977,Exalted Girdle,55,Waist,Drop
+19090,Frostwolf Cloth Belt,55,Waist,"Drop, PvP, Vendor"
+19089,Frostwolf Leather Belt,55,Waist,"Drop, PvP, Vendor"
+19088,Frostwolf Mail Belt,55,Waist,"Drop, PvP, Vendor"
+19087,Frostwolf Plate Belt,55,Waist,"Drop, PvP, Vendor"
+16400,Knight-Captain's Chain Girdle,55,Waist,Other
+16399,Knight-Captain's Dragonhide Girdle,55,Waist,Other
+17565,Knight-Captain's Dreadweave Belt,55,Waist,Other
+16411,Knight-Captain's Lamellar Cinch,55,Waist,Other
+16398,Knight-Captain's Leather Belt,55,Waist,Other
+16407,Knight-Captain's Plate Girdle,55,Waist,Other
+17597,Knight-Captain's Satin Cord,55,Waist,Other
+16367,Knight-Captain's Silk Sash,55,Waist,Other
+16529,Legionnaire's Chain Girdle,55,Waist,Other
+16495,Legionnaire's Dragonhide Waistband,55,Waist,Other
+17574,Legionnaire's Dreadweave Belt,55,Waist,Other
+16500,Legionnaire's Leather Girdle,55,Waist,Other
+16520,Legionnaire's Mail Cinch,55,Waist,Other
+16511,Legionnaire's Plate Cinch,55,Waist,Other
+17614,Legionnaire's Satin Sash,55,Waist,Other
+16488,Legionnaire's Silk Belt,55,Waist,Other
+272711,Premier Beasthide Girdle,55,Waist,Other
+272494,Premier Chain Girdle,55,Waist,Other
+272712,Premier Chainmail Girdle,55,Waist,Other
+272720,Premier Chevalier Cinch,55,Waist,Other
+272463,Premier Dragonhide Waistband,55,Waist,Other
+272797,Premier Dreadweave Belt,55,Waist,Other
+273378,Premier Dreamhide Girdle,55,Waist,Other
+272550,Premier Felweave Belt,55,Waist,Other
+274214,Premier Flatmail Girdle,55,Waist,Other
+273367,Premier Kodohide Waistband,55,Waist,Other
+274259,Premier Lamellar Cinch,55,Waist,Other
+272710,Premier Leather Belt,55,Waist,Other
+273352,Premier Linked Girdle,55,Waist,Other
+274224,Premier Linkmail Girdle,55,Waist,Other
+273366,Premier Luminous Cinch,55,Waist,Other
+273369,Premier Lunarhide Girdle,55,Waist,Other
+272456,Premier Magus Belt,55,Waist,Other
+273372,Premier Mail Girdle,55,Waist,Other
+273449,Premier Mooncloth Cord,55,Waist,Other
+273324,Premier Mortarplate Girdle,55,Waist,Other
+273325,Premier Plate Girdle,55,Waist,Other
+273362,Premier Ringmail Girdle,55,Waist,Other
+272566,Premier Satin Sash,55,Waist,Other
+274228,Premier Scaled Cinch,55,Waist,Other
+274225,Premier Scalemail Girdle,55,Waist,Other
+272468,Premier Shadowhide Girdle,55,Waist,Other
+272700,Premier Silk Sash,55,Waist,Other
+275437,Premier Silken Sash,55,Waist,Other
+272813,Premier Voidcloth Cord,55,Waist,Other
+273388,Premier Wyrmhide Waistband,55,Waist,Other
+19094,Stormpike Cloth Girdle,55,Waist,"PvP, Vendor"
+19093,Stormpike Leather Girdle,55,Waist,"PvP, Vendor"
+19092,Stormpike Mail Girdle,55,Waist,"PvP, Vendor"
+19091,Stormpike Plate Girdle,55,Waist,"PvP, Vendor"
+15683,Triumphant Girdle,55,Waist,Drop
+269501,Elven Chain Wristguards,55,Wrist,Other
+10391,Hyperion Vambraces,55,Wrist,Drop
+16402,Knight-Captain's Chain Armguards,55,Wrist,Other
+16395,Knight-Captain's Dragonhide Armsplints,55,Wrist,Other
+17563,Knight-Captain's Dreadweave Bracers,55,Wrist,Other
+16412,Knight-Captain's Lamellar Armsplints,55,Wrist,Other
+16394,Knight-Captain's Leather Bracers,55,Wrist,Other
+16404,Knight-Captain's Plate Wristguards,55,Wrist,Other
+17595,Knight-Captain's Satin Cuffs,55,Wrist,Other
+16370,Knight-Captain's Silk Cuffs,55,Wrist,Other
+16517,Legionnaire's Chain Bracers,55,Wrist,Other
+16493,Legionnaire's Dragonhide Armguards,55,Wrist,Other
+17575,Legionnaire's Dreadweave Bracers,55,Wrist,Other
+16512,Legionnaire's Plate Bracers,55,Wrist,Other
+17615,Legionnaire's Satin Cuffs,55,Wrist,Other
+272707,Premier Beasthide Armsplints,55,Wrist,Other
+272483,Premier Chain Bracers,55,Wrist,Other
+272830,Premier Chainmail Armguards,55,Wrist,Other
+272721,Premier Chevalier Armsplints,55,Wrist,Other
+272582,Premier Dragonhide Armguards,55,Wrist,Other
+272795,Premier Dreadweave Bracers,55,Wrist,Other
+272834,Premier Dreamhide Armsplints,55,Wrist,Other
+272551,Premier Felweave Bracers,55,Wrist,Other
+274182,Premier Flatmail Wristguards,55,Wrist,Other
+272461,Premier Kodohide Armguards,55,Wrist,Other
+274257,Premier Lamellar Armsplints,55,Wrist,Other
+272706,Premier Leather Bracers,55,Wrist,Other
+272497,Premier Linked Wristguards,55,Wrist,Other
+274223,Premier Linkmail Wristguards,55,Wrist,Other
+273364,Premier Luminous Armsplints,55,Wrist,Other
+272835,Premier Lunarhide Armsplints,55,Wrist,Other
+272454,Premier Magus Cuffs,55,Wrist,Other
+273353,Premier Mail Wristguards,55,Wrist,Other
+273444,Premier Mooncloth Cuffs,55,Wrist,Other
+272579,Premier Mortarplate Bracers,55,Wrist,Other
+272828,Premier Plate Wristguards,55,Wrist,Other
+273361,Premier Ringmail Wristguards,55,Wrist,Other
+272567,Premier Satin Cuffs,55,Wrist,Other
+274229,Premier Scaled Armsplints,55,Wrist,Other
+274215,Premier Scalemail Wristguards,55,Wrist,Other
+272465,Premier Shadowhide Armguards,55,Wrist,Other
+272702,Premier Silk Cuffs,55,Wrist,Other
+273450,Premier Silken Cuffs,55,Wrist,Other
+272811,Premier Voidcloth Cuffs,55,Wrist,Other
+273381,Premier Wyrmhide Armguards,55,Wrist,Other
+15436,Supreme Bracers,55,Wrist,Drop
+13015,Serathil,56,1H,Drop
+274517,Unerring Purpose,56,1H,Other
+282070,Gruklash's Basher,56,2H,Other
+10249,Master's Cloak,56,Back,Drop
+10267,Masterwork Cape,56,Back,Drop
+15437,Supreme Cape,56,Back,Drop
+269503,Poacher Boots,56,Feet,Other
+14976,Exalted Gauntlets,56,Hands,Drop
+15931,Arcane Star,56,Held item,Drop
+15987,Astral Orb,56,Held item,Drop
+284261,Magically Fortified Legguards,56,Legs,Other
+281600,Wail of Death,56,Ranged,Other
+13133,Drakesfire Epaulets,56,Shoulder,Drop
+13116,Spaulders of the Unseen,56,Shoulder,Drop
+14337,Eternal Cord,56,Waist,Drop
+284268,Furbolg Shaman's Girdle,56,Waist,Other
+10387,Hyperion Girdle,56,Waist,Drop
+15434,Supreme Sash,56,Waist,Drop
+10256,Adventurer's Bracers,56,Wrist,Drop
+14330,Eternal Bindings,56,Wrist,Drop
+15679,Triumphant Bracers,56,Wrist,Drop
+13000,Staff of Hale Magefire,57,2H,Drop
+284100,Horseman's Unyielding Shroud,57,Back,Other
+13123,Dreamwalker Armor,57,Chest,Drop
+15141,Onyxia Scale Breastplate,57,Chest,Crafted
+12615,Savage Mail Tunic,57,Chest,Other
+10257,Adventurer's Boots,57,Feet,Drop
+14329,Eternal Boots,57,Feet,Drop
+10385,Hyperion Greaves,57,Feet,Drop
+10386,Hyperion Gauntlets,57,Hands,Drop
+15940,Elegant Scepter,57,Held item,Drop
+284101,Blade of Senseless Slaughter,57,Main-hand,Other
+13006,Mass of McGowan,57,Main-hand,Drop
+18678,Tempestria's Frozen Necklace,57,Neck,Drop
+284253,Eternally Frozen Band,57,Ring,Other
+18679,Frigid Ring,57,Ring,Drop
+284102,Signet of the Soulless Rider,57,Ring,Other
+13083,Garrett Family Crest,57,Shield,Drop
+14981,Exalted Epaulets,57,Shoulder,Drop
+10259,Adventurer's Belt,57,Waist,Drop
+10255,Master's Belt,57,Waist,Drop
+10269,Masterwork Girdle,57,Waist,Drop
+13107,Magiskull Cuffs,57,Wrist,Drop
+10248,Master's Bracers,57,Wrist,Drop
+10265,Masterwork Bracers,57,Wrist,Drop
+20317,63 Green Rogue Dagger,58,1H,Other
+19550,Legionnaire's Sword,58,1H,"PvP, Vendor"
+19554,Protector's Sword,58,1H,"PvP, Vendor"
+5267,Scarlet Kris,58,1H,Drop
+19542,Scout's Blade,58,1H,"PvP, Vendor"
+19546,Sentinel's Blade,58,1H,"PvP, Vendor"
+20362,63 Green Frost Staff,58,2H,Other
+20280,63 Green Warrior Axe,58,2H,Other
+19566,Advisor's Gnarled Staff,58,2H,"PvP, Vendor"
+15267,Brutehammer,58,2H,Drop
+15273,Death Striker,58,2H,Drop
+19570,Lorekeeper's Staff,58,2H,"PvP, Vendor"
+17223,Thunderstrike,58,2H,Other
+211941,Windwalker's Yari,58,2H,Other
+20361,63 Green Frost Shroud,58,Back,Other
+20316,63 Green Rogue Cloak,58,Back,Other
+20283,63 Green Warrior Cloak,58,Back,Other
+19526,Battle Healer's Cloak,58,Back,"PvP, Vendor"
+19530,Caretaker's Cape,58,Back,"PvP, Vendor"
+16342,Sergeant's Cape,58,Back,"PvP, Vendor"
+18461,Sergeant's Cloak,58,Back,"PvP, Vendor"
+20360,63 Green Frost Robes,58,Chest,Other
+20323,63 Green Rogue Tunic,58,Chest,Other
+20282,63 Green Warrior Breastplate,58,Chest,Other
+13090,Breastplate of the Chosen,58,Chest,Other
+12970,General's Ceremonial Plate,58,Chest,Other
+16425,Knight-Captain's Chain Hauberk,58,Chest,Other
+16421,Knight-Captain's Dragonhide Tunic,58,Chest,Other
+17568,Knight-Captain's Dreadweave Robe,58,Chest,Other
+16433,Knight-Captain's Lamellar Breastplate,58,Chest,Other
+16417,Knight-Captain's Leather Armor,58,Chest,Other
+16430,Knight-Captain's Plate Chestguard,58,Chest,Other
+17600,Knight-Captain's Satin Robes,58,Chest,Other
+16413,Knight-Captain's Silk Raiment,58,Chest,Other
+16525,Legionnaire's Chain Breastplate,58,Chest,Other
+16504,Legionnaire's Dragonhide Breastplate,58,Chest,Other
+17572,Legionnaire's Dreadweave Robe,58,Chest,Other
+16505,Legionnaire's Leather Hauberk,58,Chest,Other
+16522,Legionnaire's Mail Chestpiece,58,Chest,Other
+16513,Legionnaire's Plate Armor,58,Chest,Other
+17612,Legionnaire's Satin Vestments,58,Chest,Other
+16491,Legionnaire's Silk Robes,58,Chest,Other
+13080,Widow's Clutch,58,Chest,Other
+20353,63 Green Frost Boots,58,Feet,Other
+20312,63 Green Rogue Boots,58,Feet,Other
+20291,63 Green Warrior Sabatons,58,Feet,Other
+16531,Blood Guard's Chain Boots,58,Feet,Other
+16494,Blood Guard's Dragonhide Boots,58,Feet,Other
+17576,Blood Guard's Dreadweave Boots,58,Feet,Other
+16498,Blood Guard's Leather Treads,58,Feet,Other
+16518,Blood Guard's Mail Walkers,58,Feet,Other
+16509,Blood Guard's Plate Boots,58,Feet,Other
+17616,Blood Guard's Satin Boots,58,Feet,Other
+16485,Blood Guard's Silk Footwraps,58,Feet,Other
+20181,Defiler's Lamellar Greaves,58,Feet,Vendor
+14978,Exalted Sabatons,58,Feet,Drop
+16401,Knight-Lieutenant's Chain Boots,58,Feet,Other
+16393,Knight-Lieutenant's Dragonhide Footwraps,58,Feet,Other
+17562,Knight-Lieutenant's Dreadweave Boots,58,Feet,Other
+16409,Knight-Lieutenant's Lamellar Sabatons,58,Feet,Other
+16392,Knight-Lieutenant's Leather Boots,58,Feet,Other
+16405,Knight-Lieutenant's Plate Boots,58,Feet,Other
+17594,Knight-Lieutenant's Satin Boots,58,Feet,Other
+16369,Knight-Lieutenant's Silk Boots,58,Feet,Other
+10247,Master's Boots,58,Feet,Drop
+10270,Masterwork Boots,58,Feet,Drop
+12616,Savage Mail Boots,58,Feet,Other
+15435,Supreme Shoes,58,Feet,Drop
+15678,Triumphant Sabatons,58,Feet,Drop
+20355,63 Green Frost Gloves,58,Hands,Other
+20318,63 Green Rogue Gloves,58,Hands,Other
+20284,63 Green Warrior Gauntlets,58,Hands,Other
+10260,Adventurer's Gloves,58,Hands,Drop
+16530,Blood Guard's Chain Gauntlets,58,Hands,Other
+16496,Blood Guard's Dragonhide Gauntlets,58,Hands,Other
+17577,Blood Guard's Dreadweave Gloves,58,Hands,Other
+16499,Blood Guard's Leather Vices,58,Hands,Other
+16519,Blood Guard's Mail Grips,58,Hands,Other
+16510,Blood Guard's Plate Gloves,58,Hands,Other
+17617,Blood Guard's Satin Gloves,58,Hands,Other
+16487,Blood Guard's Silk Gloves,58,Hands,Other
+14333,Eternal Gloves,58,Hands,Drop
+16403,Knight-Lieutenant's Chain Gauntlets,58,Hands,Other
+16397,Knight-Lieutenant's Dragonhide Gloves,58,Hands,Other
+17564,Knight-Lieutenant's Dreadweave Gloves,58,Hands,Other
+16410,Knight-Lieutenant's Lamellar Gauntlets,58,Hands,Other
+16396,Knight-Lieutenant's Leather Gauntlets,58,Hands,Other
+16406,Knight-Lieutenant's Plate Gauntlets,58,Hands,Other
+17596,Knight-Lieutenant's Satin Gloves,58,Hands,Other
+16391,Knight-Lieutenant's Silk Gloves,58,Hands,Other
+10251,Master's Gloves,58,Hands,Drop
+10268,Masterwork Gauntlets,58,Hands,Drop
+15438,Supreme Gloves,58,Hands,Drop
+15682,Triumphant Gauntlets,58,Hands,Drop
+20354,63 Green Frost Crown,58,Head,Other
+20315,63 Green Rogue Cap,58,Head,Other
+20286,63 Green Warrior Helm,58,Head,Other
+10261,Adventurer's Bandana,58,Head,Drop
+16503,Champion's Dragonhide Helm,58,Head,Other
+17570,Champion's Dreadweave Hood,58,Head,Other
+16506,Champion's Leather Headguard,58,Head,Other
+16521,Champion's Mail Helm,58,Head,Other
+16514,Champion's Plate Headguard,58,Head,Other
+17610,Champion's Satin Cowl,58,Head,Other
+16489,Champion's Silk Hood,58,Head,Other
+13113,Feathermoon Headdress,58,Head,Drop
+10388,Hyperion Helm,58,Head,Drop
+16428,Lieutenant Commander's Chain Helmet,58,Head,Other
+16416,Lieutenant Commander's Crown,58,Head,Other
+17598,Lieutenant Commander's Diadem,58,Head,Other
+16424,Lieutenant Commander's Dragonhide Shroud,58,Head,Other
+17566,Lieutenant Commander's Headguard,58,Head,Other
+16434,Lieutenant Commander's Lamellar Headguard,58,Head,Other
+16418,Lieutenant Commander's Leather Veil,58,Head,Other
+16429,Lieutenant Commander's Plate Helm,58,Head,Other
+10250,Master's Hat,58,Head,Drop
+10272,Masterwork Circlet,58,Head,Drop
+15988,Resplendent Orb,58,Held item,Drop
+20356,63 Green Frost Leggings,58,Legs,Other
+20320,63 Green Rogue Pants,58,Legs,Other
+20287,63 Green Warrior Legplates,58,Legs,Other
+13075,Direwing Legguards,58,Legs,Drop
+14334,Eternal Sarong,58,Legs,Drop
+14980,Exalted Legplates,58,Legs,Drop
+16426,Knight-Captain's Chain Leggings,58,Legs,Other
+16422,Knight-Captain's Dragonhide Leggings,58,Legs,Other
+17567,Knight-Captain's Dreadweave Leggings,58,Legs,Other
+16435,Knight-Captain's Lamellar Leggings,58,Legs,Other
+16419,Knight-Captain's Leather Legguards,58,Legs,Other
+16431,Knight-Captain's Plate Leggings,58,Legs,Other
+17599,Knight-Captain's Satin Leggings,58,Legs,Other
+16414,Knight-Captain's Silk Leggings,58,Legs,Other
+16527,Legionnaire's Chain Leggings,58,Legs,Other
+16502,Legionnaire's Dragonhide Trousers,58,Legs,Other
+17571,Legionnaire's Dreadweave Leggings,58,Legs,Other
+16508,Legionnaire's Leather Leggings,58,Legs,Other
+16523,Legionnaire's Mail Leggings,58,Legs,Other
+16515,Legionnaire's Plate Legguards,58,Legs,Other
+17611,Legionnaire's Satin Trousers,58,Legs,Other
+16490,Legionnaire's Silk Pants,58,Legs,Other
+15440,Supreme Leggings,58,Legs,Drop
+15685,Triumphant Legplates,58,Legs,Drop
+6622,Sword of Zeal,58,Main-hand,Drop
+20358,63 Green Frost Neck,58,Neck,Other
+20319,63 Green Rogue Neck,58,Neck,Other
+20288,63 Green Warrior Neck,58,Neck,Other
+20695,Abyssal War Beads,58,Neck,Drop
+18443,Master Sergeant's Insignia,58,Neck,"PvP, Vendor"
+19534,Scout's Medallion,58,Neck,"PvP, Vendor"
+16335,Senior Sergeant's Insignia,58,Neck,"PvP, Vendor"
+19538,Sentinel's Medallion,58,Neck,"PvP, Vendor"
+20363,63 Green Frost Wand,58,Ranged,Other
+20313,63 Green Rogue Bow,58,Ranged,Other
+20285,63 Green Warrior Gun,58,Ranged,Other
+284587,Ankle Slicers,58,Ranged,Other
+21135,Assassin's Throwing Axe,58,Ranged,Other
+19558,Outrider's Bow,58,Ranged,"PvP, Vendor"
+19562,Outrunner's Bow,58,Ranged,"PvP, Vendor"
+20359,63 Green Frost Ring,58,Ring,Other
+20321,63 Green Rogue Ring,58,Ring,Other
+20290,63 Green Warrior Ring,58,Ring,Other
+19518,Advisor's Ring,58,Ring,"PvP, Vendor"
+19109,Deep Rooted Ring,58,Ring,Drop
+19510,Legionnaire's Band,58,Ring,"PvP, Vendor"
+19522,Lorekeeper's Ring,58,Ring,"PvP, Vendor"
+19514,Protector's Band,58,Ring,"PvP, Vendor"
+20357,63 Green Frost Mantle,58,Shoulder,Other
+20322,63 Green Rogue Spaulders,58,Shoulder,Other
+20289,63 Green Warrior Pauldrons,58,Shoulder,Other
+10263,Adventurer's Shoulders,58,Shoulder,Drop
+16528,Champion's Chain Pauldrons,58,Shoulder,Other
+16501,Champion's Dragonhide Spaulders,58,Shoulder,Other
+17573,Champion's Dreadweave Shoulders,58,Shoulder,Other
+16507,Champion's Leather Mantle,58,Shoulder,Other
+16524,Champion's Mail Shoulders,58,Shoulder,Other
+16516,Champion's Plate Pauldrons,58,Shoulder,Other
+17613,Champion's Satin Shoulderpads,58,Shoulder,Other
+16492,Champion's Silk Shoulderpads,58,Shoulder,Other
+14335,Eternal Spaulders,58,Shoulder,Drop
+10390,Hyperion Pauldrons,58,Shoulder,Drop
+16427,Lieutenant Commander's Chain Pauldrons,58,Shoulder,Other
+16423,Lieutenant Commander's Dragonhide Epaulets,58,Shoulder,Other
+17569,Lieutenant Commander's Dreadweave Mantle,58,Shoulder,Other
+16436,Lieutenant Commander's Lamellar Shoulders,58,Shoulder,Other
+16420,Lieutenant Commander's Leather Spaulders,58,Shoulder,Other
+16432,Lieutenant Commander's Plate Pauldrons,58,Shoulder,Other
+17601,Lieutenant Commander's Satin Amice,58,Shoulder,Other
+16415,Lieutenant Commander's Silk Spaulders,58,Shoulder,Other
+10253,Master's Mantle,58,Shoulder,Drop
+10274,Masterwork Pauldrons,58,Shoulder,Drop
+12617,Savage Mail Shoulders,58,Shoulder,Other
+15441,Supreme Shoulders,58,Shoulder,Drop
+15686,Triumphant Shoulder Pads,58,Shoulder,Drop
+20351,63 Green Frost Belt,58,Waist,Other
+20311,63 Green Rogue Belt,58,Waist,Other
+20292,63 Green Warrior Waistband,58,Waist,Other
+20177,Defiler's Lamellar Girdle,58,Waist,Vendor
+20352,63 Green Frost Bindings,58,Wrist,Other
+20314,63 Green Rogue Bracers,58,Wrist,Other
+20281,63 Green Warrior Bracelets,58,Wrist,Other
+18434,First Sergeant's Dragonhide Armguards,58,Wrist,"PvP, Vendor"
+16497,First Sergeant's Leather Armguards,58,Wrist,"PvP, Vendor"
+16532,First Sergeant's Mail Wristguards,58,Wrist,"PvP, Vendor"
+18429,First Sergeant's Plate Bracers,58,Wrist,"PvP, Vendor"
+16486,First Sergeant's Silk Cuffs,58,Wrist,"PvP, Vendor"
+18448,Sergeant Major's Chain Armguards,58,Wrist,"PvP, Vendor"
+18454,Sergeant Major's Dragonhide Armsplints,58,Wrist,"PvP, Vendor"
+18452,Sergeant Major's Leather Armsplints,58,Wrist,"PvP, Vendor"
+18445,Sergeant Major's Plate Wristguards,58,Wrist,"PvP, Vendor"
+18456,Sergeant Major's Silk Cuffs,58,Wrist,"PvP, Vendor"
+15247,Bloodstrike Dagger,59,1H,Drop
+15240,Demon's Claw,59,1H,Drop
+211940,Ecks'av's Tribal Guardian,59,2H,Other
+14332,Eternal Crown,59,Head,Drop
+14979,Exalted Helmet,59,Head,Drop
+15439,Supreme Crown,59,Head,Drop
+15684,Triumphant Skullcap,59,Head,Drop
+15968,Elunarian Sphere,59,Held item,Drop
+15941,High Councillor's Scepter,59,Held item,Drop
+10262,Adventurer's Legguards,59,Legs,Drop
+10389,Hyperion Legplates,59,Legs,Drop
+10252,Master's Leggings,59,Legs,Drop
+10273,Masterwork Legplates,59,Legs,Drop
+15283,Lunar Wand,59,Ranged,Drop
+20279,90 Epic Rogue Dagger,60,1H,Other
+20303,90 Green Rogue Dagger,60,1H,Other
+21650,Ancient Qiraji Ripper,60,1H,Drop
+21244,Blessed Qiraji Pugio,60,1H,Quest
+21242,Blessed Qiraji War Axe,60,1H,Quest
+21268,Blessed Qiraji War Hammer,60,1H,Quest
+21404,Dagger of Veiled Shadows,60,1H,Quest
+21126,Death's Sting,60,1H,Drop
+19100,Electrified Dagger,60,1H,"PvP, Vendor"
+19103,Frostbite,60,1H,"Drop, PvP, Vendor"
+19099,Glacial Blade,60,1H,"Drop, PvP, Vendor"
+235480,Grand Marshal's Bonecracker,60,1H,Vendor
+18838,Grand Marshal's Dirk,60,1H,"PvP, Vendor"
+234582,Grand Marshal's Dirk,60,1H,Vendor
+235481,Grand Marshal's Hacker,60,1H,Vendor
+18827,Grand Marshal's Handaxe,60,1H,"PvP, Vendor"
+234580,Grand Marshal's Handaxe,60,1H,Vendor
+12584,Grand Marshal's Longsword,60,1H,"PvP, Vendor"
+234578,Grand Marshal's Longsword,60,1H,Vendor
+18865,Grand Marshal's Punisher,60,1H,"PvP, Vendor"
+234581,Grand Marshal's Punisher,60,1H,Vendor
+235479,Grand Marshal's Shiv,60,1H,Vendor
+23456,Grand Marshal's Swiftblade,60,1H,"PvP, Vendor"
+234579,Grand Marshal's Swiftblade,60,1H,Vendor
+23454,Grand Marshal's Warhammer,60,1H,"PvP, Vendor"
+23464,High Warlord's Battle Mace,60,1H,"PvP, Vendor"
+16345,High Warlord's Blade,60,1H,"PvP, Vendor"
+234552,High Warlord's Blade,60,1H,Vendor
+18866,High Warlord's Bludgeon,60,1H,"PvP, Vendor"
+234555,High Warlord's Bludgeon,60,1H,Vendor
+235477,High Warlord's Bonecracker,60,1H,Vendor
+18828,High Warlord's Cleaver,60,1H,"PvP, Vendor"
+234554,High Warlord's Cleaver,60,1H,Vendor
+235476,High Warlord's Hacker,60,1H,Vendor
+23467,High Warlord's Quickblade,60,1H,"PvP, Vendor"
+234553,High Warlord's Quickblade,60,1H,Vendor
+18840,High Warlord's Razor,60,1H,"PvP, Vendor"
+234556,High Warlord's Razor,60,1H,Vendor
+235478,High Warlord's Shiv,60,1H,Vendor
+15221,Holy War Sword,60,1H,Drop
+21416,Kris of Unspoken Names,60,1H,Quest
+272843,Premier Grand Marshal's Dirk,60,1H,Other
+272839,Premier Grand Marshal's Handaxe,60,1H,Other
+272693,Premier Grand Marshal's Longsword,60,1H,Other
+272847,Premier Grand Marshal's Punisher,60,1H,Other
+272859,Premier Grand Marshal's Swiftblade,60,1H,Other
+272452,Premier High Warlord's Blade,60,1H,Other
+272600,Premier High Warlord's Bludgeon,60,1H,Other
+272592,Premier High Warlord's Cleaver,60,1H,Other
+272684,Premier High Warlord's Quickblade,60,1H,Other
+272596,Premier High Warlord's Razor,60,1H,Other
+21520,Ravencrest's Legacy,60,1H,Quest
+21401,Scythe of the Unseen Path,60,1H,Quest
+21522,Shadowsong's Sorrow,60,1H,Quest
+17142,Shard of the Defiler,60,1H,Other
+21392,Sickle of Unyielding Strength,60,1H,Quest
+19104,Stormstrike Hammer,60,1H,"PvP, Vendor"
+23577,The Hungering Cold,60,1H,Drop
+19019,"Thunderfury, Blessed Blade of the Windseeker",60,1H,Quest
+20334,90 Epic Frost Staff,60,2H,Other
+20149,90 Epic Warrior Axe,60,2H,Other
+20349,90 Green Frost Staff,60,2H,Other
+20238,90 Green Warrior Axe,60,2H,Other
+18609,Anathema,60,2H,Other
+13262,Ashbringer,60,2H,Other
+22589,"Atiesh, Greatstaff of the Guardian",60,2H,Quest
+22630,"Atiesh, Greatstaff of the Guardian",60,2H,Quest
+22631,"Atiesh, Greatstaff of the Guardian",60,2H,Quest
+22632,"Atiesh, Greatstaff of the Guardian",60,2H,Quest
+18608,Benediction,60,2H,Other
+21273,Blessed Qiraji Acolyte Staff,60,2H,Quest
+21275,Blessed Qiraji Augur Staff,60,2H,Quest
+19102,Crackling Staff,60,2H,"PvP, Vendor"
+21134,Dark Edge of Insanity,60,2H,Drop
+15258,Divine Warblade,60,2H,Drop
+17073,Earthshaker,60,2H,Drop
+21188,Fist of Cenarius,60,2H,"Quest, Vendor"
+18867,Grand Marshal's Battle Hammer,60,2H,"PvP, Vendor"
+234567,Grand Marshal's Battle Hammer,60,2H,Vendor
+18876,Grand Marshal's Claymore,60,2H,"PvP, Vendor"
+234565,Grand Marshal's Claymore,60,2H,Vendor
+23455,Grand Marshal's Demolisher,60,2H,"PvP, Vendor"
+234568,Grand Marshal's Demolisher,60,2H,Vendor
+18869,Grand Marshal's Glaive,60,2H,"PvP, Vendor"
+234569,Grand Marshal's Glaive,60,2H,Vendor
+234570,Grand Marshal's Polearm,60,2H,Vendor
+18873,Grand Marshal's Stave,60,2H,"PvP, Vendor"
+234571,Grand Marshal's Stave,60,2H,Vendor
+18830,Grand Marshal's Sunderer,60,2H,"PvP, Vendor"
+234566,Grand Marshal's Sunderer,60,2H,Vendor
+18831,High Warlord's Battle Axe,60,2H,"PvP, Vendor"
+234543,High Warlord's Battle Axe,60,2H,Vendor
+23465,High Warlord's Destroyer,60,2H,"PvP, Vendor"
+234546,High Warlord's Destroyer,60,2H,Vendor
+18877,High Warlord's Greatsword,60,2H,"PvP, Vendor"
+234542,High Warlord's Greatsword,60,2H,Vendor
+234548,High Warlord's Pig Poker,60,2H,Vendor
+18871,High Warlord's Pig Sticker,60,2H,"PvP, Vendor"
+234547,High Warlord's Pig Sticker,60,2H,Vendor
+18868,High Warlord's Pulverizer,60,2H,"PvP, Vendor"
+234545,High Warlord's Pulverizer,60,2H,Vendor
+18874,High Warlord's War Staff,60,2H,"PvP, Vendor"
+234549,High Warlord's War Staff,60,2H,Vendor
+19884,Jin'do's Judgement,60,2H,Drop
+18715,"Lok'delar, Stave of the Ancient Keepers",60,2H,Other
+20487,"Lok'delar, Stave of the Ancient Keepers DEP",60,2H,Other
+272848,Premier Grand Marshal's Battle Hammer,60,2H,Other
+272851,Premier Grand Marshal's Claymore,60,2H,Other
+272858,Premier Grand Marshal's Demolisher,60,2H,Other
+272849,Premier Grand Marshal's Glaive,60,2H,Other
+272850,Premier Grand Marshal's Stave,60,2H,Other
+272840,Premier Grand Marshal's Sunderer,60,2H,Other
+272593,Premier High Warlord's Battle Axe,60,2H,Other
+272682,Premier High Warlord's Destroyer,60,2H,Other
+272604,Premier High Warlord's Greatsword,60,2H,Other
+272602,Premier High Warlord's Pig Sticker,60,2H,Other
+272601,Premier High Warlord's Pulverizer,60,2H,Other
+272603,Premier High Warlord's War Staff,60,2H,Other
+17182,"Sulfuras, Hand of Ragnaros",60,2H,Other
+19101,Whiteout Staff,60,2H,"Drop, PvP, Vendor"
+20336,90 Epic Frost Shroud,60,Back,Other
+20276,90 Epic Rogue Cloak,60,Back,Other
+20145,90 Epic Warrior Cloak,60,Back,Other
+20348,90 Green Frost Shroud,60,Back,Other
+20302,90 Green Rogue Cloak,60,Back,Other
+20241,90 Green Warrior Cloak,60,Back,Other
+21397,Cape of Eternal Justice,60,Back,Quest
+21583,Cloak of Clarity,60,Back,Drop
+3475,Cloak of Flames,60,Back,Drop
+21710,Cloak of the Fallen God,60,Back,Quest
+21400,Cloak of the Gathering Storm,60,Back,Quest
+21403,Cloak of the Unseen Path,60,Back,Quest
+21409,Cloak of Unending Life,60,Back,Quest
+21406,Cloak of Veiled Shadows,60,Back,Quest
+21394,Drape of Unyielding Strength,60,Back,Quest
+21415,Drape of Vaulted Secrets,60,Back,Quest
+21412,Shroud of Infinite Wisdom,60,Back,Quest
+21418,Shroud of Unspoken Names,60,Back,Quest
+20331,90 Epic Frost Robes,60,Chest,Other
+20274,90 Epic Rogue Tunic,60,Chest,Other
+20136,90 Epic Warrior Breastplate,60,Chest,Other
+20347,90 Green Frost Robes,60,Chest,Other
+20309,90 Green Rogue Tunic,60,Chest,Other
+20240,90 Green Warrior Breastplate,60,Chest,Other
+10264,Adventurer's Tunic,60,Chest,Drop
+21389,Avenger's Breastplate,60,Chest,Quest
+22476,Bonescythe Breastplate,60,Chest,Quest
+280902,Breastplate of Glory,60,Chest,Other
+280908,Chestguard of Glory,60,Chest,Other
+21331,Conqueror's Breastplate,60,Chest,Quest
+22436,Cryptstalker Tunic,60,Chest,Quest
+21527,Darkwater Robes,60,Chest,Quest
+239529,Dawnstalker Breastplate,60,Chest,Vendor
+239543,Dawnstalker Tunic,60,Chest,Vendor
+21364,Deathdealer's Vest,60,Chest,Quest
+280883,Demonheart Robes,60,Chest,Other
+227803,Dire Warbear Harness,60,Chest,Vendor
+21334,Doomcaller's Robes,60,Chest,Quest
+22416,Dreadnaught Breastplate,60,Chest,Quest
+22488,Dreamwalker Tunic,60,Chest,Quest
+239562,Duskwraith Breastplate,60,Chest,Vendor
+239548,Duskwraith Chestguard,60,Chest,Vendor
+22464,Earthshatter Tunic,60,Chest,Quest
+21343,Enigma Robes,60,Chest,Quest
+14328,Eternal Chestguard,60,Chest,Drop
+14336,Eternal Wraps,60,Chest,Drop
+14975,Exalted Harness,60,Chest,Drop
+231563,Field Marshal's Chain Armor,60,Chest,Vendor
+16466,Field Marshal's Chain Breastplate,60,Chest,Vendor
+231581,Field Marshal's Chain Hauberk,60,Chest,Vendor
+231696,Field Marshal's Dragonhide Armor,60,Chest,Vendor
+16452,Field Marshal's Dragonhide Breastplate,60,Chest,Vendor
+231690,Field Marshal's Dragonhide Chestpiece,60,Chest,Vendor
+231702,Field Marshal's Dragonhide Tunic,60,Chest,Vendor
+17581,Field Marshal's Dreadweave Robe,60,Chest,Vendor
+231582,Field Marshal's Dreadweave Robe,60,Chest,Vendor
+231649,Field Marshal's Lamellar Breastplate,60,Chest,Vendor
+16473,Field Marshal's Lamellar Chestplate,60,Chest,Vendor
+231641,Field Marshal's Lamellar Chestplate,60,Chest,Vendor
+16453,Field Marshal's Leather Chestpiece,60,Chest,Vendor
+231543,Field Marshal's Leather Chestpiece,60,Chest,Vendor
+16477,Field Marshal's Plate Armor,60,Chest,Vendor
+231536,Field Marshal's Plate Armor,60,Chest,Vendor
+231618,Field Marshal's Satin Robe,60,Chest,Vendor
+231624,Field Marshal's Satin Tunic,60,Chest,Vendor
+17605,Field Marshal's Satin Vestments,60,Chest,Vendor
+16443,Field Marshal's Silk Vestments,60,Chest,Vendor
+231603,Field Marshal's Silk Vestments,60,Chest,Vendor
+240051,Fireleaf Garb,60,Chest,Vendor
+240059,Fireleaf Robe,60,Chest,Vendor
+22496,Frostfire Robe,60,Chest,Quest
+280919,Garb of Conviction,60,Chest,Other
+239565,Garb of Revelation,60,Chest,Vendor
+21357,Genesis Vest,60,Chest,Quest
+280879,Grimstitch Chestpiece,60,Chest,Other
+280974,Grovekeeper Chestguard,60,Chest,Other
+240146,Heretic Garb,60,Chest,Vendor
+240138,Heretic Robe,60,Chest,Vendor
+10384,Hyperion Armor,60,Chest,Drop
+240030,Inquisition Breastplate,60,Chest,Vendor
+240038,Inquisition Chestguard,60,Chest,Vendor
+246060,Inquisition Cuirass,60,Chest,Vendor
+240039,Inquisition Tunic,60,Chest,Vendor
+280928,Justice Breastplate,60,Chest,Other
+280941,Justice Chestguard,60,Chest,Other
+280934,Justice Tunic,60,Chest,Other
+227089,Knight-Captain's Chain Armor,60,Chest,Vendor
+23292,Knight-Captain's Chain Hauberk,60,Chest,Vendor
+227070,Knight-Captain's Chain Hauberk,60,Chest,Vendor
+227195,Knight-Captain's Dragonhide Armor,60,Chest,Vendor
+23294,Knight-Captain's Dragonhide Chestpiece,60,Chest,Vendor
+227176,Knight-Captain's Dragonhide Chestpiece,60,Chest,Vendor
+227196,Knight-Captain's Dragonhide Tunic,60,Chest,Vendor
+23297,Knight-Captain's Dreadweave Tunic,60,Chest,Vendor
+227096,Knight-Captain's Dreadweave Tunic,60,Chest,Vendor
+23272,Knight-Captain's Lamellar Breastplate,60,Chest,Vendor
+227142,Knight-Captain's Lamellar Breastplate,60,Chest,Vendor
+227151,Knight-Captain's Lamellar Chestplate,60,Chest,Vendor
+23298,Knight-Captain's Leather Chestpiece,60,Chest,Vendor
+227058,Knight-Captain's Leather Chestpiece,60,Chest,Vendor
+23300,Knight-Captain's Plate Hauberk,60,Chest,Vendor
+227046,Knight-Captain's Plate Hauberk,60,Chest,Vendor
+227141,Knight-Captain's Satin Robe,60,Chest,Vendor
+23303,Knight-Captain's Satin Tunic,60,Chest,Vendor
+227122,Knight-Captain's Satin Tunic,60,Chest,Vendor
+23305,Knight-Captain's Silk Tunic,60,Chest,Vendor
+227108,Knight-Captain's Silk Tunic,60,Chest,Vendor
+227083,Legionnaire's Chain Armor,60,Chest,Vendor
+22874,Legionnaire's Chain Hauberk,60,Chest,Vendor
+227071,Legionnaire's Chain Hauberk,60,Chest,Vendor
+227189,Legionnaire's Dragonhide Armor,60,Chest,Vendor
+22877,Legionnaire's Dragonhide Chestpiece,60,Chest,Vendor
+227179,Legionnaire's Dragonhide Chestpiece,60,Chest,Vendor
+227202,Legionnaire's Dragonhide Tunic,60,Chest,Vendor
+22884,Legionnaire's Dreadweave Tunic,60,Chest,Vendor
+227094,Legionnaire's Dreadweave Tunic,60,Chest,Vendor
+22879,Legionnaire's Leather Chestpiece,60,Chest,Vendor
+227060,Legionnaire's Leather Chestpiece,60,Chest,Vendor
+227165,Legionnaire's Mail Breastplate,60,Chest,Vendor
+227171,Legionnaire's Mail Chestguard,60,Chest,Vendor
+22876,Legionnaire's Mail Hauberk,60,Chest,Vendor
+227157,Legionnaire's Mail Hauberk,60,Chest,Vendor
+22872,Legionnaire's Plate Hauberk,60,Chest,Vendor
+227049,Legionnaire's Plate Hauberk,60,Chest,Vendor
+227135,Legionnaire's Satin Robe,60,Chest,Vendor
+22885,Legionnaire's Satin Tunic,60,Chest,Vendor
+227124,Legionnaire's Satin Tunic,60,Chest,Vendor
+22886,Legionnaire's Silk Tunic,60,Chest,Vendor
+227106,Legionnaire's Silk Tunic,60,Chest,Vendor
+239527,Lightbreaker Breastplate,60,Chest,Vendor
+239519,Lightbreaker Cuirass,60,Chest,Vendor
+280450,Manaflare Robes,60,Chest,Other
+10254,Master's Robe,60,Chest,Drop
+10246,Master's Vest,60,Chest,Drop
+10266,Masterwork Breastplate,60,Chest,Drop
+22504,Plagueheart Robe,60,Chest,Quest
+272761,Premier Field Marshal's Beasthide Breastplate,60,Chest,Other
+272775,Premier Field Marshal's Chainmail Breastplate,60,Chest,Other
+272782,Premier Field Marshal's Chevalier Chestplate,60,Chest,Other
+272805,Premier Field Marshal's Dreadweave Robe,60,Chest,Other
+273403,Premier Field Marshal's Dreamhide Breastplate,60,Chest,Other
+274187,Premier Field Marshal's Flatmail Armor,60,Chest,Other
+272762,Premier Field Marshal's Leather Chestpiece,60,Chest,Other
+274210,Premier Field Marshal's Linkmail Armor,60,Chest,Other
+273331,Premier Field Marshal's Luminous Chestplate,60,Chest,Other
+273395,Premier Field Marshal's Lunarhide Breastplate,60,Chest,Other
+273424,Premier Field Marshal's Mooncloth Vestments,60,Chest,Other
+272786,Premier Field Marshal's Plate Armor,60,Chest,Other
+274202,Premier Field Marshal's Scalemail Armor,60,Chest,Other
+272752,Premier Field Marshal's Silk Vestments,60,Chest,Other
+272821,Premier Field Marshal's Voidcloth Vestments,60,Chest,Other
+272530,Premier Warlord's Chain Chestpiece,60,Chest,Other
+272514,Premier Warlord's Dragonhide Hauberk,60,Chest,Other
+272560,Premier Warlord's Felweave Robe,60,Chest,Other
+273413,Premier Warlord's Kodohide Hauberk,60,Chest,Other
+274252,Premier Warlord's Lamellar Chestplate,60,Chest,Other
+272542,Premier Warlord's Linked Armor,60,Chest,Other
+272500,Premier Warlord's Magus Raiment,60,Chest,Other
+273340,Premier Warlord's Mail Armor,60,Chest,Other
+272506,Premier Warlord's Mortarplate Armor,60,Chest,Other
+273348,Premier Warlord's Ringmail Armor,60,Chest,Other
+272576,Premier Warlord's Satin Robes,60,Chest,Other
+274238,Premier Warlord's Scaled Chestplate,60,Chest,Other
+272528,Premier Warlord's Shadowhide Breastplate,60,Chest,Other
+273435,Premier Warlord's Silken Robes,60,Chest,Other
+273405,Premier Warlord's Wyrmhide Hauberk,60,Chest,Other
+22425,Redemption Tunic,60,Chest,Quest
+22512,Robe of Faith,60,Chest,Quest
+239591,Robe of Revelation,60,Chest,Vendor
+280912,Robes of Conviction,60,Chest,Other
+21663,Robes of the Guardian Saint,60,Chest,Drop
+240128,Soulcrusher Armor,60,Chest,Vendor
+240101,Soulcrusher Chestguard,60,Chest,Vendor
+240109,Soulcrusher Embrace,60,Chest,Vendor
+240092,Soulcrusher Tunic,60,Chest,Vendor
+280955,Spiritcaller Armor,60,Chest,Other
+280950,Spiritcaller Breastplate,60,Chest,Other
+280961,Spiritcaller Embrace,60,Chest,Other
+21374,Stormcaller's Hauberk,60,Chest,Quest
+21370,Striker's Hauberk,60,Chest,Quest
+15442,Supreme Breastplate,60,Chest,Drop
+15680,Triumphant Chestpiece,60,Chest,Drop
+20407,Twilight Cultist Robe,60,Chest,Drop
+21351,Vestments of the Oracle,60,Chest,Quest
+231566,Warlord's Chain Armor,60,Chest,Vendor
+16565,Warlord's Chain Chestpiece,60,Chest,Vendor
+231573,Warlord's Chain Hauberk,60,Chest,Vendor
+231679,Warlord's Dragonhide Armor,60,Chest,Vendor
+231686,Warlord's Dragonhide Chestpiece,60,Chest,Vendor
+16549,Warlord's Dragonhide Hauberk,60,Chest,Vendor
+231674,Warlord's Dragonhide Tunic,60,Chest,Vendor
+17592,Warlord's Dreadweave Robe,60,Chest,Vendor
+231591,Warlord's Dreadweave Robe,60,Chest,Vendor
+16563,Warlord's Leather Breastplate,60,Chest,Vendor
+231549,Warlord's Leather Breastplate,60,Chest,Vendor
+16577,Warlord's Mail Armor,60,Chest,Vendor
+231662,Warlord's Mail Breastplate,60,Chest,Vendor
+231668,Warlord's Mail Chestguard,60,Chest,Vendor
+231653,Warlord's Mail Hauberk,60,Chest,Vendor
+16541,Warlord's Plate Armor,60,Chest,Vendor
+231530,Warlord's Plate Armor,60,Chest,Vendor
+17624,Warlord's Satin Robes,60,Chest,Vendor
+231612,Warlord's Satin Robes,60,Chest,Vendor
+231632,Warlord's Satin Tunic,60,Chest,Vendor
+16535,Warlord's Silk Raiment,60,Chest,Vendor
+231596,Warlord's Silk Raiment,60,Chest,Vendor
+240083,Waywatcher Armor,60,Chest,Vendor
+240075,Waywatcher Leathers,60,Chest,Vendor
+240091,Waywatcher Tunic,60,Chest,Vendor
+240067,Waywatcher Vest,60,Chest,Vendor
+280896,Wildstalker's Breastplate,60,Chest,Other
+20326,90 Epic Frost Boots,60,Feet,Other
+20268,90 Epic Rogue Boots,60,Feet,Other
+20141,90 Epic Warrior Sabatons,60,Feet,Other
+20340,90 Green Frost Boots,60,Feet,Other
+20298,90 Green Rogue Boots,60,Feet,Other
+20251,90 Green Warrior Sabatons,60,Feet,Other
+227816,Argent Elite Boots,60,Feet,Vendor
+21388,Avenger's Greaves,60,Feet,Quest
+22843,Blood Guard's Chain Greaves,60,Feet,Vendor
+227074,Blood Guard's Chain Greaves,60,Feet,Vendor
+227082,Blood Guard's Chain Sabatons,60,Feet,Vendor
+227188,Blood Guard's Dragonhide Boots,60,Feet,Vendor
+227203,Blood Guard's Dragonhide Greaves,60,Feet,Vendor
+22852,Blood Guard's Dragonhide Treads,60,Feet,Vendor
+227181,Blood Guard's Dragonhide Treads,60,Feet,Vendor
+22855,Blood Guard's Dreadweave Walkers,60,Feet,Vendor
+227098,Blood Guard's Dreadweave Walkers,60,Feet,Vendor
+22856,Blood Guard's Leather Walkers,60,Feet,Vendor
+227062,Blood Guard's Leather Walkers,60,Feet,Vendor
+227170,Blood Guard's Mail Boots,60,Feet,Vendor
+22857,Blood Guard's Mail Greaves,60,Feet,Vendor
+227158,Blood Guard's Mail Greaves,60,Feet,Vendor
+227164,Blood Guard's Mail Sabatons,60,Feet,Vendor
+22858,Blood Guard's Plate Greaves,60,Feet,Vendor
+227051,Blood Guard's Plate Greaves,60,Feet,Vendor
+227134,Blood Guard's Satin Treads,60,Feet,Vendor
+22859,Blood Guard's Satin Walkers,60,Feet,Vendor
+227127,Blood Guard's Satin Walkers,60,Feet,Vendor
+22860,Blood Guard's Silk Walkers,60,Feet,Vendor
+227110,Blood Guard's Silk Walkers,60,Feet,Vendor
+22480,Bonescythe Sabatons,60,Feet,Quest
+280914,Boots of Conviction,60,Feet,Other
+21600,Boots of Epiphany,60,Feet,Drop
+239572,Boots of Revelation,60,Feet,Vendor
+21333,Conqueror's Greaves,60,Feet,Quest
+22440,Cryptstalker Boots,60,Feet,Quest
+239537,Dawnstalker Boots,60,Feet,Vendor
+239530,Dawnstalker Greaves,60,Feet,Vendor
+21359,Deathdealer's Boots,60,Feet,Quest
+280889,Demonheart Boots,60,Feet,Other
+227810,Dense Timbermaw Boots,60,Feet,Vendor
+21338,Doomcaller's Footwraps,60,Feet,Quest
+22420,Dreadnaught Sabatons,60,Feet,Quest
+22492,Dreamwalker Boots,60,Feet,Quest
+21532,Drudge Boots,60,Feet,Quest
+239558,Duskwraith Sabatons,60,Feet,Vendor
+239553,Duskwraith Treads,60,Feet,Vendor
+22468,Earthshatter Boots,60,Feet,Quest
+21344,Enigma Boots,60,Feet,Quest
+227815,Fine Dawn Treaders,60,Feet,Vendor
+240050,Fireleaf Boots,60,Feet,Vendor
+240058,Fireleaf Sandals,60,Feet,Vendor
+21349,Footwraps of the Oracle,60,Feet,Quest
+22500,Frostfire Sandals,60,Feet,Quest
+231570,General's Chain Greaves,60,Feet,Vendor
+16569,General's Chain Sabatons,60,Feet,Vendor
+231564,General's Chain Sabatons,60,Feet,Vendor
+16554,General's Dragonhide Boots,60,Feet,Vendor
+231682,General's Dragonhide Boots,60,Feet,Vendor
+231671,General's Dragonhide Greaves,60,Feet,Vendor
+231683,General's Dragonhide Treads,60,Feet,Vendor
+17586,General's Dreadweave Boots,60,Feet,Vendor
+231593,General's Dreadweave Boots,60,Feet,Vendor
+16558,General's Leather Treads,60,Feet,Vendor
+231552,General's Leather Treads,60,Feet,Vendor
+16573,General's Mail Boots,60,Feet,Vendor
+231667,General's Mail Boots,60,Feet,Vendor
+231656,General's Mail Greaves,60,Feet,Vendor
+231661,General's Mail Sabatons,60,Feet,Vendor
+16545,General's Plate Boots,60,Feet,Vendor
+231531,General's Plate Boots,60,Feet,Vendor
+17618,General's Satin Boots,60,Feet,Vendor
+231610,General's Satin Treads,60,Feet,Vendor
+231630,General's Satin Walkers,60,Feet,Vendor
+16539,General's Silk Boots,60,Feet,Vendor
+231597,General's Silk Boots,60,Feet,Vendor
+21355,Genesis Boots,60,Feet,Quest
+280900,Greaves of Glory,60,Feet,Other
+280878,Grimstitch Boots,60,Feet,Other
+280967,Grovekeeper Boots,60,Feet,Other
+240153,Heretic Boots,60,Feet,Vendor
+240139,Heretic Sandals,60,Feet,Vendor
+21645,Hive Tunneler's Boots,60,Feet,Drop
+227862,Incandescent Mooncloth Boots,60,Feet,Vendor
+240022,Inquisition Boots,60,Feet,Vendor
+240029,Inquisition Greaves,60,Feet,Vendor
+240037,Inquisition Sabatons,60,Feet,Vendor
+246057,Inquisition Stompers,60,Feet,Vendor
+280926,Justice Greaves,60,Feet,Other
+280939,Justice Sabatons,60,Feet,Other
+280932,Justice Treads,60,Feet,Other
+23278,Knight-Lieutenant's Chain Greaves,60,Feet,Vendor
+227076,Knight-Lieutenant's Chain Greaves,60,Feet,Vendor
+227088,Knight-Lieutenant's Chain Sabatons,60,Feet,Vendor
+227194,Knight-Lieutenant's Dragonhide Boots,60,Feet,Vendor
+227197,Knight-Lieutenant's Dragonhide Greaves,60,Feet,Vendor
+23281,Knight-Lieutenant's Dragonhide Treads,60,Feet,Vendor
+227182,Knight-Lieutenant's Dragonhide Treads,60,Feet,Vendor
+23283,Knight-Lieutenant's Dreadweave Walkers,60,Feet,Vendor
+227101,Knight-Lieutenant's Dreadweave Walkers,60,Feet,Vendor
+227153,Knight-Lieutenant's Lamellar Greaves,60,Feet,Vendor
+23275,Knight-Lieutenant's Lamellar Sabatons,60,Feet,Vendor
+227146,Knight-Lieutenant's Lamellar Sabatons,60,Feet,Vendor
+23285,Knight-Lieutenant's Leather Walkers,60,Feet,Vendor
+227064,Knight-Lieutenant's Leather Walkers,60,Feet,Vendor
+23287,Knight-Lieutenant's Plate Greaves,60,Feet,Vendor
+227052,Knight-Lieutenant's Plate Greaves,60,Feet,Vendor
+227140,Knight-Lieutenant's Satin Treads,60,Feet,Vendor
+23289,Knight-Lieutenant's Satin Walkers,60,Feet,Vendor
+227129,Knight-Lieutenant's Satin Walkers,60,Feet,Vendor
+23291,Knight-Lieutenant's Silk Walkers,60,Feet,Vendor
+227112,Knight-Lieutenant's Silk Walkers,60,Feet,Vendor
+239515,Lightbreaker Greaves,60,Feet,Vendor
+239523,Lightbreaker Sabatons,60,Feet,Vendor
+280452,Manaflare Boots,60,Feet,Other
+16462,Marshal's Chain Boots,60,Feet,Vendor
+231579,Marshal's Chain Greaves,60,Feet,Vendor
+231561,Marshal's Chain Sabatons,60,Feet,Vendor
+16459,Marshal's Dragonhide Boots,60,Feet,Vendor
+231698,Marshal's Dragonhide Boots,60,Feet,Vendor
+231704,Marshal's Dragonhide Greaves,60,Feet,Vendor
+231692,Marshal's Dragonhide Treads,60,Feet,Vendor
+17583,Marshal's Dreadweave Boots,60,Feet,Vendor
+231585,Marshal's Dreadweave Boots,60,Feet,Vendor
+16472,Marshal's Lamellar Boots,60,Feet,Vendor
+231646,Marshal's Lamellar Greaves,60,Feet,Vendor
+231652,Marshal's Lamellar Sabatons,60,Feet,Vendor
+16446,Marshal's Leather Footguards,60,Feet,Vendor
+231546,Marshal's Leather Footguards,60,Feet,Vendor
+16483,Marshal's Plate Boots,60,Feet,Vendor
+231539,Marshal's Plate Boots,60,Feet,Vendor
+17607,Marshal's Satin Sandals,60,Feet,Vendor
+231620,Marshal's Satin Treads,60,Feet,Vendor
+231627,Marshal's Satin Walkers,60,Feet,Vendor
+16437,Marshal's Silk Footwraps,60,Feet,Vendor
+231606,Marshal's Silk Footwraps,60,Feet,Vendor
+22508,Plagueheart Sandals,60,Feet,Quest
+272534,Premier Centurion's Chain Sabatons,60,Feet,Other
+272519,Premier Centurion's Dragonhide Boots,60,Feet,Other
+272554,Premier Centurion's Felweave Boots,60,Feet,Other
+273418,Premier Centurion's Kodohide Boots,60,Feet,Other
+274251,Premier Centurion's Lamellar Boots,60,Feet,Other
+272538,Premier Centurion's Linked Boots,60,Feet,Other
+272504,Premier Centurion's Magus Boots,60,Feet,Other
+273336,Premier Centurion's Mail Boots,60,Feet,Other
+272510,Premier Centurion's Mortarplate Boots,60,Feet,Other
+273344,Premier Centurion's Ringmail Boots,60,Feet,Other
+272570,Premier Centurion's Satin Boots,60,Feet,Other
+274237,Premier Centurion's Scaled Boots,60,Feet,Other
+272523,Premier Centurion's Shadowhide Treads,60,Feet,Other
+273429,Premier Centurion's Silken Boots,60,Feet,Other
+273410,Premier Centurion's Wyrmhide Boots,60,Feet,Other
+272768,Premier Knight-Champion's Beasthide Boots,60,Feet,Other
+272771,Premier Knight-Champion's Chainmail Boots,60,Feet,Other
+272781,Premier Knight-Champion's Chevalier Boots,60,Feet,Other
+272807,Premier Knight-Champion's Dreadweave Boots,60,Feet,Other
+273404,Premier Knight-Champion's Dreamhide Boots,60,Feet,Other
+274183,Premier Knight-Champion's Flatmail Boots,60,Feet,Other
+272755,Premier Knight-Champion's Leather Footguards,60,Feet,Other
+274206,Premier Knight-Champion's Linkmail Boots,60,Feet,Other
+273330,Premier Knight-Champion's Luminous Boots,60,Feet,Other
+273396,Premier Knight-Champion's Lunarhide Boots,60,Feet,Other
+273426,Premier Knight-Champion's Mooncloth Sandals,60,Feet,Other
+272792,Premier Knight-Champion's Plate Boots,60,Feet,Other
+274198,Premier Knight-Champion's Scalemail Boots,60,Feet,Other
+272746,Premier Knight-Champion's Silk Footwraps,60,Feet,Other
+272823,Premier Knight-Champion's Voidcloth Sandals,60,Feet,Other
+21648,Recomposed Boots,60,Feet,Drop
+22430,Redemption Boots,60,Feet,Quest
+280906,Sabatons of Glory,60,Feet,Other
+22516,Sandals of Faith,60,Feet,Quest
+239589,Sandals of Revelation,60,Feet,Vendor
+240093,Soulcrusher Boots,60,Feet,Vendor
+240110,Soulcrusher Greaves,60,Feet,Vendor
+240102,Soulcrusher Sabatons,60,Feet,Vendor
+240129,Soulcrusher Treads,60,Feet,Vendor
+280959,Spiritcaller Boots,60,Feet,Other
+280945,Spiritcaller Greaves,60,Feet,Other
+280953,Spiritcaller Treads,60,Feet,Other
+21373,Stormcaller's Footguards,60,Feet,Quest
+21365,Striker's Footguards,60,Feet,Quest
+280921,Treads of Conviction,60,Feet,Other
+240090,Waywatcher Boots,60,Feet,Vendor
+240082,Waywatcher Sabatons,60,Feet,Vendor
+240074,Waywatcher Sandals,60,Feet,Vendor
+240066,Waywatcher Stompers,60,Feet,Vendor
+280894,Wildstalker's Greaves,60,Feet,Other
+21613,Wormhide Boots,60,Feet,Other
+21612,Wormscale Stompers,60,Feet,Other
+20328,90 Epic Frost Gloves,60,Hands,Other
+20271,90 Epic Rogue Gloves,60,Hands,Other
+20137,90 Epic Warrior Gauntlets,60,Hands,Other
+20342,90 Green Frost Gloves,60,Hands,Other
+20304,90 Green Rogue Gloves,60,Hands,Other
+20242,90 Green Warrior Gauntlets,60,Hands,Other
+227081,Blood Guard's Chain Grips,60,Hands,Vendor
+22862,Blood Guard's Chain Vices,60,Hands,Vendor
+227075,Blood Guard's Chain Vices,60,Hands,Vendor
+227204,Blood Guard's Dragonhide Gauntlets,60,Hands,Vendor
+227187,Blood Guard's Dragonhide Gloves,60,Hands,Vendor
+22863,Blood Guard's Dragonhide Grips,60,Hands,Vendor
+227180,Blood Guard's Dragonhide Grips,60,Hands,Vendor
+22865,Blood Guard's Dreadweave Handwraps,60,Hands,Vendor
+227099,Blood Guard's Dreadweave Handwraps,60,Hands,Vendor
+22864,Blood Guard's Leather Grips,60,Hands,Vendor
+227063,Blood Guard's Leather Grips,60,Hands,Vendor
+227163,Blood Guard's Mail Gauntlets,60,Hands,Vendor
+227169,Blood Guard's Mail Gloves,60,Hands,Vendor
+22867,Blood Guard's Mail Vices,60,Hands,Vendor
+227159,Blood Guard's Mail Vices,60,Hands,Vendor
+22868,Blood Guard's Plate Gauntlets,60,Hands,Vendor
+227050,Blood Guard's Plate Gauntlets,60,Hands,Vendor
+227133,Blood Guard's Satin Grips,60,Hands,Vendor
+22869,Blood Guard's Satin Handwraps,60,Hands,Vendor
+227126,Blood Guard's Satin Handwraps,60,Hands,Vendor
+227115,Blood Guard's Silk Gauntlets,60,Hands,Vendor
+22870,Blood Guard's Silk Handwraps,60,Hands,Vendor
+227111,Blood Guard's Silk Handwraps,60,Hands,Vendor
+22481,Bonescythe Gauntlets,60,Hands,Quest
+22441,Cryptstalker Handguards,60,Hands,Quest
+21585,Dark Storm Gauntlets,60,Hands,Drop
+239531,Dawnstalker Gauntlets,60,Hands,Vendor
+239539,Dawnstalker Handguards,60,Hands,Vendor
+280888,Demonheart Gloves,60,Hands,Other
+234819,Demonic Gauntlet,60,Hands,Other
+22421,Dreadnaught Gauntlets,60,Hands,Quest
+22493,Dreamwalker Handguards,60,Hands,Quest
+239557,Duskwraith Gauntlets,60,Hands,Vendor
+239549,Duskwraith Grips,60,Hands,Vendor
+22469,Earthshatter Handguards,60,Hands,Quest
+240057,Fireleaf Gloves,60,Hands,Vendor
+240049,Fireleaf Mitts,60,Hands,Vendor
+22501,Frostfire Gloves,60,Hands,Quest
+21581,Gauntlets of Annihilation,60,Hands,Drop
+280899,Gauntlets of Glory,60,Hands,Other
+21624,Gauntlets of Kalimdor,60,Hands,Drop
+21674,Gauntlets of Steadfast Determination,60,Hands,Drop
+21623,Gauntlets of the Righteous Champion,60,Hands,Drop
+16571,General's Chain Gloves,60,Hands,Vendor
+231569,General's Chain Grips,60,Hands,Vendor
+231575,General's Chain Vices,60,Hands,Vendor
+231676,General's Dragonhide Gauntlets,60,Hands,Vendor
+16555,General's Dragonhide Gloves,60,Hands,Vendor
+231677,General's Dragonhide Gloves,60,Hands,Vendor
+231688,General's Dragonhide Grips,60,Hands,Vendor
+17588,General's Dreadweave Gloves,60,Hands,Vendor
+231589,General's Dreadweave Gloves,60,Hands,Vendor
+16560,General's Leather Mitts,60,Hands,Vendor
+231555,General's Leather Mitts,60,Hands,Vendor
+16574,General's Mail Gauntlets,60,Hands,Vendor
+231660,General's Mail Gauntlets,60,Hands,Vendor
+231666,General's Mail Gloves,60,Hands,Vendor
+231655,General's Mail Vices,60,Hands,Vendor
+16548,General's Plate Gauntlets,60,Hands,Vendor
+231532,General's Plate Gauntlets,60,Hands,Vendor
+17620,General's Satin Gloves,60,Hands,Vendor
+231613,General's Satin Grips,60,Hands,Vendor
+231633,General's Satin Handwraps,60,Hands,Vendor
+231599,General's Silk Gauntlets,60,Hands,Vendor
+16540,General's Silk Handguards,60,Hands,Vendor
+231600,General's Silk Handwraps,60,Hands,Vendor
+280920,Gloves of Conviction,60,Hands,Other
+21672,Gloves of Enforcement,60,Hands,Drop
+22517,Gloves of Faith,60,Hands,Quest
+239584,Gloves of Revelation,60,Hands,Vendor
+21890,Gloves of the Fallen Prophet,60,Hands,Drop
+21605,Gloves of the Hidden Temple,60,Hands,Drop
+21888,Gloves of the Immortal,60,Hands,Drop
+21619,Gloves of the Messiah,60,Hands,Drop
+235044,Goo-Covered Demonic Gauntlet,60,Hands,Other
+280875,Grimstitch Gloves,60,Hands,Other
+280965,Grovekeeper Handguards,60,Hands,Other
+280913,Handguards of Conviction,60,Hands,Other
+280905,Handguards of Glory,60,Hands,Other
+239574,Hands of Revelation,60,Hands,Vendor
+240140,Heretic Gloves,60,Hands,Vendor
+240147,Heretic Handguards,60,Hands,Vendor
+240036,Inquisition Gauntlets,60,Hands,Vendor
+240028,Inquisition Gloves,60,Hands,Vendor
+246055,Inquisition Grips,60,Hands,Vendor
+240041,Inquisition Handguards,60,Hands,Vendor
+280925,Justice Gauntlets,60,Hands,Other
+280931,Justice Gloves,60,Hands,Other
+280938,Justice Handguards,60,Hands,Other
+227087,Knight-Lieutenant's Chain Grips,60,Hands,Vendor
+23279,Knight-Lieutenant's Chain Vices,60,Hands,Vendor
+227077,Knight-Lieutenant's Chain Vices,60,Hands,Vendor
+227198,Knight-Lieutenant's Dragonhide Gauntlets,60,Hands,Vendor
+227193,Knight-Lieutenant's Dragonhide Gloves,60,Hands,Vendor
+23280,Knight-Lieutenant's Dragonhide Grips,60,Hands,Vendor
+227183,Knight-Lieutenant's Dragonhide Grips,60,Hands,Vendor
+23282,Knight-Lieutenant's Dreadweave Handwraps,60,Hands,Vendor
+227100,Knight-Lieutenant's Dreadweave Handwraps,60,Hands,Vendor
+23274,Knight-Lieutenant's Lamellar Gauntlets,60,Hands,Vendor
+227147,Knight-Lieutenant's Lamellar Gauntlets,60,Hands,Vendor
+227152,Knight-Lieutenant's Lamellar Gloves,60,Hands,Vendor
+23284,Knight-Lieutenant's Leather Grips,60,Hands,Vendor
+227065,Knight-Lieutenant's Leather Grips,60,Hands,Vendor
+23286,Knight-Lieutenant's Plate Gauntlets,60,Hands,Vendor
+227053,Knight-Lieutenant's Plate Gauntlets,60,Hands,Vendor
+227139,Knight-Lieutenant's Satin Grips,60,Hands,Vendor
+23288,Knight-Lieutenant's Satin Handwraps,60,Hands,Vendor
+227128,Knight-Lieutenant's Satin Handwraps,60,Hands,Vendor
+227114,Knight-Lieutenant's Silk Gauntlets,60,Hands,Vendor
+23290,Knight-Lieutenant's Silk Handwraps,60,Hands,Vendor
+227113,Knight-Lieutenant's Silk Handwraps,60,Hands,Vendor
+239522,Lightbreaker Gauntlets,60,Hands,Vendor
+239514,Lightbreaker Grips,60,Hands,Vendor
+280451,Manaflare Gloves,60,Hands,Other
+16463,Marshal's Chain Grips,60,Hands,Vendor
+231560,Marshal's Chain Grips,60,Hands,Vendor
+231578,Marshal's Chain Vices,60,Hands,Vendor
+16448,Marshal's Dragonhide Gauntlets,60,Hands,Vendor
+231706,Marshal's Dragonhide Gauntlets,60,Hands,Vendor
+231700,Marshal's Dragonhide Gloves,60,Hands,Vendor
+231694,Marshal's Dragonhide Grips,60,Hands,Vendor
+17584,Marshal's Dreadweave Gloves,60,Hands,Vendor
+231586,Marshal's Dreadweave Gloves,60,Hands,Vendor
+231650,Marshal's Lamellar Gauntlets,60,Hands,Vendor
+16471,Marshal's Lamellar Gloves,60,Hands,Vendor
+231643,Marshal's Lamellar Gloves,60,Hands,Vendor
+16454,Marshal's Leather Handgrips,60,Hands,Vendor
+231544,Marshal's Leather Handgrips,60,Hands,Vendor
+16484,Marshal's Plate Gauntlets,60,Hands,Vendor
+231541,Marshal's Plate Gauntlets,60,Hands,Vendor
+17608,Marshal's Satin Gloves,60,Hands,Vendor
+231617,Marshal's Satin Grips,60,Hands,Vendor
+231623,Marshal's Satin Handwraps,60,Hands,Vendor
+231608,Marshal's Silk Gauntlets,60,Hands,Vendor
+16440,Marshal's Silk Gloves,60,Hands,Vendor
+231609,Marshal's Silk Handwraps,60,Hands,Vendor
+22509,Plagueheart Gloves,60,Hands,Quest
+272536,Premier Champion's Chain Gloves,60,Hands,Other
+272520,Premier Champion's Dragonhide Gloves,60,Hands,Other
+272556,Premier Champion's Felweave Gloves,60,Hands,Other
+273419,Premier Champion's Kodohide Gloves,60,Hands,Other
+274250,Premier Champion's Lamellar Gloves,60,Hands,Other
+272539,Premier Champion's Linked Gauntlets,60,Hands,Other
+272505,Premier Champion's Magus Handguards,60,Hands,Other
+273337,Premier Champion's Mail Gauntlets,60,Hands,Other
+272513,Premier Champion's Mortarplate Gauntlets,60,Hands,Other
+273345,Premier Champion's Ringmail Gauntlets,60,Hands,Other
+272572,Premier Champion's Satin Gloves,60,Hands,Other
+274236,Premier Champion's Scaled Gloves,60,Hands,Other
+272525,Premier Champion's Shadowhide Mitts,60,Hands,Other
+273431,Premier Champion's Silken Gloves,60,Hands,Other
+273411,Premier Champion's Wyrmhide Gloves,60,Hands,Other
+272757,Premier Lieutenant Commander's Beasthide Gauntlets,60,Hands,Other
+272772,Premier Lieutenant Commander's Chainmail Grips,60,Hands,Other
+272780,Premier Lieutenant Commander's Chevalier Gloves,60,Hands,Other
+272808,Premier Lieutenant Commander's Dreadweave Gloves,60,Hands,Other
+273399,Premier Lieutenant Commander's Dreamhide Gauntlets,60,Hands,Other
+274184,Premier Lieutenant Commander's Flatmail Gauntlets,60,Hands,Other
+272763,Premier Lieutenant Commander's Leather Handgrips,60,Hands,Other
+274207,Premier Lieutenant Commander's Linkmail Gauntlets,60,Hands,Other
+273329,Premier Lieutenant Commander's Luminous Gloves,60,Hands,Other
+273391,Premier Lieutenant Commander's Lunarhide Gauntlets,60,Hands,Other
+273427,Premier Lieutenant Commander's Mooncloth Gloves,60,Hands,Other
+272793,Premier Lieutenant Commander's Plate Gauntlets,60,Hands,Other
+274199,Premier Lieutenant Commander's Scalemail Gauntlets,60,Hands,Other
+272749,Premier Lieutenant Commander's Silk Gloves,60,Hands,Other
+272824,Premier Lieutenant Commander's Voidcloth Gloves,60,Hands,Other
+227817,Radiant Gloves of the Dawn,60,Hands,Vendor
+22426,Redemption Handguards,60,Hands,Quest
+240103,Soulcrusher Gloves,60,Hands,Vendor
+240130,Soulcrusher Grips,60,Hands,Vendor
+240095,Soulcrusher Handguards,60,Hands,Vendor
+240122,Soulcrusher Mitts,60,Hands,Vendor
+280949,Spiritcaller Gauntlets,60,Hands,Other
+280958,Spiritcaller Gloves,60,Hands,Other
+280952,Spiritcaller Grips,60,Hands,Other
+227809,Studded Timbermaw Brawlers,60,Hands,Vendor
+240081,Waywatcher Gauntlets,60,Hands,Vendor
+240065,Waywatcher Grips,60,Hands,Vendor
+240089,Waywatcher Handguards,60,Hands,Vendor
+240073,Waywatcher Mitts,60,Hands,Vendor
+280893,Wildstalker's Gauntlets,60,Hands,Other
+20327,90 Epic Frost Crown,60,Head,Other
+20270,90 Epic Rogue Cap,60,Head,Other
+20138,90 Epic Warrior Helm,60,Head,Other
+20341,90 Green Frost Crown,60,Head,Other
+20301,90 Green Rogue Cap,60,Head,Other
+20246,90 Green Warrior Helm,60,Head,Other
+21387,Avenger's Crown,60,Head,Quest
+22478,Bonescythe Helmet,60,Head,Quest
+227080,Champion's Chain Greathelm,60,Head,Vendor
+23251,Champion's Chain Helm,60,Head,Vendor
+227067,Champion's Chain Helm,60,Head,Vendor
+227205,Champion's Dragonhide Headdress,60,Head,Vendor
+23253,Champion's Dragonhide Headguard,60,Head,Vendor
+227174,Champion's Dragonhide Headguard,60,Head,Vendor
+227186,Champion's Dragonhide Helm,60,Head,Vendor
+23255,Champion's Dreadweave Cowl,60,Head,Vendor
+227090,Champion's Dreadweave Cowl,60,Head,Vendor
+23257,Champion's Leather Helm,60,Head,Vendor
+227057,Champion's Leather Helm,60,Head,Vendor
+23259,Champion's Mail Headguard,60,Head,Vendor
+227155,Champion's Mail Headguard,60,Head,Vendor
+227162,Champion's Mail Helm,60,Head,Vendor
+227168,Champion's Mail Skullcap,60,Head,Vendor
+23244,Champion's Plate Helm,60,Head,Vendor
+227043,Champion's Plate Helm,60,Head,Vendor
+227132,Champion's Satin Crown,60,Head,Vendor
+23261,Champion's Satin Hood,60,Head,Vendor
+227118,Champion's Satin Hood,60,Head,Vendor
+23263,Champion's Silk Cowl,60,Head,Vendor
+227105,Champion's Silk Cowl,60,Head,Vendor
+22514,Circlet of Faith,60,Head,Quest
+239585,Circlet of Revelation,60,Head,Vendor
+21329,Conqueror's Crown,60,Head,Quest
+21669,Creeping Vine Helm,60,Head,Drop
+280924,Crown of Conviction,60,Head,Other
+239575,Crown of Revelation,60,Head,Vendor
+22438,Cryptstalker Headpiece,60,Head,Quest
+239540,Dawnstalker Headpiece,60,Head,Vendor
+239532,Dawnstalker Visor,60,Head,Vendor
+21360,Deathdealer's Helm,60,Head,Quest
+280887,Demonheart Skullcap,60,Head,Other
+21615,Don Rigoberto's Lost Hat,60,Head,Drop
+21337,Doomcaller's Circlet,60,Head,Quest
+22418,Dreadnaught Helmet,60,Head,Quest
+22490,Dreamwalker Headpiece,60,Head,Quest
+239560,Duskwraith Helmet,60,Head,Vendor
+239550,Duskwraith Mask,60,Head,Vendor
+22466,Earthshatter Headpiece,60,Head,Quest
+21347,Enigma Circlet,60,Head,Quest
+231562,Field Marshal's Chain Greathelm,60,Head,Vendor
+16465,Field Marshal's Chain Helm,60,Head,Vendor
+231580,Field Marshal's Chain Helm,60,Head,Vendor
+17578,Field Marshal's Coronal,60,Head,Vendor
+231584,Field Marshal's Coronal,60,Head,Vendor
+16441,Field Marshal's Coronet,60,Head,Vendor
+231604,Field Marshal's Coronet,60,Head,Vendor
+231701,Field Marshal's Dragonhide Headdress,60,Head,Vendor
+231689,Field Marshal's Dragonhide Headguard,60,Head,Vendor
+231695,Field Marshal's Dragonhide Helm,60,Head,Vendor
+16451,Field Marshal's Dragonhide Helmet,60,Head,Vendor
+17602,Field Marshal's Headdress,60,Head,Vendor
+16474,Field Marshal's Lamellar Faceguard,60,Head,Vendor
+231648,Field Marshal's Lamellar Headguard,60,Head,Vendor
+231640,Field Marshal's Lamellar Helmet,60,Head,Vendor
+16455,Field Marshal's Leather Mask,60,Head,Vendor
+231545,Field Marshal's Leather Mask,60,Head,Vendor
+16478,Field Marshal's Plate Helm,60,Head,Vendor
+231538,Field Marshal's Plate Helm,60,Head,Vendor
+231616,Field Marshal's Satin Crown,60,Head,Vendor
+231622,Field Marshal's Satin Hood,60,Head,Vendor
+240056,Fireleaf Circlet,60,Head,Vendor
+240048,Fireleaf Hood,60,Head,Vendor
+22498,Frostfire Circlet,60,Head,Quest
+21353,Genesis Helm,60,Head,Quest
+23032,Glacial Headdress,60,Head,Drop
+21517,Gnomish Turban of Psychic Might,60,Head,Quest
+280910,Greathelm of Glory,60,Head,Other
+280877,Grimstitch Mask,60,Head,Other
+280977,Grovekeeper Cover,60,Head,Other
+21693,Guise of the Devourer,60,Head,Drop
+280918,Halo of Conviction,60,Head,Other
+280904,Helm of Glory,60,Head,Other
+240141,Heretic Cowl,60,Head,Vendor
+240148,Heretic Hood,60,Head,Vendor
+23019,Icebane Helmet,60,Head,Drop
+23033,Icy Scale Coif,60,Head,Drop
+240035,Inquisition Crown,60,Head,Vendor
+246062,Inquisition Faceguard,60,Head,Vendor
+240040,Inquisition Headpiece,60,Head,Vendor
+240027,Inquisition Helmet,60,Head,Vendor
+280930,Justice Crown,60,Head,Other
+280937,Justice Greathelm,60,Head,Other
+280936,Justice Headpiece,60,Head,Other
+227086,Lieutenant Commander's Chain Greathelm,60,Head,Vendor
+23306,Lieutenant Commander's Chain Helm,60,Head,Vendor
+227066,Lieutenant Commander's Chain Helm,60,Head,Vendor
+227199,Lieutenant Commander's Dragonhide Headdress,60,Head,Vendor
+23308,Lieutenant Commander's Dragonhide Headguard,60,Head,Vendor
+227173,Lieutenant Commander's Dragonhide Headguard,60,Head,Vendor
+227192,Lieutenant Commander's Dragonhide Helm,60,Head,Vendor
+23310,Lieutenant Commander's Dreadweave Cowl,60,Head,Vendor
+227093,Lieutenant Commander's Dreadweave Cowl,60,Head,Vendor
+23276,Lieutenant Commander's Lamellar Headguard,60,Head,Vendor
+227144,Lieutenant Commander's Lamellar Headguard,60,Head,Vendor
+227149,Lieutenant Commander's Lamellar Helmet,60,Head,Vendor
+23312,Lieutenant Commander's Leather Helm,60,Head,Vendor
+227055,Lieutenant Commander's Leather Helm,60,Head,Vendor
+23314,Lieutenant Commander's Plate Helm,60,Head,Vendor
+227044,Lieutenant Commander's Plate Helm,60,Head,Vendor
+227138,Lieutenant Commander's Satin Crown,60,Head,Vendor
+23316,Lieutenant Commander's Satin Hood,60,Head,Vendor
+227121,Lieutenant Commander's Satin Hood,60,Head,Vendor
+23318,Lieutenant Commander's Silk Cowl,60,Head,Vendor
+227103,Lieutenant Commander's Silk Cowl,60,Head,Vendor
+239517,Lightbreaker Greathelm,60,Head,Vendor
+239525,Lightbreaker Helmet,60,Head,Vendor
+280455,Manaflare Crown,60,Head,Other
+22506,Plagueheart Circlet,60,Head,Quest
+23020,Polar Helmet,60,Head,Drop
+272760,Premier Field Marshal's Beasthide Helmet,60,Head,Other
+272774,Premier Field Marshal's Chainmail Helm,60,Head,Other
+272783,Premier Field Marshal's Chevalier Faceguard,60,Head,Other
+272802,Premier Field Marshal's Dreadweave Coronal,60,Head,Other
+273402,Premier Field Marshal's Dreamhide Helmet,60,Head,Other
+274188,Premier Field Marshal's Flatmail Helm,60,Head,Other
+272764,Premier Field Marshal's Leather Mask,60,Head,Other
+274211,Premier Field Marshal's Linkmail Helm,60,Head,Other
+273332,Premier Field Marshal's Luminous Faceguard,60,Head,Other
+273394,Premier Field Marshal's Lunarhide Helmet,60,Head,Other
+273421,Premier Field Marshal's Mooncloth Headdress,60,Head,Other
+272787,Premier Field Marshal's Plate Helm,60,Head,Other
+274203,Premier Field Marshal's Scalemail Helm,60,Head,Other
+272750,Premier Field Marshal's Silk Coronet,60,Head,Other
+272818,Premier Field Marshal's Voidcloth Headdress,60,Head,Other
+272531,Premier Warlord's Chain Helmet,60,Head,Other
+272515,Premier Warlord's Dragonhide Helmet,60,Head,Other
+272559,Premier Warlord's Felweave Hood,60,Head,Other
+273414,Premier Warlord's Kodohide Helmet,60,Head,Other
+274253,Premier Warlord's Lamellar Faceguard,60,Head,Other
+272543,Premier Warlord's Linked Helm,60,Head,Other
+272498,Premier Warlord's Magus Cowl,60,Head,Other
+273341,Premier Warlord's Mail Helm,60,Head,Other
+272507,Premier Warlord's Mortarplate Headpiece,60,Head,Other
+273349,Premier Warlord's Ringmail Helm,60,Head,Other
+272575,Premier Warlord's Satin Cowl,60,Head,Other
+274239,Premier Warlord's Scaled Faceguard,60,Head,Other
+272526,Premier Warlord's Shadowhide Helm,60,Head,Other
+273434,Premier Warlord's Silken Cowl,60,Head,Other
+273406,Premier Warlord's Wyrmhide Helmet,60,Head,Other
+22428,Redemption Headpiece,60,Head,Quest
+240123,Soulcrusher Crown,60,Head,Vendor
+240104,Soulcrusher Faceguard,60,Head,Vendor
+240096,Soulcrusher Headpiece,60,Head,Vendor
+240131,Soulcrusher Helmet,60,Head,Vendor
+280957,Spiritcaller Crown,60,Head,Other
+280963,Spiritcaller Headdress,60,Head,Other
+280951,Spiritcaller Helmet,60,Head,Other
+21372,Stormcaller's Diadem,60,Head,Quest
+21366,Striker's Diadem,60,Head,Quest
+21348,Tiara of the Oracle,60,Head,Quest
+20408,Twilight Cultist Cowl,60,Head,Drop
+231568,Warlord's Chain Greathelm,60,Head,Vendor
+231571,Warlord's Chain Helm,60,Head,Vendor
+16566,Warlord's Chain Helmet,60,Head,Vendor
+231675,Warlord's Dragonhide Headdress,60,Head,Vendor
+231687,Warlord's Dragonhide Headguard,60,Head,Vendor
+231678,Warlord's Dragonhide Helm,60,Head,Vendor
+16550,Warlord's Dragonhide Helmet,60,Head,Vendor
+17591,Warlord's Dreadweave Hood,60,Head,Vendor
+231590,Warlord's Dreadweave Hood,60,Head,Vendor
+16561,Warlord's Leather Helm,60,Head,Vendor
+231553,Warlord's Leather Helm,60,Head,Vendor
+231657,Warlord's Mail Headguard,60,Head,Vendor
+16578,Warlord's Mail Helm,60,Head,Vendor
+231663,Warlord's Mail Helm,60,Head,Vendor
+231669,Warlord's Mail Skullcap,60,Head,Vendor
+16542,Warlord's Plate Headpiece,60,Head,Vendor
+231535,Warlord's Plate Headpiece,60,Head,Vendor
+17623,Warlord's Satin Cowl,60,Head,Vendor
+231615,Warlord's Satin Crown,60,Head,Vendor
+231635,Warlord's Satin Hood,60,Head,Vendor
+16533,Warlord's Silk Cowl,60,Head,Vendor
+231601,Warlord's Silk Cowl,60,Head,Vendor
+240064,Waywatcher Cowl,60,Head,Vendor
+240080,Waywatcher Headdress,60,Head,Vendor
+240088,Waywatcher Headpiece,60,Head,Vendor
+240072,Waywatcher Hood,60,Head,Vendor
+280898,Wildstalker's Helm,60,Head,Other
+21614,Wormhide Protector,60,Head,Other
+15989,Eternal Rod,60,Held item,Drop
+23452,Grand Marshal's Tome of Power,60,Held item,"PvP, Vendor"
+234589,Grand Marshal's Tome of Power,60,Held item,Vendor
+23453,Grand Marshal's Tome of Restoration,60,Held item,"PvP, Vendor"
+234590,Grand Marshal's Tome of Restoration,60,Held item,Vendor
+23468,High Warlord's Tome of Destruction,60,Held item,"PvP, Vendor"
+234563,High Warlord's Tome of Destruction,60,Held item,Vendor
+23469,High Warlord's Tome of Mending,60,Held item,"PvP, Vendor"
+234564,High Warlord's Tome of Mending,60,Held item,Vendor
+19366,Master Dragonslayer's Orb,60,Held item,Quest
+15942,Master's Rod,60,Held item,Drop
+278158,Premier Grand Marshal's Tome of Power,60,Held item,Other
+278157,Premier Grand Marshal's Tome of Restoration,60,Held item,Other
+272685,Premier High Warlord's Tome of Destruction,60,Held item,Other
+272686,Premier High Warlord's Tome of Mending,60,Held item,Other
+21597,Royal Scepter of Vek'lor,60,Held item,Drop
+20329,90 Epic Frost Leggings,60,Legs,Other
+20272,90 Epic Rogue Pants,60,Legs,Other
+20139,90 Epic Warrior Legplates,60,Legs,Other
+20343,90 Green Frost Leggings,60,Legs,Other
+20306,90 Green Rogue Pants,60,Legs,Other
+20247,90 Green Warrior Legplates,60,Legs,Other
+21390,Avenger's Legguards,60,Legs,Quest
+22477,Bonescythe Legplates,60,Legs,Quest
+21332,Conqueror's Legguards,60,Legs,Quest
+22437,Cryptstalker Legguards,60,Legs,Quest
+239533,Dawnstalker Leggings,60,Legs,Vendor
+239541,Dawnstalker Legguards,60,Legs,Vendor
+21362,Deathdealer's Leggings,60,Legs,Quest
+280886,Demonheart Leggings,60,Legs,Other
+227804,Dire Warbear Woolies,60,Legs,Vendor
+21336,Doomcaller's Trousers,60,Legs,Quest
+22417,Dreadnaught Legplates,60,Legs,Quest
+22489,Dreamwalker Legguards,60,Legs,Quest
+239551,Duskwraith Leggings,60,Legs,Vendor
+239561,Duskwraith Legplates,60,Legs,Vendor
+22465,Earthshatter Legguards,60,Legs,Quest
+21346,Enigma Leggings,60,Legs,Quest
+240055,Fireleaf Leggings,60,Legs,Vendor
+240047,Fireleaf Pants,60,Legs,Vendor
+22497,Frostfire Leggings,60,Legs,Quest
+16567,General's Chain Legguards,60,Legs,Vendor
+231574,General's Chain Legguards,60,Legs,Vendor
+231567,General's Chain Legplates,60,Legs,Vendor
+16552,General's Dragonhide Leggings,60,Legs,Vendor
+231685,General's Dragonhide Leggings,60,Legs,Vendor
+231673,General's Dragonhide Legguards,60,Legs,Vendor
+231680,General's Dragonhide Pants,60,Legs,Vendor
+17593,General's Dreadweave Pants,60,Legs,Vendor
+231588,General's Dreadweave Pants,60,Legs,Vendor
+16564,General's Leather Legguards,60,Legs,Vendor
+231554,General's Leather Legguards,60,Legs,Vendor
+16579,General's Mail Leggings,60,Legs,Vendor
+231664,General's Mail Leggings,60,Legs,Vendor
+231658,General's Mail Legguards,60,Legs,Vendor
+231670,General's Mail Pants,60,Legs,Vendor
+16543,General's Plate Leggings,60,Legs,Vendor
+231533,General's Plate Leggings,60,Legs,Vendor
+17625,General's Satin Leggings,60,Legs,Vendor
+231614,General's Satin Leggings,60,Legs,Vendor
+231634,General's Satin Legguards,60,Legs,Vendor
+16534,General's Silk Trousers,60,Legs,Vendor
+231595,General's Silk Trousers,60,Legs,Vendor
+21356,Genesis Trousers,60,Legs,Quest
+280872,Grimstitch Pants,60,Legs,Other
+280971,Grovekeeper Legguards,60,Legs,Other
+240142,Heretic Leggings,60,Legs,Vendor
+240149,Heretic Pants,60,Legs,Vendor
+240026,Inquisition Leggings,60,Legs,Vendor
+240020,Inquisition Legguards,60,Legs,Vendor
+240034,Inquisition Legplates,60,Legs,Vendor
+246058,Inquisition Plate Pants,60,Legs,Vendor
+280927,Justice Leggings,60,Legs,Other
+280940,Justice Legguards,60,Legs,Other
+280933,Justice Legplates,60,Legs,Other
+23293,Knight-Captain's Chain Legguards,60,Legs,Vendor
+227072,Knight-Captain's Chain Legguards,60,Legs,Vendor
+227085,Knight-Captain's Chain Legplates,60,Legs,Vendor
+23295,Knight-Captain's Dragonhide Leggings,60,Legs,Vendor
+227178,Knight-Captain's Dragonhide Leggings,60,Legs,Vendor
+227200,Knight-Captain's Dragonhide Legguards,60,Legs,Vendor
+227191,Knight-Captain's Dragonhide Pants,60,Legs,Vendor
+23296,Knight-Captain's Dreadweave Legguards,60,Legs,Vendor
+227095,Knight-Captain's Dreadweave Legguards,60,Legs,Vendor
+23273,Knight-Captain's Lamellar Leggings,60,Legs,Vendor
+227143,Knight-Captain's Lamellar Leggings,60,Legs,Vendor
+227150,Knight-Captain's Lamellar Legguards,60,Legs,Vendor
+23299,Knight-Captain's Leather Legguards,60,Legs,Vendor
+227061,Knight-Captain's Leather Legguards,60,Legs,Vendor
+23301,Knight-Captain's Plate Leggings,60,Legs,Vendor
+227047,Knight-Captain's Plate Leggings,60,Legs,Vendor
+227137,Knight-Captain's Satin Leggings,60,Legs,Vendor
+23302,Knight-Captain's Satin Legguards,60,Legs,Vendor
+227125,Knight-Captain's Satin Legguards,60,Legs,Vendor
+23304,Knight-Captain's Silk Legguards,60,Legs,Vendor
+227109,Knight-Captain's Silk Legguards,60,Legs,Vendor
+280915,Leggings of Conviction,60,Legs,Other
+22513,Leggings of Faith,60,Legs,Quest
+239587,Leggings of Revelation,60,Legs,Vendor
+280907,Legguards of Glory,60,Legs,Other
+22875,Legionnaire's Chain Legguards,60,Legs,Vendor
+227073,Legionnaire's Chain Legguards,60,Legs,Vendor
+227079,Legionnaire's Chain Legplates,60,Legs,Vendor
+22878,Legionnaire's Dragonhide Leggings,60,Legs,Vendor
+227177,Legionnaire's Dragonhide Leggings,60,Legs,Vendor
+227206,Legionnaire's Dragonhide Legguards,60,Legs,Vendor
+227185,Legionnaire's Dragonhide Pants,60,Legs,Vendor
+22881,Legionnaire's Dreadweave Legguards,60,Legs,Vendor
+227097,Legionnaire's Dreadweave Legguards,60,Legs,Vendor
+22880,Legionnaire's Leather Legguards,60,Legs,Vendor
+227059,Legionnaire's Leather Legguards,60,Legs,Vendor
+227161,Legionnaire's Mail Leggings,60,Legs,Vendor
+22887,Legionnaire's Mail Legguards,60,Legs,Vendor
+227156,Legionnaire's Mail Legguards,60,Legs,Vendor
+227167,Legionnaire's Mail Pants,60,Legs,Vendor
+22873,Legionnaire's Plate Leggings,60,Legs,Vendor
+227048,Legionnaire's Plate Leggings,60,Legs,Vendor
+227131,Legionnaire's Satin Leggings,60,Legs,Vendor
+22882,Legionnaire's Satin Legguards,60,Legs,Vendor
+227123,Legionnaire's Satin Legguards,60,Legs,Vendor
+22883,Legionnaire's Silk Legguards,60,Legs,Vendor
+227107,Legionnaire's Silk Legguards,60,Legs,Vendor
+21667,Legplates of Blazing Light,60,Legs,Drop
+280901,Legplates of Glory,60,Legs,Other
+239526,Lightbreaker Legplates,60,Legs,Vendor
+239518,Lightbreaker Tassets,60,Legs,Vendor
+280453,Manaflare Pants,60,Legs,Other
+16467,Marshal's Chain Legguards,60,Legs,Vendor
+231577,Marshal's Chain Legguards,60,Legs,Vendor
+231558,Marshal's Chain Legplates,60,Legs,Vendor
+231691,Marshal's Dragonhide Leggings,60,Legs,Vendor
+16450,Marshal's Dragonhide Legguards,60,Legs,Vendor
+231703,Marshal's Dragonhide Legguards,60,Legs,Vendor
+231697,Marshal's Dragonhide Pants,60,Legs,Vendor
+17579,Marshal's Dreadweave Leggings,60,Legs,Vendor
+231587,Marshal's Dreadweave Leggings,60,Legs,Vendor
+231647,Marshal's Lamellar Leggings,60,Legs,Vendor
+231639,Marshal's Lamellar Legguards,60,Legs,Vendor
+16475,Marshal's Lamellar Legplates,60,Legs,Vendor
+16456,Marshal's Leather Leggings,60,Legs,Vendor
+231548,Marshal's Leather Leggings,60,Legs,Vendor
+16479,Marshal's Plate Legguards,60,Legs,Vendor
+231540,Marshal's Plate Legguards,60,Legs,Vendor
+231619,Marshal's Satin Leggings,60,Legs,Vendor
+231626,Marshal's Satin Legguards,60,Legs,Vendor
+17603,Marshal's Satin Pants,60,Legs,Vendor
+16442,Marshal's Silk Leggings,60,Legs,Vendor
+231605,Marshal's Silk Leggings,60,Legs,Vendor
+21530,Onyx Embedded Leggings,60,Legs,Quest
+22673,Outrider's Chain Leggings,60,Legs,"PvP, Vendor"
+237824,Outrider's Chain Leggings,60,Legs,Other
+22740,Outrider's Leather Pants,60,Legs,"PvP, Vendor"
+237822,Outrider's Leather Pants,60,Legs,Other
+22741,Outrider's Lizardhide Pants,60,Legs,"PvP, Vendor"
+237821,Outrider's Lizardhide Pants,60,Legs,Other
+22676,Outrider's Mail Leggings,60,Legs,"PvP, Vendor"
+237823,Outrider's Mail Leggings,60,Legs,Other
+22651,Outrider's Plate Legguards,60,Legs,"PvP, Vendor"
+237826,Outrider's Plate Legguards,60,Legs,Other
+22747,Outrider's Silk Leggings,60,Legs,"PvP, Vendor"
+237820,Outrider's Silk Leggings,60,Legs,Other
+280922,Pants of Conviction,60,Legs,Other
+239577,Pants of Revelation,60,Legs,Vendor
+22505,Plagueheart Leggings,60,Legs,Quest
+272532,Premier General's Chain Legguards,60,Legs,Other
+272517,Premier General's Dragonhide Leggings,60,Legs,Other
+272561,Premier General's Felweave Pants,60,Legs,Other
+273416,Premier General's Kodohide Leggings,60,Legs,Other
+274254,Premier General's Lamellar Legplates,60,Legs,Other
+272544,Premier General's Linked Leggings,60,Legs,Other
+272499,Premier General's Magus Trousers,60,Legs,Other
+273342,Premier General's Mail Leggings,60,Legs,Other
+272508,Premier General's Mortarplate Leggings,60,Legs,Other
+273350,Premier General's Ringmail Leggings,60,Legs,Other
+272577,Premier General's Satin Leggings,60,Legs,Other
+274240,Premier General's Scaled Legplates,60,Legs,Other
+272529,Premier General's Shadowhide Legguards,60,Legs,Other
+273436,Premier General's Silken Leggings,60,Legs,Other
+273408,Premier General's Wyrmhide Leggings,60,Legs,Other
+272759,Premier Marshal's Beasthide Legguards,60,Legs,Other
+272776,Premier Marshal's Chainmail Legguards,60,Legs,Other
+272784,Premier Marshal's Chevalier Legplates,60,Legs,Other
+272803,Premier Marshal's Dreadweave Leggings,60,Legs,Other
+273401,Premier Marshal's Dreamhide Legguards,60,Legs,Other
+274189,Premier Marshal's Flatmail Leggings,60,Legs,Other
+272765,Premier Marshal's Leather Leggings,60,Legs,Other
+274212,Premier Marshal's Linkmail Leggings,60,Legs,Other
+273333,Premier Marshal's Luminous Legplates,60,Legs,Other
+273393,Premier Marshal's Lunarhide Legguards,60,Legs,Other
+273422,Premier Marshal's Mooncloth Pants,60,Legs,Other
+272788,Premier Marshal's Plate Legguards,60,Legs,Other
+274204,Premier Marshal's Scalemail Leggings,60,Legs,Other
+272751,Premier Marshal's Silk Leggings,60,Legs,Other
+272819,Premier Marshal's Voidcloth Pants,60,Legs,Other
+22427,Redemption Legguards,60,Legs,Quest
+22748,Sentinel's Chain Leggings,60,Legs,"PvP, Vendor"
+237819,Sentinel's Chain Leggings,60,Legs,Vendor
+22753,Sentinel's Lamellar Legguards,60,Legs,"Drop, PvP, Vendor"
+237814,Sentinel's Lamellar Legguards,60,Legs,Vendor
+22749,Sentinel's Leather Pants,60,Legs,"PvP, Vendor"
+237818,Sentinel's Leather Pants,60,Legs,Vendor
+22750,Sentinel's Lizardhide Pants,60,Legs,"PvP, Vendor"
+237817,Sentinel's Lizardhide Pants,60,Legs,Vendor
+22672,Sentinel's Plate Legguards,60,Legs,"PvP, Vendor"
+237825,Sentinel's Plate Legguards,60,Legs,Vendor
+22752,Sentinel's Silk Leggings,60,Legs,"PvP, Vendor"
+237815,Sentinel's Silk Leggings,60,Legs,Vendor
+240124,Soulcrusher Kilt,60,Legs,Vendor
+240134,Soulcrusher Leggings,60,Legs,Vendor
+240097,Soulcrusher Legguards,60,Legs,Vendor
+240105,Soulcrusher Legplates,60,Legs,Vendor
+280960,Spiritcaller Kilt,60,Legs,Other
+280954,Spiritcaller Leggings,60,Legs,Other
+280947,Spiritcaller Pants,60,Legs,Other
+21375,Stormcaller's Leggings,60,Legs,Quest
+20639,Strangely Glyphed Legplates,60,Legs,Drop
+21368,Striker's Leggings,60,Legs,Quest
+21352,Trousers of the Oracle,60,Legs,Quest
+240071,Waywatcher Kilt,60,Legs,Vendor
+240079,Waywatcher Leggings,60,Legs,Vendor
+240087,Waywatcher Legguards,60,Legs,Vendor
+240063,Waywatcher Trousers,60,Legs,Vendor
+280895,Wildstalker's Legguards,60,Legs,Other
+21395,Blade of Eternal Justice,60,Main-hand,Quest
+21413,Blade of Vaulted Secrets,60,Main-hand,Quest
+21523,Fang of Korialstrasz,60,Main-hand,Quest
+21410,Gavel of Infinite Wisdom,60,Main-hand,Quest
+23451,Grand Marshal's Mageblade,60,Main-hand,"PvP, Vendor"
+234574,Grand Marshal's Mageblade,60,Main-hand,Vendor
+18843,Grand Marshal's Right Hand Blade,60,Main-hand,"PvP, Vendor"
+234583,Grand Marshal's Right Hand Blade,60,Main-hand,Vendor
+234576,Grand Marshal's Warhammer,60,Main-hand,Vendor
+20580,Hammer of Bestial Fury,60,Main-hand,Drop
+21398,Hammer of the Gathering Storm,60,Main-hand,Quest
+234551,High Warlord's Battle Mace,60,Main-hand,Vendor
+18844,High Warlord's Right Claw,60,Main-hand,"PvP, Vendor"
+234557,High Warlord's Right Claw,60,Main-hand,Vendor
+23466,High Warlord's Spellblade,60,Main-hand,"PvP, Vendor"
+234550,High Warlord's Spellblade,60,Main-hand,Vendor
+21407,Mace of Unending Life,60,Main-hand,Quest
+272856,Premier Grand Marshal's Mageblade,60,Main-hand,Other
+272844,Premier Grand Marshal's Right Hand Blade,60,Main-hand,Other
+272857,Premier Grand Marshal's Warhammer,60,Main-hand,Other
+272681,Premier High Warlord's Battle Mace,60,Main-hand,Other
+272597,Premier High Warlord's Right Claw,60,Main-hand,Other
+272683,Premier High Warlord's Spellblade,60,Main-hand,Other
+21521,Runesword of the Red,60,Main-hand,Quest
+21839,Scepter of the False Prophet,60,Main-hand,Drop
+21622,Sharpened Silithid Femur,60,Main-hand,Drop
+20332,90 Epic Frost Neck,60,Neck,Other
+20275,90 Epic Rogue Neck,60,Neck,Other
+20345,90 Green Frost Neck,60,Neck,Other
+20305,90 Green Rogue Neck,60,Neck,Other
+20248,90 Green Warrior Neck,60,Neck,Other
+21702,Amulet of Foul Warding,60,Neck,Drop
+21529,Amulet of Shadow Shielding,60,Neck,Quest
+21712,Amulet of the Fallen God,60,Neck,Quest
+21507,Amulet of the Shifting Sands,60,Neck,Quest
+21608,Amulet of Vek'nilash,60,Neck,Drop
+21690,Angelista's Charm,60,Neck,Drop
+21664,Barbed Choker,60,Neck,Drop
+17111,Blazefury Medallion,60,Neck,Drop
+21504,Charm of the Shifting Sands,60,Neck,Quest
+18814,Choker of the Fire Lord,60,Neck,Drop
+21505,Choker of the Shifting Sands,60,Neck,Quest
+20622,Dragonheart Necklace,60,Neck,Drop
+21531,Drake Tooth Necklace,60,Neck,Quest
+21809,Fury of the Forgotten Swarm,60,Neck,Drop
+23057,Gem of Trapped Innocents,60,Neck,Drop
+22981,Gluth's Missing Collar,60,Neck,Drop
+23058,Life Channeling Necklace,60,Neck,Other
+22943,Malice Stone Pendant,60,Neck,Drop
+22732,Mark of C'Thun,60,Neck,Drop
+19383,Master Dragonslayer's Medallion,60,Neck,Quest
+23036,Necklace of Necropsy,60,Neck,Drop
+21678,Necklace of Purity,60,Neck,Drop
+22947,Pendant of Forgotten Names,60,Neck,Drop
+19371,Pendant of the Fallen Dragon,60,Neck,Drop
+21700,Pendant of the Qiraji Guardian,60,Neck,Drop
+21506,Pendant of the Shifting Sands,60,Neck,Quest
+19377,Prestor's Talisman of Connivery,60,Neck,Drop
+12048,Prismatic Pendant,60,Neck,Drop
+23023,Sadist's Collar,60,Neck,Drop
+23053,Stormrage's Talisman of Seething,60,Neck,Drop
+17783,Talisman of Binding Fragment,60,Neck,Other
+17782,Talisman of Binding Shard,60,Neck,Other
+22935,Touch of Frost,60,Neck,Drop
+20685,Wavefront Necklace,60,Neck,Drop
+18847,Grand Marshal's Left Hand Blade,60,Off-hand weapon,"PvP, Vendor"
+234584,Grand Marshal's Left Hand Blade,60,Off-hand weapon,Vendor
+18848,High Warlord's Left Claw,60,Off-hand weapon,"PvP, Vendor"
+234558,High Warlord's Left Claw,60,Off-hand weapon,Vendor
+272845,Premier Grand Marshal's Left Hand Blade,60,Off-hand weapon,Other
+272598,Premier High Warlord's Left Claw,60,Off-hand weapon,Other
+20335,90 Epic Frost Wand,60,Ranged,Other
+20278,90 Epic Rogue Bow,60,Ranged,Other
+20146,90 Epic Warrior Gun,60,Ranged,Other
+20350,90 Green Frost Wand,60,Ranged,Other
+20299,90 Green Rogue Bow,60,Ranged,Other
+20245,90 Green Warrior Gun,60,Ranged,Other
+15289,Archstrike Bow,60,Ranged,Drop
+20368,Bland Bow of Steadiness,60,Ranged,Other
+21272,Blessed Qiraji Musket,60,Ranged,Quest
+18833,Grand Marshal's Bullseye,60,Ranged,"PvP, Vendor"
+234585,Grand Marshal's Bullseye,60,Ranged,Vendor
+18855,Grand Marshal's Hand Cannon,60,Ranged,"PvP, Vendor"
+234587,Grand Marshal's Hand Cannon,60,Ranged,Vendor
+18836,Grand Marshal's Repeater,60,Ranged,"PvP, Vendor"
+234586,Grand Marshal's Repeater,60,Ranged,Vendor
+18837,High Warlord's Crossbow,60,Ranged,"PvP, Vendor"
+234560,High Warlord's Crossbow,60,Ranged,Vendor
+18835,High Warlord's Recurve,60,Ranged,"PvP, Vendor"
+234559,High Warlord's Recurve,60,Ranged,Vendor
+18860,High Warlord's Street Sweeper,60,Ranged,"PvP, Vendor"
+234561,High Warlord's Street Sweeper,60,Ranged,Vendor
+21616,Huhuran's Stinger,60,Ranged,Drop
+23557,Larvae of the Great Worm,60,Ranged,Drop
+272841,Premier Grand Marshal's Bullseye,60,Ranged,Other
+272846,Premier Grand Marshal's Hand Cannon,60,Ranged,Other
+272842,Premier Grand Marshal's Repeater,60,Ranged,Other
+272595,Premier High Warlord's Crossbow,60,Ranged,Other
+272594,Premier High Warlord's Recurve,60,Ranged,Other
+272599,Premier High Warlord's Street Sweeper,60,Ranged,Other
+18713,"Rhok'delar, Longbow of the Ancient Keepers",60,Ranged,Other
+20488,"Rhok'delar, Longbow of the Ancient Keepers DEP",60,Ranged,Other
+22399,Idol of Health,60,Relic,Drop
+23004,Idol of Longevity,60,Relic,Drop
+23197,Idol of the Moon,60,Relic,Drop
+23203,Libram of Fervor,60,Relic,Drop
+22402,Libram of Grace,60,Relic,Drop
+23006,Libram of Light,60,Relic,Drop
+23005,Totem of Flowing Water,60,Relic,Drop
+22396,Totem of Life,60,Relic,Drop
+23199,Totem of the Storm,60,Relic,Drop
+228176,Totem of Thunder,60,Relic,"Crafted, Vendor"
+20333,90 Epic Frost Ring,60,Ring,Other
+20277,90 Epic Rogue Ring,60,Ring,Other
+20346,90 Green Frost Ring,60,Ring,Other
+20307,90 Green Rogue Ring,60,Ring,Other
+21695,Angelista's Touch,60,Ring,Drop
+19376,Archimtiros' Ring of Reckoning,60,Ring,Drop
+19434,Band of Dark Dominion,60,Ring,Drop
+19403,Band of Forced Concentration,60,Ring,Drop
+21526,Band of Icy Depths,60,Ring,Quest
+22961,Band of Reanimation,60,Ring,Drop
+19138,Band of Sulfuras,60,Ring,Drop
+284716,Band of the Better Half,60,Ring,Other
+20721,Band of the Cultist,60,Ring,Drop
+23031,Band of the Inevitable,60,Ring,Drop
+22939,Band of Unanswered Prayers,60,Ring,Drop
+21408,Band of Unending Life,60,Ring,Quest
+23038,Band of Unnatural Forces,60,Ring,Drop
+21414,Band of Vaulted Secrets,60,Ring,Quest
+21405,Band of Veiled Shadows,60,Ring,Quest
+23060,Bonescythe Ring,60,Ring,Drop
+275969,Brilliant Watcher's Signet,60,Ring,Other
+275973,Brilliant Watcher's Signet,60,Ring,Other
+275977,Brilliant Watcher's Signet,60,Ring,Other
+275982,Brilliant Watcher's Signet,60,Ring,Other
+19140,Cauterizing Band,60,Ring,Drop
+19432,Circle of Applied Force,60,Ring,Drop
+21563,Don Rodrigo's Band,60,Ring,"PvP, Vendor"
+20682,Elemental Focus Band,60,Ring,Drop
+275968,Ferocious Watcher's Signet,60,Ring,Other
+275972,Ferocious Watcher's Signet,60,Ring,Other
+275976,Ferocious Watcher's Signet,60,Ring,Other
+275981,Ferocious Watcher's Signet,60,Ring,Other
+23062,Frostfire Ring,60,Ring,Drop
+23028,Hailstone Band,60,Ring,Drop
+18879,Heavy Dark Iron Ring,60,Ring,Drop
+20600,Malfurion's Signet Ring,60,Ring,Quest
+19384,Master Dragonslayer's Ring,60,Ring,Quest
+20632,Mindtear Band,60,Ring,Drop
+23063,Plagueheart Ring,60,Ring,Drop
+12017,Prismatic Band,60,Ring,Drop
+19382,Pure Elementium Band,60,Ring,Drop
+18821,Quick Strike Ring,60,Ring,Drop
+19397,Ring of Blackrock,60,Ring,Drop
+21601,Ring of Emperor Vek'lor,60,Ring,Drop
+18543,Ring of Entropy,60,Ring,Drop
+21396,Ring of Eternal Justice,60,Ring,Quest
+23061,Ring of Faith,60,Ring,Drop
+21477,Ring of Fury,60,Ring,Drop
+21411,Ring of Infinite Wisdom,60,Ring,Quest
+23066,Ring of Redemption,60,Ring,Drop
+19147,Ring of Spell Power,60,Ring,Drop
+23037,Ring of Spiritual Fervor,60,Ring,Drop
+21707,Ring of Swarming Thought,60,Ring,Drop
+23067,Ring of the Cryptstalker,60,Ring,Drop
+21483,Ring of the Desert Winds,60,Ring,Drop
+21681,Ring of the Devoured,60,Ring,Drop
+23059,Ring of the Dreadnaught,60,Ring,Drop
+23064,Ring of the Dreamwalker,60,Ring,Drop
+23065,Ring of the Earthshatterer,60,Ring,Drop
+23237,Ring of the Eternal Flame,60,Ring,Drop
+21709,Ring of the Fallen God,60,Ring,Quest
+21399,Ring of the Gathering Storm,60,Ring,Quest
+21596,Ring of the Godslayer,60,Ring,Drop
+21620,Ring of the Martyr,60,Ring,Drop
+21677,Ring of the Qiraji Fury,60,Ring,Drop
+20624,Ring of the Unliving,60,Ring,Drop
+21417,Ring of Unspoken Names,60,Ring,Quest
+21836,Ritssyn's Ring of Chaos,60,Ring,Drop
+23025,Seal of the Damned,60,Ring,Drop
+23018,Signet of the Fallen Defender,60,Ring,Drop
+21402,Signet of the Unseen Path,60,Ring,Quest
+21393,Signet of Unyielding Strength,60,Ring,Quest
+21196,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21197,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21198,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21199,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21200,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21201,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21202,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21203,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21204,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21205,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21206,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21207,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21208,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21209,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+21210,Signet Ring of the Bronze Dragonflight,60,Ring,"Quest, Vendor"
+234016,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234017,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234018,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234019,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234020,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234021,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234022,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234023,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234024,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234025,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234026,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234027,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234028,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234029,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234030,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234031,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234032,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234033,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234034,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234035,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234198,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234199,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234200,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234201,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234202,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234436,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234437,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234438,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234439,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234440,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234964,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234965,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234966,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234967,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+234968,Signet Ring of the Bronze Dragonflight,60,Ring,Vendor
+275971,Stalwart Watcher's Signet,60,Ring,Other
+275975,Stalwart Watcher's Signet,60,Ring,Other
+275980,Stalwart Watcher's Signet,60,Ring,Other
+275984,Stalwart Watcher's Signet,60,Ring,Other
+21687,Ukko's Ring of Darkness,60,Ring,Drop
+275970,Vigilant Watcher's Signet,60,Ring,Other
+275974,Vigilant Watcher's Signet,60,Ring,Other
+275979,Vigilant Watcher's Signet,60,Ring,Other
+275983,Vigilant Watcher's Signet,60,Ring,Other
+21269,Blessed Qiraji Bulwark,60,Shield,Quest
+14982,Exalted Shield,60,Shield,Drop
+18825,Grand Marshal's Aegis,60,Shield,"PvP, Vendor"
+234588,Grand Marshal's Aegis,60,Shield,Vendor
+235473,Grand Marshal's Barricade,60,Shield,Vendor
+235474,High Warlord's Barricade,60,Shield,Vendor
+18826,High Warlord's Shield Wall,60,Shield,"PvP, Vendor"
+234562,High Warlord's Shield Wall,60,Shield,Vendor
+10367,Hyperion Shield,60,Shield,Drop
+272838,Premier Grand Marshal's Aegis,60,Shield,Other
+278468,Premier Grand Marshal's Barricade,60,Shield,Other
+278469,Premier High Warlord's Barricade,60,Shield,Other
+272591,Premier High Warlord's Shield Wall,60,Shield,Other
+19321,The Immovable Object,60,Shield,"Drop, PvP, Vendor"
+15687,Triumphant Shield,60,Shield,Drop
+21610,Wormscale Blocker,60,Shield,Drop
+20330,90 Epic Frost Mantle,60,Shoulder,Other
+20273,90 Epic Rogue Spaulders,60,Shoulder,Other
+20140,90 Epic Warrior Pauldrons,60,Shoulder,Other
+20344,90 Green Frost Mantle,60,Shoulder,Other
+20308,90 Green Rogue Spaulders,60,Shoulder,Other
+20249,90 Green Warrior Pauldrons,60,Shoulder,Other
+227888,Argent Elite Shoulders,60,Shoulder,Vendor
+21391,Avenger's Pauldrons,60,Shoulder,Quest
+22479,Bonescythe Pauldrons,60,Shoulder,Quest
+227078,Champion's Chain Pauldrons,60,Shoulder,Vendor
+23252,Champion's Chain Shoulders,60,Shoulder,Vendor
+227069,Champion's Chain Shoulders,60,Shoulder,Vendor
+227207,Champion's Dragonhide Pauldrons,60,Shoulder,Vendor
+23254,Champion's Dragonhide Shoulders,60,Shoulder,Vendor
+227175,Champion's Dragonhide Shoulders,60,Shoulder,Vendor
+227184,Champion's Dragonhide Spaulders,60,Shoulder,Vendor
+23256,Champion's Dreadweave Spaulders,60,Shoulder,Vendor
+227092,Champion's Dreadweave Spaulders,60,Shoulder,Vendor
+23258,Champion's Leather Shoulders,60,Shoulder,Vendor
+227056,Champion's Leather Shoulders,60,Shoulder,Vendor
+227166,Champion's Mail Epaulets,60,Shoulder,Vendor
+23260,Champion's Mail Pauldrons,60,Shoulder,Vendor
+227154,Champion's Mail Pauldrons,60,Shoulder,Vendor
+227160,Champion's Mail Spaulders,60,Shoulder,Vendor
+23243,Champion's Plate Shoulders,60,Shoulder,Vendor
+227042,Champion's Plate Shoulders,60,Shoulder,Vendor
+227130,Champion's Satin Epaulets,60,Shoulder,Vendor
+23262,Champion's Satin Mantle,60,Shoulder,Vendor
+227120,Champion's Satin Mantle,60,Shoulder,Vendor
+23264,Champion's Silk Mantle,60,Shoulder,Vendor
+227104,Champion's Silk Mantle,60,Shoulder,Vendor
+21330,Conqueror's Spaulders,60,Shoulder,Quest
+22439,Cryptstalker Spaulders,60,Shoulder,Quest
+239534,Dawnstalker Pauldrons,60,Shoulder,Vendor
+239542,Dawnstalker Spaulders,60,Shoulder,Vendor
+21361,Deathdealer's Spaulders,60,Shoulder,Quest
+20184,Defiler's Lamellar Spaulders,60,Shoulder,Vendor
+280882,Demonheart Spaulders,60,Shoulder,Other
+21335,Doomcaller's Mantle,60,Shoulder,Quest
+22419,Dreadnaught Pauldrons,60,Shoulder,Quest
+22491,Dreamwalker Spaulders,60,Shoulder,Quest
+239552,Duskwraith Mantle,60,Shoulder,Vendor
+239559,Duskwraith Pauldrons,60,Shoulder,Vendor
+22467,Earthshatter Spaulders,60,Shoulder,Quest
+21345,Enigma Shoulderpads,60,Shoulder,Quest
+231557,Field Marshal's Chain Pauldrons,60,Shoulder,Vendor
+231576,Field Marshal's Chain Shoulders,60,Shoulder,Vendor
+16468,Field Marshal's Chain Spaulders,60,Shoulder,Vendor
+231705,Field Marshal's Dragonhide Pauldrons,60,Shoulder,Vendor
+231693,Field Marshal's Dragonhide Shoulders,60,Shoulder,Vendor
+16449,Field Marshal's Dragonhide Spaulders,60,Shoulder,Vendor
+231699,Field Marshal's Dragonhide Spaulders,60,Shoulder,Vendor
+17580,Field Marshal's Dreadweave Shoulders,60,Shoulder,Vendor
+231583,Field Marshal's Dreadweave Shoulders,60,Shoulder,Vendor
+16476,Field Marshal's Lamellar Pauldrons,60,Shoulder,Vendor
+231645,Field Marshal's Lamellar Pauldrons,60,Shoulder,Vendor
+231651,Field Marshal's Lamellar Shoulders,60,Shoulder,Vendor
+16457,Field Marshal's Leather Epaulets,60,Shoulder,Vendor
+231547,Field Marshal's Leather Epaulets,60,Shoulder,Vendor
+16480,Field Marshal's Plate Shoulderguards,60,Shoulder,Vendor
+231537,Field Marshal's Plate Shoulderguards,60,Shoulder,Vendor
+231621,Field Marshal's Satin Epaulets,60,Shoulder,Vendor
+17604,Field Marshal's Satin Mantle,60,Shoulder,Vendor
+231628,Field Marshal's Satin Mantle,60,Shoulder,Vendor
+16444,Field Marshal's Silk Spaulders,60,Shoulder,Vendor
+231602,Field Marshal's Silk Spaulders,60,Shoulder,Vendor
+240046,Fireleaf Mantle,60,Shoulder,Vendor
+240054,Fireleaf Shoulderpads,60,Shoulder,Vendor
+22499,Frostfire Shoulderpads,60,Shoulder,Quest
+21354,Genesis Shoulderpads,60,Shoulder,Quest
+227818,Glowing Mantle of the Dawn,60,Shoulder,Vendor
+280876,Grimstitch Spaulders,60,Shoulder,Other
+280976,Grovekeeper Pauldrons,60,Shoulder,Other
+240150,Heretic Mantle,60,Shoulder,Vendor
+240143,Heretic Shoulderpads,60,Shoulder,Vendor
+22940,Icebane Pauldrons,60,Shoulder,Drop
+246061,Inquisition Epaulets,60,Shoulder,Vendor
+240033,Inquisition Pauldrons,60,Shoulder,Vendor
+240025,Inquisition Shoulderplates,60,Shoulder,Vendor
+240021,Inquisition Spaulders,60,Shoulder,Vendor
+280935,Justice Epaulets,60,Shoulder,Other
+280942,Justice Pauldrons,60,Shoulder,Other
+280929,Justice Spaulders,60,Shoulder,Other
+227084,Lieutenant Commander's Chain Pauldrons,60,Shoulder,Vendor
+23307,Lieutenant Commander's Chain Shoulders,60,Shoulder,Vendor
+227068,Lieutenant Commander's Chain Shoulders,60,Shoulder,Vendor
+227201,Lieutenant Commander's Dragonhide Pauldrons,60,Shoulder,Vendor
+23309,Lieutenant Commander's Dragonhide Shoulders,60,Shoulder,Vendor
+227172,Lieutenant Commander's Dragonhide Shoulders,60,Shoulder,Vendor
+227190,Lieutenant Commander's Dragonhide Spaulders,60,Shoulder,Vendor
+23311,Lieutenant Commander's Dreadweave Spaulders,60,Shoulder,Vendor
+227091,Lieutenant Commander's Dreadweave Spaulders,60,Shoulder,Vendor
+227148,Lieutenant Commander's Lamellar Pauldrons,60,Shoulder,Vendor
+23277,Lieutenant Commander's Lamellar Shoulders,60,Shoulder,Vendor
+227145,Lieutenant Commander's Lamellar Shoulders,60,Shoulder,Vendor
+23313,Lieutenant Commander's Leather Shoulders,60,Shoulder,Vendor
+227054,Lieutenant Commander's Leather Shoulders,60,Shoulder,Vendor
+23315,Lieutenant Commander's Plate Shoulders,60,Shoulder,Vendor
+227045,Lieutenant Commander's Plate Shoulders,60,Shoulder,Vendor
+227136,Lieutenant Commander's Satin Epaulets,60,Shoulder,Vendor
+23317,Lieutenant Commander's Satin Mantle,60,Shoulder,Vendor
+227119,Lieutenant Commander's Satin Mantle,60,Shoulder,Vendor
+23319,Lieutenant Commander's Silk Mantle,60,Shoulder,Vendor
+227102,Lieutenant Commander's Silk Mantle,60,Shoulder,Vendor
+239524,Lightbreaker Pauldrons,60,Shoulder,Vendor
+239516,Lightbreaker Shoulders,60,Shoulder,Vendor
+280454,Manaflare Mantle,60,Shoulder,Other
+280923,Mantle of Conviction,60,Shoulder,Other
+239581,Mantle of Revelation,60,Shoulder,Vendor
+21350,Mantle of the Oracle,60,Shoulder,Quest
+21665,Mantle of Wicked Revenge,60,Shoulder,Drop
+280917,Pauldrons of Conviction,60,Shoulder,Other
+280909,Pauldrons of Glory,60,Shoulder,Other
+21639,Pauldrons of the Unrelenting,60,Shoulder,Drop
+22507,Plagueheart Shoulderpads,60,Shoulder,Quest
+22941,Polar Shoulder Pads,60,Shoulder,Drop
+272533,Premier General's Chain Shoulders,60,Shoulder,Other
+272516,Premier General's Dragonhide Epaulets,60,Shoulder,Other
+272558,Premier General's Felweave Mantle,60,Shoulder,Other
+273415,Premier General's Kodohide Epaulets,60,Shoulder,Other
+274255,Premier General's Lamellar Pauldrons,60,Shoulder,Other
+272545,Premier General's Linked Spaulders,60,Shoulder,Other
+272501,Premier General's Magus Amice,60,Shoulder,Other
+273343,Premier General's Mail Spaulders,60,Shoulder,Other
+272509,Premier General's Mortarplate Shoulders,60,Shoulder,Other
+273351,Premier General's Ringmail Spaulders,60,Shoulder,Other
+272574,Premier General's Satin Mantle,60,Shoulder,Other
+274241,Premier General's Scaled Pauldrons,60,Shoulder,Other
+272527,Premier General's Shadowhide Spaulders,60,Shoulder,Other
+273433,Premier General's Silken Mantle,60,Shoulder,Other
+273407,Premier General's Wyrmhide Epaulets,60,Shoulder,Other
+272758,Premier Marshal's Beasthide Spaulders,60,Shoulder,Other
+272777,Premier Marshal's Chainmail Spaulders,60,Shoulder,Other
+272785,Premier Marshal's Chevalier Pauldrons,60,Shoulder,Other
+272804,Premier Marshal's Dreadweave Shoulders,60,Shoulder,Other
+273400,Premier Marshal's Dreamhide Spaulders,60,Shoulder,Other
+274190,Premier Marshal's Flatmail Spaulders,60,Shoulder,Other
+272766,Premier Marshal's Leather Epaulets,60,Shoulder,Other
+274213,Premier Marshal's Linkmail Spaulders,60,Shoulder,Other
+273334,Premier Marshal's Luminous Pauldrons,60,Shoulder,Other
+273392,Premier Marshal's Lunarhide Spaulders,60,Shoulder,Other
+273423,Premier Marshal's Mooncloth Mantle,60,Shoulder,Other
+272789,Premier Marshal's Plate Shoulderguards,60,Shoulder,Other
+274205,Premier Marshal's Scalemail Spaulders,60,Shoulder,Other
+272753,Premier Marshal's Silk Spaulders,60,Shoulder,Other
+272820,Premier Marshal's Voidcloth Mantle,60,Shoulder,Other
+22429,Redemption Spaulders,60,Shoulder,Quest
+227808,Rugged Mantle of the Timbermaw,60,Shoulder,Vendor
+227859,Shimmering Dawnbringer Shoulders,60,Shoulder,Vendor
+22515,Shoulderpads of Faith,60,Shoulder,Quest
+239586,Shoulderpads of Revelation,60,Shoulder,Vendor
+280903,Shoulders of Glory,60,Shoulder,Other
+240135,Soulcrusher Epaulets,60,Shoulder,Vendor
+240125,Soulcrusher Mantle,60,Shoulder,Vendor
+240106,Soulcrusher Pauldrons,60,Shoulder,Vendor
+240098,Soulcrusher Spaulders,60,Shoulder,Vendor
+280944,Spiritcaller Epaulets,60,Shoulder,Other
+280962,Spiritcaller Mantle,60,Shoulder,Other
+280956,Spiritcaller Spaulders,60,Shoulder,Other
+21376,Stormcaller's Pauldrons,60,Shoulder,Quest
+21367,Striker's Pauldrons,60,Shoulder,Quest
+21694,Ternary Mantle,60,Shoulder,Drop
+20406,Twilight Cultist Mantle,60,Shoulder,Drop
+231565,Warlord's Chain Pauldrons,60,Shoulder,Vendor
+16568,Warlord's Chain Shoulders,60,Shoulder,Vendor
+231572,Warlord's Chain Shoulders,60,Shoulder,Vendor
+16551,Warlord's Dragonhide Epaulets,60,Shoulder,Vendor
+231672,Warlord's Dragonhide Pauldrons,60,Shoulder,Vendor
+231684,Warlord's Dragonhide Shoulders,60,Shoulder,Vendor
+231681,Warlord's Dragonhide Spaulders,60,Shoulder,Vendor
+17590,Warlord's Dreadweave Mantle,60,Shoulder,Vendor
+231592,Warlord's Dreadweave Mantle,60,Shoulder,Vendor
+16562,Warlord's Leather Spaulders,60,Shoulder,Vendor
+231551,Warlord's Leather Spaulders,60,Shoulder,Vendor
+231665,Warlord's Mail Epaulets,60,Shoulder,Vendor
+231654,Warlord's Mail Pauldrons,60,Shoulder,Vendor
+16580,Warlord's Mail Spaulders,60,Shoulder,Vendor
+231659,Warlord's Mail Spaulders,60,Shoulder,Vendor
+16544,Warlord's Plate Shoulders,60,Shoulder,Vendor
+231534,Warlord's Plate Shoulders,60,Shoulder,Vendor
+231611,Warlord's Satin Epaulets,60,Shoulder,Vendor
+17622,Warlord's Satin Mantle,60,Shoulder,Vendor
+231631,Warlord's Satin Mantle,60,Shoulder,Vendor
+16536,Warlord's Silk Amice,60,Shoulder,Vendor
+231594,Warlord's Silk Amice,60,Shoulder,Vendor
+240070,Waywatcher Mantle,60,Shoulder,Vendor
+240078,Waywatcher Pauldrons,60,Shoulder,Vendor
+240062,Waywatcher Shoulderpads,60,Shoulder,Vendor
+240086,Waywatcher Spaulders,60,Shoulder,Vendor
+280897,Wildstalker's Spaulders,60,Shoulder,Other
+19345,Aegis of Preservation,60,Trinket,Drop
+19336,Arcane Infused Gem,60,Trinket,Drop
+21670,Badge of the Swarmguard,60,Trinket,Drop
+19288,Darkmoon Card: Blue Dragon,60,Trinket,Quest
+19287,Darkmoon Card: Heroism,60,Trinket,Quest
+19289,Darkmoon Card: Maelstrom,60,Trinket,Quest
+19290,Darkmoon Card: Twisting Nether,60,Trinket,Quest
+19406,Drake Fang Talisman,60,Trinket,Drop
+18815,Essence of the Pure Flame,60,Trinket,Drop
+23001,Eye of Diminution,60,Trinket,Drop
+21473,Eye of Moam,60,Trinket,Drop
+23047,Eye of the Dead,60,Trinket,Drop
+191312,Failsafe Phylactery,60,Trinket,Other
+21488,Fetish of Chitinous Spikes,60,Trinket,Drop
+21647,Fetish of the Sand Reaver,60,Trinket,Drop
+23040,Glyph of Deflection,60,Trinket,Drop
+19951,Gri'lek's Charm of Might,60,Trinket,Other
+19952,Gri'lek's Charm of Valor,60,Trinket,Other
+19957,Hazza'rah's Charm of Destruction,60,Trinket,Other
+19958,Hazza'rah's Charm of Healing,60,Trinket,Other
+19959,Hazza'rah's Charm of Magic,60,Trinket,Other
+20636,Hibernation Crystal,60,Trinket,Drop
+23570,Jom Gabbar,60,Trinket,Drop
+22954,Kiss of the Spider,60,Trinket,Drop
+19341,Lifegiving Gem,60,Trinket,Drop
+23042,Loatheb's Reflection,60,Trinket,Drop
+19339,Mind Quickening Gem,60,Trinket,Drop
+19344,Natural Alignment Crystal,60,Trinket,Drop
+19379,Neltharion's Tear,60,Trinket,Drop
+21685,Petrified Scarab,60,Trinket,Drop
+19395,Rejuvenating Gem,60,Trinket,Drop
+19953,Renataki's Charm of Beasts,60,Trinket,Other
+19954,Renataki's Charm of Trickery,60,Trinket,Other
+19340,Rune of Metamorphosis,60,Trinket,Drop
+21625,Scarab Brooch,60,Trinket,Drop
+19343,Scrolls of Blinding Light,60,Trinket,Drop
+21891,Shard of the Fallen Star,60,Trinket,Drop
+23041,Slayer's Crest,60,Trinket,Drop
+19431,Styleen's Impeding Scarab,60,Trinket,Drop
+18820,Talisman of Ephemeral Power,60,Trinket,Drop
+19337,The Black Book,60,Trinket,Drop
+23558,The Burrower's Shell,60,Trinket,Drop
+18646,The Eye of Divinity,60,Trinket,Drop
+18665,The Eye of Shadow,60,Trinket,Drop
+23046,The Restrained Essence of Sapphiron,60,Trinket,Drop
+21579,Vanquished Tentacle of C'Thun,60,Trinket,Drop
+19342,Venomous Totem,60,Trinket,Drop
+23027,Warmth of Forgiveness,60,Trinket,Drop
+19955,Wushoolay's Charm of Nature,60,Trinket,Other
+19956,Wushoolay's Charm of Spirits,60,Trinket,Other
+20324,90 Epic Frost Belt,60,Waist,Other
+20267,90 Epic Rogue Belt,60,Waist,Other
+20142,90 Epic Warrior Waistband,60,Waist,Other
+20338,90 Green Frost Belt,60,Waist,Other
+20297,90 Green Rogue Belt,60,Waist,Other
+20252,90 Green Warrior Waistband,60,Waist,Other
+272395,Assassin's Waistguard,60,Waist,Vendor
+22518,Belt of Faith,60,Waist,Quest
+21586,Belt of Never-ending Agony,60,Waist,Drop
+239590,Belt of Revelation,60,Waist,Vendor
+21606,Belt of the Fallen Emperor,60,Waist,Drop
+22482,Bonescythe Waistguard,60,Waist,Quest
+272398,Caretaker's Cord,60,Waist,Vendor
+22442,Cryptstalker Girdle,60,Waist,Quest
+239535,Dawnstalker Belt,60,Waist,Vendor
+239538,Dawnstalker Girdle,60,Waist,Vendor
+227807,Dense Timbermaw Belt,60,Waist,Vendor
+22422,Dreadnaught Waistguard,60,Waist,Quest
+22494,Dreamwalker Girdle,60,Waist,Quest
+239554,Duskwraith Belt,60,Waist,Vendor
+239556,Duskwraith Waistguard,60,Waist,Vendor
+22470,Earthshatter Girdle,60,Waist,Quest
+272401,Elunite Cord,60,Waist,Vendor
+227805,Ferocity of the Timbermaw,60,Waist,Vendor
+240053,Fireleaf Belt,60,Waist,Vendor
+240045,Fireleaf Waistguard,60,Waist,Vendor
+22502,Frostfire Belt,60,Waist,Quest
+16572,General's Chain Girdle,60,Waist,Other
+16556,General's Dragonhide Belt,60,Waist,Other
+17589,General's Dreadweave Belt,60,Waist,Other
+16557,General's Leather Girdle,60,Waist,Other
+16575,General's Mail Waistband,60,Waist,Other
+16547,General's Plate Girdle,60,Waist,Other
+17621,General's Satin Cinch,60,Waist,Other
+16537,General's Silk Sash,60,Waist,Other
+239582,Girdle of Revelation,60,Waist,Vendor
+19392,Girdle of the Fallen Crusader,60,Waist,Drop
+21607,Grasp of the Fallen Emperor,60,Waist,Drop
+21582,Grasp of the Old God,60,Waist,Drop
+240144,Heretic Belt,60,Waist,Vendor
+240151,Heretic Waistguard,60,Waist,Vendor
+240024,Inquisition Belt,60,Waist,Vendor
+246059,Inquisition Cord,60,Waist,Vendor
+240043,Inquisition Girdle,60,Waist,Vendor
+240032,Inquisition Waistguard,60,Waist,Vendor
+228190,Knowledge of the Timbermaw,60,Waist,Vendor
+239513,Lightbreaker Belt,60,Waist,Vendor
+239521,Lightbreaker Waistguard,60,Waist,Vendor
+272393,Magician's Cord,60,Waist,Vendor
+16464,Marshal's Chain Girdle,60,Waist,Other
+16447,Marshal's Dragonhide Waistguard,60,Waist,Other
+17585,Marshal's Dreadweave Sash,60,Waist,Other
+16470,Marshal's Lamellar Belt,60,Waist,Other
+16458,Marshal's Leather Cinch,60,Waist,Other
+16482,Marshal's Plate Girdle,60,Waist,Other
+17609,Marshal's Satin Sash,60,Waist,Other
+16439,Marshal's Silk Sash,60,Waist,Other
+272394,Penitent's Cinch,60,Waist,Vendor
+22510,Plagueheart Belt,60,Waist,Quest
+272756,Premier Knight-Captain's Beasthide Waistguard,60,Waist,Other
+272773,Premier Knight-Captain's Chainmail Girdle,60,Waist,Other
+272779,Premier Knight-Captain's Chevalier Belt,60,Waist,Other
+272809,Premier Knight-Captain's Dreadweave Sash,60,Waist,Other
+273398,Premier Knight-Captain's Dreamhide Waistguard,60,Waist,Other
+274185,Premier Knight-Captain's Flatmail Waistband,60,Waist,Other
+272767,Premier Knight-Captain's Leather Cinch,60,Waist,Other
+274208,Premier Knight-Captain's Linkmail Waistband,60,Waist,Other
+273328,Premier Knight-Captain's Luminous Belt,60,Waist,Other
+273390,Premier Knight-Captain's Lunarhide Waistguard,60,Waist,Other
+273428,Premier Knight-Captain's Mooncloth Sash,60,Waist,Other
+272791,Premier Knight-Captain's Plate Girdle,60,Waist,Other
+274200,Premier Knight-Captain's Scalemail Waistband,60,Waist,Other
+272748,Premier Knight-Captain's Silk Sash,60,Waist,Other
+272825,Premier Knight-Captain's Voidcloth Sash,60,Waist,Other
+272537,Premier Legionnaire's Chain Girdle,60,Waist,Other
+272521,Premier Legionnaire's Dragonhide Belt,60,Waist,Other
+272557,Premier Legionnaire's Felweave Belt,60,Waist,Other
+273420,Premier Legionnaire's Kodohide Belt,60,Waist,Other
+274249,Premier Legionnaire's Lamellar Belt,60,Waist,Other
+272540,Premier Legionnaire's Linked Waistband,60,Waist,Other
+272502,Premier Legionnaire's Magus Sash,60,Waist,Other
+273338,Premier Legionnaire's Mail Waistband,60,Waist,Other
+272512,Premier Legionnaire's Mortarplate Girdle,60,Waist,Other
+273346,Premier Legionnaire's Ringmail Waistband,60,Waist,Other
+272573,Premier Legionnaire's Satin Cinch,60,Waist,Other
+274235,Premier Legionnaire's Scaled Belt,60,Waist,Other
+272522,Premier Legionnaire's Shadowhide Girdle,60,Waist,Other
+273432,Premier Legionnaire's Silken Cinch,60,Waist,Other
+273412,Premier Legionnaire's Wyrmhide Belt,60,Waist,Other
+227814,Radiant Girdle of the Dawn,60,Waist,Vendor
+272397,Ranger's Belt,60,Waist,Vendor
+272405,Redeemer's Waistcord,60,Waist,Vendor
+22431,Redemption Girdle,60,Waist,Quest
+21609,Regenerating Belt of Vek'nilash,60,Waist,Drop
+21598,Royal Qiraji Belt,60,Waist,Drop
+272396,Shifter's Belt,60,Waist,Vendor
+240136,Soulcrusher Belt,60,Waist,Vendor
+240126,Soulcrusher Cord,60,Waist,Vendor
+240099,Soulcrusher Girdle,60,Waist,Vendor
+240107,Soulcrusher Waistguard,60,Waist,Vendor
+272403,Valiant's Waistguard,60,Waist,Vendor
+272404,Vindicator's Belt,60,Waist,Vendor
+240069,Waywatcher Cord,60,Waist,Vendor
+240085,Waywatcher Girdle,60,Waist,Vendor
+240061,Waywatcher Sash,60,Waist,Vendor
+240077,Waywatcher Waistguard,60,Waist,Vendor
+20325,90 Epic Frost Bindings,60,Wrist,Other
+20269,90 Epic Rogue Bracers,60,Wrist,Other
+20135,90 Epic Warrior Bracelets,60,Wrist,Other
+20339,90 Green Frost Bindings,60,Wrist,Other
+20300,90 Green Rogue Bracers,60,Wrist,Other
+20239,90 Green Warrior Bracelets,60,Wrist,Other
+19578,Berserker Bracers,60,Wrist,"PvP, Vendor"
+22519,Bindings of Faith,60,Wrist,Quest
+239588,Bindings of Revelation,60,Wrist,Vendor
+22483,Bonescythe Bracers,60,Wrist,Quest
+21604,Bracelets of Royal Redemption,60,Wrist,Drop
+21584,Bracers of Eternal Reckoning,60,Wrist,Other
+21594,Bracers of the Fallen Son,60,Wrist,Other
+21611,Burrower Bracers,60,Wrist,Drop
+22443,Cryptstalker Wristguards,60,Wrist,Quest
+239536,Dawnstalker Vambraces,60,Wrist,Vendor
+239544,Dawnstalker Wristguards,60,Wrist,Vendor
+22423,Dreadnaught Bracers,60,Wrist,Quest
+22495,Dreamwalker Wristguards,60,Wrist,Quest
+19595,Dryad's Wrist Bindings,60,Wrist,"PvP, Vendor"
+239555,Duskwraith Bracers,60,Wrist,Vendor
+239547,Duskwraith Wristguards,60,Wrist,Vendor
+22471,Earthshatter Wristguards,60,Wrist,Quest
+240052,Fireleaf Bindings,60,Wrist,Vendor
+240044,Fireleaf Wristwraps,60,Wrist,Vendor
+19587,Forest Stalker's Bracers,60,Wrist,"PvP, Vendor"
+22503,Frostfire Bindings,60,Wrist,Quest
+16570,General's Chain Wristguards,60,Wrist,Other
+16553,General's Dragonhide Bracers,60,Wrist,Other
+17587,General's Dreadweave Bracers,60,Wrist,Other
+16559,General's Leather Armsplints,60,Wrist,Other
+16576,General's Mail Bracers,60,Wrist,Other
+16546,General's Plate Armguards,60,Wrist,Other
+17619,General's Satin Bracers,60,Wrist,Other
+16538,General's Silk Cuffs,60,Wrist,Other
+240145,Heretic Bindings,60,Wrist,Vendor
+240152,Heretic Wristguards,60,Wrist,Vendor
+21618,Hive Defiler Wristguards,60,Wrist,Drop
+246056,Inquisition Armbraces,60,Wrist,Vendor
+240031,Inquisition Bracers,60,Wrist,Vendor
+240023,Inquisition Vambraces,60,Wrist,Vendor
+240042,Inquisition Wristguards,60,Wrist,Vendor
+239520,Lightbreaker Bracers,60,Wrist,Vendor
+239512,Lightbreaker Wrists,60,Wrist,Vendor
+16461,Marshal's Chain Bracers,60,Wrist,Other
+16445,Marshal's Dragonhide Bracers,60,Wrist,Other
+17582,Marshal's Dreadweave Cuffs,60,Wrist,Other
+16469,Marshal's Lamellar Armguards,60,Wrist,Other
+16460,Marshal's Leather Armsplints,60,Wrist,Other
+16481,Marshal's Plate Bracers,60,Wrist,Other
+17606,Marshal's Satin Bracers,60,Wrist,Other
+16438,Marshal's Silk Bracers,60,Wrist,Other
+22511,Plagueheart Bindings,60,Wrist,Quest
+272754,Premier Knight-Captain's Beasthide Bracers,60,Wrist,Other
+272770,Premier Knight-Captain's Chainmail Bracers,60,Wrist,Other
+272778,Premier Knight-Captain's Chevalier Armguards,60,Wrist,Other
+272806,Premier Knight-Captain's Dreadweave Cuffs,60,Wrist,Other
+273397,Premier Knight-Captain's Dreamhide Bracers,60,Wrist,Other
+274186,Premier Knight-Captain's Flatmail Bracers,60,Wrist,Other
+272769,Premier Knight-Captain's Leather Armsplints,60,Wrist,Other
+274209,Premier Knight-Captain's Linkmail Bracers,60,Wrist,Other
+273327,Premier Knight-Captain's Luminous Armguards,60,Wrist,Other
+273389,Premier Knight-Captain's Lunarhide Bracers,60,Wrist,Other
+273425,Premier Knight-Captain's Mooncloth Bracers,60,Wrist,Other
+272790,Premier Knight-Captain's Plate Bracers,60,Wrist,Other
+274201,Premier Knight-Captain's Scalemail Bracers,60,Wrist,Other
+272747,Premier Knight-Captain's Silk Bracers,60,Wrist,Other
+272822,Premier Knight-Captain's Voidcloth Bracers,60,Wrist,Other
+272535,Premier Legionnaire's Chain Wristguards,60,Wrist,Other
+272518,Premier Legionnaire's Dragonhide Bracers,60,Wrist,Other
+272555,Premier Legionnaire's Felweave Bracers,60,Wrist,Other
+273417,Premier Legionnaire's Kodohide Bracers,60,Wrist,Other
+274248,Premier Legionnaire's Lamellar Armguards,60,Wrist,Other
+272541,Premier Legionnaire's Linked Bracers,60,Wrist,Other
+272503,Premier Legionnaire's Magus Cuffs,60,Wrist,Other
+273339,Premier Legionnaire's Mail Bracers,60,Wrist,Other
+272511,Premier Legionnaire's Mortarplate Armguards,60,Wrist,Other
+273347,Premier Legionnaire's Ringmail Bracers,60,Wrist,Other
+272571,Premier Legionnaire's Satin Bracers,60,Wrist,Other
+274234,Premier Legionnaire's Scaled Armguards,60,Wrist,Other
+272524,Premier Legionnaire's Shadowhide Armsplints,60,Wrist,Other
+273430,Premier Legionnaire's Silken Bracers,60,Wrist,Other
+273409,Premier Legionnaire's Wyrmhide Bracers,60,Wrist,Other
+21602,Qiraji Execution Bracers,60,Wrist,Drop
+22424,Redemption Wristguards,60,Wrist,Quest
+240127,Soulcrusher Bindings,60,Wrist,Vendor
+240108,Soulcrusher Bracers,60,Wrist,Vendor
+240137,Soulcrusher Vambraces,60,Wrist,Vendor
+240100,Soulcrusher Wristguards,60,Wrist,Vendor
+240068,Waywatcher Bindings,60,Wrist,Vendor
+240076,Waywatcher Bracers,60,Wrist,Vendor
+240060,Waywatcher Wraps,60,Wrist,Vendor
+240084,Waywatcher Wristguards,60,Wrist,Vendor
+19582,Windtalker's Wristguards,60,Wrist,"PvP, Vendor"
+21587,Wristguards of Castigation,60,Wrist,Other
+21588,Wristguards of Elemental Fury,60,Wrist,Other
+239583,Wrists of Revelation,60,Wrist,Vendor

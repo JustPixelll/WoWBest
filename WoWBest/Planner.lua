@@ -62,6 +62,15 @@ local function addRoute(s, row)
         end
         return
     end
+    if row.requiresCraftable then
+        -- A craft proven by this character's actual recipe and materials can
+        -- provide only the number of copies the client says can be made.
+        local limited = {}
+        for k, v in pairs(row) do limited[k] = v end
+        limited.maxCopies = math.min(row.maxCopies or math.huge, A.PersonalCraftCount(row, s.player))
+        limited.routeKey = "craft:" .. row.craftSpellID
+        row = limited
+    end
     local key = row.link or row.id
     local group = s.byKey[key]
     if not group then
@@ -77,7 +86,11 @@ local function addRoute(s, row)
     -- item. Retain distinct one-time options and owned copies for the solver.
     if not (row.choice or row.choices or row.maxCopies) then
         if group.unlimited then
-            if row.source ~= group.unlimited.source and not group.altSource then group.altSource = row.source end
+            if group.unlimited.unconfirmed and not row.unconfirmed then
+                group.altSource, group.unlimited = group.unlimited.source, row
+            elseif row.source ~= group.unlimited.source and not group.altSource then
+                group.altSource = row.source
+            end
             return
         end
         group.unlimited = row
@@ -182,7 +195,7 @@ function A.UnlockCount(slot)
     return #pathsFor(snapshot, slot)
 end
 
-function A.RequestSlot(slot, callback)
+function A.RequestSlot(slot, callback, showAll)
     A.CancelSlotRequest()
     local s = snapshot
     if not s or not A.IsVisible() or inCombat() then
@@ -190,16 +203,19 @@ function A.RequestSlot(slot, callback)
         return
     end
     local paths = pathsFor(s, slot)
-    if s.ranks[slot] then
-        callback(s.ranks[slot], s.loadout, s.profile, paths)
+    local cached = s.ranks[slot]
+    if cached and (not showAll or not cached.more) then
+        callback(cached.rows, s.loadout, s.profile, paths, nil, cached.more)
         return
     end
-    callback(nil, s.loadout, s.profile, paths, "Comparing compatible loadouts…")
+    callback(nil, s.loadout, s.profile, paths, showAll and "Ranking all compatible gear for this slot…" or "Comparing compatible loadouts…")
     startWork(function()
-        return A.RankPrepared(s.solver, slot, detailLimit, {loadout = s.loadout, total = s.total})
+        return A.RankPrepared(s.solver, slot, showAll and math.huge or detailLimit + 1, {loadout = s.loadout, total = s.total})
     end, function(rows)
-        s.ranks[slot] = rows
-        callback(rows, s.loadout, s.profile, paths)
+        local more = not showAll and #rows > detailLimit
+        if more then table.remove(rows) end
+        s.ranks[slot] = {rows = rows, more = more}
+        callback(rows, s.loadout, s.profile, paths, nil, more)
     end, function()
         callback({}, s.loadout, s.profile, paths, "Slot comparison failed. Click Refresh to try again.")
     end)
@@ -300,6 +316,9 @@ function A.StartScan(profile)
     current = s
     A.UpdateDisplay(nil, "Finding sources available at your level…")
     for _, row in ipairs(ownedRoutes()) do addRoute(s, row) end
+    if A.SourceEnabled("PvP") and A.OpenPvPVendorRoutes then
+        for _, row in ipairs(A.OpenPvPVendorRoutes()) do addRoute(s, row) end
+    end
     if A.SourceEnabled("Auction") and A.MarketRoutes then
         for _, row in ipairs(A.MarketRoutes()) do addRoute(s, row) end
     end
@@ -332,8 +351,9 @@ end)
 
 for _, event in ipairs({"PLAYER_LEVEL_UP", "PLAYER_EQUIPMENT_CHANGED", "BAG_UPDATE_DELAYED",
     "SPELLS_CHANGED", "SKILL_LINES_CHANGED", "PLAYER_TALENT_UPDATE", "TRAIT_CONFIG_UPDATED",
-    "QUEST_TURNED_IN", "UPDATE_FACTION", "MAJOR_FACTION_RENOWN_LEVEL_CHANGED", "PLAYER_REGEN_ENABLED", "PLAYER_REGEN_DISABLED",
-    "ITEM_DATA_LOAD_RESULT"}) do
+    "QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_TURNED_IN", "NEW_RECIPE_LEARNED",
+    "TRADE_SKILL_SHOW", "TRADE_SKILL_LIST_UPDATE", "TRADE_SKILL_CLOSE", "UPDATE_FACTION", "MAJOR_FACTION_RENOWN_LEVEL_CHANGED", "PLAYER_REGEN_ENABLED", "PLAYER_REGEN_DISABLED",
+    "MERCHANT_SHOW", "MERCHANT_UPDATE", "MERCHANT_CLOSED", "PLAYER_MONEY", "CURRENCY_DISPLAY_UPDATE", "ITEM_DATA_LOAD_RESULT"}) do
     -- Some event names vary between Forever builds.
     pcall(driver.RegisterEvent, driver, event)
 end
